@@ -27,10 +27,6 @@
 
 	<repositories>
 		<repository>
-			<id>codelds</id>
-			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
-		</repository>
-		<repository>
 			<id>project.local</id>
 			<url>file:${project.basedir}/lib</url>
 		</repository>
