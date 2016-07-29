@@ -1,0 +1,20 @@
+#set($layout = "layouts/complate_empty_layout.vm")
+<html >
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+		<link href="$link.contextPath/favicon.ico" rel="shortcut icon" type="image/x-icon"/>
+        <link rel="stylesheet" class="hx-themes" href="$link.contextPath/assets/build/css/themes/$!{sec.themes()}/page/error/error.css"/>
+    </head>
+    <body>
+        <header class="navbar">
+        </header>
+        <div class="container">
+            <h2 class="tit1">您没有权限访问当前页面，请先申请权限。</h2>
+            <p class="tit4">
+                您可以稍后再尝试<a class="refresh" id="refresh" onclick="window.location.reload();" href="javascript:void(0)">刷新页面</a>，或者<a href="$link.contextPath/web/auth/login">跳转到首页</a>。若是第一次申请权限，请退出后重新登录。<br/>
+            </p>              
+            <span class="tit2">$!{sec.customHotline()}</span>                   
+        </div>
+    </body>
+</html>

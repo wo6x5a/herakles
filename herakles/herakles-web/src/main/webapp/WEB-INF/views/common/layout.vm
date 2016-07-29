@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js"> <!--<![endif]-->
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Application</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
+
+        <!-- Bootstrap core CSS -->
+    	<link href="$link.contextPath/assets/vendor/bootstrap/css/bootstrap.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/vendor/jquery.spinner/bootstrap-spinner.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/vendor/font-awesome/css/font-awesome.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/vendor/pnotify/jquery.pnotify.default.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/vendor/pnotify/jquery.pnotify.default.icons.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/vendor/responsive-nav/responsive-nav.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/vendor/summernote/css/summernote.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/css/common.css" rel="stylesheet">
+        <link href="$link.contextPath/assets/css/plugins.css" rel="stylesheet">
+        
+    	<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+	    <!--[if lt IE 9]>
+	    <script type="text/javascript" src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+	    <script type="text/javascript" src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+	    <![endif]-->
+	    <script type="text/javascript" src="$link.contextPath/assets/js/require.js"></script>
+    	<!-- Global variable module which will take variables from sever side -->
+    	<script type="text/javascript">
+	        define('global', {
+	            context: '$link.contextPath'
+	            #if ( $menuItem )
+	            , menuItem: '$menuItem'
+	            #end
+	        })
+    	</script>
+    	<script type="text/javascript" src="$link.contextPath/assets/js/base.js"></script>
+    </head>
+	<script>
+		  var navigation = responsiveNav("#nav", { // Selector: The ID of the wrapper
+		  animate: true, // Boolean: 是否启动CSS过渡效果（transitions）， true 或 false
+          transition: 400, // Integer: 过渡效果的执行速度，以毫秒（millisecond）为单位
+          label: "Menu", // String: Label for the navigation toggle
+          insert: "after", // String: Insert the toggle before or after the navigation
+          customToggle: "", // Selector: Specify the ID of a custom toggle
+          openPos: "relative", // String: Position of the opened nav, relative or static
+          jsClass: "js", // String: 'JS enabled' class which is added to <html> el
+          debug: false, // Boolean: Log debug messages to console, true 或 false
+          init: function(){}, // Function: Init callback
+          open: function(){}, // Function: Open callback
+          close: function(){} // Function: Close callback
+        });
+	</script>
+    <body>
+		#parse("common/header.vm")
+		<!-- Main content for a primary screen or call to action -->
+		<div role="navigation" id="nav" class="nav-collapse">
+			#if($menu == true)
+				<div class="right-content col-sm-10 col-md-10">
+    				#parse("common/menu.vm")
+				</div>
+			#end
+        </div>
+		<div class="container">
+			$screen_content
+		</div>	 
+    <div id= "footer" >#parse('common/footer.vm')</div>
+    </body>
+</html>

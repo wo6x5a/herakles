@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns="http://www.springframework.org/schema/beans" xmlns:jee="http://www.springframework.org/schema/jee"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/jee 
+	http://www.springframework.org/schema/jee/spring-jee.xsd">
+
+	<bean id="emailService"
+		class="com.lcw.herakles.platform.system.mail.service.EmailSerivce">
+		<property name="hostName" value="${email.host}" />
+		<property name="smtpPort" value="${email.port}" />
+		<property name="userName" value="${email.userName}" />
+		<property name="password" value="${email.password}" />
+		<property name="from" value="${email.defaultFrom}" />
+	</bean>
+</beans>

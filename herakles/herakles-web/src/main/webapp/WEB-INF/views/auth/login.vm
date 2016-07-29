@@ -1,0 +1,30 @@
+<link href="$link.contextPath/assets/css/page/auth/login.css" rel="stylesheet">
+
+<form id="signin-form" role="form" method="POST" 
+	action="$link.contextPath/web/auth/login/authc">
+	<div class="logo">
+		<img src="$link.contextPath/assets/img/logo.png" alt="Logo" title="JPet Store">
+	</div>
+	<hr/>
+	<div class="general-error alert alert-warning"></div>
+	<div class="form-group has-feedback">
+		<input class="form-control" type="text" name="userName" minlength="4"
+				autofocus="" required value="" placeholder="User name">
+	</div>
+	<div class="form-group has-feedback">
+		<input class="form-control" type="password" name="password" minlength="4"
+				required value="" placeholder="Password">
+	</div>
+	<div class="row captcha-row">
+		<div class="col-xs-8">
+			<div class="form-group has-feedback">
+        		<input class="form-control" type="text" name="captcha" required placeholder="Captcha">
+        	</div>
+        </div>
+        <div class="col-xs-4">
+        	<img id="captcha-img" class="img-responsive" src="$link.contextPath/web/auth/captcha"/ style="cursor:pointer;" >
+        </div>
+	</div>
+	<button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button>
+</form>
+<script src="$link.contextPath/assets/js/page/auth/login.js" type="text/javascript"></script>

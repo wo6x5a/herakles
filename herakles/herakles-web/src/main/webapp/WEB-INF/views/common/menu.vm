@@ -1,0 +1,8 @@
+<div id="nav" class="nav-collapse">
+##  <ul  class="nav nav-pills">
+##    <li><a href="$link.contextPath/web/product/view">product</a>
+##	</li>
+	
+ ##   <li><a href="$link.contextPath/web/system/log/view">log</a></li>
+ ## </ul>
+</div>

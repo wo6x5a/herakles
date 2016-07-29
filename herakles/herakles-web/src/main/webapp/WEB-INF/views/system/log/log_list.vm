@@ -1,0 +1,36 @@
+#set($menu=true)
+<link rel="stylesheet" href="$link.contextPath/assets/vendor/datatables/css/jquery.dataTables.css">
+    <link rel="stylesheet" href="$link.contextPath/assets/css/page/product/product_list.css">
+        <script src="$link.contextPath/assets/js/page/system/log/log_list.js" type="text/javascript"></script>
+        <div>
+            <div id="search-area">
+                <form id="log-form" method="post">
+                    <div class="row">
+                        <div class="col-sm-2">
+                            <label>id</label>
+                            <div class="full-oqp">
+                                <input type="text" name="id" class="form-control" placeholder="id"/>
+                            </div>
+                        </div>
+                        <div class="col-sm-2 row">
+                            <div class="col-sm-2">
+                                <label style="width:100%">&nbsp;</label>
+                                <div>
+                                    <a class="btn btn-primary" id="log-search-btn">Search</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <table id="main-table" class="dataTable">
+                <thead>
+                    <tr>
+                        <th data-mData="id" data-bSortable="false">ID</th>
+                        <th data-mData="title">title</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>

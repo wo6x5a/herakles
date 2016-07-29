@@ -1,0 +1,1 @@
+#springMessage($exception.errorCode)    <!-- \$exception.errorCode will get the code, we can use Spring to do i18n -->

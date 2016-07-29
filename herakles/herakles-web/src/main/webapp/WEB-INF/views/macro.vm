@@ -1,0 +1,217 @@
+#*分页*#
+
+    #macro(pagination $pageResult $pageRequestURL $dispType)
+        #if ($pageResult && $pageResult.pageSize > 1)
+        #* 当前页 *#
+            #set($curPageNum = $pageResult.curPageNum)
+
+        #* 总的页数 *#
+            #set($pages = $pageResult.pageSize)
+
+        #* 相邻的页数 *#
+            #set($paging_near_steps = 11)
+
+        #* 上一页 *#
+            #set($dispPrePage='<i class="icon-double-angle-left"></i>')
+            #set($dispPrePageDis='<i class="icon-double-angle-left"></i>')
+
+        #* 下一页 *#
+            #set($dispNextPage='<i class="icon-double-angle-right"></i>')
+            #set($dispNextPageDis='<i class="icon-double-angle-right"></i>')
+
+            <li class="page-count"><span>共${pageResult.rowCount}条</span></li>
+        #* 上一页控制 *#
+            #if (1 != $curPageNum)
+                #set($prePageIndex = $curPageNum - 1)
+            #* 可点 *#
+                #checkClickable($prePageIndex $dispPrePage 1 $pageRequestURL $dispType)
+            #else
+            #* 不可点 *#
+                #checkClickable("" $dispPrePageDis 0 $pageRequestURL $dispType)
+            #end
+
+            #* 相邻页面 *#
+            #set($avg = $paging_near_steps / 2)
+	        #set($startPageNumber = $curPageNum - $avg)
+	        #if($startPageNumber <= 0) 
+	            #set($startPageNumber = 1)
+	        #end
+	        #set($endPageNumber = $startPageNumber + $paging_near_steps - 1)
+	        #if($endPageNumber > $pages) 
+	            #set($endPageNumber = $pages)
+	        #end
+	        #if($endPageNumber - $startPageNumber < $paging_near_steps) 
+	            #set($startPageNumber = $endPageNumber - $paging_near_steps)
+	            #if($startPageNumber <= 0 ) 
+	                #set($startPageNumber = 1)
+	            #end
+	        #end
+	        
+	        #if($startPageNumber>2)
+	        	#checkClickable("1" 1  1	$pageRequestURL $dispType)
+    		#end
+            #foreach($page_index in [$startPageNumber..$endPageNumber])
+            	#if($page_index==0)
+					<span>...</span>
+				#else
+					#if($page_index==$curPageNum)
+						#checkClickable("" $page_index 0	$pageRequestURL $dispType)
+					#else
+						#checkClickable($page_index $page_index 1	$pageRequestURL $dispType)
+					#end
+				#end
+            #end
+            
+            #if($endPageNumber!=$pages)
+				#checkClickable($pages $pages  1	$pageRequestURL $dispType)
+    		#end
+
+            #* 下一页控制 *#
+                #if($pages != $curPageNum)
+                #* 可点 *#
+                    #set($nextPageIndex=$curPageNum + 1)
+                    #checkClickable($nextPageIndex $dispNextPage 1 $pageRequestURL $dispType)
+                #* 不可点 *#
+                #else
+                    #checkClickable("" $dispNextPageDis 0 $pageRequestURL $dispType)
+                #end
+        #end
+    #end
+
+
+
+
+
+
+
+
+    #macro(checkClickable $pageIndex $pageDisp $clickable $pageRequestURL $dispType)
+        #set($pageRequestURLFix = $stringUtil.replace($pageRequestURL, "[PAGINATION_PAGE_INDEX]", "$pageIndex"))
+
+        #if($dispType == "normal")
+            #if($clickable == 1)
+                <li><a href="${pageRequestURLFix}">${pageDisp}</a></li>
+            #else
+                #if(${curPageNum} == ${pageIndex})
+                    <li class="active"><span>${pageDisp}</span></li>
+                #else
+                    <li class="disabled"><a href="javascript:;">${pageDisp}</a></li>
+                #end
+            #end
+        #else
+            #if($clickable == 1)
+                <li><a href="#" class="j a_page_num" pageNum="$pageIndex">${pageDisp}</a></li>
+            #else
+                #if(${curPageNum} == $pageIndex)
+                    <li class="active"><span>${pageDisp}</span></li>
+                #else
+                    <li class="disabled"><span>${pageDisp}</span></li>
+                #end
+            #end
+        #end
+    #end
+
+
+
+
+    #macro(paginationHelper	$pageResult $pageRequestURL)
+        #pagination($pageResult $pageRequestURL "normal")
+	#end
+	
+	
+	
+#macro(pager $__url $__page $__page_total)
+ 
+    ## 1... 4 5 <6> 7 8 ...100
+    ## 5
+    #set($__PAGE_HEAD_LEN = 5)
+    ## 96
+    #set($__PAGE_TAIL_LEN = $__page_total - $__PAGE_HEAD_LEN + 1)
+    ## pre & next offset
+    #set($__PAGE_OFFSET = 2)
+     
+    #set($__PAGE_HEAD_FLAG = $__PAGE_HEAD_LEN - $__PAGE_OFFSET)
+    #set($__PAGE_TAIL_FLAG = $__PAGE_TAIL_LEN + $__PAGE_OFFSET)
+ 
+    ## $__page <= 5
+    #if($__page <= $__PAGE_HEAD_LEN)
+        #if($__page == 1)
+            <a href="javascript:void(0);" class="disabled">上一页</a>
+        #else
+            #set($__pre_page = $__page - 1)
+            <a href="#">上一页</a>
+        #end
+        #if($__page <= $__PAGE_HEAD_FLAG)
+            ## 1 2 <3> 4 5
+            #foreach($__p in [1..$__PAGE_HEAD_LEN])
+                #if($__p == $__page)
+                    <a href="#">$__p</a>
+                #else
+                    <a href="#" class="active">$__p</a>
+                #end
+            #end
+        #else
+            ## 1 2 3 <4> 5 6 
+            #set($__len = $__page + $__PAGE_OFFSET)
+            #foreach($__p in [1..$__len])
+                #if($__p == $__page)
+                    <a href="#">$__p</a>
+                #else
+                    <a href="#" class="active">$__p</a>
+                #end
+            #end
+        #end
+        <span>...</span>
+        <a href="#">$__page_total</a>
+        #set($__next_page = $__page + 1)
+        <a href="#">下一页</a>
+    #elseif($__page >= $__PAGE_TAIL_LEN)
+        ## 1...94 95 <96> 97 98 99 100
+        #set($__pre_page = $__page - 1)
+            <a href="#">上一页</a>
+        ## 1...96 97 <98> 99 100
+        #if($__page >= $__PAGE_TAIL_FLAG)
+            #foreach($__p in [$__PAGE_TAIL_FLAG..$__page_total])
+                #if($__p == $__page)
+                    <a href="#">$__p</a>
+                #else
+                    <a href="#" class="active">$__p</a>
+                #end
+            #end
+        #else
+            ## 1...94 95 <96> 97 98 99 100
+            #set($__len = $__page - $__PAGE_OFFSET)
+            #foreach($__p in [$__len..$__page_total])
+                #if($__p == $__page)
+                    <a href="#">$__p</a>
+                #else
+                    <a href="#" class="active">$__p</a>
+                #end
+            #end
+        #end
+        #if($__page == $__page_total)
+            <a href="javascript:void(0);" class="disabled">下一页</a>
+        #else
+            #set($__pre_page = $__page + 1)
+            <a href="#">上一页</a>
+        #end
+    #else
+        #set($__pre_page = $__page - 1)
+        <a href="#">上一页</a> 
+        <a href="#">1</a>
+        <span>...</span>
+        #set($__start = $__page - $__PAGE_OFFSET)
+        #set($__end = $__page + $__PAGE_OFFSET)
+        #foreach($__p in [$__start..$__end])
+            #if($__p == $__page)
+                <a href="#">$__p</a>
+            #else
+                <a href="#" class="active">$__p</a>
+            #end
+        #end
+        <span>...</span>
+        <a href="#">$__page_total</a>
+        #set($__pre_page = $__page + 1)
+        <a href="#">上一页</a>
+    #end
+#end

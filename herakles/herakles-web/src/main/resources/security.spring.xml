@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+    	http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+    	http://www.springframework.org/schema/aop 
+		http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<bean id="securityManager" class="org.apache.shiro.web.mgt.DefaultWebSecurityManager">
+		<property name="realm" ref="realm" />
+		<property name="cacheManager" ref="shiroCacheManager" />
+	</bean>
+
+	<bean id="shiroCacheManager" class="org.apache.shiro.cache.ehcache.EhCacheManager" >
+		<property name="cacheManager" ref="ehCacheCacheManager" />
+	</bean>
+
+	<bean id="shiroFilter" class="org.apache.shiro.spring.web.ShiroFilterFactoryBean">
+		<property name="securityManager" ref="securityManager" />
+		<property name="loginUrl" value="/web/auth/login" />
+		<property name="filterChainDefinitions">
+			<value>
+				/web/api-docs/**=anon
+				/druid/**=anon
+				/assets/**=anon
+				/webservice/**=anon
+				/web/auth/captcha=anon
+				/web/auth/login=anon
+				/web/auth/login/authc=pass
+				/web/auth/logout=logout
+				/**=authc
+			</value>
+		</property>
+	</bean>
+
+	<bean id="authc" class="com.lcw.herakles.platform.system.security.authc.SessionTimeoutAuthenticationFilter">
+		<property name="loginUrl" value="/web/auth/login" />
+	</bean>
+	<bean id="pass" class="org.apache.shiro.web.filter.authc.PassThruAuthenticationFilter" >
+		<property name="loginUrl" value="/web/auth/login/authc" />
+	</bean>
+
+	<!-- <bean id="realm" class="org.apache.shiro.realm.text.PropertiesRealm" /> -->
+	<bean id="realm" class="com.lcw.herakles.platform.system.security.authc.ShiroJdbcRealm">
+		<property name="dataSource" ref="dataSource" />
+		<property name="authorizationCacheName" value="${cache.name.authz}" />
+		<property name="authenticationCachingEnabled" value="false" />
+		<property name="authenticationCacheName" value="${cache.name.authc}" />
+		<property name="credentialsMatcher" ref="credentialsMatcher" />
+		<property name="permissionsLookupEnabled" value="true" />
+		<property name="passwordService" ref="privateSaltPasswordService" />
+		<property name="authenticationQuery"
+			value="select password from sys_user where nick_name = ?" />
+		<property name="userRolesQuery"
+			value="select sr.role_code from sys_user su, sys_user_role sur, sys_role sr where su.user_id = sur.user_id and sr.role_id = sur.role_id and su.nick_name = ?" />
+		<property name="permissionsQuery"
+			value="select sp.perm_code from sys_role sr, sys_role_perm srp, sys_perm sp where sr.role_id=srp.role_id and sp.perm_id= srp.perm_id and sr.role_code = ?" />
+		<property name="loginFailureQuery"
+			value="update sys_user set login_fail_ct=login_fail_ct+1, last_login_fail_ts=current_timestamp where lower(nick_name) = lower(?)" />
+		<property name="resetLoginFailureQuery"
+			value="update sys_user set login_fail_ct=0 where lower(nick_name) = lower(?)" />
+		<property name="lastLoginFailureTsQuery"
+			value="select to_char(last_login_fail_ts, 'yyyy-MM-dd HH24:mi:ss') from sys_user where lower(nick_name) = lower(?)" />
+		<property name="loginSuccessQuery"
+			value="update sys_user set login_fail_ct=0, last_login_ts=current_timestamp where lower(nick_name) = lower(?)" />
+		<property name="passwordPolicyQuery"
+			value="select login_fail_ct,status from sys_user where lower(nick_name) = lower(?)" />
+	</bean>
+	
+	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.PasswordMatcher" >
+		<property name="passwordService" ref="privateSaltPasswordService" />
+	</bean>
+	
+	<bean id="privateSaltPasswordService" class="com.lcw.herakles.platform.system.security.authc.PrivateSaltPasswordService" >
+		<property name="hashIterations" value="${sec.hashIterations}" />
+	</bean>
+	
+	<bean id="lifecycleBeanPostProcessor" class="org.apache.shiro.spring.LifecycleBeanPostProcessor" />
+	<bean
+		class="org.apache.shiro.spring.security.interceptor.AuthorizationAttributeSourceAdvisor"
+		depends-on="lifecycleBeanPostProcessor">
+		<property name="securityManager" ref="securityManager" />
+	</bean>
+	
+	<!-- captcha  -->
+	<bean id="kaptchaSupport" class="com.lcw.herakles.platform.system.security.KaptchaSupport">
+		<constructor-arg type="java.util.Properties">
+			<props>
+				<prop key="kaptcha.noise.impl">com.google.code.kaptcha.impl.NoNoise</prop>
+			</props>
+		</constructor-arg>
+	</bean>
+
+
+</beans>

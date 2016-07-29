@@ -1,0 +1,9 @@
+<div>
+    JUST DO IT
+</div>
+#set($url="$!{link.contextPath}/web/banner?pageIndex=[PAGINATION_PAGE_INDEX]#if($!{result.queryParameters})&$!{result.queryParameters}#end")
+#set($__page=$!{result.curPageNum})
+#set($__page_total=$!{result.pageSize})
+#pager($url $__page $__page_total)
+#set($pageRequestURL="$!{link.contextPath}/web/banner?pageIndex=[PAGINATION_PAGE_INDEX]#if($!{result.queryParameters})&$!{result.queryParameters}#end")
+#paginationHelper($result $pageRequestURL)

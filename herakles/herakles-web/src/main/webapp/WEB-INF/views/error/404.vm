@@ -1,0 +1,44 @@
+<style>
+    body{ background: #fff; }
+    p a{ text-decoration: underline; }
+    p{ margin-top: 0px; line-height: 26px; font-family: sans-serif; }
+    p span{ font-size:22px; font-weight:bold; font-family: 'Microsoft Yahei';}
+    .container{ padding-top: 0px;}
+    .tit1{ color:#717171; font-family: verdana; font-weight: bold;}
+    .tit1 span{ color:#e85c45;}
+    .tit2{ color:#313131;  }
+    .tit3{ color:#333333; margin-top: 0px; margin-bottom: 33px;}
+    .tit3 span{ color:#eb735b; }
+    .img-wrapper{ position: relative;}
+    .img-wrapper .star1{ position: absolute; left: 72px; top: 228px;}
+	.blk-body {
+        background: none;
+        float: none;
+        position: static;		
+    }
+	.copy-right{
+		bottom: 10px;
+		left: 50%;
+        margin-left: -187px;
+		position: absolute;
+		visibility: visible;
+	}
+</style>
+<div class="container">
+    <div class="row">
+        <style>
+            body{
+                overflow-y:auto ;
+            }
+            .copy-right{
+                display:none;
+            }
+        </style>
+        <p><span class="tit1">Error occurred!</span><br>
+        #if(!$config.isProdEnv())
+        	$!errorMessage
+        #end
+        </p>
+        
+    </div>
+</div>

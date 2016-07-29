@@ -1,0 +1,12 @@
+<div id="PoweredBy">&nbsp<a href="#">chenwulou</a>
+</div>
+
+<div id="Banner">
+
+#if( $account )
+   #if($authenticated)
+   	$account.bannerName
+   #end
+#end
+
+</div>

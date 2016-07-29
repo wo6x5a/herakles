@@ -1,0 +1,58 @@
+<script src="$link.contextPath/assets/js/page/product/product_add.js" type="text/javascript"></script>
+<div class="row pd">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="main-wrapper">
+	  		<div class="main">
+	  			<form id="product-form" role="form" method="POST" action="$link.contextPath/web/product/add">
+	  				<label class="control-label col-md-3 hide" for="id">ID</label>
+	  				<div class="input-group col-md-9 form-item has-feedback hide">
+	  					<input type="text" class="form-control" id="id" name="id" required placeholder="ID"/>
+	  				</div>
+						
+					<label class="control-label col-md-3" for="name">Name</label>
+					<div class="input-group col-md-9 form-item has-feedback">
+						<input type="text" class="form-control" id="name" name="name" required placeholder="Name"/>
+					</div>
+					
+					<div class="form-group hide">
+    					<label class="control-label col-md-3" for="name">Picture</label>
+    					<div class="input-group col-md-9 form-item has-feedback">
+    				        <img  align ="left" id="picUrl"> 
+                    		<input type="hidden" id="url" name="" value="">
+    						<span class="btn green fileinput-button">
+    							<input id="btn-file-upload" type="file" name="file" >
+    							<span>添加文件</span>
+    						</span>
+    					</div>
+					</div>
+					
+					<label class="control-label col-md-3" for="category">Category</label>
+					<div class="input-group col-md-9 form-item has-feedback">
+						<select class="form-control" id="category" name="category" placeholder="Category">
+							#foreach($!category in $!categoryList)
+								<option value=$!{category}>$!{category.text}</option>
+                            #end
+        				</select>
+					</div>
+					
+				    <div class="form-group hide">
+	            		<label class="col-sm-2 col-md-2 control-label required">内容</label>
+	            		<div class="col-sm-10 col-md-10">
+	              			<textarea class="form-control" id="summernote"></textarea>
+	            		</div>
+	          		</div>
+					
+					<label class="control-label col-md-3" for="description">Description</label>
+					<div class="input-group col-md-9 form-item has-feedback">
+						<input type="text" class="form-control" id="description" name="description" placeholder="Description"/>
+					</div>
+					
+					<div class="form-btn-wrapper has-feedback">
+						<button type="submit" class="btn btn-primary" id="save-btn">Save</button>
+						<button type="button" class="btn" id="cancel-btn">Cancel</button>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>

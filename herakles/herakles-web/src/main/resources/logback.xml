@@ -1,0 +1,14 @@
+<configuration>
+	<contextName>herakles</contextName>
+	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>%level %logger{55} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<logger name="com.lcw" level="debug" />
+
+	<root level="info">
+		<appender-ref ref="console" />
+	</root>
+</configuration>

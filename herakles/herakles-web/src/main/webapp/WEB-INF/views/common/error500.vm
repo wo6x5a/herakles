@@ -1,0 +1,3 @@
+Internal System Error Occurred! Please provide following message for investigation:
+<br/>
+$exception.message

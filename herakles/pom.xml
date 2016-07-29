@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+	<modelVersion>4.0.0</modelVersion>
+	<groupId>com.lcw</groupId>
+	<artifactId>herakles</artifactId>
+	<version>0.0.1-SNAPSHOT</version>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>herakles-common</module>
+		<module>herakles-biz</module>
+		<module>herakles-web</module>
+		<module>herakles-system</module>
+	</modules>
+
+	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<spring.version>4.0.3.RELEASE</spring.version>
+		<spring.data.version>1.5.1.RELEASE</spring.data.version>
+		<spring.data.redis.version>1.6.0.RELEASE</spring.data.redis.version>
+		<hibernate.version>4.3.5.Final</hibernate.version>
+		<hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
+		<shiro.version>1.2.3</shiro.version>
+		<jackson.version>1.9.13</jackson.version>
+		<cxf.version>2.7.10</cxf.version>
+		<jsr311.version>1.1.1</jsr311.version>
+		<logback.version>1.1.1</logback.version>
+		<jdk.version>1.7</jdk.version>
+	</properties>
+
+	<repositories>
+		<repository>
+			<id>codelds</id>
+			<url>https://code.lds.org/nexus/content/groups/main-repo</url>
+		</repository>
+		<repository>
+			<id>local.repo</id>
+			<url>file:///${project.basedir}/lib</url>
+		</repository>
+	</repositories>
+
+	<scm>
+		<connection>scm:svn:http://none</connection>
+		<developerConnection>scm:svn:https://none</developerConnection>
+		<url>scm:svn:https://none</url>
+	</scm>
+
+</project>

@@ -1,0 +1,68 @@
+/* Fix for pnotify */
+.ui-pnotify-icon{
+    vertical-align: middle;
+}
+.ui-pnotify-icon span{
+	display: inline;
+	float: none;
+}
+.ui-pnotify-icon span {
+    border-radius: 10px;
+    color: #fff;
+    display: inline-block;
+    float: none;
+    font-size: 14px;
+    padding: 0.2em;
+}
+.alert-success .ui-pnotify-icon span{
+	background-color: #3C763D;
+}
+.alert-danger .ui-pnotify-icon span{
+	background-color: #A94442;
+}
+.ui-pnotify-closer span{
+	color: #fff;
+}
+.ui-pnotify-closer span:hover{
+	color: #ccc;
+}
+
+/* Fix for Bootstrap3 Modal*/
+.modal-footer{
+	margin-top: 0px;	
+}
+
+/* Fix for Bootstrap3 nav-form search*/
+.navbar-form input[type='search']{
+	border-radius: 14px;
+	height: 28px;
+	margin: 3px;
+	border: none;
+	font-size: 12px;
+	background-color: #ddd;
+	width: 200px;
+	transition: width ease-in-out 0.2s;
+}
+.navbar-form input[type='search']:focus{
+	background-color: #fff;
+	width: 300px;
+}
+.navbar-form .form-control.has-success{
+	border-color: #2a6496;
+}
+.navbar-form .has-success .form-control-feedback{
+	color: #2a6496;
+}
+
+@media (max-width: 767px){
+   .navbar-form input[type='search']{
+      width: 100%;
+   }
+   .navbar-form input[type='search']:focus{
+      width: 100%;
+   }
+   .navbar-form .has-success .form-control-feedback{
+   	  position: absolute;
+	  top: -2px;
+   }
+}

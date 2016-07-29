@@ -1,0 +1,65 @@
+#set($menu=true)
+<link rel="stylesheet" href="$link.contextPath/assets/vendor/datatables/css/jquery.dataTables.css">
+<link rel="stylesheet" href="$link.contextPath/assets/css/page/product/product_list.css">
+<script src="$link.contextPath/assets/js/page/product/product_list.js" type="text/javascript"></script>
+<div>
+	<div id="search-area">
+		<form id="product-form" method="post">
+	    	<div class="row">
+	    		<div class="col-sm-2">
+	        		<label>Keyword</label>
+	        		<div class="full-oqp">
+	        			<input type="text" name="keyword" class="form-control" placeholder="Keyword"/>
+	                 </div>	
+	            </div>
+	    		<div class="col-sm-2">
+	    			<label>Catrgory</label>
+        		    <div class="full-oqp">
+        		    	<select class="form-control" name="category" placeholder="Category">
+        		    		<option value="" selected>All</option>
+							#foreach($!category in $!categoryList)
+								<option value=$!{category.code}>$!{category.text}</option>
+                            #end
+        				</select>
+                    </div>
+				</div>
+				<div class="col-sm-2 row">
+    				<div class="col-sm-2">
+                    	<label style="width:100%">&nbsp;</label>
+                    	<div>
+                            <a class="btn btn-primary" id="product-search-btn">Search</a>
+                        </div>	
+                    </div>
+				</div>
+
+                <div class="col-sm-2 row">
+                    <div class="col-sm-2">
+                        <label style="width:100%">&nbsp;</label>
+                        <div>
+                            <a href="$link.contextPath/web/product/add/view" class="btn btn-info">Add</a>
+                        </div>
+                    </div>
+                </div>
+				<div class="col-sm-2 row hide">
+					<div class="col-sm-2">
+						 <label style="width:100%">&nbsp;</label>
+						 <div>
+        					<button class="btn btn-hengxin-primary btn-mt-3" id="btn-export">export</button>
+						</div>	
+	        </div>
+	    </form>
+	</div>
+	<table id="main-table" class="dataTable">
+		<thead>
+			<tr>
+	            <th data-mRender="returnLink" data-bSortable="false">ID</th>
+	            <th data-mData="name">Name</th>
+	            <th data-mData="category.text">Category</th>
+	            <th data-mData="description">Description</th>
+	            <th data-mRender="returnDelete" data-bSortable="false">Operation</th>
+			</tr>
+	    </thead>
+		<tbody>
+		</tbody>
+	</table>
+</div>

@@ -1,0 +1,39 @@
+<script src="$link.contextPath/assets/js/page/product/product_edit.js" type="text/javascript"></script>
+<div class="row pd">
+	<div class="col-md-6 col-md-offset-3">
+		<div class="main-wrapper">
+	  		<div class="main">
+	  			<form id="product-form" role="form" method="POST" action="$link.contextPath/web/product/update">
+	  				<label class="control-label col-md-3" for="id">ID</label>
+	  				<div class="input-group col-md-9 form-item has-feedback">
+	  					<input type="text" class="form-control" id="id" name="id" value="$!detail.id" disabled required placeholder="ID"/>
+	  				</div>
+						
+					<label class="control-label col-md-3" for="name">Name</label>
+					<div class="input-group col-md-9 form-item has-feedback">
+						<input type="text" class="form-control" id="name" name="name" value="$!detail.name" required placeholder="Name"/>
+					</div>
+						  
+					<label class="control-label col-md-3" for="category">Category</label>
+					<div class="input-group col-md-9 form-item has-feedback">
+						<select class="form-control" id="category" name="category" placeholder="Category">
+							#foreach($!category in $!categoryList)
+								<option value=$!{category} #if($!{category}==$!{detail.category}) selected #end >$!{category.text}</option>
+                            #end
+        				</select>
+					</div>
+					
+					<label class="control-label col-md-3" for="description">Description</label>
+					<div class="input-group col-md-9 form-item has-feedback">
+						<input type="text" class="form-control" id="description" name="description" value="$escape.html($!detail.description)" required placeholder="Description"/>
+					</div>
+					
+					<div class="form-btn-wrapper has-feedback">
+						<button type="submit" class="btn btn-primary" id="save-btn">OK</button>
+						<button type="button" class="btn" id="cancel-btn">Cancel</button>
+                    </div>
+				</form>
+			</div>
+		</div>
+	</div>
+</div>
