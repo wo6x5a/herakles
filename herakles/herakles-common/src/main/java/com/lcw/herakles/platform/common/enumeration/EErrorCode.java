@@ -14,11 +14,14 @@ import com.lcw.herakles.platform.common.exception.DisplayableError;
  */
 public enum EErrorCode implements DisplayableError {
 	// Default error
-	COMM_INTERNAL_ERROR("COMM0001"), COMM_ERROR_HINTS("COMM0002", "common.error.hints"), // 一般用这个
+	COMM_INTERNAL_ERROR("COMM0001"), 
+	COMM_ERROR_HINTS("COMM0002", "common.error.hints"), // 一般用这个
 
 	// Errors for internal technical issues.
-	TECH_PARAM_REQUIRED("TECH0001"), TECH_DATA_NOT_EXIST("TECH0002"), TECH_DATA_INVALID(
-			"TECH0003"), TECH_OPTIMISTIC_LOCK("TECH0004"),
+	TECH_PARAM_REQUIRED("TECH0001"), 
+	TECH_DATA_NOT_EXIST("TECH0002"), 
+	TECH_DATA_INVALID("TECH0003"), 
+	TECH_OPTIMISTIC_LOCK("TECH0004"),
 
 	PRODUCT_NOT_FOUND("PROD0001", "product.not.found"),
 
