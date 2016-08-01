@@ -6,9 +6,9 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Collection;
 
-import net.sf.cglib.core.Converter;
-
 import org.apache.commons.lang.time.DateUtils;
+
+import net.sf.cglib.core.Converter;
 
 /**
  * Class Name: DeepConverter
@@ -53,7 +53,7 @@ public class DeepConverter implements Converter {
             }
             // complex type
             if (targetClass.getClassLoader() != null && sourceClass.getClassLoader() != null) {
-                return ConverterService.convert(value, targetClass, null);
+                return ConverterService.convert(value, targetClass);
             }
 
         }

@@ -20,6 +20,7 @@
 			<artifactId>herakles-biz</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
 		<!-- java ee -->
 		<dependency>
 			<groupId>javax.servlet</groupId>

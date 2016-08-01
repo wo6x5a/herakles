@@ -38,4 +38,8 @@
 		<url>scm:svn:https://none</url>
 	</scm>
 
+	<dependencies>
+
+	</dependencies>
+
 </project>
