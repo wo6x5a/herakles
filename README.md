@@ -1,5 +1,5 @@
 # herakles项目简介
-- herakles是基于spring整合各开源框架的企业级快速开发项目model
+- herakles是基于spring整合各开源框架的企业级快速开发项目model,杂七杂八的我就不写了,大致写一点吧
  
 
 # 技术选型
@@ -19,6 +19,8 @@
 - herakles-common--公共模块
 - herakles-system--系统模块
 - herakles-web--前台模块
+
+
 
 
 #目前项目还在完善中,欢迎大神们各种问题建议和BUG甩我一脸
