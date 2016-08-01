@@ -132,7 +132,8 @@
 		<dependency>
 			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
 			<artifactId>owasp-java-html-sanitizer</artifactId>
-			<version>[r136,)</version>
+			<!-- <version>[r136,)</version> -->
+			<version>20150501.1</version>
 		</dependency>
 
 		<!-- spring data -->
