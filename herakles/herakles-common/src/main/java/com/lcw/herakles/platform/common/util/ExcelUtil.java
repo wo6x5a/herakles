@@ -45,6 +45,7 @@ public class ExcelUtil {
 	 *            生成文件的文件名
 	 * @return void
 	 */
+	@SuppressWarnings("resource")
 	public static void createExcelByFileName(Map<String, List<String>> result, String fileName) {
 		StringBuilder filePath = new StringBuilder();
 		// TODO 未完成
@@ -91,6 +92,7 @@ public class ExcelUtil {
 	 * @param cellsize:excel有几列
 	 * @return
 	 */
+	@SuppressWarnings("resource")
 	public static List<Object[]> readExcel(InputStream input, String fileName, int cellsize) {
 		List<Object[]> result = new ArrayList<Object[]>();
 		boolean cellTypeBlank = false;// 判断EXCEL是否是空行

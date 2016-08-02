@@ -34,11 +34,6 @@
 	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
 		<constructor-arg ref="redisTemplate" />
 	</bean>
-    
-    <!-- set cacheableSwitch impl class -->
-	<!-- <bean id="cacheableSwitch" class="com.myhexin.zjgqjy.common.cache.redis.RedisCacheableSwitchImpl">
-		<property name="cacheManager" ref="redisCacheManager"/>
-	</bean> -->
 	
 	 <!-- set cachingSequenceProducer impl class if needed-->
  
