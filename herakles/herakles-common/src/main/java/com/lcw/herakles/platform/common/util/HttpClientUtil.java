@@ -38,7 +38,7 @@ public class HttpClientUtil {
     }
 
     public static void main(String[] args) {
-        String url = "http://localhost:8080/zjgqjy/web/system/file/form/template/write";
+        String url = "http://localhost:8080/herakles-web/web/system/file/form/template/write";
         Map<String, String> params = new HashMap<String, String>();
         params.put("name", "的撒打算打算");
         params.put("value", "打算打算是滴是滴打");
