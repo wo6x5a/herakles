@@ -20,6 +20,22 @@
 			<artifactId>herakles-biz</artifactId>
 			<version>${project.version}</version>
 		</dependency>
+
+
+		<!-- db -->
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+			<version>5.1.38</version>
+		</dependency>
+
+		<!-- dataSource -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>1.0.18</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>

@@ -22,7 +22,6 @@
     <import resource="classpath:monitor.spring.xml"/>
     <import resource="classpath:cache.spring.xml"/>
 	<import resource="classpath:mail.spring.xml"/>
-    <import resource="classpath:webservice.spring.xml"/>
 
 	<!-- enable component scanning (beware that this does not enable mapper 
 		scanning!) -->

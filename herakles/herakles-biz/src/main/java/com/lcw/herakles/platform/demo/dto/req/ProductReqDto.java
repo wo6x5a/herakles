@@ -18,65 +18,76 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * 
  */
 @ApiModel(value = "产品请求DTO")
-public class ProductReqDto implements Serializable{
+public class ProductReqDto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 1L;
 
-//    @NotBlank(message = "{error.required.field}")
-//    @ProductExistenceCheck(groups = { CreateProduct.class })
+	// @NotBlank(message = "{error.required.field}")
+	// @ProductExistenceCheck(groups = { CreateProduct.class })
 	@ApiModelProperty(value = "产品编号")
-    private String id;
+	private String id;
 
-    @NullCheck
+	@NullCheck
 	@ApiModelProperty(value = "产品类型")
-    private EProductCagetory category;
+	private EProductCagetory category;
 
-    @NotBlank(message = "{error.required.field}")
-    @Size(max = 100, message = "{error.maximum.length.exceeded}")
+	@NotBlank(message = "{error.required.field}")
+	@Size(max = 100, message = "{error.maximum.length.exceeded}")
 	@ApiModelProperty(value = "产品名称")
-    private String name;
+	private String name;
 
-    @Size(max = 200, message = "{error.maximum.length.exceeded}")
+	@Size(max = 200, message = "{error.maximum.length.exceeded}")
 	@ApiModelProperty(value = "备注")
-    private String description;
+	private String description;
 
-    public String getId() {
-        return id;
-    }
+	// TODO unuse
+	private String file;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public EProductCagetory getCategory() {
-        return category;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setCategory(EProductCagetory category) {
-        this.category = category;
-    }
+	public EProductCagetory getCategory() {
+		return category;
+	}
 
-    public String getName() {
-        return name;
-    }
+	public void setCategory(EProductCagetory category) {
+		this.category = category;
+	}
 
-    public void setName(String name) {
-        this.name = name;
-    }
+	public String getName() {
+		return name;
+	}
 
-    public String getDescription() {
-        return description;
-    }
+	public void setName(String name) {
+		this.name = name;
+	}
 
-    public void setDescription(String description) {
-        this.description = description;
-    }
+	public String getDescription() {
+		return description;
+	}
 
-    /**
-     * Validation group for creating a product.
-     */
-    public interface CreateProduct {
+	public void setDescription(String description) {
+		this.description = description;
+	}
 
-    }
+	public String getFile() {
+		return file;
+	}
+
+	public void setFile(String file) {
+		this.file = file;
+	}
+
+	/**
+	 * Validation group for creating a product.
+	 */
+	public interface CreateProduct {
+
+	}
 
 }

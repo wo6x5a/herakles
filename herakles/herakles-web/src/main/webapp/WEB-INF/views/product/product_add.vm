@@ -13,7 +13,7 @@
 					<div class="input-group col-md-9 form-item has-feedback">
 						<input type="text" class="form-control" id="name" name="name" required placeholder="Name"/>
 					</div>
-					
+#*		
 					<div class="form-group hide">
     					<label class="control-label col-md-3" for="name">Picture</label>
     					<div class="input-group col-md-9 form-item has-feedback">
@@ -25,7 +25,7 @@
     						</span>
     					</div>
 					</div>
-					
+*#		
 					<label class="control-label col-md-3" for="category">Category</label>
 					<div class="input-group col-md-9 form-item has-feedback">
 						<select class="form-control" id="category" name="category" placeholder="Category">
