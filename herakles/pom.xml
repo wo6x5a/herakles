@@ -17,7 +17,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<spring.version>4.0.3.RELEASE</spring.version>
-		<spring.data.version>1.5.1.RELEASE</spring.data.version>
+		<spring.data.jpa.version>1.7.1.RELEASE</spring.data.jpa.version>
 		<spring.data.redis.version>1.6.0.RELEASE</spring.data.redis.version>
 		<hibernate.version>4.3.5.Final</hibernate.version>
 		<hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
@@ -100,7 +100,7 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>${spring.data.version}</version>
+			<version>${spring.data.jpa.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework.data</groupId>
