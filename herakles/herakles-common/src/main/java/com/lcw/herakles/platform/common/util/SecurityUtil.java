@@ -5,6 +5,12 @@ import java.security.MessageDigest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 加密工具.
+ * 
+ * @author chenwulou
+ *
+ */
 public class SecurityUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUtil.class);
