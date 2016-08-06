@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.security.entity;
+package com.lcw.herakles.platform.system.user.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
