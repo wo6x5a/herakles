@@ -39,7 +39,7 @@ public class LogController extends BaseController {
 
 	@RequestMapping(value = "details")
 	@ResponseBody
-	public LogDto getDetails(@RequestParam String logId) {
+	public LogDto getDetails(@RequestParam(value = "logId") String logId) {
 		return logService.getLog(logId);
 	}
 
