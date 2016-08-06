@@ -64,10 +64,6 @@ public class ProductQueryService {
 				return predicate;
 			}
 		};
-		/** 如果需要,再加上,一般默认不需要 **/
-		// searchDto.setSortedColumns();//列
-		// searchDto.setSortDirections();//排序方式
-		// searchDto.setDataProps();//根据什么排序
 		Pageable pageRequest = PaginationUtil.buildPageRequest(searchDto);
 		Page<ProductPo> pos = productRepository.findAll(specification, pageRequest);
 		DataTablesResponseDto<ProductDto> result = PaginationUtil.populateFromPage(pos,
