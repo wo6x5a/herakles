@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.user.entity.id;
+package com.lcw.herakles.platform.system.security.entity.id;
 
 import java.io.Serializable;
 

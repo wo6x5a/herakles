@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.user.entity;
+package com.lcw.herakles.platform.system.security.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,7 +10,7 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
-import com.lcw.herakles.platform.system.user.entity.id.RolePermPK;
+import com.lcw.herakles.platform.system.security.entity.id.RolePermPK;
 
 @Entity
 @Table(name = "SYS_ROLE_PERM")

@@ -23,7 +23,7 @@ import org.apache.shiro.util.JdbcUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lcw.herakles.platform.system.security.enumeration.EUserStatus;
+import com.lcw.herakles.platform.system.user.enumeration.EUserStatus;
 
 /**
  * Class Name: SSOJdbcReam Description: Extending {@link JdbcRealm} to incorporate SSO.

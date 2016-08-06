@@ -13,7 +13,7 @@ import javax.persistence.TemporalType;
 
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
-import com.lcw.herakles.platform.system.security.enumeration.EUserStatus;
+import com.lcw.herakles.platform.system.user.enumeration.EUserStatus;
 import com.lcw.herakles.platform.system.user.enumeration.EUserType;
 import com.lcw.herakles.platform.system.user.enumeration.converter.EUserStatusEnumConverter;
 import com.lcw.herakles.platform.system.user.enumeration.converter.EUserTypeConverter;

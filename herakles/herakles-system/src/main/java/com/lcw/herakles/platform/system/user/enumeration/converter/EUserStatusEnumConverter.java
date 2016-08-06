@@ -4,7 +4,7 @@ import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
 import com.lcw.herakles.platform.common.converter.DefaultAttributeConverter;
-import com.lcw.herakles.platform.system.security.enumeration.EUserStatus;
+import com.lcw.herakles.platform.system.user.enumeration.EUserStatus;
 
 /**
  * @author chenwulou

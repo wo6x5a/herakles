@@ -9,10 +9,7 @@ import com.lcw.herakles.platform.common.util.PageEnumSerializer;
 public enum EUserType implements PageEnum {
   
     ALL("ALL","全部"),
-    PERSON("P", "个人"), 
-    ENTERPRISE("E", "企业"),
-    INVESTORG("IO","投资机构"),
-    SERVERORG("SO","服务机构");
+    PERSON("P", "个人");
     
     private String code;
     private String text;

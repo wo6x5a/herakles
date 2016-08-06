@@ -1,5 +1,5 @@
 
-package com.lcw.herakles.platform.system.security.enumeration;
+package com.lcw.herakles.platform.system.user.enumeration;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 

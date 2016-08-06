@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.user.entity;
+package com.lcw.herakles.platform.system.security.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -11,6 +11,7 @@ import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
+import com.lcw.herakles.platform.system.user.entity.UserPo;
 import com.lcw.herakles.platform.system.user.enumeration.EEductation;
 import com.lcw.herakles.platform.system.user.enumeration.EIdType;
 import com.lcw.herakles.platform.system.user.enumeration.EJobType;

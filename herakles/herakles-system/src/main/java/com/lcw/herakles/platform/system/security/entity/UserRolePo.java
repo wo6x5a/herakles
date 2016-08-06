@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.user.entity;
+package com.lcw.herakles.platform.system.security.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -12,9 +12,10 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
-import com.lcw.herakles.platform.system.user.entity.id.UserRolePk;
-import com.lcw.herakles.platform.system.user.enumeration.ERoleStatus;
-import com.lcw.herakles.platform.system.user.enumeration.converter.ERoleStatusEnumConverter;
+import com.lcw.herakles.platform.system.security.entity.id.UserRolePk;
+import com.lcw.herakles.platform.system.security.enumeration.ERoleStatus;
+import com.lcw.herakles.platform.system.security.enumeration.converter.ERoleStatusEnumConverter;
+import com.lcw.herakles.platform.system.user.entity.UserPo;
 
 @Entity
 @Table(name = "SYS_USER_ROLE")
