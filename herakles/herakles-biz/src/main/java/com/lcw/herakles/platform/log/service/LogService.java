@@ -100,9 +100,11 @@ public class LogService {
 	}
 
 	private String getVlaueByObj(Object obj) {
+		if (null == obj) {
+			return null;
+		}
 		Map<String, String> objMap = ReflectionUtil.getFieldMap(obj);
 		return this.convertMap2String(objMap);
-
 	}
 
 	private String convertMap2String(Map<String, String> value) {
