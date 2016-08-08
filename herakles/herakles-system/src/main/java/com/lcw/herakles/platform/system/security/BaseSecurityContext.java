@@ -88,10 +88,10 @@ public class BaseSecurityContext {
 	 * @throws LockedAccountException
 	 *             登陆失败次数过多导致账户被锁
 	 */
-	public static Session login(String userName, String password)
+	public static Session login(String userName, String password, boolean rememberMe)
 			throws IncorrectCredentialsException, LockedAccountException {
 		long start = System.currentTimeMillis();
-		UsernamePasswordToken token = new UsernamePasswordToken(userName, password);
+		UsernamePasswordToken token = new UsernamePasswordToken(userName, password, rememberMe);
 		Subject currentUser = SecurityUtils.getSubject();
 		// This is to prevent session fixation attack, see:
 		// https://issues.apache.org/jira/browse/SHIRO-170
