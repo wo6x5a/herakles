@@ -51,4 +51,9 @@ public final class ApplicationConstant {
 	public static final String REPORT_FILE_NAME = "fileName";
 	public static final String REPORT_TEMP_PATH = "tempPath";
 
+	/**
+	 * MD5默认迭代次数
+	 */
+	public static final int ITERATIONS = 3;
+
 }

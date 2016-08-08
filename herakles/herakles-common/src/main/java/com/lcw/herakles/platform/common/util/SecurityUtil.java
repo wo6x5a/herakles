@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
  * @author chenwulou
  *
  */
+@Deprecated
 public class SecurityUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUtil.class);
@@ -56,7 +57,8 @@ public class SecurityUtil {
 	}
 
 	public static void main(String[] args) {
-		System.out.println(SecurityUtil.getMD5("123456"));
-		System.out.println(SecurityUtil.getSHA1("123456"));
+		//4c78b8daf75be30acbfb1005ae3e1daf
+		System.out.println(SecurityUtil.getMD5("admin"));
+		System.out.println(SecurityUtil.getSHA1("admin"));
 	}
 }
