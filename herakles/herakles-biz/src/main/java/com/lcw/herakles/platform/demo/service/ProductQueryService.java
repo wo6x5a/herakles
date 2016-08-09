@@ -52,13 +52,12 @@ public class ProductQueryService {
 					if (StringUtils.isNotBlank(searchDto.getKeyword())) {
 						expressions.add(cb.or(
 								cb.like(cb.lower(root.<String> get("name")),
-										"%" + searchDto.getKeyword().trim().toLowerCase() + "%"),
+										"%" + searchDto.getKeyword().trim().toLowerCase()),
 								cb.like(cb.lower(root.<String> get("description")),
-										"%" + searchDto.getKeyword().trim().toLowerCase() + "%")));
+										"%" + searchDto.getKeyword().trim().toLowerCase())));
 					}
-					if (StringUtils.isNotBlank(searchDto.getCategory())) {
-						expressions.add(cb.equal(root.<EProductCagetory> get("category"),
-								EnumHelper.translate(EProductCagetory.class, searchDto.getCategory())));
+					if (null != searchDto.getCategory() && EProductCagetory.ALL != searchDto.getCategory()) {
+						expressions.add(cb.equal(root.<EProductCagetory> get("category"),  searchDto.getCategory()));
 					}
 				}
 				return predicate;

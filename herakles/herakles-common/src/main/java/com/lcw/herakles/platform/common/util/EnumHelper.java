@@ -105,6 +105,24 @@ public final class EnumHelper implements Serializable {
 		return null;
 	}
 	
+	public static <T extends Enum<T>> T dbTranslate(final Class<T> clazz, final Integer code) {
+	    if(code==null){
+	        return null;
+	    }
+		try {
+			final Method m = clazz.getDeclaredMethod(GET_CODE_METHOD);
+			for (T t : inspectConstants(clazz)) {
+				if (code.equals(m.invoke(t))) {
+					return t;
+				}
+			}
+		} catch (Exception e) { // NOSONAR
+		    LOGGER.error("failed to translate code {} into object of type {}", code, clazz);
+		}
+		
+		return null;
+	}
+	
 	/**
 	 * Retrieve code value of certain Enum instance, this method is null-safe.
 	 * i.e. returns null if input instance is null.

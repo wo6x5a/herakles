@@ -11,10 +11,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.lcw.herakles.platform.common.controller.BaseController;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
-import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.log.dto.LogDto;
 import com.lcw.herakles.platform.log.dto.req.LogQueryDto;
-import com.lcw.herakles.platform.log.enums.EEntityType;
+import com.lcw.herakles.platform.log.enums.EOptType;
 import com.lcw.herakles.platform.log.service.LogService;
 
 @Controller
@@ -26,7 +25,7 @@ public class LogController extends BaseController {
 
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	public String view(Model model) {
-		model.addAttribute("logTypes", EnumHelper.inspectConstants(EEntityType.class));
+		model.addAttribute("logTypes", getStaticOptions(EOptType.class));
 		return "system/log/log_list";
 	}
 

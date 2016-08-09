@@ -2,8 +2,8 @@ package com.lcw.herakles.platform.log.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
 /**
  * 操作
@@ -11,21 +11,21 @@ import com.lcw.herakles.platform.common.util.PageEnumSerializer;
  * @author chenwulou
  *
  */
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum EOptType implements PageEnum{
+@JsonSerialize(using = DBEnumSerializer.class)
+public enum EOptType implements DBEnum{
 
     
-    ALL("","全部"),
-    INSERT("INSERT","插入"),
-	UPDATE("UPDATE","修改"),
-	DELETE("DELETE","删除");
+    ALL(0,"全部"),
+    INSERT(1,"插入"),
+	UPDATE(2,"修改"),
+	DELETE(3,"删除");
   
-    EOptType(String code, String text) {
+    EOptType(Integer code, String text) {
         this.code = code;
         this.text = text;
     }
   
-    private String code;
+    private Integer code;
   
     private String text;
   
@@ -40,12 +40,12 @@ public enum EOptType implements PageEnum{
     }
   
     @Override
-    public String getCode() {
+    public Integer getCode() {
       return code;
     }
   
     @Override
-    public void setCode(String code) {
+    public void setCode(Integer code) {
       this.code = code;
     }
 }

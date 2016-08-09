@@ -14,11 +14,11 @@ public class DynamicOption {
   
     private String longText;
   
-    private String enabled;
+    private Integer enabled;
   
     private String parentCode;
   
-    private String leaf;
+    private Integer leaf;
   
     private Long order;
   
@@ -79,11 +79,11 @@ public class DynamicOption {
         this.longText = longText;
     }
   
-    public String getEnabled() {
+    public Integer getEnabled() {
         return enabled;
     }
   
-    public void setEnabled(String enabled) {
+    public void setEnabled(Integer enabled) {
         this.enabled = enabled;
     }
   
@@ -95,11 +95,11 @@ public class DynamicOption {
         this.parentCode = parentCode;
     }
   
-    public String getLeaf() {
+    public Integer getLeaf() {
         return leaf;
     }
   
-    public void setLeaf(String leaf) {
+    public void setLeaf(Integer leaf) {
         this.leaf = leaf;
     }
   

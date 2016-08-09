@@ -29,7 +29,6 @@ import com.lcw.herakles.platform.common.util.ReflectionUtil;
 import com.lcw.herakles.platform.log.dto.LogDto;
 import com.lcw.herakles.platform.log.dto.req.LogQueryDto;
 import com.lcw.herakles.platform.log.entity.LogPo;
-import com.lcw.herakles.platform.log.enums.EEntityType;
 import com.lcw.herakles.platform.log.enums.EOptType;
 import com.lcw.herakles.platform.log.reposipory.LogRepository;
 
@@ -51,12 +50,12 @@ public class LogService {
 	}
 
 	@Transactional
-	public void save(EEntityType entity, EOptType optType, String operate, String optIp, Object oldObject,
+	public void save(Class<?> entity, EOptType optType, String operate, String optIp, Object oldObject,
 			Object newObject, String comment) {
 		String oldValue = getVlaueByObj(oldObject);
 		String newVaule = getVlaueByObj(newObject);
 		LogPo logPo = new LogPo();
-		logPo.setEntity(entity);
+		logPo.setEntity(entity.getSimpleName());
 		logPo.setOptType(optType);
 		logPo.setOperate(operate);
 		logPo.setOptIp(optIp);
@@ -80,8 +79,12 @@ public class LogService {
 						expressions.add(cb.like(cb.lower(root.<String> get("id")),
 								"%" + queryDto.getId().trim().toLowerCase() + "%"));
 					}
-					if (null != queryDto.getType() && EEntityType.ALL != queryDto.getType()) {
-						expressions.add(cb.equal(root.<EEntityType> get("category"), queryDto.getType()));
+					if (null != queryDto.getType() && EOptType.ALL != queryDto.getType()) {
+						expressions.add(cb.equal(root.<EOptType> get("optType"), queryDto.getType()));
+					}
+					if (StringUtils.isNotBlank(queryDto.getEntity())) {
+						expressions.add(cb.like(cb.lower(root.<String> get("entity")),
+								"%" + queryDto.getEntity().trim().toLowerCase() + "%"));
 					}
 				}
 				return predicate;

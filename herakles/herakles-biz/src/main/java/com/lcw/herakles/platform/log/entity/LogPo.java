@@ -11,9 +11,7 @@ import javax.persistence.Table;
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
-import com.lcw.herakles.platform.log.enums.EEntityType;
 import com.lcw.herakles.platform.log.enums.EOptType;
-import com.lcw.herakles.platform.log.enums.converter.EEntityTypeConverter;
 import com.lcw.herakles.platform.log.enums.converter.ELogOptTypeConverter;
 
 @Entity
@@ -33,8 +31,7 @@ public class LogPo extends BasePo {
 
 	@Column(name = "ENTITY")
 	@Comment("操作实体")
-	@Convert(converter = EEntityTypeConverter.class)
-	private EEntityType entity;
+	private String entity;
 
 	@Column(name = "ENTITY_ID")
 	@Comment("实体编号")
@@ -73,11 +70,11 @@ public class LogPo extends BasePo {
 		this.id = id;
 	}
 
-	public EEntityType getEntity() {
+	public String getEntity() {
 		return entity;
 	}
 
-	public void setEntity(EEntityType entity) {
+	public void setEntity(String entity) {
 		this.entity = entity;
 	}
 

@@ -17,7 +17,7 @@ import org.apache.shiro.util.SimpleByteSource;
  */
 public class PrivateSaltPasswordService extends DefaultPasswordService {
 
-    private static final String PRIVATE_SALT = "HT_Pri_Salt_//@";
+    private static final String PRIVATE_SALT = "#*6x5_Lcw_Salt_//@!";
 
     private static final int LEGACY_MD5_LEN = 32;
 

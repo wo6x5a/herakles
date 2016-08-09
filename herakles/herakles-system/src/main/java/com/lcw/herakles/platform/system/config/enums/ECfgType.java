@@ -2,31 +2,31 @@ package com.lcw.herakles.platform.system.config.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum ECfgType implements PageEnum {
+@JsonSerialize(using = DBEnumSerializer.class)
+public enum ECfgType implements DBEnum {
 
-	SYS("00", "系统参数"),
-	CFG("10", "配置参数"),
-	BIZ("20", "业务参数"),
+	SYS(0, "系统参数"),
+	CFG(1, "配置参数"),
+	BIZ(2, "业务参数"),
 	;
 	
-	ECfgType(String code, String text) {
+	ECfgType(Integer code, String text) {
 		this.code = code;
 		this.text = text;
 	}
 
-	private String code;
+	private Integer code;
 
 	private String text;
 
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 

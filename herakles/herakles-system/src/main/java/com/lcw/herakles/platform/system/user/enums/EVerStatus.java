@@ -2,34 +2,36 @@ package com.lcw.herakles.platform.system.user.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
 /**
  * @author chenwulou
  *
  */
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum EVerStatus implements PageEnum {
+@JsonSerialize(using = DBEnumSerializer.class)
+public enum EVerStatus implements DBEnum {
 
-	UNUSE("0", "未使用"), USED("1", "已使用");
+	ALL(0, "全部"), 
+	UNUSE(1, "未使用"), 
+	USED(2, "已使用");
 
-	private String code;
+	private Integer code;
 
 	private String text;
 
-	private EVerStatus(String code, String text) {
+	private EVerStatus(Integer code, String text) {
 		this.code = code;
 		this.text = text;
 	}
 
 	@Override
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
 	@Override
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 

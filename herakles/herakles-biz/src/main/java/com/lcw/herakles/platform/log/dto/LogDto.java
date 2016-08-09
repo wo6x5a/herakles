@@ -3,7 +3,6 @@ package com.lcw.herakles.platform.log.dto;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.BaseDto;
-import com.lcw.herakles.platform.log.enums.EEntityType;
 import com.lcw.herakles.platform.log.enums.EOptType;
 
 /**
@@ -21,7 +20,7 @@ public class LogDto extends BaseDto {
 	private String id;
 
 	@Comment("操作实体")
-	private EEntityType entity;
+	private String entity;
 
 	@Comment("实体编号")
 	private String entityId;
@@ -52,11 +51,11 @@ public class LogDto extends BaseDto {
 		this.id = id;
 	}
 
-	public EEntityType getEntity() {
+	public String getEntity() {
 		return entity;
 	}
 
-	public void setEntity(EEntityType entity) {
+	public void setEntity(String entity) {
 		this.entity = entity;
 	}
 

@@ -16,7 +16,6 @@
 	    			<label>Catrgory</label>
         		    <div class="full-oqp">
         		    	<select class="form-control" name="category" placeholder="Category">
-        		    		<option value="" selected>All</option>
 							#foreach($!category in $!categoryList)
 								<option value=$!{category.code}>$!{category.text}</option>
                             #end

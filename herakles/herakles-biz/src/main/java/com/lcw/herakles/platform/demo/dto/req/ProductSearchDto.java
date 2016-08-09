@@ -1,6 +1,7 @@
 package com.lcw.herakles.platform.demo.dto.req;
 
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
+import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 
@@ -23,7 +24,7 @@ public class ProductSearchDto extends DataTablesRequestDto {
     private String keyword;
 
 	@ApiModelProperty(value = "产品类型")
-    private String category;
+    private EProductCagetory category;
 
     /**
      * @return the keyword
@@ -39,11 +40,11 @@ public class ProductSearchDto extends DataTablesRequestDto {
         this.keyword = keyword;
     }
 
-    public String getCategory() {
+    public EProductCagetory getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(EProductCagetory category) {
         this.category = category;
     }
 

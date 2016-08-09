@@ -3,8 +3,8 @@ package com.lcw.herakles.platform.demo.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
 /**
  * Class Name: EProductCagetory
@@ -12,38 +12,43 @@ import com.lcw.herakles.platform.common.util.PageEnumSerializer;
  * @author chenwulou
  * 
  */
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum EProductCagetory implements PageEnum {
+@JsonSerialize(using = DBEnumSerializer.class)
+public enum EProductCagetory implements DBEnum {
 
-    BIRDS("B", "Birds"), FISH("F", "Fish"), DOGS("D", "Dogs"), REPTILES("R", "Reptiles"), CATS("C", "Cats");
+	ALL(0,"All"),
+	BIRDS(1, "Birds"), 
+	FISH(2, "Fish"), 
+	DOGS(3, "Dogs"), 
+	REPTILES(4, "Reptiles"), 
+	CATS(5, "Cats");
 
-    private String code;
+	private Integer code;
 
-    private String text;
+	private String text;
 
-    EProductCagetory(String code, String text) {
-        this.code = code;
-        this.text = text;
-    }
+	EProductCagetory(Integer code, String text) {
+		this.code = code;
+		this.text = text;
+	}
 
-    @Override
-    public String getCode() {
-        return code;
-    }
+	@Override
+	public Integer getCode() {
+		return code;
+	}
 
-    @Override
-    public void setCode(String code) {
-        this.code = code;
-    }
+	@Override
+	public void setCode(Integer code) {
+		this.code = code;
+	}
 
-    @Override
-    public String getText() {
-        return text;
-    }
+	@Override
+	public String getText() {
+		return text;
+	}
 
-    @Override
-    public void setText(String text) {
-        this.text = text;
-    }
+	@Override
+	public void setText(String text) {
+		this.text = text;
+	}
 
 }

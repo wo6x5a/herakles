@@ -2,30 +2,31 @@ package com.lcw.herakles.platform.system.user.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum EIdType implements PageEnum {
+@JsonSerialize(using = DBEnumSerializer.class)
+public enum EIdType implements DBEnum {
 
-	IDCARD("01", "身份证");
+	ALL(0,"全部"),
+	IDCARD(1, "身份证");
 
-	private String code;
+	private Integer code;
 
     private String text;
 	
-	private EIdType(String code, String text){
+	private EIdType(Integer code, String text){
 		this.code = code;
 		this.text = text;
 	}
 
 	@Override
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
 	@Override
-	public void setCode(String code) {
+	public void setCode(Integer	 code) {
 		this.code = code;
 	}
 

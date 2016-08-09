@@ -13,8 +13,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.constant.MessageConsts;
+import com.lcw.herakles.platform.common.enums.DBEnum;
 import com.lcw.herakles.platform.common.enums.EnumOption;
-import com.lcw.herakles.platform.common.enums.PageEnum;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.MessageUtil;
 
@@ -45,12 +45,17 @@ public abstract class BaseController implements MessageConsts{
         }
     }
 
+	@SuppressWarnings("rawtypes")
+	protected List<EnumOption> getStaticOptions(Class<? extends Enum> enumClass) {
+		return this.getStaticOptions(enumClass, true);
+	}
+
     @SuppressWarnings({ "rawtypes", "unchecked" })
     protected List<EnumOption> getStaticOptions(Class<? extends Enum> enumClass, boolean containBlankOption) {
         List<Enum> enumList = EnumHelper.inspectConstants(enumClass, containBlankOption);
         List<EnumOption> options = new ArrayList<EnumOption>();
         for (Enum e : enumList) {
-            options.add(new EnumOption(e.name(), ((PageEnum) e).getText()));
+            options.add(new EnumOption(e.name(), ((DBEnum) e).getText()));
         }
         return options;
     }

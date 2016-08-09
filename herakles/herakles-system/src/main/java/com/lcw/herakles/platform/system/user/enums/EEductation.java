@@ -2,33 +2,34 @@ package com.lcw.herakles.platform.system.user.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum EEductation implements PageEnum {
-	MASTER("01","研究生及以上"),
-	UNIVERSITY("02","大学本科"),
-	HIGH("03","大学专科"),
-	JUNIOR("04","中专/高中"),
-	PRIMARY("05","高中以下");
+@JsonSerialize(using = DBEnumSerializer.class)
+public enum EEductation implements DBEnum {
+	ALL(0,"全部"),
+	MASTER(1,"研究生及以上"),
+	UNIVERSITY(2,"大学本科"),
+	HIGH(3,"大学专科"),
+	JUNIOR(4,"中专/高中"),
+	PRIMARY(5,"高中以下");
 	
-	private String code;
+	private Integer code;
 
 	private String text;
 
-	private EEductation(String code, String text) {
+	private EEductation(Integer code, String text) {
 		this.code = code;
 		this.text = text;
 	}
 
 	@Override
-	public String getCode() {
+	public Integer getCode() {
 		return code;
 	}
 
 	@Override
-	public void setCode(String code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 

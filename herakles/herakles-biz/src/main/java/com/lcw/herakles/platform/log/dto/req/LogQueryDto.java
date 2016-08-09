@@ -2,7 +2,7 @@ package com.lcw.herakles.platform.log.dto.req;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
-import com.lcw.herakles.platform.log.enums.EEntityType;
+import com.lcw.herakles.platform.log.enums.EOptType;
 
 /**
  * 日志查询dto
@@ -12,31 +12,42 @@ import com.lcw.herakles.platform.log.enums.EEntityType;
  */
 public class LogQueryDto extends DataTablesRequestDto {
 
-    /**
-     * 
-     */
-    private static final long serialVersionUID = 1L;
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 1L;
 
-    @Comment("编号")
-    private String id;
+	@Comment("编号")
+	private String id;
 
-    @Comment("操作实体类型")
-    private EEntityType type;
+	@Comment("操作实体")
+	private String entity;
 
-    public String getId() {
-        return id;
-    }
+	@Comment("操作类型")
+	private EOptType type;
 
-    public void setId(String id) {
-        this.id = id;
-    }
+	public String getId() {
+		return id;
+	}
 
-    public EEntityType getType() {
-        return type;
-    }
+	public void setId(String id) {
+		this.id = id;
+	}
 
-    public void setType(EEntityType type) {
-        this.type = type;
-    }
+	public String getEntity() {
+		return entity;
+	}
+
+	public void setEntity(String entity) {
+		this.entity = entity;
+	}
+
+	public EOptType getType() {
+		return type;
+	}
+
+	public void setType(EOptType type) {
+		this.type = type;
+	}
 
 }

@@ -140,9 +140,8 @@ public class ProductController extends BaseController {
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	@ApiOperation(value = "页面跳转", httpMethod = "GET", response = String.class)
 	public String home(Model model) {
-		// model.addAttribute("categoryList",
-		// EnumHelper.inspectConstants(EProductCagetory.class));
-		model.addAttribute("categoryList", this.getProductCagetory());
+		 model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class));
+//		model.addAttribute("categoryList", this.getProductCagetory());
 		return "product/product_list";
 	}
 
@@ -261,11 +260,12 @@ public class ProductController extends BaseController {
 		return ResultDtoFactory.toAck(getMessage(COMMON_REMOVE_SUCCESS));
 	}
 
+	@SuppressWarnings("unused")
 	private List<EnumOption> getProductCagetory() {
 		List<EnumOption> options = new ArrayList<EnumOption>();
-		options.add(new EnumOption(EProductCagetory.BIRDS.getCode(), EProductCagetory.BIRDS.getText()));
-		options.add(new EnumOption(EProductCagetory.CATS.getCode(), EProductCagetory.CATS.getText()));
-		options.add(new EnumOption(EProductCagetory.DOGS.getCode(), EProductCagetory.DOGS.getText()));
+		options.add(new EnumOption(EProductCagetory.BIRDS.name(), EProductCagetory.BIRDS.getText()));
+		options.add(new EnumOption(EProductCagetory.CATS.name(), EProductCagetory.CATS.getText()));
+		options.add(new EnumOption(EProductCagetory.DOGS.name(), EProductCagetory.DOGS.getText()));
 		return options;
 	}
 
