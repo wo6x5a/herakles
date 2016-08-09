@@ -5,55 +5,58 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotEmpty;
 
-
 /**
-* Class Name: SignInDto
-* Description: TODO
-* @author chenwulou
-*
-*/
+ * Class Name: SignInDto Description: TODO
+ * 
+ * @author chenwulou
+ *
+ */
 public class SignInDto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
-    @NotEmpty
-    @Length(min = 4)
-    private String userName;
-    @NotEmpty
-    @Length(min = 4)
-    private String password;
-    @NotEmpty
-    private String captcha;
-    private boolean rememberMe;
+	private static final long serialVersionUID = 1L;
 
-    public String getUserName() {
-        return userName;
-    }
+	@NotEmpty
+	@Length(min = 4)
+	private String userName;
 
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
+	@NotEmpty
+	@Length(min = 4)
+	private String password;
 
-    public String getPassword() {
-        return password;
-    }
+	@NotEmpty
+	private String captcha;
 
-    public void setPassword(String password) {
-        this.password = password;
-    }
+	private boolean rememberMe;
 
-    public String getCaptcha() {
-        return captcha;
-    }
+	public String getUserName() {
+		return userName;
+	}
 
-    public void setCaptcha(String captcha) {
-        this.captcha = captcha;
-    }
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
 
-    public boolean isRememberMe() {
-        return rememberMe;
-    }
+	public String getPassword() {
+		return password;
+	}
 
-    public void setRememberMe(boolean rememberMe) {
-        this.rememberMe = rememberMe;
-    }
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getCaptcha() {
+		return captcha;
+	}
+
+	public void setCaptcha(String captcha) {
+		this.captcha = captcha;
+	}
+
+	public boolean isRememberMe() {
+		return rememberMe;
+	}
+
+	public void setRememberMe(boolean rememberMe) {
+		this.rememberMe = rememberMe;
+	}
 }
