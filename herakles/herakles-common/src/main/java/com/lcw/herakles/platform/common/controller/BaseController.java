@@ -13,8 +13,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.constant.MessageConsts;
-import com.lcw.herakles.platform.common.enumeration.EnumOption;
-import com.lcw.herakles.platform.common.enumeration.PageEnum;
+import com.lcw.herakles.platform.common.enums.EnumOption;
+import com.lcw.herakles.platform.common.enums.PageEnum;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.MessageUtil;
 

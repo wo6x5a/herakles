@@ -2,7 +2,7 @@ package com.lcw.herakles.platform.log.dto.req;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
-import com.lcw.herakles.platform.log.enumeration.EEntityType;
+import com.lcw.herakles.platform.log.enums.EEntityType;
 
 /**
  * 日志查询dto

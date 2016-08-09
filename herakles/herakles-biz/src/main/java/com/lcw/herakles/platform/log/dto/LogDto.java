@@ -3,8 +3,8 @@ package com.lcw.herakles.platform.log.dto;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.BaseDto;
-import com.lcw.herakles.platform.log.enumeration.EEntityType;
-import com.lcw.herakles.platform.log.enumeration.EOptType;
+import com.lcw.herakles.platform.log.enums.EEntityType;
+import com.lcw.herakles.platform.log.enums.EOptType;
 
 /**
  * @author chenwulou

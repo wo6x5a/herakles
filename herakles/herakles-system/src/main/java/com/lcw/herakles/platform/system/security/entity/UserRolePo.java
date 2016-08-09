@@ -13,8 +13,8 @@ import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.security.entity.id.UserRolePk;
-import com.lcw.herakles.platform.system.security.enumeration.ERoleStatus;
-import com.lcw.herakles.platform.system.security.enumeration.converter.ERoleStatusEnumConverter;
+import com.lcw.herakles.platform.system.security.enums.ERoleStatus;
+import com.lcw.herakles.platform.system.security.enums.converter.ERoleStatusEnumConverter;
 import com.lcw.herakles.platform.system.user.entity.UserPo;
 
 @Entity

@@ -14,7 +14,7 @@ import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.log.dto.LogDto;
 import com.lcw.herakles.platform.log.dto.req.LogQueryDto;
-import com.lcw.herakles.platform.log.enumeration.EEntityType;
+import com.lcw.herakles.platform.log.enums.EEntityType;
 import com.lcw.herakles.platform.log.service.LogService;
 
 @Controller

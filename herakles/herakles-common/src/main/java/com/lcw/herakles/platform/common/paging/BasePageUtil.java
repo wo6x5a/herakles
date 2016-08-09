@@ -16,7 +16,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.dto.page.PageModelDto;
 import com.lcw.herakles.platform.common.dto.page.PageModelReqDto;
-import com.lcw.herakles.platform.common.enumeration.EErrorCode;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 
 /**

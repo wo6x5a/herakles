@@ -11,10 +11,10 @@ import org.apache.commons.lang.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lcw.herakles.platform.common.enumeration.EFlagType;
+import com.lcw.herakles.platform.common.enums.EFlagType;
 import com.lcw.herakles.platform.system.dict.dto.DynamicOption;
 import com.lcw.herakles.platform.system.dict.entity.DictPo;
-import com.lcw.herakles.platform.system.dict.enumeration.EDictCategory;
+import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
 import com.lcw.herakles.platform.system.dict.repository.DictRepository;
 
 public final class SystemDictUtil {

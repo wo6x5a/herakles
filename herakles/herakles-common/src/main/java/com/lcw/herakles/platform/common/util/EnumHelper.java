@@ -14,8 +14,8 @@ import org.slf4j.LoggerFactory;
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
-import com.lcw.herakles.platform.common.enumeration.EnumOption;
-import com.lcw.herakles.platform.common.enumeration.PageEnum;
+import com.lcw.herakles.platform.common.enums.EnumOption;
+import com.lcw.herakles.platform.common.enums.PageEnum;
 
 /**
  * 

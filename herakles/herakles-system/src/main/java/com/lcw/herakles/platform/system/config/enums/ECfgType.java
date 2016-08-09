@@ -2,7 +2,7 @@ package com.lcw.herakles.platform.system.config.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enumeration.PageEnum;
+import com.lcw.herakles.platform.common.enums.PageEnum;
 import com.lcw.herakles.platform.common.util.PageEnumSerializer;
 
 @JsonSerialize(using = PageEnumSerializer.class)

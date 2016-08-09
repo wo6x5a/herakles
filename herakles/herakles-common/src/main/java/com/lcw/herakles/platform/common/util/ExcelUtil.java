@@ -22,7 +22,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lcw.herakles.platform.common.enumeration.EErrorCode;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 
 /**
  * Excel util

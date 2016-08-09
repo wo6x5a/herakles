@@ -29,8 +29,8 @@ import com.lcw.herakles.platform.common.util.ReflectionUtil;
 import com.lcw.herakles.platform.log.dto.LogDto;
 import com.lcw.herakles.platform.log.dto.req.LogQueryDto;
 import com.lcw.herakles.platform.log.entity.LogPo;
-import com.lcw.herakles.platform.log.enumeration.EEntityType;
-import com.lcw.herakles.platform.log.enumeration.EOptType;
+import com.lcw.herakles.platform.log.enums.EEntityType;
+import com.lcw.herakles.platform.log.enums.EOptType;
 import com.lcw.herakles.platform.log.reposipory.LogRepository;
 
 /**

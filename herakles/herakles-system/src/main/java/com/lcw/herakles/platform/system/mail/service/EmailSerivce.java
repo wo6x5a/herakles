@@ -16,7 +16,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
-import com.lcw.herakles.platform.common.enumeration.EErrorCode;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 
 /**

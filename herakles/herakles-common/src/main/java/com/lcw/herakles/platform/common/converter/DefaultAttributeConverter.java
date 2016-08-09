@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.AttributeConverter;
 
-import com.lcw.herakles.platform.common.enumeration.PageEnum;
+import com.lcw.herakles.platform.common.enums.PageEnum;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 
 /**

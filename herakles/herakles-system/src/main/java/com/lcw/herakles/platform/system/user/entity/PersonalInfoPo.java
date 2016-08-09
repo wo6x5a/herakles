@@ -12,14 +12,14 @@ import javax.persistence.Table;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.system.user.entity.UserPo;
-import com.lcw.herakles.platform.system.user.enumeration.EEductation;
-import com.lcw.herakles.platform.system.user.enumeration.EIdType;
-import com.lcw.herakles.platform.system.user.enumeration.EJobType;
-import com.lcw.herakles.platform.system.user.enumeration.ESex;
-import com.lcw.herakles.platform.system.user.enumeration.converter.EEductationConverter;
-import com.lcw.herakles.platform.system.user.enumeration.converter.EIdTypeConverter;
-import com.lcw.herakles.platform.system.user.enumeration.converter.EJobTypeConverter;
-import com.lcw.herakles.platform.system.user.enumeration.converter.ESexConverter;
+import com.lcw.herakles.platform.system.user.enums.EEductation;
+import com.lcw.herakles.platform.system.user.enums.EIdType;
+import com.lcw.herakles.platform.system.user.enums.EJobType;
+import com.lcw.herakles.platform.system.user.enums.ESex;
+import com.lcw.herakles.platform.system.user.enums.converter.EEductationConverter;
+import com.lcw.herakles.platform.system.user.enums.converter.EIdTypeConverter;
+import com.lcw.herakles.platform.system.user.enums.converter.EJobTypeConverter;
+import com.lcw.herakles.platform.system.user.enums.converter.ESexConverter;
 
 /**
  * @author chenwulou

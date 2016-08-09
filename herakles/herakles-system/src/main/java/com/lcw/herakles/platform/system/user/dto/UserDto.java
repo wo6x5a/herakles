@@ -3,8 +3,8 @@ package com.lcw.herakles.platform.system.user.dto;
 import java.util.Date;
 
 import com.lcw.herakles.platform.common.dto.BaseMaintainableDto;
-import com.lcw.herakles.platform.system.user.enumeration.EUserStatus;
-import com.lcw.herakles.platform.system.user.enumeration.EUserType;
+import com.lcw.herakles.platform.system.user.enums.EUserStatus;
+import com.lcw.herakles.platform.system.user.enums.EUserType;
 
 public class UserDto extends BaseMaintainableDto {
 

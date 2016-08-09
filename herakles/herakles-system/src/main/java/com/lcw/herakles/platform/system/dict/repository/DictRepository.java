@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.PagingAndSortingRepository;
 
-import com.lcw.herakles.platform.common.enumeration.EFlagType;
+import com.lcw.herakles.platform.common.enums.EFlagType;
 import com.lcw.herakles.platform.system.dict.entity.DictPo;
-import com.lcw.herakles.platform.system.dict.enumeration.EDictCategory;
+import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
 
 public interface DictRepository extends PagingAndSortingRepository<DictPo, String> {
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
-import com.lcw.herakles.platform.common.enumeration.EErrorCode;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.util.ErrorUtils;
 import com.lcw.herakles.platform.system.files.dto.FileDto;
 import com.lcw.herakles.platform.system.files.entity.FilePo;

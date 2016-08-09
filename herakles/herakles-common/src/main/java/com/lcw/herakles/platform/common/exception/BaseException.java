@@ -1,6 +1,6 @@
 package com.lcw.herakles.platform.common.exception;
 
-import com.lcw.herakles.platform.common.enumeration.EErrorCode;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 
 
 /**

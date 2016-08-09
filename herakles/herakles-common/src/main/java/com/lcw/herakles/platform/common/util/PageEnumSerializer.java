@@ -7,7 +7,7 @@ import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.SerializerProvider;
 import org.codehaus.jackson.map.ser.std.SerializerBase;
 
-import com.lcw.herakles.platform.common.enumeration.PageEnum;
+import com.lcw.herakles.platform.common.enums.PageEnum;
 
 /**
  * Class Name: PageEnumSerializer Description: TODO

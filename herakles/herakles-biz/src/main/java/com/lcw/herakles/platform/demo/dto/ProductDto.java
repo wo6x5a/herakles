@@ -1,7 +1,7 @@
 package com.lcw.herakles.platform.demo.dto;
 
 import com.lcw.herakles.platform.common.dto.BaseMaintainableDto;
-import com.lcw.herakles.platform.demo.enumeration.EProductCagetory;
+import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.wordnik.swagger.annotations.ApiModel;
 import com.wordnik.swagger.annotations.ApiModelProperty;
 

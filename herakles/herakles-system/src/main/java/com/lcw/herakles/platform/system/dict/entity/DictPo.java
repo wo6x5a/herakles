@@ -9,10 +9,10 @@ import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
-import com.lcw.herakles.platform.common.enumeration.EFlagType;
-import com.lcw.herakles.platform.common.enumeration.converter.EFlagTypeConverter;
-import com.lcw.herakles.platform.system.dict.enumeration.EDictCategory;
-import com.lcw.herakles.platform.system.dict.enumeration.converter.EDictCategoryConverter;
+import com.lcw.herakles.platform.common.enums.EFlagType;
+import com.lcw.herakles.platform.common.enums.converter.EFlagTypeConverter;
+import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
+import com.lcw.herakles.platform.system.dict.enums.converter.EDictCategoryConverter;
 
 @Entity
 @Table(name = "GL_DICT")

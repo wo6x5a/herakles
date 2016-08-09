@@ -11,10 +11,10 @@ import javax.persistence.Table;
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
-import com.lcw.herakles.platform.log.enumeration.EEntityType;
-import com.lcw.herakles.platform.log.enumeration.EOptType;
-import com.lcw.herakles.platform.log.enumeration.converter.EEntityTypeConverter;
-import com.lcw.herakles.platform.log.enumeration.converter.ELogOptTypeConverter;
+import com.lcw.herakles.platform.log.enums.EEntityType;
+import com.lcw.herakles.platform.log.enums.EOptType;
+import com.lcw.herakles.platform.log.enums.converter.EEntityTypeConverter;
+import com.lcw.herakles.platform.log.enums.converter.ELogOptTypeConverter;
 
 @Entity
 @Table(name = "SYS_LOG")

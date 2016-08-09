@@ -26,7 +26,7 @@ import com.lcw.herakles.platform.demo.dto.ProductDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductBasePageSearchDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
 import com.lcw.herakles.platform.demo.entity.ProductPo;
-import com.lcw.herakles.platform.demo.enumeration.EProductCagetory;
+import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.repository.ProductRepository;
 
 /**

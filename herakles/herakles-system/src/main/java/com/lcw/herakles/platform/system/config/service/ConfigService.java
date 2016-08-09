@@ -20,7 +20,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.google.common.base.Function;
 import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
-import com.lcw.herakles.platform.common.enumeration.EErrorCode;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.paging.PaginationUtil;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.ErrorUtils;

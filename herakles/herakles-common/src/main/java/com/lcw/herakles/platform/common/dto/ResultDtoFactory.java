@@ -8,7 +8,7 @@ import org.apache.commons.lang.exception.ExceptionUtils;
 import org.springframework.validation.BindingResult;
 
 import com.lcw.herakles.platform.common.constant.ResultCode;
-import com.lcw.herakles.platform.common.enumeration.EErrorCode;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BaseException;
 import com.lcw.herakles.platform.common.exception.DisplayableError;
 import com.lcw.herakles.platform.common.util.AppConfigUtil;
