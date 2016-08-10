@@ -7,6 +7,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.common.enums.EFlagType;
@@ -14,6 +15,7 @@ import com.lcw.herakles.platform.common.enums.converter.EFlagTypeConverter;
 import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
 import com.lcw.herakles.platform.system.dict.enums.converter.EDictCategoryConverter;
 
+@Comment(value = "数据字典")
 @Entity
 @Table(name = "GL_DICT")
 @EntityListeners(IdInjectionEntityListener.class)
@@ -23,32 +25,41 @@ public class DictPo extends BasePo {
 
     @Id
     @Column(name = "ID")
+    @Comment(value = "id")
     private String id;
   
+    @Comment(value = "类型")
     @Convert(converter = EDictCategoryConverter.class)
     @Column(name = "CATEGORY")
     private EDictCategory category;
-  
+
+    @Comment(value = "字典编号")
     @Column(name = "DICT_CODE")
     private String dictCode;
-  
+
+    @Comment(value = "字典内容")
     @Column(name = "DICT_TEXT")
     private String dictText;
-    
+
+    @Comment(value = "字典内容详情")
     @Column(name = "DICT_TEXT_FULL")
     private String dictFullText;
-  
+
+    @Comment(value = "父节点编号")
     @Column(name = "PARENT_DICT_CODE")
     private String parentDictCode;
-  
+
+    @Comment(value = "是否可用")
     @Convert(converter = EFlagTypeConverter.class)
     @Column(name = "ENABLE_FLG")
     private EFlagType enableFLag;
-  
+
+    @Comment(value = "是否子节点")
     @Convert(converter = EFlagTypeConverter.class)
     @Column(name = "LEAF_FLG")
     private EFlagType leafFlag;
-  
+
+    @Comment(value = "字典顺序")
     @Column(name = "DICT_ORD")
     private Long dictOrder;
 
