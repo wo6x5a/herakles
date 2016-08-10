@@ -66,7 +66,7 @@ public class LogService {
 	}
 
 	@Transactional(readOnly = true)
-	public DataTablesResponseDto<LogDto> getDatatableLogs(final LogQueryDto queryDto) {
+	public DataTablesResponseDto<LogDto> searchLog(final LogQueryDto queryDto) {
 
 		Specification<LogPo> specification = new Specification<LogPo>() {
 			@Override

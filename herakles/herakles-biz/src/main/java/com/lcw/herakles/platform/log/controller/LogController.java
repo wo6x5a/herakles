@@ -32,7 +32,7 @@ public class LogController extends BaseController {
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	@ResponseBody
 	public DataTablesResponseDto<LogDto> search(@RequestBody LogQueryDto request) {
-		DataTablesResponseDto<LogDto> resp = logService.getDatatableLogs(request);
+		DataTablesResponseDto<LogDto> resp = logService.searchLog(request);
 		return resp;
 	}
 
