@@ -26,7 +26,6 @@ import com.lcw.herakles.platform.common.util.MessageUtil;
  * @author chenwulou
  * 
  */
-
 public abstract class BaseController implements MessageConsts {
 
 	/**
