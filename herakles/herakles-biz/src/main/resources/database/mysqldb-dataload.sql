@@ -26,7 +26,8 @@ UNLOCK TABLES;
 
 -- Dumping data for table `product`
 LOCK TABLES `product` WRITE;
-INSERT INTO `product` VALUES ('d7cb687d32c349ccb223c850f49d6d44',1,'dsadas','dasdas','admin','2016-05-19 11:37:43',NULL,'2016-05-19 11:37:42',0),('fbc4e4fa5d5b4f34987a2e62a1e50f54','B','dsadasd','dasdas','admin','2016-05-19 11:39:31',NULL,'2016-05-19 11:39:31',0);
+INSERT INTO `product` VALUES ('d7cb687d32c349ccb223c850f49d6d44',1,'dsadas','dasdas','admin','2016-05-19 11:37:43',NULL,'2016-05-19 11:37:42',0),
+							('fbc4e4fa5d5b4f34987a2e62a1e50f54',2,'dsadasd','dasdas','admin','2016-05-19 11:39:31',NULL,'2016-05-19 11:39:31',0);
 UNLOCK TABLES;
 
 -- Dumping data for table `gl_dict`
