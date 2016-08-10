@@ -4,7 +4,7 @@ package com.lcw.herakles.platform.common.enums;
  * @author chenwulou
  *
  */
-public interface DBEnum {
+public interface DBIntEnum {
 
 	/**
 	 * Description: get the text for display

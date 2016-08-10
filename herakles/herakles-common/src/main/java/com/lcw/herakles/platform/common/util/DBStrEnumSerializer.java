@@ -7,30 +7,31 @@ import org.codehaus.jackson.JsonGenerator;
 import org.codehaus.jackson.map.SerializerProvider;
 import org.codehaus.jackson.map.ser.std.SerializerBase;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.enums.DBStrEnum;
 
 /**
- * Class Name: PageEnumSerializer Description: TODO
+ * Class Name: DBStrEnumSerializer Description: TODO
  * 
  * @author chenwulou
  * 
  */
 
-public class DBEnumSerializer extends SerializerBase<DBEnum> {
+public class DBStrEnumSerializer extends SerializerBase<DBStrEnum> {
 
-    public DBEnumSerializer(){
-        this(DBEnum.class);
+    public DBStrEnumSerializer(){
+        this(DBStrEnum.class);
     }
     
-    protected DBEnumSerializer(Class<DBEnum> t) {
+    protected DBStrEnumSerializer(Class<DBStrEnum> t) {
         super(t);
     }
 
     @Override
-    public void serialize(DBEnum value, JsonGenerator generator, SerializerProvider provider) throws IOException {
+    public void serialize(DBStrEnum value, JsonGenerator generator, SerializerProvider provider) throws IOException {
+
         generator.writeStartObject();
         generator.writeFieldName("code");
-        generator.writeString(value.getCode().toString());
+        generator.writeString(value.getCode());
         generator.writeFieldName("text");
         generator.writeString(value.getText());
         generator.writeFieldName("name");

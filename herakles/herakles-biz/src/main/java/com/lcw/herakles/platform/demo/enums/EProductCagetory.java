@@ -3,8 +3,8 @@ package com.lcw.herakles.platform.demo.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
-import com.lcw.herakles.platform.common.util.DBEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBIntEnum;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
 /**
  * Class Name: EProductCagetory
@@ -12,8 +12,8 @@ import com.lcw.herakles.platform.common.util.DBEnumSerializer;
  * @author chenwulou
  * 
  */
-@JsonSerialize(using = DBEnumSerializer.class)
-public enum EProductCagetory implements DBEnum {
+@JsonSerialize(using = DBIntEnumSerializer.class)
+public enum EProductCagetory implements DBIntEnum {
 
 	ALL(0,"All"),
 	BIRDS(1, "Birds"), 

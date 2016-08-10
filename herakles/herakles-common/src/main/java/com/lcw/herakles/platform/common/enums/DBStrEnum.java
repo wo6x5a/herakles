@@ -8,7 +8,7 @@ package com.lcw.herakles.platform.common.enums;
  * 
  */
 
-public interface PageEnum {
+public interface DBStrEnum {
 
     
     /**

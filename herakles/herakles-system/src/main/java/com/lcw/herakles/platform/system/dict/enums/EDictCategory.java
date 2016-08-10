@@ -2,11 +2,11 @@ package com.lcw.herakles.platform.system.dict.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBStrEnum;
+import com.lcw.herakles.platform.common.util.DBStrEnumSerializer;
 
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum EDictCategory implements PageEnum {
+@JsonSerialize(using = DBStrEnumSerializer.class)
+public enum EDictCategory implements DBStrEnum {
   
     NULL("",""),
     REGION("REGION","所属区域"),

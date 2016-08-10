@@ -4,7 +4,7 @@ import java.lang.reflect.ParameterizedType;
 
 import javax.persistence.AttributeConverter;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.enums.DBStrEnum;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 
 /**
@@ -12,19 +12,20 @@ import com.lcw.herakles.platform.common.util.EnumHelper;
  *
  * @param <T>
  */
-public abstract class DBAttributeConverter<T extends Enum<T> & DBEnum> implements AttributeConverter<T, Integer> {
-
+public abstract class DBStrAttributeConverter<T extends Enum<T> & DBStrEnum> implements
+		AttributeConverter<T, String> {
+	
 	@Override
-	public Integer convertToDatabaseColumn(T attribute) {
+	public String convertToDatabaseColumn(T attribute) {
 		return attribute.getCode();
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public T convertToEntityAttribute(Integer dbData) {
+	public T convertToEntityAttribute(String dbData) {
 		Class<T> enumClazz = (Class<T>) ((ParameterizedType) getClass().getGenericSuperclass())
 				.getActualTypeArguments()[0];
-		return EnumHelper.dbTranslate(enumClazz, dbData);
+		return EnumHelper.translate(enumClazz, dbData);
 	}
 
 }

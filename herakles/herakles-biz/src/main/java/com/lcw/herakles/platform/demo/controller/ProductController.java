@@ -41,6 +41,7 @@ import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.service.ProductQueryService;
 import com.lcw.herakles.platform.demo.service.ProductService;
+import com.lcw.herakles.platform.system.config.enums.EConfig;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
 import com.lcw.herakles.platform.system.files.consts.FileTemplateConsts;
 import com.lcw.herakles.platform.system.mail.service.EmailSerivce;
@@ -140,7 +141,7 @@ public class ProductController extends BaseController {
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	@ApiOperation(value = "页面跳转", httpMethod = "GET", response = String.class)
 	public String home(Model model) {
-		 model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class));
+		model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class));
 //		model.addAttribute("categoryList", this.getProductCagetory());
 		return "product/product_list";
 	}
@@ -182,7 +183,7 @@ public class ProductController extends BaseController {
 	@ApiOperation(value = "添加页面跳转", httpMethod = "GET", response = String.class)
 	@RequestMapping(value = "add/view", method = RequestMethod.GET)
 	public String getAddPage(Model model) {
-		model.addAttribute("categoryList", EnumHelper.inspectConstants(EProductCagetory.class));
+		model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class, false));
 		return "product/product_add";
 	}
 

@@ -2,8 +2,8 @@ package com.lcw.herakles.platform.system.user.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
-import com.lcw.herakles.platform.common.util.DBEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBIntEnum;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
 /**
  * 职业.
@@ -11,8 +11,8 @@ import com.lcw.herakles.platform.common.util.DBEnumSerializer;
  * @author chenwulou
  *
  */
-@JsonSerialize(using = DBEnumSerializer.class)
-public enum EJobType implements DBEnum{
+@JsonSerialize(using = DBIntEnumSerializer.class)
+public enum EJobType implements DBIntEnum{
 	ALL(0,"全部"),
 	SERVANT(1,"公务员"),
 	IT(2,"IT"),

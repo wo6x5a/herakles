@@ -14,10 +14,15 @@ public class EnumOption implements Serializable {
         this.code = code;
         this.text = text;
     }
+    
+	public EnumOption(DBIntEnum dbIntEnum) {
+		this.code = dbIntEnum.name();
+		this.text = dbIntEnum.getText();
+	}
 
-	public EnumOption(PageEnum pageEnum) {
-		this.code = pageEnum.name();
-		this.text = pageEnum.getText();
+	public EnumOption(DBStrEnum dbStrEnum) {
+		this.code = dbStrEnum.name();
+		this.text = dbStrEnum.getText();
 	}
 
     public String getCode() {

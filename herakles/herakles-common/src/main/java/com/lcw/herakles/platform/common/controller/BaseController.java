@@ -13,7 +13,8 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.constant.MessageConsts;
-import com.lcw.herakles.platform.common.enums.DBEnum;
+import com.lcw.herakles.platform.common.enums.DBIntEnum;
+import com.lcw.herakles.platform.common.enums.DBStrEnum;
 import com.lcw.herakles.platform.common.enums.EnumOption;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.MessageUtil;
@@ -45,17 +46,33 @@ public abstract class BaseController implements MessageConsts{
         }
     }
 
+	/**
+	 * 
+	 * @param enumClass
+	 * @return
+	 */
 	@SuppressWarnings("rawtypes")
 	protected List<EnumOption> getStaticOptions(Class<? extends Enum> enumClass) {
 		return this.getStaticOptions(enumClass, true);
 	}
 
+    /**
+     * 
+     * @param enumClass
+     * @param containBlankOption 是否包含第一项.
+     * @return
+     */
     @SuppressWarnings({ "rawtypes", "unchecked" })
     protected List<EnumOption> getStaticOptions(Class<? extends Enum> enumClass, boolean containBlankOption) {
         List<Enum> enumList = EnumHelper.inspectConstants(enumClass, containBlankOption);
         List<EnumOption> options = new ArrayList<EnumOption>();
-        for (Enum e : enumList) {
-            options.add(new EnumOption(e.name(), ((DBEnum) e).getText()));
+        for (Enum em : enumList) {
+        	try {
+        		options.add(new EnumOption(em.name(), ((DBIntEnum) em).getText()));
+			} catch (Exception e) {
+				// 这里我处理了下,如果DBIntEnum强转失败就用DBStrEnum.()只可能是int 和 String
+        		options.add(new EnumOption(em.name(), ((DBStrEnum) em).getText()));
+			}
         }
         return options;
     }

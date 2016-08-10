@@ -7,6 +7,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.system.user.enums.EVerStatus;
@@ -16,6 +17,7 @@ import com.lcw.herakles.platform.system.user.enums.converter.EVerStatusEnumConve
  * @author chenwulou
  *
  */
+@Comment(value = "用户验证码表")
 @Entity
 @Table(name = "SYS_USER_VER_JNL")
 @EntityListeners(IdInjectionEntityListener.class)
@@ -25,26 +27,32 @@ public class UserVerJnlPo extends BaseMaintainablePo {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	@Id
-    @Column(name = "JNL_NO")
-    private String jnlNo;
-	
-    @Column(name = "USER_ID")
-    private String userId;
-	
-    @Column(name = "STATUS")
+	@Column(name = "JNL_NO")
+	@Comment(value = "流水号")
+	private String jnlNo;
+
+	@Comment(value = "用户编号")
+	@Column(name = "USER_ID")
+	private String userId;
+
+	@Comment(value = "验证码状态")
+	@Column(name = "STATUS")
 	@Convert(converter = EVerStatusEnumConverter.class)
 	private EVerStatus status;
 
-    @Column(name = "MOBILE")
-    private String mobile;
-	
+	@Comment(value = "手机号")
+	@Column(name = "MOBILE")
+	private String mobile;
+
+	@Comment(value = "验证码")
 	@Column(name = "VER_CODE")
 	private String verCode;
-	
+
+	@Comment(value = "验证码失效时间戳")
 	@Column(name = "VER_END_DTTM")
-	private String verEndDttm;
+	private Long verEndDttm;
 
 	public String getJnlNo() {
 		return jnlNo;
@@ -78,11 +86,11 @@ public class UserVerJnlPo extends BaseMaintainablePo {
 		this.verCode = verCode;
 	}
 
-	public String getVerEndDttm() {
+	public Long getVerEndDttm() {
 		return verEndDttm;
 	}
 
-	public void setVerEndDttm(String verEndDttm) {
+	public void setVerEndDttm(Long verEndDttm) {
 		this.verEndDttm = verEndDttm;
 	}
 

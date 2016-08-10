@@ -2,11 +2,11 @@ package com.lcw.herakles.platform.system.config.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
-import com.lcw.herakles.platform.common.util.DBEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBIntEnum;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
-@JsonSerialize(using = DBEnumSerializer.class)
-public enum ECfgType implements DBEnum {
+@JsonSerialize(using = DBIntEnumSerializer.class)
+public enum ECfgType implements DBIntEnum {
 
 	SYS(0, "系统参数"),
 	CFG(1, "配置参数"),

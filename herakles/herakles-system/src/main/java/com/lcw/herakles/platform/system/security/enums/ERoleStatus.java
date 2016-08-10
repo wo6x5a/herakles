@@ -3,16 +3,16 @@ package com.lcw.herakles.platform.system.security.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBStrEnum;
+import com.lcw.herakles.platform.common.util.DBStrEnumSerializer;
 
 
 /**
  * @author chenwulou
  *
  */
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum ERoleStatus implements PageEnum {
+@JsonSerialize(using = DBStrEnumSerializer.class)
+public enum ERoleStatus implements DBStrEnum {
 
     INEFFECTIVE("0", "待生效"), EFFICIENT("1", "已生效");
 

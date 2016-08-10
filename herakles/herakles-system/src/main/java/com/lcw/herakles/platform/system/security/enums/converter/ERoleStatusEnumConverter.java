@@ -3,7 +3,7 @@ package com.lcw.herakles.platform.system.security.enums.converter;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import com.lcw.herakles.platform.common.converter.DefaultAttributeConverter;
+import com.lcw.herakles.platform.common.converter.DBStrAttributeConverter;
 import com.lcw.herakles.platform.system.security.enums.ERoleStatus;
 
 /**
@@ -11,7 +11,7 @@ import com.lcw.herakles.platform.system.security.enums.ERoleStatus;
  *
  */
 @Converter
-public class ERoleStatusEnumConverter extends DefaultAttributeConverter<ERoleStatus>
+public class ERoleStatusEnumConverter extends DBStrAttributeConverter<ERoleStatus>
 implements AttributeConverter<ERoleStatus, String> {
 
 }

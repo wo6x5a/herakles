@@ -2,11 +2,11 @@ package com.lcw.herakles.platform.system.config.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.PageEnum;
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBStrEnum;
+import com.lcw.herakles.platform.common.util.DBStrEnumSerializer;
 
-@JsonSerialize(using = PageEnumSerializer.class)
-public enum EConfig implements PageEnum {
+@JsonSerialize(using = DBStrEnumSerializer.class)
+public enum EConfig implements DBStrEnum {
 	
 	/**
 	 * 系统资源：1-2000 

@@ -2,10 +2,10 @@ package com.lcw.herakles.platform.common.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.util.DBEnumSerializer;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
-@JsonSerialize(using = DBEnumSerializer.class)
-public enum EFlagType implements DBEnum {
+@JsonSerialize(using = DBIntEnumSerializer.class)
+public enum EFlagType implements DBIntEnum {
   
     ALL(0,"全部"),
     YES(1,"是"),

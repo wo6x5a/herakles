@@ -15,7 +15,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.lcw.herakles.platform.common.enums.EnumOption;
-import com.lcw.herakles.platform.common.enums.PageEnum;
+import com.lcw.herakles.platform.common.enums.DBStrEnum;
 
 /**
  * 
@@ -178,7 +178,7 @@ public final class EnumHelper implements Serializable {
      * @param containsNull
      * @return
      */
-    public static <T extends Enum<T> & PageEnum> List<EnumOption> getOptionsByEnum(
+    public static <T extends Enum<T> & DBStrEnum> List<EnumOption> getOptionsByEnum(
             final Class<T> clazz) {
         List<T> enums = inspectConstants(clazz);
         List<EnumOption> options = Lists.transform(enums, new Function<T, EnumOption>() {
@@ -192,32 +192,32 @@ public final class EnumHelper implements Serializable {
         return options;
     }
     
-    public static List<EnumOption> getOptions(PageEnum... pageEnums) {
+    public static List<EnumOption> getOptions(DBStrEnum... dbStrEnums) {
         List<EnumOption> result = Lists.newArrayList();
-        for (PageEnum pageEnum : pageEnums) {
-            result.add(new EnumOption(pageEnum));
+        for (DBStrEnum dbStrEnum : dbStrEnums) {
+            result.add(new EnumOption(dbStrEnum));
         }
         return result;
     }
 
     /**
-     * Get a List of Option without those in pageEnums
+     * Get a List of Option without those in dbStrEnums
      * 
      * @param clazz
-     * @param pageEnums
+     * @param dbStrEnums
      * @return
      */
-    public static <T extends Enum<T> & PageEnum> List<EnumOption> getOptionsWithout(final Class<T> clazz,
-            PageEnum... pageEnums) {
+    public static <T extends Enum<T> & DBStrEnum> List<EnumOption> getOptionsWithout(final Class<T> clazz,
+            DBStrEnum... dbStrEnums) {
         Set<T> temp = Sets.newHashSet(inspectConstants(clazz));
-        for (PageEnum pageEnum : pageEnums) {
-            temp.remove(pageEnum);
+        for (DBStrEnum dbStrEnum : dbStrEnums) {
+            temp.remove(dbStrEnum);
         }
         List<T> enums = Lists.newArrayList(temp);
         Collections.sort(enums);
         List<EnumOption> result = Lists.newArrayList();
-        for (PageEnum pageEnum : enums) {
-            result.add(new EnumOption(pageEnum));
+        for (DBStrEnum dbStrEnum : enums) {
+            result.add(new EnumOption(dbStrEnum));
         }
         return result;
     }

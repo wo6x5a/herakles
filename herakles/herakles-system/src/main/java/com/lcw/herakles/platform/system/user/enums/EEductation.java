@@ -2,8 +2,8 @@ package com.lcw.herakles.platform.system.user.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
-import com.lcw.herakles.platform.common.util.DBEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBIntEnum;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
 /**
  * 教育程度.
@@ -11,8 +11,8 @@ import com.lcw.herakles.platform.common.util.DBEnumSerializer;
  * @author chenwulou
  *
  */
-@JsonSerialize(using = DBEnumSerializer.class)
-public enum EEductation implements DBEnum {
+@JsonSerialize(using = DBIntEnumSerializer.class)
+public enum EEductation implements DBIntEnum {
 	ALL(0,"全部"),
 	MASTER(1,"研究生及以上"),
 	UNIVERSITY(2,"大学本科"),

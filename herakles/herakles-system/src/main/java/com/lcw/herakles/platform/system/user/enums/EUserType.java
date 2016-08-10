@@ -2,8 +2,8 @@ package com.lcw.herakles.platform.system.user.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
-import com.lcw.herakles.platform.common.util.DBEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBIntEnum;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
 /**
  * 用户类型.
@@ -11,10 +11,11 @@ import com.lcw.herakles.platform.common.util.DBEnumSerializer;
  * @author chenwulou
  *
  */
-@JsonSerialize(using = DBEnumSerializer.class)
-public enum EUserType implements DBEnum {
+@JsonSerialize(using = DBIntEnumSerializer.class)
+public enum EUserType implements DBIntEnum {
 
-	ALL(0, "全部"), PERSON(1, "个人");
+	ALL(0, "全部"), 
+	PERSON(1, "个人");
 
 	private Integer code;
 	private String text;

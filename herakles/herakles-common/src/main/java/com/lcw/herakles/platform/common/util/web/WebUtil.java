@@ -9,7 +9,8 @@ import org.codehaus.jackson.map.module.SimpleModule;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
-import com.lcw.herakles.platform.common.util.PageEnumSerializer;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
+import com.lcw.herakles.platform.common.util.DBStrEnumSerializer;
 import com.lcw.herakles.platform.common.xss.XssSantizeJsonSerializer;
 
 /**
@@ -92,7 +93,8 @@ public final class WebUtil {
 					objectMapper = new ObjectMapper();
 					SimpleModule module = new SimpleModule("Custom Serializer", new Version(1, 0, 0, "FINAL"));
 					module.addSerializer(new XssSantizeJsonSerializer());
-					module.addSerializer(new PageEnumSerializer());
+					module.addSerializer(new DBStrEnumSerializer());
+					module.addSerializer(new DBIntEnumSerializer());
 					objectMapper.registerModule(module);
 				}
 			}

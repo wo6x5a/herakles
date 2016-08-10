@@ -2,17 +2,17 @@ package com.lcw.herakles.platform.system.user.enums;
 
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
-import com.lcw.herakles.platform.common.enums.DBEnum;
-import com.lcw.herakles.platform.common.util.DBEnumSerializer;
+import com.lcw.herakles.platform.common.enums.DBIntEnum;
+import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
 /**
- * 性别
+ * 性别.
  * 
  * @author chenwulou
  *
  */
-@JsonSerialize(using = DBEnumSerializer.class)
-public enum ESex implements DBEnum {
+@JsonSerialize(using = DBIntEnumSerializer.class)
+public enum ESex implements DBIntEnum {
 
 	UNKNOW(0, "未知"),
 	MALE(1, "男"), 
