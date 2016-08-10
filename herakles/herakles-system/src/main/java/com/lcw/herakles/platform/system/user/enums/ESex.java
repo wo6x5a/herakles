@@ -5,6 +5,12 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import com.lcw.herakles.platform.common.enums.DBEnum;
 import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
+/**
+ * 性别
+ * 
+ * @author chenwulou
+ *
+ */
 @JsonSerialize(using = DBEnumSerializer.class)
 public enum ESex implements DBEnum {
 

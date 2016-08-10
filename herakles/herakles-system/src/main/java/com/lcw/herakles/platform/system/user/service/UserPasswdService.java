@@ -12,7 +12,7 @@ import com.lcw.herakles.platform.system.user.entity.UserPo;
 import com.lcw.herakles.platform.system.user.repository.UserRepository;
 
 /**
- * 
+ * 用户密码相关服务.
  * 
  * @author chenwulou
  *

@@ -6,6 +6,8 @@ import com.lcw.herakles.platform.common.enums.DBEnum;
 import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
 /**
+ * 验证码状态.
+ * 
  * @author chenwulou
  *
  */

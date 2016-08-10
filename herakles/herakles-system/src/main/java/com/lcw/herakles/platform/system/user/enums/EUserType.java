@@ -5,6 +5,12 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import com.lcw.herakles.platform.common.enums.DBEnum;
 import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
+/**
+ * 用户类型.
+ * 
+ * @author chenwulou
+ *
+ */
 @JsonSerialize(using = DBEnumSerializer.class)
 public enum EUserType implements DBEnum {
 

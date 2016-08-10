@@ -7,7 +7,7 @@ import com.lcw.herakles.platform.common.enums.DBEnum;
 import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
 /**
- * Class Name: EUserStatus
+ * 用户状态
  * 
  * @author chenwulou
  * 

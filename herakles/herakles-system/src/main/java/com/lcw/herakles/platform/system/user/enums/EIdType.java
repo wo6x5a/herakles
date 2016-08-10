@@ -5,17 +5,23 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import com.lcw.herakles.platform.common.enums.DBEnum;
 import com.lcw.herakles.platform.common.util.DBEnumSerializer;
 
+/**
+ * 证件类型.
+ * 
+ * @author chenwulou
+ *
+ */
 @JsonSerialize(using = DBEnumSerializer.class)
 public enum EIdType implements DBEnum {
 
-	ALL(0,"全部"),
+	ALL(0, "全部"), 
 	IDCARD(1, "身份证");
 
 	private Integer code;
 
-    private String text;
-	
-	private EIdType(Integer code, String text){
+	private String text;
+
+	private EIdType(Integer code, String text) {
 		this.code = code;
 		this.text = text;
 	}
@@ -26,7 +32,7 @@ public enum EIdType implements DBEnum {
 	}
 
 	@Override
-	public void setCode(Integer	 code) {
+	public void setCode(Integer code) {
 		this.code = code;
 	}
 
