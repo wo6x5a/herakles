@@ -25,7 +25,7 @@ public class LogController extends BaseController {
 
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	public String view(Model model) {
-		model.addAttribute("logTypes", getStaticOptions(EOptType.class));
+		model.addAttribute("logTypes", getStaticOptions(EOptType.class, true));
 		return "system/log/log_list";
 	}
 

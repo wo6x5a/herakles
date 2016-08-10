@@ -140,7 +140,7 @@ public class ProductController extends BaseController {
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	@ApiOperation(value = "页面跳转", httpMethod = "GET", response = String.class)
 	public String home(Model model) {
-		model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class));
+		model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class, true));
 //		model.addAttribute("categoryList", this.getProductCagetory());
 		return "product/product_list";
 	}
