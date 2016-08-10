@@ -41,7 +41,6 @@ import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.service.ProductQueryService;
 import com.lcw.herakles.platform.demo.service.ProductService;
-import com.lcw.herakles.platform.system.config.enums.EConfig;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
 import com.lcw.herakles.platform.system.files.consts.FileTemplateConsts;
 import com.lcw.herakles.platform.system.mail.service.EmailSerivce;
