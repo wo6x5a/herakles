@@ -5,8 +5,11 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
 import com.lcw.herakles.platform.system.user.entity.UserPo;
 
-public interface UserRepository
-    extends JpaRepository<UserPo, String>, JpaSpecificationExecutor<UserPo> {
+/**
+ * @author chenwulou
+ *
+ */
+public interface UserRepository extends JpaRepository<UserPo, String>, JpaSpecificationExecutor<UserPo> {
 
-  UserPo findByNickName(String nickName);
+	UserPo findByNickName(String nickName);
 }

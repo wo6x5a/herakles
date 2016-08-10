@@ -24,6 +24,7 @@ import com.lcw.herakles.platform.common.util.AppConfigUtil;
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
 import com.lcw.herakles.platform.system.security.authc.ShiroJdbcRealm;
 import com.lcw.herakles.platform.system.user.dto.UserDto;
+import com.lcw.herakles.platform.system.user.service.UserPasswdService;
 import com.lcw.herakles.platform.system.user.service.UserService;
 
 /**
@@ -102,11 +103,17 @@ public class BaseSecurityContext {
 		Session session = currentUser.getSession();
 		LOGGER.debug("User {} login successfully, session id {}", userName, session.getId());
 		UserService userService = ApplicationContextUtil.getBean(UserService.class);
-		UserDto user = userService.findByNickName(userName);
-		session.setAttribute(USER_KEY, user);
+		UserDto userDto = userService.findByNickName(userName);
+		session.setAttribute(USER_KEY, userDto);
+		encryptUserPwd(userDto.getUserId());
 		long end = System.currentTimeMillis();
 		LOGGER.debug("login() completed for user {}, total time spent: {}ms", userName, end - start);
 		return session;
+	}
+
+	private static void encryptUserPwd(String userId) {
+		UserPasswdService userPasswdService = ApplicationContextUtil.getBean(UserPasswdService.class);
+		userPasswdService.encryptUserPwd(userId);
 	}
 
 	/**
