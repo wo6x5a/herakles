@@ -28,13 +28,6 @@ import com.lcw.herakles.platform.common.util.MessageUtil;
  */
 public abstract class BaseController implements MessageConsts {
 
-	/**
-	 * Description: get all static options from a enum object for display.
-	 * 
-	 * @param enumClass
-	 * @return
-	 */
-
 	@Autowired
 	private LocalValidatorFactoryBean validator;
 
