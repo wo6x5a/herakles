@@ -10,6 +10,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.google.common.base.Throwables;
 
@@ -20,9 +21,10 @@ import com.google.common.base.Throwables;
  * @author chenwulou
  */
 @Controller
+@RequestMapping(value = "error")
 public class ErrorController extends BaseController {
 
-    @RequestMapping("error/404")
+    @RequestMapping(value = "404", method = RequestMethod.GET)
     public String generalError(HttpServletRequest request, HttpServletResponse response, Model model) {
         // retrieve some useful information from the request
         Integer statusCode = (Integer) request.getAttribute("javax.servlet.error.status_code");
