@@ -42,7 +42,6 @@ import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
 import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
-import com.lcw.herakles.platform.demo.service.ProductLongTimeTaskService;
 import com.lcw.herakles.platform.demo.service.ProductQueryService;
 import com.lcw.herakles.platform.demo.service.ProductService;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
@@ -74,8 +73,6 @@ public class ProductController extends BaseController {
 	private SecurityContext securityContext;
 	@Autowired
 	private ProductQueryService productQueryService;
-	@Autowired
-	private ProductLongTimeTaskService productLongTimeTaskService;
 	// @Autowired
 	// private ProductInfoExcelExportService productInfoExcelExportService;
 
