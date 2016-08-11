@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.WebAsyncTask;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -83,29 +84,57 @@ public class ProductController extends BaseController {
 	 * 
 	 * @return
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@ResponseBody
 	@RequestMapping(value = "longtimetask1", method = RequestMethod.GET)
-	public WebAsyncTask longTimeTask1() {
+	public WebAsyncTask<String> longTimeTask1() {
 		System.out.println("/longtimetask1 被调用 thread id : " + Thread.currentThread().getId());
 		Callable<String> callable = new Callable<String>() {
 			@Override
 			public String call() throws Exception {
-				productLongTimeTaskService.longTimeTask();
-				String mav = "product/product_add";
+				Thread.sleep(2000);
 				System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
-				return mav;
+				return "Callable result";
 			}
 		};
+		return new WebAsyncTask<String>(3000, callable);// 允许指定timeout时间
+	}
 
-		WebAsyncTask asyncTask = new WebAsyncTask(2000, callable);
-		asyncTask.onTimeout(new Callable<String>() {
+	@ResponseBody
+	@RequestMapping("longtimetask2")
+	public Callable<String> longtimetask2(
+			final @RequestParam(required = false, defaultValue = "true") boolean handled) {
+		System.out.println("/longtimetask2 被调用 thread id : " + Thread.currentThread().getId());
+		// 进行一些与处理之后，把最耗时的业务逻辑部分放到Callable中，注意，如果你需要在new
+		// Callable中用到从页面传入的参数，需要在参数前加入final
+		return new Callable<String>() {
+			@Override
 			public String call() throws Exception {
-				String mav = "product/product_add";
-				System.out.println("执行超时 thread id ：" + Thread.currentThread().getId());
-				return mav;
+				if (handled) {
+					Thread.sleep(2000);
+				} else {
+					Thread.sleep(2000 * 2);
+				}
+				System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+				return "Callable result";
 			}
-		});
-		return new WebAsyncTask(3000, callable);
+		};
+	}
+
+	@RequestMapping("/longtimetask3")
+	@ResponseBody
+	public DeferredResult<String> longtimetask3() {
+		System.out.println("/longtimetask3 被调用 thread id : " + Thread.currentThread().getId());
+		DeferredResult<String> deferredResult = new DeferredResult<String>();
+//		try {
+//			Thread.sleep(2000);
+//			deferredResult.setResult("Callable result");
+//			System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+//		} catch (InterruptedException e) {
+//			e.printStackTrace();
+//		}
+//		System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+		// Add deferredResult to a Queue or a Map...
+		return deferredResult;
 	}
 
 	@ApiOperation(notes = "addGroup", httpMethod = "GET", value = "测试", response = String.class)
