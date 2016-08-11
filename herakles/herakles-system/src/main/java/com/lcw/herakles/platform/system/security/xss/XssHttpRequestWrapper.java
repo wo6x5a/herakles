@@ -28,7 +28,6 @@ public class XssHttpRequestWrapper extends HttpServletRequestWrapper {
     private Map<String, String[]> sanitized;
     private Map<String, String[]> orig;
 
-    @SuppressWarnings("unchecked")
     public XssHttpRequestWrapper(HttpServletRequest request) {
         super(request);
         orig = request.getParameterMap();

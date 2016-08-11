@@ -37,7 +37,12 @@ public class ProductService {
 
 	// @CacheEvict(value = "productCache", key = "'PROD_' + #productDto.id")
 	@Transactional
-	public ProductPo saveProduct(ProductReqDto productReqDto) {
+	public ProductPo saveProduct(ProductReqDto productReqDto) {try {
+		Thread.sleep(1000);
+	} catch (InterruptedException e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 		ProductPo product = new ProductPo();
 		if (StringUtils.isNotBlank(productReqDto.getId())) {
 			product = productRepository.findOne(productReqDto.getId());
@@ -46,6 +51,7 @@ public class ProductService {
 		}
 		product = ConverterService.convert(productReqDto, product);
 		return productRepository.save(product);
+		
 	}
 
 	// @CacheEvict(value = "productCache", key = "'PROD_' + #id")

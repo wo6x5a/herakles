@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Callable;
 
 import javax.validation.groups.Default;
 
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.context.request.async.WebAsyncTask;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.lcw.herakles.platform.common.cache.redis.repository.BaseRedisDao;
@@ -39,6 +41,7 @@ import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
 import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
+import com.lcw.herakles.platform.demo.service.ProductLongTimeTaskService;
 import com.lcw.herakles.platform.demo.service.ProductQueryService;
 import com.lcw.herakles.platform.demo.service.ProductService;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
@@ -70,10 +73,42 @@ public class ProductController extends BaseController {
 	private SecurityContext securityContext;
 	@Autowired
 	private ProductQueryService productQueryService;
+	@Autowired
+	private ProductLongTimeTaskService productLongTimeTaskService;
 	// @Autowired
 	// private ProductInfoExcelExportService productInfoExcelExportService;
 
-	@ApiOperation(notes = "addGroup", httpMethod = "GET", value = "添加一个新的群组", response = String.class)
+	/**
+	 * 异步调用测试
+	 * 
+	 * @return
+	 */
+	@SuppressWarnings({ "rawtypes", "unchecked" })
+	@RequestMapping(value = "longtimetask1", method = RequestMethod.GET)
+	public WebAsyncTask longTimeTask1() {
+		System.out.println("/longtimetask1 被调用 thread id : " + Thread.currentThread().getId());
+		Callable<String> callable = new Callable<String>() {
+			@Override
+			public String call() throws Exception {
+				productLongTimeTaskService.longTimeTask();
+				String mav = "product/product_add";
+				System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+				return mav;
+			}
+		};
+
+		WebAsyncTask asyncTask = new WebAsyncTask(2000, callable);
+		asyncTask.onTimeout(new Callable<String>() {
+			public String call() throws Exception {
+				String mav = "product/product_add";
+				System.out.println("执行超时 thread id ：" + Thread.currentThread().getId());
+				return mav;
+			}
+		});
+		return new WebAsyncTask(3000, callable);
+	}
+
+	@ApiOperation(notes = "addGroup", httpMethod = "GET", value = "测试", response = String.class)
 	@RequestMapping(value = "test", method = RequestMethod.GET)
 	public String test() {
 		return "product/test";
@@ -140,8 +175,8 @@ public class ProductController extends BaseController {
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	@ApiOperation(value = "页面跳转", httpMethod = "GET", response = String.class)
 	public String home(Model model) {
-		model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class, true));
-//		model.addAttribute("categoryList", this.getProductCagetory());
+		model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, true));
+		// model.addAttribute("categoryList", this.getProductCagetory());
 		return "product/product_list";
 	}
 
@@ -160,17 +195,18 @@ public class ProductController extends BaseController {
 		return resp;
 	}
 
-//	@RequestMapping(value = "/export-xls", method = RequestMethod.POST)
-//	public ModelAndView exportBrokerInvesterXls(ProductSearchDto request) {
-//		List<ProductDto> dataList = productQueryService.searchProduct(request).getData();
-//		String fileName = "test.xls";
-//		String tempPath = "excel/report/product_repo.xls";
-//		Map<String, Object> map = new HashMap<String, Object>();
-//		map.put(ApplicationConstant.REPORT_DATA, dataList);
-//		map.put(ApplicationConstant.REPORT_FILE_NAME, fileName);
-//		map.put(ApplicationConstant.REPORT_TEMP_PATH, tempPath);
-//		return new ModelAndView(productInfoExcelExportService, map);
-//	}
+	// @RequestMapping(value = "/export-xls", method = RequestMethod.POST)
+	// public ModelAndView exportBrokerInvesterXls(ProductSearchDto request) {
+	// List<ProductDto> dataList =
+	// productQueryService.searchProduct(request).getData();
+	// String fileName = "test.xls";
+	// String tempPath = "excel/report/product_repo.xls";
+	// Map<String, Object> map = new HashMap<String, Object>();
+	// map.put(ApplicationConstant.REPORT_DATA, dataList);
+	// map.put(ApplicationConstant.REPORT_FILE_NAME, fileName);
+	// map.put(ApplicationConstant.REPORT_TEMP_PATH, tempPath);
+	// return new ModelAndView(productInfoExcelExportService, map);
+	// }
 
 	/**
 	 * Description: render add-product page
@@ -182,7 +218,7 @@ public class ProductController extends BaseController {
 	@ApiOperation(value = "添加页面跳转", httpMethod = "GET", response = String.class)
 	@RequestMapping(value = "add/view", method = RequestMethod.GET)
 	public String getAddPage(Model model) {
-		model.addAttribute("categoryList",  getStaticOptions(EProductCagetory.class, false));
+		model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, false));
 		return "product/product_add";
 	}
 
