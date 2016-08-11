@@ -59,8 +59,8 @@ public abstract class BaseController implements MessageConsts {
 		for (Enum em : enumList) {
 			try {
 				options.add(new EnumOption(em.name(), ((DBIntEnum) em).getText()));
-			} catch (Exception e) {
-				// 这里我处理了下,如果DBIntEnum强转失败就用DBStrEnum.(只可能是int或 String)
+			} catch (ClassCastException e) {
+				// 这里我处理了下,如果DBIntEnum强转失败就用DBStrEnum.
 				options.add(new EnumOption(em.name(), ((DBStrEnum) em).getText()));
 			}
 		}
