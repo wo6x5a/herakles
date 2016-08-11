@@ -4,6 +4,12 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 
+/**
+ * common:yes/no
+ * 
+ * @author chenwulou
+ *
+ */
 @JsonSerialize(using = DBIntEnumSerializer.class)
 public enum EFlagType implements DBIntEnum {
   

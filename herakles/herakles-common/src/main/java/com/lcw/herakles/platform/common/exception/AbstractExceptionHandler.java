@@ -26,8 +26,6 @@ import com.lcw.herakles.platform.common.dto.ValidationResultDto;
 
 /**
  * 
- * Class Name: ExceptionHandler Description
- * 
  * @author chenwulou
  * 
  */

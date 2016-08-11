@@ -2,7 +2,6 @@
 package com.lcw.herakles.platform.common.enums;
 
 /**
- * Class Name: BaseEnum Description: TODO
  * 
  * @author chenwulou
  * 

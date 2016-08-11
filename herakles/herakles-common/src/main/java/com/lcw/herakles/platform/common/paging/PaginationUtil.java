@@ -15,6 +15,10 @@ import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 
+/**
+ * @author chenwulou
+ *
+ */
 public final class PaginationUtil extends BasePageUtil {
 
 	public static Pageable buildPageRequest(DataTablesRequestDto requestDto) {

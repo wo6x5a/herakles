@@ -16,7 +16,6 @@ import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ValidationResultDto;
 
 /**
- * Class Name: ExceptionHandler
  * <p>
  * Description: the <code>ValidateException</code> handler<br>
  * the validation from service will be wrapped into <code>ValidateException</code>, then the handler will catch the

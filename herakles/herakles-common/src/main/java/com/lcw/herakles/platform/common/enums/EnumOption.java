@@ -1,20 +1,26 @@
-	
+
 package com.lcw.herakles.platform.common.enums;
 
 import java.io.Serializable;
 
+/**
+ * user in controller show in page enum option.
+ * 
+ * @author chenwulou
+ *
+ */
 @SuppressWarnings("serial")
 public class EnumOption implements Serializable {
 
-    private String code;
-    
-    private String text;
+	private String code;
 
-    public EnumOption(String code, String text) {
-        this.code = code;
-        this.text = text;
-    }
-    
+	private String text;
+
+	public EnumOption(String code, String text) {
+		this.code = code;
+		this.text = text;
+	}
+
 	public EnumOption(DBIntEnum dbIntEnum) {
 		this.code = dbIntEnum.name();
 		this.text = dbIntEnum.getText();
@@ -25,25 +31,25 @@ public class EnumOption implements Serializable {
 		this.text = dbStrEnum.getText();
 	}
 
-    public String getCode() {
-        return code;
-    }
+	public String getCode() {
+		return code;
+	}
 
-    public void setCode(String code) {
-        this.code = code;
-    }
+	public void setCode(String code) {
+		this.code = code;
+	}
 
-    public String getText() {
-        return text;
-    }
+	public String getText() {
+		return text;
+	}
 
-    public void setText(String text) {
-        this.text = text;
-    }
-    
-    @Override
-    public String toString() {
-        return code;
-    }
+	public void setText(String text) {
+		this.text = text;
+	}
+
+	@Override
+	public String toString() {
+		return code;
+	}
 
 }
