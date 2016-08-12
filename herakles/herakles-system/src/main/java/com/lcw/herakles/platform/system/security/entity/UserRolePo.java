@@ -11,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
+import com.lcw.herakles.platform.system.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.security.entity.id.UserRolePk;
 import com.lcw.herakles.platform.system.security.enums.ERoleStatus;
 import com.lcw.herakles.platform.system.security.enums.converter.ERoleStatusEnumConverter;

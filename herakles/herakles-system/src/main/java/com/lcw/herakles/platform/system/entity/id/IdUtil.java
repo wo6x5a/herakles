@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.common.entity.id;
+package com.lcw.herakles.platform.system.entity.id;
 
 import java.util.UUID;
 

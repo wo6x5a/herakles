@@ -1,5 +1,5 @@
 
-package com.lcw.herakles.platform.common.entity;
+package com.lcw.herakles.platform.system.entity;
 
 import java.util.Date;
 

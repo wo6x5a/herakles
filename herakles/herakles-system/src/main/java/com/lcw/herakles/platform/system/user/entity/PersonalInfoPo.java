@@ -9,9 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
-import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
-import com.lcw.herakles.platform.system.user.entity.UserPo;
+import com.lcw.herakles.platform.system.entity.BaseMaintainablePo;
+import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.system.user.enums.EEductation;
 import com.lcw.herakles.platform.system.user.enums.EIdType;
 import com.lcw.herakles.platform.system.user.enums.EJobType;
