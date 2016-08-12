@@ -1,5 +1,11 @@
 package com.lcw.herakles.platform.common.constant;
 
+/**
+ * 正则表达式.
+ * 
+ * @author chenwulou
+ *
+ */
 public final class RegexpConsts {
 
     public static final String MIN4_REGEXP = "(.{5,25})?$";

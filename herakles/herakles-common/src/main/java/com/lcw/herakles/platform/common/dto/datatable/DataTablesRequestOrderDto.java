@@ -2,6 +2,10 @@ package com.lcw.herakles.platform.common.dto.datatable;
 
 import java.io.Serializable;
 
+/**
+ * @author chenwulou
+ *
+ */
 @SuppressWarnings("serial")
 public class DataTablesRequestOrderDto implements Serializable {
 
