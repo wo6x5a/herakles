@@ -15,6 +15,10 @@ import com.lcw.herakles.platform.system.dict.enums.converter.EDictCategoryConver
 import com.lcw.herakles.platform.system.entity.BasePo;
 import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
 
+/**
+ * @author chenwulou
+ *
+ */
 @Comment(value = "数据字典")
 @Entity
 @Table(name = "GL_DICT")

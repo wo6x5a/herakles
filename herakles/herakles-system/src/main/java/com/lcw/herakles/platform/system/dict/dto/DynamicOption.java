@@ -2,6 +2,10 @@ package com.lcw.herakles.platform.system.dict.dto;
 
 import com.lcw.herakles.platform.system.dict.util.SystemDictUtil;
 
+/**
+ * @author chenwulou
+ *
+ */
 public class DynamicOption {
 
     private String id;

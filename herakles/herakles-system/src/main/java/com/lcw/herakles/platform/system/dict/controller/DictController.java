@@ -9,6 +9,10 @@ import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ResultDtoFactory;
 import com.lcw.herakles.platform.system.dict.util.SystemDictUtil;
 
+/**
+ * @author chenwulou
+ *
+ */
 @Controller
 @RequestMapping(value = "system/dict")
 public class DictController {
