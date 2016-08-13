@@ -85,10 +85,9 @@ public class ConfigService {
 		if (cfg.getType() != ECfgType.BIZ) {
 			ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, "此类型参数不允许修改");
 		}
-		String currOpId = securityContext.getCurrentOperatorId();
 		cfg.setValue(reqDto.getValue());
 		cfg.setMemo(reqDto.getMemo());
-		cfg.setLastMntOpId(currOpId);
+		cfg.setLastMntOpId(securityContext.getCurrentOperatorId());
 		cfg.setLastMntTs(new Date());
 		configRepository.save(cfg);
 	}
