@@ -23,6 +23,10 @@ import com.lcw.herakles.platform.system.config.dto.req.CfgSearchDto;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.service.ConfigService;
 
+/**
+ * @author chenwulou
+ *
+ */
 @Controller
 @RequestMapping("system/config")
 public class ConfigController extends BaseController {

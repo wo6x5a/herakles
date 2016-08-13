@@ -4,8 +4,10 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
-import com.lcw.herakles.platform.common.annotation.Comment;
-
+/**
+ * @author chenwulou
+ *
+ */
 public class CfgModReqDto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -13,7 +15,6 @@ public class CfgModReqDto implements Serializable{
 	@NotEmpty(message = "{common.error.field.empty}")
 	private String key;
 	
-	@Comment("交易密码")
 	@NotEmpty(message = "{common.error.field.empty}")
 	private String trxPwd;
 

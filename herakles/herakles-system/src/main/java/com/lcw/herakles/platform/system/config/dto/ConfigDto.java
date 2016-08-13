@@ -5,6 +5,10 @@ import com.lcw.herakles.platform.common.dto.BaseMaintainableDto;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.enums.EConfig;
 
+/**
+ * @author chenwulou
+ *
+ */
 public class ConfigDto extends BaseMaintainableDto {
 	/**
 	 * 
