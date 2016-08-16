@@ -27,8 +27,7 @@
 		scanning!) -->
 		
 	<context:component-scan base-package="com.lcw.herakles.platform">
-		<context:exclude-filter type="regex"
-			expression=".*\.[^.]*Controller" />
+		<context:exclude-filter type="regex" expression=".*\.[^.]*Controller" />
 	</context:component-scan>
 	
 	<task:annotation-driven />
@@ -36,14 +35,12 @@
 	<!-- enable AspectJ -->
 	<aop:aspectj-autoproxy />
 	
-	<bean id="validator"
-		class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
 		<property name="validationMessageSource" ref="messageSource" />
 	</bean>
 	
-	<bean id="messageSource"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="useCodeAsDefaultMessage" value="false" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="fileEncodings" value="UTF-8" />
@@ -56,8 +53,7 @@
 		</property>
 	</bean>
 	
-	<bean id="appConfig"
-		class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+	<bean id="appConfig" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
 		<property name="useCodeAsDefaultMessage" value="false" />
 		<property name="defaultEncoding" value="UTF-8" />
 		<property name="fileEncodings" value="UTF-8" />
@@ -72,8 +68,6 @@
 	</bean>
 	
 	<!-- do not change the order, app-config should be the FIRST one as it is the default config, see PropertiesLoaderSupport.loadProperties(Properties props) -->
-	<context:property-placeholder 
-		location="classpath:app-config.properties, classpath:env/env-var.properties"  
-		ignore-unresolvable="true"/>
+	<context:property-placeholder  location="classpath:app-config.properties, classpath:env/env-var.properties" ignore-unresolvable="true"/>
 	
 </beans>
