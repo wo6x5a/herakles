@@ -63,272 +63,279 @@ import com.wordnik.swagger.annotations.ApiParam;
 @RequestMapping(value = "product")
 public class ProductController extends BaseController {
 
-	@Autowired
-	private BaseRedisDao baseRedisDao;
-	@Autowired
-	private EmailSerivce emailSerivce;
-	@Autowired
-	private ProductService productService;
-	@Autowired
-	private SecurityContext securityContext;
-	@Autowired
-	private ProductQueryService productQueryService;
-	// @Autowired
-	// private ProductInfoExcelExportService productInfoExcelExportService;
+    @Autowired
+    private BaseRedisDao baseRedisDao;
+    @Autowired
+    private EmailSerivce emailSerivce;
+    @Autowired
+    private ProductService productService;
+    @Autowired
+    private SecurityContext securityContext;
+    @Autowired
+    private ProductQueryService productQueryService;
+    // @Autowired
+    // private ProductInfoExcelExportService productInfoExcelExportService;
 
-	/**
-	 * 异步调用测试
-	 * 
-	 * @return
-	 */
-	@ResponseBody
-	@RequestMapping(value = "longtimetask1", method = RequestMethod.GET)
-	public WebAsyncTask<String> longTimeTask1() {
-		System.out.println("/longtimetask1 被调用 thread id : " + Thread.currentThread().getId());
-		Callable<String> callable = new Callable<String>() {
-			@Override
-			public String call() throws Exception {
-				Thread.sleep(2000);
-				System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
-				return "Callable result";
-			}
-		};
-		return new WebAsyncTask<String>(3000, callable);// 允许指定timeout时间
-	}
+    /**
+     * 异步调用测试
+     * 
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "longtimetask1", method = RequestMethod.GET)
+    public WebAsyncTask<String> longTimeTask1() {
+        System.out.println("/longtimetask1 被调用 thread id : " + Thread.currentThread().getId());
+        Callable<String> callable = new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                Thread.sleep(2000);
+                System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+                return "Callable result";
+            }
+        };
+        return new WebAsyncTask<String>(3000, callable);// 允许指定timeout时间
+    }
 
-	@ResponseBody
-	@RequestMapping("longtimetask2")
-	public Callable<String> longtimetask2(
-			final @RequestParam(required = false, defaultValue = "true") boolean handled) {
-		System.out.println("/longtimetask2 被调用 thread id : " + Thread.currentThread().getId());
-		// 进行一些与处理之后，把最耗时的业务逻辑部分放到Callable中，注意，如果你需要在new
-		// Callable中用到从页面传入的参数，需要在参数前加入final
-		return new Callable<String>() {
-			@Override
-			public String call() throws Exception {
-				if (handled) {
-					Thread.sleep(2000);
-				} else {
-					Thread.sleep(2000 * 2);
-				}
-				System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
-				return "Callable result";
-			}
-		};
-	}
+    @ResponseBody
+    @RequestMapping("longtimetask2")
+    public Callable<String> longtimetask2(
+            final @RequestParam(required = false, defaultValue = "true") boolean handled) {
+        System.out.println("/longtimetask2 被调用 thread id : " + Thread.currentThread().getId());
+        // 进行一些与处理之后，把最耗时的业务逻辑部分放到Callable中，注意，如果你需要在new
+        // Callable中用到从页面传入的参数，需要在参数前加入final
+        return new Callable<String>() {
+            @Override
+            public String call() throws Exception {
+                if (handled) {
+                    Thread.sleep(2000);
+                } else {
+                    Thread.sleep(2000 * 2);
+                }
+                System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+                return "Callable result";
+            }
+        };
+    }
 
-	@RequestMapping("/longtimetask3")
-	@ResponseBody
-	public DeferredResult<String> longtimetask3() {
-		System.out.println("/longtimetask3 被调用 thread id : " + Thread.currentThread().getId());
-		DeferredResult<String> deferredResult = new DeferredResult<String>();
-//		try {
-//			Thread.sleep(2000);
-//			deferredResult.setResult("Callable result");
-//			System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
-//		} catch (InterruptedException e) {
-//			e.printStackTrace();
-//		}
-//		System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
-		// Add deferredResult to a Queue or a Map...
-		return deferredResult;
-	}
+    @RequestMapping("/longtimetask3")
+    @ResponseBody
+    public DeferredResult<String> longtimetask3() {
+        System.out.println("/longtimetask3 被调用 thread id : " + Thread.currentThread().getId());
+        DeferredResult<String> deferredResult = new DeferredResult<String>();
+        // try {
+        // Thread.sleep(2000);
+        // deferredResult.setResult("Callable result");
+        // System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+        // } catch (InterruptedException e) {
+        // e.printStackTrace();
+        // }
+        // System.out.println("执行成功 thread id : " + Thread.currentThread().getId());
+        // Add deferredResult to a Queue or a Map...
+        return deferredResult;
+    }
 
-	@ApiOperation(notes = "addGroup", httpMethod = "GET", value = "测试", response = String.class)
-	@RequestMapping(value = "test", method = RequestMethod.GET)
-	public String test() {
-		return "product/test";
-	}
+    @ApiOperation(notes = "addGroup", httpMethod = "GET", value = "测试", response = String.class)
+    @RequestMapping(value = "test", method = RequestMethod.GET)
+    public String test() {
+        return "product/test";
+    }
 
-	@SuppressWarnings({ "unused", "unchecked" })
-	@RequestMapping(value = "test-redis", method = RequestMethod.GET)
-	@ApiOperation(value = "测试redis", httpMethod = "GET", response = String.class)
-	public String testRedis() {
-		List<String> listStr = new ArrayList<>();
-		List<String> listStr1 = new ArrayList<>();
-		listStr.add("1");
-		listStr.add("2");
-		listStr.add("3");
-		baseRedisDao.addStr("USER", "LCW", "楼晨武");
-		baseRedisDao.getStr("USER", "LCW");
-		baseRedisDao.addStr("USER", "LIST", listStr);
-		listStr1 = (List<String>) baseRedisDao.getStr("USER", "LIST");
-		return "product/test";
-	}
+    @SuppressWarnings({"unused", "unchecked"})
+    @RequestMapping(value = "test-redis", method = RequestMethod.GET)
+    @ApiOperation(value = "测试redis", httpMethod = "GET", response = String.class)
+    public String testRedis() {
+        List<String> listStr = new ArrayList<>();
+        List<String> listStr1 = new ArrayList<>();
+        listStr.add("1");
+        listStr.add("2");
+        listStr.add("3");
+        baseRedisDao.addStr("USER", "LCW", "楼晨武");
+        baseRedisDao.getStr("USER", "LCW");
+        baseRedisDao.addStr("USER", "LIST", listStr);
+        listStr1 = (List<String>) baseRedisDao.getStr("USER", "LIST");
+        return "product/test";
+    }
 
-	@SuppressWarnings("unused")
-	@RequestMapping(value = "test-email", method = RequestMethod.GET)
-	@ApiOperation(value = "测试email", httpMethod = "GET", response = String.class)
-	public String testEmail() {
-		String title = "邮箱绑定";
-		String templateName = "modifyEmail";
-		Map<String, Object> model = new HashMap<String, Object>();
-		String expireDate = DateUtils.formatDate(DateUtils.getDate(this.getDefaultExpireDttm(), "yyyyMMddHHmmss"),
-				"yyyy-MM-dd hh:mm:ss");
-		model.put("expireDate", expireDate);
-		model.put("nickName", securityContext.getCurrentUser().getNickName());
-		model.put("url", "www.bing.com");
-		model.put("isUnbound", "xxxxx");
-		emailSerivce.sendSimpleEmail("标题", "内容", "4949344008@qq.com");
-		// emailSerivce.sendHtmlEmail(title, templateName, model,
-		// "wo6x5a1@163.com");
-		return "product/test";
-	}
+    @SuppressWarnings("unused")
+    @RequestMapping(value = "test-email", method = RequestMethod.GET)
+    @ApiOperation(value = "测试email", httpMethod = "GET", response = String.class)
+    public String testEmail() {
+        String title = "邮箱绑定";
+        String templateName = "modifyEmail";
+        Map<String, Object> model = new HashMap<String, Object>();
+        String expireDate = DateUtils.formatDate(
+                DateUtils.getDate(this.getDefaultExpireDttm(), "yyyyMMddHHmmss"),
+                "yyyy-MM-dd hh:mm:ss");
+        model.put("expireDate", expireDate);
+        model.put("nickName", securityContext.getCurrentUser().getNickName());
+        model.put("url", "www.bing.com");
+        model.put("isUnbound", "xxxxx");
+        emailSerivce.sendSimpleEmail("标题", "内容", "4949344008@qq.com");
+        // emailSerivce.sendHtmlEmail(title, templateName, model,
+        // "wo6x5a1@163.com");
+        return "product/test";
+    }
 
-	private String getDefaultExpireDttm() {
-		Date expireDate = DateUtils.add(new Date(), Calendar.HOUR_OF_DAY, 24);
-		return DateUtils.formatDate(expireDate, "yyyyMMddHHmmss");
-	}
+    private String getDefaultExpireDttm() {
+        Date expireDate = DateUtils.add(new Date(), Calendar.HOUR_OF_DAY, 24);
+        return DateUtils.formatDate(expireDate, "yyyyMMddHHmmss");
+    }
 
-	@ApiOperation(value = "测试模板下载", httpMethod = "GET", response = ModelAndView.class)
-	@RequestMapping(value = "test-temp-form", method = RequestMethod.GET)
-	public ModelAndView printApplicationForm() {
-		ModelAndView model = new ModelAndView(FileTemplateConsts.REDIRECT);
-		model.addObject("fileName", FileTemplateConsts.TEST_TEMP);
-		model.addObject("showFileName", FileTemplateConsts.TEST_TEMP_NAME);
-		model.addObject("suffixes", FileConsts.DOC);
-		model.addObject("filePath", FileTemplateConsts.WORD_PATH);
-		return model;
-	}
+    @ApiOperation(value = "测试模板下载", httpMethod = "GET", response = ModelAndView.class)
+    @RequestMapping(value = "test-temp-form", method = RequestMethod.GET)
+    public ModelAndView printApplicationForm() {
+        ModelAndView model = new ModelAndView(FileTemplateConsts.REDIRECT);
+        model.addObject("fileName", FileTemplateConsts.TEST_TEMP);
+        model.addObject("showFileName", FileTemplateConsts.TEST_TEMP_NAME);
+        model.addObject("suffixes", FileConsts.DOC);
+        model.addObject("filePath", FileTemplateConsts.WORD_PATH);
+        return model;
+    }
 
-	/**
-	 * Description: render home page
-	 *
-	 * @param model
-	 * @return
-	 */
-	@RequiresPermissions("product:view")
-	@RequestMapping(value = "view", method = RequestMethod.GET)
-	@ApiOperation(value = "页面跳转", httpMethod = "GET", response = String.class)
-	public String home(Model model) {
-		model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, true));
-		// model.addAttribute("categoryList", this.getProductCagetory());
-		return "product/product_list";
-	}
+    /**
+     * Description: render home page
+     *
+     * @param model
+     * @return
+     */
+    @RequiresPermissions("product:view")
+    @RequestMapping(value = "view", method = RequestMethod.GET)
+    @ApiOperation(value = "页面跳转", httpMethod = "GET", response = String.class)
+    public String home(Model model) {
+        model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, true));
+        // model.addAttribute("categoryList", this.getProductCagetory());
+        return "product/product_list";
+    }
 
-	/**
-	 * Description: search product list on the home page
-	 *
-	 * @param request
-	 * @return
-	 */
-	// @RequiresPermissions("product:list")
-	@RequestMapping(value = "list", method = RequestMethod.POST)
-	@ResponseBody
-	@ApiOperation(value = "获得产品列表", httpMethod = "POST", responseContainer = "DataTablesResponseDto<ProductDto> resp")
-	public DataTablesResponseDto<ProductDto> search(@RequestBody ProductSearchDto request) {
-		DataTablesResponseDto<ProductDto> resp = productQueryService.searchProduct(request);
-		return resp;
-	}
+    /**
+     * Description: search product list on the home page
+     *
+     * @param request
+     * @return
+     */
+    // @RequiresPermissions("product:list")
+    @RequestMapping(value = "list", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "获得产品列表", httpMethod = "POST",
+            responseContainer = "DataTablesResponseDto<ProductDto> resp")
+    public DataTablesResponseDto<ProductDto> search(@RequestBody ProductSearchDto request) {
+        DataTablesResponseDto<ProductDto> resp = productQueryService.searchProduct(request);
+        return resp;
+    }
 
-	// @RequestMapping(value = "/export-xls", method = RequestMethod.POST)
-	// public ModelAndView exportBrokerInvesterXls(ProductSearchDto request) {
-	// List<ProductDto> dataList =
-	// productQueryService.searchProduct(request).getData();
-	// String fileName = "test.xls";
-	// String tempPath = "excel/report/product_repo.xls";
-	// Map<String, Object> map = new HashMap<String, Object>();
-	// map.put(ApplicationConstant.REPORT_DATA, dataList);
-	// map.put(ApplicationConstant.REPORT_FILE_NAME, fileName);
-	// map.put(ApplicationConstant.REPORT_TEMP_PATH, tempPath);
-	// return new ModelAndView(productInfoExcelExportService, map);
-	// }
+    // @RequestMapping(value = "/export-xls", method = RequestMethod.POST)
+    // public ModelAndView exportBrokerInvesterXls(ProductSearchDto request) {
+    // List<ProductDto> dataList =
+    // productQueryService.searchProduct(request).getData();
+    // String fileName = "test.xls";
+    // String tempPath = "excel/report/product_repo.xls";
+    // Map<String, Object> map = new HashMap<String, Object>();
+    // map.put(ApplicationConstant.REPORT_DATA, dataList);
+    // map.put(ApplicationConstant.REPORT_FILE_NAME, fileName);
+    // map.put(ApplicationConstant.REPORT_TEMP_PATH, tempPath);
+    // return new ModelAndView(productInfoExcelExportService, map);
+    // }
 
-	/**
-	 * Description: render add-product page
-	 *
-	 * @param model
-	 * @return
-	 */
-	// @RequiresPermissions("product:add:view")
-	@ApiOperation(value = "添加页面跳转", httpMethod = "GET", response = String.class)
-	@RequestMapping(value = "add/view", method = RequestMethod.GET)
-	public String getAddPage(Model model) {
-		model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, false));
-		return "product/product_add";
-	}
+    /**
+     * Description: render add-product page
+     *
+     * @param model
+     * @return
+     */
+    // @RequiresPermissions("product:add:view")
+    @ApiOperation(value = "添加页面跳转", httpMethod = "GET", response = String.class)
+    @RequestMapping(value = "add/view", method = RequestMethod.GET)
+    public String getAddPage(Model model) {
+        model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, false));
+        return "product/product_add";
+    }
 
-	/**
-	 * Description: add a product
-	 *
-	 * @param dto
-	 * @return
-	 */
-	// @RequiresPermissions("product:add")
-	@RequestMapping(value = "add", method = RequestMethod.POST)
-	@ResponseBody
-	@ApiOperation(value = "添加", httpMethod = "POST", response = ResultDto.class)
-	public ResultDto add(@ApiParam(required = true, value = "dto") @RequestBody @OnValid(value = { CreateProduct.class,
-			Default.class }) ProductReqDto dto) {
-		dto.setId(null);
-		productService.saveProduct(dto);
-		return ResultDtoFactory
-				.toRedirect(WebUtil.getFullUrlBasedOn(ApplicationConstant.GLOBAL_CONTEXT + "product/view"));
-	}
+    /**
+     * Description: add a product
+     *
+     * @param dto
+     * @return
+     */
+    // @RequiresPermissions("product:add")
+    @RequestMapping(value = "add", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "添加", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto add(@ApiParam(required = true, value = "dto") @RequestBody @OnValid(
+            value = {CreateProduct.class, Default.class}) ProductReqDto dto) {
+        dto.setId(null);
+        productService.saveProduct(dto);
+        return ResultDtoFactory.toRedirect(
+                WebUtil.getFullUrlBasedOn(ApplicationConstant.GLOBAL_CONTEXT + "product/view"));
+    }
 
-	/**
-	 * Description: render the detail page of a product
-	 *
-	 * @param id
-	 * @param model
-	 * @return
-	 */
-	// @RequiresPermissions("product:detatil")
-	@RequestMapping(value = "detatil", method = RequestMethod.GET)
-	@ApiOperation(value = "详情页面跳转", httpMethod = "GET", response = String.class)
-	public String detail(@ApiParam(required = true, value = "编号") @RequestParam(value = "id") String id, Model model) {
-		ProductPo detail = productService.findProductById(id);
-		if (detail == null) {
-			throw new BizServiceException(EErrorCode.PRODUCT_NOT_FOUND);
-		}
-		model.addAttribute("detail", detail);
-		model.addAttribute("categoryList", EnumHelper.inspectConstants(EProductCagetory.class));
-		return "product/product_edit";
-	}
+    /**
+     * Description: render the detail page of a product
+     *
+     * @param id
+     * @param model
+     * @return
+     */
+    // @RequiresPermissions("product:detatil")
+    @RequestMapping(value = "detatil", method = RequestMethod.GET)
+    @ApiOperation(value = "详情页面跳转", httpMethod = "GET", response = String.class)
+    public String detail(
+            @ApiParam(required = true, value = "编号") @RequestParam(value = "id") String id,
+            Model model) {
+        ProductPo detail = productService.findProductById(id);
+        if (detail == null) {
+            throw new BizServiceException(EErrorCode.PRODUCT_NOT_FOUND);
+        }
+        model.addAttribute("detail", detail);
+        model.addAttribute("categoryList", EnumHelper.inspectConstants(EProductCagetory.class));
+        return "product/product_edit";
+    }
 
-	/**
-	 * Description: update a product
-	 *
-	 * @param id
-	 * @param dto
-	 * @return
-	 */
-	// @RequiresPermissions("product:update")
-	@RequestMapping(value = "update", method = RequestMethod.POST)
-	@ResponseBody
-	@ApiOperation(value = "更新", httpMethod = "POST", response = ResultDto.class)
-	public ResultDto update(@ApiParam(required = true, value = "dto") @RequestBody @OnValid ProductReqDto dto) {
-		productService.saveProduct(dto);
-		return ResultDtoFactory.toAck(getMessage(COMMON_SAVE_SUCCESS));
-	}
+    /**
+     * Description: update a product
+     *
+     * @param id
+     * @param dto
+     * @return
+     */
+    // @RequiresPermissions("product:update")
+    @RequestMapping(value = "update", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "更新", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto update(
+            @ApiParam(required = true, value = "dto") @RequestBody @OnValid ProductReqDto dto) {
+        productService.saveProduct(dto);
+        return ResultDtoFactory.toAck(getMessage(COMMON_SAVE_SUCCESS));
+    }
 
-	/**
-	 * Description: delete a product
-	 *
-	 * @param id
-	 * @return
-	 */
-	// @RequiresPermissions("product:delete")
-	@RequestMapping(value = "delete", method = RequestMethod.POST)
-	@ResponseBody
-	@ApiOperation(value = "删除", httpMethod = "POST", response = ResultDto.class)
-	public ResultDto delete(@ApiParam(required = true, value = "编号") @RequestParam("id") String id) {
-		// id = null;
-		try {
-			productService.deleteProduct(id);
-		} catch (BizServiceException ex) {
-			return ResultDtoFactory.toNack(ex.getError());
-		}
-		return ResultDtoFactory.toAck(getMessage(COMMON_REMOVE_SUCCESS));
-	}
+    /**
+     * Description: delete a product
+     *
+     * @param id
+     * @return
+     */
+    // @RequiresPermissions("product:delete")
+    @RequestMapping(value = "delete", method = RequestMethod.POST)
+    @ResponseBody
+    @ApiOperation(value = "删除", httpMethod = "POST", response = ResultDto.class)
+    public ResultDto delete(
+            @ApiParam(required = true, value = "编号") @RequestParam("id") String id) {
+        // id = null;
+        try {
+            productService.deleteProduct(id);
+        } catch (BizServiceException ex) {
+            return ResultDtoFactory.toNack(ex.getError());
+        }
+        return ResultDtoFactory.toAck(getMessage(COMMON_REMOVE_SUCCESS));
+    }
 
-	@SuppressWarnings("unused")
-	private List<EnumOption> getProductCagetory() {
-		List<EnumOption> options = new ArrayList<EnumOption>();
-		options.add(new EnumOption(EProductCagetory.BIRDS.name(), EProductCagetory.BIRDS.getText()));
-		options.add(new EnumOption(EProductCagetory.CATS.name(), EProductCagetory.CATS.getText()));
-		options.add(new EnumOption(EProductCagetory.DOGS.name(), EProductCagetory.DOGS.getText()));
-		return options;
-	}
+    @SuppressWarnings("unused")
+    private List<EnumOption> getProductCagetory() {
+        List<EnumOption> options = new ArrayList<EnumOption>();
+        options.add(
+                new EnumOption(EProductCagetory.BIRDS.name(), EProductCagetory.BIRDS.getText()));
+        options.add(new EnumOption(EProductCagetory.CATS.name(), EProductCagetory.CATS.getText()));
+        options.add(new EnumOption(EProductCagetory.DOGS.name(), EProductCagetory.DOGS.getText()));
+        return options;
+    }
 
 }
