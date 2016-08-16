@@ -14,6 +14,10 @@ import com.lcw.herakles.platform.log.enums.converter.ELogOptTypeConverter;
 import com.lcw.herakles.platform.system.entity.BasePo;
 import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
 
+/**
+ * @author chenwulou
+ *
+ */
 @Entity
 @Table(name = "SYS_LOG")
 @EntityListeners(IdInjectionEntityListener.class)
