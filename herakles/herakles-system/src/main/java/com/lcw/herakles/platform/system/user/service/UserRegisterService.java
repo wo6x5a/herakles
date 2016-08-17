@@ -11,6 +11,8 @@ import com.lcw.herakles.platform.system.user.entity.UserPo;
 import com.lcw.herakles.platform.system.user.repository.UserRepository;
 
 /**
+ * 用户注册服务.
+ * 
  * @author chenwulou
  *
  */
