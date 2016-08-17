@@ -6,6 +6,10 @@ import com.lcw.herakles.platform.common.dto.BaseMaintainableDto;
 import com.lcw.herakles.platform.system.user.enums.EUserStatus;
 import com.lcw.herakles.platform.system.user.enums.EUserType;
 
+/**
+ * @author chenwulou
+ *
+ */
 public class UserDto extends BaseMaintainableDto {
 
   /**
