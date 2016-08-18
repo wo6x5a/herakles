@@ -18,7 +18,7 @@ import javax.validation.Payload;
  * @author chenwulou
  * 
  */
-@Target({ ElementType.TYPE, ElementType.FIELD, ElementType.ANNOTATION_TYPE })
+@Target({ElementType.FIELD, ElementType.ANNOTATION_TYPE })
 @Retention(RetentionPolicy.RUNTIME)
 @Constraint(validatedBy = ProductExistenceValidator.class)
 @Documented

@@ -15,4 +15,5 @@ import com.lcw.herakles.platform.demo.entity.ProductPo;
 public interface ProductRepository extends JpaRepository<ProductPo, String>,
 		JpaSpecificationExecutor<ProductPo> {
 
+    public  ProductPo findByName(String name);
 }

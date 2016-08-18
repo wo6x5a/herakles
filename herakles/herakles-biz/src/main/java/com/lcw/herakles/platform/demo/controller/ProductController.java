@@ -8,8 +8,6 @@ import java.util.List;
 import java.util.Map;
 import java.util.concurrent.Callable;
 
-import javax.validation.groups.Default;
-
 import org.apache.shiro.authz.annotation.RequiresPermissions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -37,7 +35,6 @@ import com.lcw.herakles.platform.common.util.DateUtils;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
 import com.lcw.herakles.platform.demo.dto.ProductDto;
-import com.lcw.herakles.platform.demo.dto.ProductDto.CreateProduct;
 import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
 import com.lcw.herakles.platform.demo.entity.ProductPo;
@@ -260,8 +257,7 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
     @ApiOperation(value = "添加", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto add(@ApiParam(required = true, value = "dto") @RequestBody @OnValid(
-            value = {CreateProduct.class, Default.class}) ProductReqDto dto) {
+    public ResultDto add(@ApiParam(required = true, value = "dto") @RequestBody @OnValid ProductReqDto dto) {
         dto.setId(null);
         productService.saveProduct(dto);
         return ResultDtoFactory.toRedirect(
