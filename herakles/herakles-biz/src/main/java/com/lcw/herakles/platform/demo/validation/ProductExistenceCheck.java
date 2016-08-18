@@ -11,7 +11,6 @@ import javax.validation.Constraint;
 import javax.validation.Payload;
 
 /**
- * Class Name: ExistUserNameCheck
  * <p>
  * Description: the user name exist check.
  * 

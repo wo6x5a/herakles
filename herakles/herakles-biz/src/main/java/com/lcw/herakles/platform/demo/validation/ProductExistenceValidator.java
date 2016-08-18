@@ -12,7 +12,6 @@ import com.lcw.herakles.platform.demo.service.ProductService;
 
 
 /**
- * Class Name: ProductExistenceValidator Description: Customized validator.
  * 
  * @author chenwulou
  *
