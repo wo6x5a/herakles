@@ -9,7 +9,11 @@ import com.lcw.herakles.platform.system.user.entity.UserPo;
  * @author chenwulou
  *
  */
-public interface UserRepository extends JpaRepository<UserPo, String>, JpaSpecificationExecutor<UserPo> {
+public interface UserRepository
+        extends JpaRepository<UserPo, String>, JpaSpecificationExecutor<UserPo> {
 
-	UserPo findByNickName(String nickName);
+    UserPo findByNickName(String nickName);
+
+    UserPo findByMobile(String mobile);
+
 }
