@@ -15,9 +15,10 @@
 		<context:include-filter type="regex" expression=".*\.[^.]*Controller" />
 	</context:component-scan>
 
- <!-- 
+	<!-- enable AspectJ-->
 	<aop:aspectj-autoproxy />
 
+ <!-- 
 	<task:annotation-driven />
  -->
 

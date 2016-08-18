@@ -32,9 +32,10 @@
 	
 	<task:annotation-driven />
 
-	<!-- enable AspectJ -->
+	<!-- enable AspectJ 
 	<aop:aspectj-autoproxy />
-	
+	-->
+
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
 		<property name="validationMessageSource" ref="messageSource" />
