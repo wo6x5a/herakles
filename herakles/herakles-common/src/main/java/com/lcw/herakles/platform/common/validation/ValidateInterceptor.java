@@ -27,6 +27,7 @@ import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 import com.lcw.herakles.platform.common.dto.annotation.Domain;
 import com.lcw.herakles.platform.common.dto.annotation.DomainField;
 import com.lcw.herakles.platform.common.dto.annotation.OnValid;
+import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
 
 /**
  * Class Name: ValidateInterceptor
