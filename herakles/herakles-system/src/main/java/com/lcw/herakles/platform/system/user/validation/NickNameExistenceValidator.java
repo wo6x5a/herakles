@@ -5,6 +5,7 @@ import javax.validation.ConstraintValidatorContext;
 
 import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Component;
 
 import com.lcw.herakles.platform.common.validation.BaseValidator;
 import com.lcw.herakles.platform.system.security.SecurityContext;
@@ -17,6 +18,7 @@ import com.lcw.herakles.platform.system.user.repository.UserRepository;
  * @author chenwulou
  *
  */
+@Component
 public class NickNameExistenceValidator extends BaseValidator
         implements ConstraintValidator<NickNameExistenceCheck, String> {
 
