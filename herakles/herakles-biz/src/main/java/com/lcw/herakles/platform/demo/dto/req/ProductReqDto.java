@@ -30,7 +30,7 @@ public class ProductReqDto implements Serializable {
     @ApiModelProperty(value = "产品类型")
     private EProductCagetory category;
 
-    @ProductExistenceCheck
+    @ProductExistenceCheck(groups = CreateProduct.class)
     @NotBlank(message = "{error.required.field}")
     @Size(max = 100, message = "{error.maximum.length.exceeded}")
     @ApiModelProperty(value = "产品名称")
