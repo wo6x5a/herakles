@@ -5,6 +5,10 @@ import org.codehaus.jackson.map.annotate.JsonSerialize;
 import com.lcw.herakles.platform.common.enums.DBStrEnum;
 import com.lcw.herakles.platform.common.util.DBStrEnumSerializer;
 
+/**
+ * @author chenwulou
+ *
+ */
 @JsonSerialize(using = DBStrEnumSerializer.class)
 public enum EDictCategory implements DBStrEnum {
   
