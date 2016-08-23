@@ -2,7 +2,7 @@
 	<contextName>herakles</contextName>
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%level %logger{55} - %msg%n</pattern>
+			<pattern>%date %level [user: %X{userName:-unknown}]  %logger{55} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
