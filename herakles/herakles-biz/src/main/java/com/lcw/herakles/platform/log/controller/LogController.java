@@ -16,6 +16,10 @@ import com.lcw.herakles.platform.log.dto.req.LogQueryDto;
 import com.lcw.herakles.platform.log.enums.EOptType;
 import com.lcw.herakles.platform.log.service.LogService;
 
+/**
+ * @author chenwulou
+ *
+ */
 @Controller
 @RequestMapping(value = "system/log")
 public class LogController extends BaseController {
