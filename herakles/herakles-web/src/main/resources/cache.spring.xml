@@ -8,11 +8,6 @@
 
 	<import resource="classpath:cache-redis.spring.xml"/>
 	<cache:annotation-driven cache-manager="cacheManager" />
-<!-- 
-	<bean id="cacheManager" class="org.springframework.cache.ehcache.EhCacheCacheManager" >
-		<property name="cacheManager" ref="ehCacheCacheManager" />
-	</bean>
- -->
 
 	<bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager">
        <property name="cacheManagers">
@@ -21,10 +16,5 @@
 	       </list>
        </property>
     </bean>
-    
-	<bean id="ehCacheCacheManager"
-		class="org.springframework.cache.ehcache.EhCacheManagerFactoryBean">
-		<property name="configLocation" value="classpath:cache/ehcache.xml" />
-	</bean>
 
 </beans>
