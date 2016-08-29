@@ -82,14 +82,6 @@
 
 	<aop:config expose-proxy="true" />
 	
-	<!-- swagger  -->
-	<!--<bean class="com.mangofactory.swagger.configuration.SpringSwaggerConfig" /> -->
-	<bean class="com.lcw.herakles.platform.common.config.SwaggerConfig"/>
-	<mvc:resources mapping="/swagger/**" location="/assets/vendor/swagger/"/>
-	<!-- Serve static content -->
-	<!--<mvc:default-servlet-handler />-->
-	
-	
 	<bean id="velocityConfig" class="org.springframework.web.servlet.view.velocity.VelocityConfigurer">
 		<property name="resourceLoaderPath" value="/WEB-INF/views" />
 		<property name="configLocation" value="classpath:velocity/velocity.properties" />

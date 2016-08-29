@@ -3,8 +3,6 @@ package com.lcw.herakles.platform.common.dto;
 import java.io.Serializable;
 
 import com.lcw.herakles.platform.common.constant.ResultCode;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
  * Class Name: ResultDto Description: TODO
@@ -12,15 +10,11 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @author chenwulou
  *
  */
-@ApiModel(value = "返回DTO", description = "返回数据封装")
 public class ResultDto implements Serializable {
 
 	private static final long serialVersionUID = 1L;
-	@ApiModelProperty(value = "消息代码")
 	private String code;
-	@ApiModelProperty(value = "消息")
 	private String message;
-	@ApiModelProperty(value = "返回数据")
 	private Object data;
 
 	/**

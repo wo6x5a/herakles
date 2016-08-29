@@ -48,9 +48,6 @@ import com.lcw.herakles.platform.system.files.consts.FileConsts;
 import com.lcw.herakles.platform.system.files.consts.FileTemplateConsts;
 import com.lcw.herakles.platform.system.mail.service.EmailSerivce;
 import com.lcw.herakles.platform.system.security.SecurityContext;
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
-import com.wordnik.swagger.annotations.ApiParam;
 
 /**
  * Class Name: ProductController Description: TODO
@@ -58,7 +55,6 @@ import com.wordnik.swagger.annotations.ApiParam;
  * @author chenwulou
  * 
  */
-@Api(value = "product", description = "产品管理")
 @Controller
 @RequestMapping(value = "product")
 public class ProductController extends BaseController {
@@ -134,7 +130,6 @@ public class ProductController extends BaseController {
         return deferredResult;
     }
 
-    @ApiOperation(notes = "addGroup", httpMethod = "GET", value = "测试", response = String.class)
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public String test() {
         return "product/test";
@@ -142,7 +137,6 @@ public class ProductController extends BaseController {
 
     @SuppressWarnings({"unused", "unchecked"})
     @RequestMapping(value = "test-redis", method = RequestMethod.GET)
-    @ApiOperation(value = "测试redis", httpMethod = "GET", response = String.class)
     public String testRedis() {
         List<String> listStr = new ArrayList<>();
         List<String> listStr1 = new ArrayList<>();
@@ -158,7 +152,6 @@ public class ProductController extends BaseController {
 
     @SuppressWarnings("unused")
     @RequestMapping(value = "test-email", method = RequestMethod.GET)
-    @ApiOperation(value = "测试email", httpMethod = "GET", response = String.class)
     public String testEmail() {
         String title = "邮箱绑定";
         String templateName = "modifyEmail";
@@ -181,7 +174,6 @@ public class ProductController extends BaseController {
         return DateUtils.formatDate(expireDate, "yyyyMMddHHmmss");
     }
 
-    @ApiOperation(value = "测试模板下载", httpMethod = "GET", response = ModelAndView.class)
     @RequestMapping(value = "test-temp-form", method = RequestMethod.GET)
     public ModelAndView printApplicationForm() {
         ModelAndView model = new ModelAndView(FileTemplateConsts.REDIRECT);
@@ -200,7 +192,6 @@ public class ProductController extends BaseController {
      */
     @RequiresPermissions("product:view")
     @RequestMapping(value = "view", method = RequestMethod.GET)
-    @ApiOperation(value = "页面跳转", httpMethod = "GET", response = String.class)
     public String home(Model model) {
         model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, true));
         // model.addAttribute("categoryList", this.getProductCagetory());
@@ -216,8 +207,6 @@ public class ProductController extends BaseController {
     // @RequiresPermissions("product:list")
     @RequestMapping(value = "list", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "获得产品列表", httpMethod = "POST",
-            responseContainer = "DataTablesResponseDto<ProductDto> resp")
     public DataTablesResponseDto<ProductDto> search(@RequestBody ProductSearchDto request) {
         DataTablesResponseDto<ProductDto> resp = productQueryService.searchProduct(request);
         return resp;
@@ -243,7 +232,6 @@ public class ProductController extends BaseController {
      * @return
      */
     // @RequiresPermissions("product:add:view")
-    @ApiOperation(value = "添加页面跳转", httpMethod = "GET", response = String.class)
     @RequestMapping(value = "add/view", method = RequestMethod.GET)
     public String getAddPage(Model model) {
         model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, false));
@@ -259,9 +247,7 @@ public class ProductController extends BaseController {
     // @RequiresPermissions("product:add")
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "添加", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto add(
-            @ApiParam(required = true, value = "dto") @RequestBody @OnValid ProductReqDto dto) {
+    public ResultDto add( @RequestBody @OnValid ProductReqDto dto) {
         validate(dto, new Class<?>[] {CreateProduct.class, Default.class});
         dto.setId(null);
         productService.saveProduct(dto);
@@ -278,9 +264,7 @@ public class ProductController extends BaseController {
      */
     // @RequiresPermissions("product:detatil")
     @RequestMapping(value = "detatil", method = RequestMethod.GET)
-    @ApiOperation(value = "详情页面跳转", httpMethod = "GET", response = String.class)
-    public String detail(
-            @ApiParam(required = true, value = "编号") @RequestParam(value = "id") String id,
+    public String detail( @RequestParam(value = "id") String id,
             Model model) {
         ProductPo detail = productService.findProductById(id);
         if (detail == null) {
@@ -301,9 +285,7 @@ public class ProductController extends BaseController {
     // @RequiresPermissions("product:update")
     @RequestMapping(value = "update", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "更新", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto update(
-            @ApiParam(required = true, value = "dto") @RequestBody @OnValid ProductReqDto dto) {
+    public ResultDto update(@RequestBody @OnValid ProductReqDto dto) {
         productService.saveProduct(dto);
         return ResultDtoFactory.toAck(getMessage(COMMON_SAVE_SUCCESS));
     }
@@ -317,9 +299,7 @@ public class ProductController extends BaseController {
     // @RequiresPermissions("product:delete")
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
-    @ApiOperation(value = "删除", httpMethod = "POST", response = ResultDto.class)
-    public ResultDto delete(
-            @ApiParam(required = true, value = "编号") @RequestParam("id") String id) {
+    public ResultDto delete(@RequestParam("id") String id) {
         // id = null;
         try {
             productService.deleteProduct(id);

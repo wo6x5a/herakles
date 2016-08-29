@@ -2,8 +2,6 @@ package com.lcw.herakles.platform.demo.dto;
 
 import com.lcw.herakles.platform.common.dto.BaseMaintainableDto;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
  * Class Name: ProductDto Description: TODO
@@ -11,21 +9,16 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @author chenwulou
  * 
  */
-@ApiModel(value = "产品DTO")
 public class ProductDto extends BaseMaintainableDto{
 
     private static final long serialVersionUID = 1L;
 
-	@ApiModelProperty(value = "产品编号")
     private String id;
 
-	@ApiModelProperty(value = "产品类型")
     private EProductCagetory category;
 
-	@ApiModelProperty(value = "产品名称")
     private String name;
 
-	@ApiModelProperty(value = "备注")
     private String description;
 
     public String getId() {

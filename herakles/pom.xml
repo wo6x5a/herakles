@@ -187,36 +187,6 @@
 			</exclusions>
 		</dependency>
 
-		<!-- CXF 
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxws</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-transports-http</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.apache.cxf</groupId>
-			<artifactId>cxf-rt-frontend-jaxrs</artifactId>
-			<version>${cxf.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>javax.ws.rs</groupId>
-			<artifactId>jsr311-api</artifactId>
-			<version>${jsr311.version}</version>
-		</dependency>
-		-->
-		<!-- 
-		<dependency> 
-			<groupId>org.apache.cxf</groupId> 
-			<artifactId>cxf-bundle</artifactId> 
-			<version>3.0.0-milestone2</version> 
-		</dependency> 
-		-->
-
 		<!-- javamelody -->
 		<dependency>
 			<groupId>net.bull.javamelody</groupId>
@@ -284,33 +254,6 @@
 			<version>3.12</version>
 		</dependency>
 		
-
-		<!-- swagger-mvc -->
-		<dependency>
-			<groupId>com.mangofactory</groupId>
-			<artifactId>swagger-springmvc</artifactId>
-			<version>1.0.2</version>
-		</dependency>
-		<!-- 
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger-ui</artifactId>
-			<version>2.2.2</version>
-		</dependency>
-
-		<dependency>
-			<groupId>io.springfox</groupId>
-			<artifactId>springfox-swagger2</artifactId>
-			<version>2.2.2</version>
-		</dependency>
-		 -->
-		<dependency>
-			<groupId>com.fasterxml.jackson.core</groupId>
-			<artifactId>jackson-databind</artifactId>
-			<version>2.4.2</version>
-		</dependency>
-		<!-- swagger-mvc -->
-
 	</dependencies>
 
 </project>

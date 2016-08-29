@@ -9,8 +9,6 @@ import org.hibernate.validator.constraints.NotBlank;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.validation.NullCheck;
 import com.lcw.herakles.platform.demo.validation.ProductExistenceCheck;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 
 /**
  * Class Name: ProductDto Description: TODO
@@ -18,26 +16,21 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @author chenwulou
  * 
  */
-@ApiModel(value = "产品请求DTO")
 public class ProductReqDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @ApiModelProperty(value = "产品编号")
     private String id;
 
     @NullCheck
-    @ApiModelProperty(value = "产品类型")
     private EProductCagetory category;
 
     @ProductExistenceCheck(groups = CreateProduct.class)
     @NotBlank(message = "{error.required.field}")
     @Size(max = 100, message = "{error.maximum.length.exceeded}")
-    @ApiModelProperty(value = "产品名称")
     private String name;
 
     @Size(max = 200, message = "{error.maximum.length.exceeded}")
-    @ApiModelProperty(value = "备注")
     private String description;
 
     // TODO unuse

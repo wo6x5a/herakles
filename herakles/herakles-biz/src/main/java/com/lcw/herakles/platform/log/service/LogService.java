@@ -1,5 +1,6 @@
 package com.lcw.herakles.platform.log.service;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +11,7 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang.StringUtils;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,8 +21,6 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Function;
 import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
@@ -115,9 +115,9 @@ public class LogService {
 		ObjectMapper objectMapper = new ObjectMapper();
 		try {
 			result = objectMapper.writeValueAsString(value);
-		} catch (JsonProcessingException e) {
-			LOGGER.error("LogService.convertMap2String error, {}", e);
-		}
+		} catch (IOException e) {
+            LOGGER.error("LogService.convertMap2String error, {}", e);
+        }
 		return result;
 	}
 }

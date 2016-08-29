@@ -2,8 +2,6 @@ package com.lcw.herakles.platform.demo.dto.req;
 
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
 
 
 /**
@@ -12,7 +10,6 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @author chenwulou
  *
  */
-@ApiModel(value = "产品查询DTO")
 public class ProductSearchDto extends DataTablesRequestDto {
 
     private static final long serialVersionUID = 1L;
@@ -20,10 +17,8 @@ public class ProductSearchDto extends DataTablesRequestDto {
     /**
      * 关键字
      */
-	@ApiModelProperty(value = "关键字")
     private String keyword;
 
-	@ApiModelProperty(value = "产品类型")
     private EProductCagetory category;
 
     /**

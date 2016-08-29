@@ -6,9 +6,6 @@ import java.util.List;
 
 import org.codehaus.jackson.annotate.JsonProperty;
 
-import com.wordnik.swagger.annotations.ApiModel;
-import com.wordnik.swagger.annotations.ApiModelProperty;
-
 /**
  * Value object for jQuery DataTables JSON response.
  * 
@@ -17,27 +14,21 @@ import com.wordnik.swagger.annotations.ApiModelProperty;
  * @param <T>
  */
 @SuppressWarnings("serial")
-@ApiModel(value = "分页返回DTO", description = "分页返回数据封装")
 public class DataTablesResponseDto<T> implements Serializable {
 
     @JsonProperty(value = "iTotalRecords")
-	@ApiModelProperty(value = "总条数")
     private long totalRecords;
 
     @JsonProperty(value = "iTotalDisplayRecords")
-	@ApiModelProperty(value = "totalDisplayRecords")
     private long totalDisplayRecords;
 
-	@ApiModelProperty(value = "echo")
     @JsonProperty(value = "sEcho")
     private String echo;
 
     @JsonProperty(value = "sColumns")
-	@ApiModelProperty(value = "columns")
     private String columns;
 
     @JsonProperty(value = "aaData")
-	@ApiModelProperty(value = "数据")
     private List<T> data = new ArrayList<T>();
 
     public long getTotalRecords() {

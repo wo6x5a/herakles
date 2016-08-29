@@ -25,7 +25,6 @@ import com.lcw.herakles.platform.common.validation.ValidateException;
 import com.lcw.herakles.platform.system.security.KaptchaSupport;
 import com.lcw.herakles.platform.system.security.SecurityContext;
 import com.lcw.herakles.platform.system.security.dto.req.SignInDto;
-import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * Class Name: AuthController Description: authentication controller
@@ -46,7 +45,6 @@ public class AuthController {
 	 * @return
 	 */
 	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	@ApiOperation(value = "/login", httpMethod = "GET", response = String.class, notes = "登陆页面跳转")
 	public String login() {
 		return "auth/login";
 	}

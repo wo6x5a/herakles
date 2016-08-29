@@ -17,8 +17,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
-import com.wordnik.swagger.annotations.Api;
-import com.wordnik.swagger.annotations.ApiOperation;
 
 /**
  * 文件模版.
@@ -26,7 +24,6 @@ import com.wordnik.swagger.annotations.ApiOperation;
  * @author chenwulou
  *
  */
-@Api(value = "system/file/template", description = "文件模板")
 @Controller
 @RequestMapping(value = "system/file/template")
 public class FileTemplateController {
@@ -50,7 +47,6 @@ public class FileTemplateController {
 	 * @param response
 	 * @throws IOException
 	 */
-	@ApiOperation( value = "文件模版下载", notes = "文件模版下载",httpMethod = "GET")
 	@RequestMapping(value = "download")
 	public void getFile(@RequestParam(value = "fileName") String fileName,
 			@RequestParam(value = "showFileName") String showFileName,
