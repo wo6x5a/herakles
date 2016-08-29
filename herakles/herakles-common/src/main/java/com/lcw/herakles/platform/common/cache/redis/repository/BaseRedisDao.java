@@ -12,27 +12,27 @@ import com.lcw.herakles.platform.common.cache.redis.dto.RedisCommonReqDto;
 public class BaseRedisDao extends AbstractBaseRedisDao<String, Object> {
 
 	public void addObj(RedisCommonReqDto dto) {
-		redisTemplate.opsForHash().put(dto.getKey(), dto.getObjectKey(), dto);
+		redisTemplate.opsForHash().put(dto.getKey(), dto.getHashKey(), dto);
 	}
 
 	public Object getObj(RedisCommonReqDto dto) {
-		return redisTemplate.opsForHash().get(dto.getKey(), dto.getObjectKey());
+		return redisTemplate.opsForHash().get(dto.getKey(), dto.getHashKey());
 	}
 
 	public void deleteObj(RedisCommonReqDto dto) {
-		redisTemplate.opsForHash().delete(dto.getKey(), dto.getObjectKey());
+		redisTemplate.opsForHash().delete(dto.getKey(), dto.getHashKey());
 	}
 
-	public void addStr(String userId, String columnName, Object val) {
-		redisTemplate.opsForHash().put(userId, columnName, val);
+	public void addStr(String key, String hashKey, Object value) {
+		redisTemplate.opsForHash().put(key, hashKey, value);
 	}
 
-	public Object getStr(String userId, String columnName) {
-		return redisTemplate.opsForHash().get(userId, columnName);
+	public Object getStr(String key, String hashKey) {
+		return redisTemplate.opsForHash().get(key, hashKey);
 	}
 
-	public void deleteStr(String userId, String columnName) {
-		redisTemplate.opsForHash().delete(userId, columnName);
+	public void deleteStr(String key, String hashKey) {
+		redisTemplate.opsForHash().delete(key, hashKey);
 	}
 
 }
