@@ -6,8 +6,13 @@
         http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-4.0.xsd
         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache-4.0.xsd">
 
-	<import resource="classpath:cache-redis.spring.xml"/>
+	<import resource="classpath:redis.spring.xml"/>
+
 	<cache:annotation-driven cache-manager="cacheManager" />
+
+	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+		<constructor-arg ref="redisTemplate" />
+	</bean>
 
 	<bean id="cacheManager" class="org.springframework.cache.support.CompositeCacheManager">
        <property name="cacheManagers">

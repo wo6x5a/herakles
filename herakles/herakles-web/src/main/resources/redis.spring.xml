@@ -30,11 +30,5 @@
 	<bean id="redisTemplate" class="org.springframework.data.redis.core.RedisTemplate">
 		<property name="connectionFactory" ref="jedisFactory" />
 	</bean>
-
-	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
-		<constructor-arg ref="redisTemplate" />
-	</bean>
-	
-	 <!-- set cachingSequenceProducer impl class if needed-->
  
 </beans>
