@@ -27,39 +27,37 @@ import com.lcw.herakles.platform.system.files.consts.FileConsts;
 @Controller
 @RequestMapping(value = "system/file/template")
 public class FileTemplateController {
-	private static final Logger LOGGER = LoggerFactory.getLogger(FileTemplateController.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(FileTemplateController.class);
 
-	/**
-	 * 文件模版下载.
-	 * 
-	 * 用法:Controller从FileTemplateConsts获取fileName,showFileName,suffixes,filePath
-	 * ,放到model,前台获取Model请求system/file/template/download?xxx
-	 * 
-	 * @param fileName
-	 *            模版文件名
-	 * @param showFileName
-	 *            显示文件名
-	 * @param suffixes
-	 *            文件后缀
-	 * @param filePath
-	 *            文件路径
-	 * @param request
-	 * @param response
-	 * @throws IOException
-	 */
-	@RequestMapping(value = "download")
-	public void getFile(@RequestParam(value = "fileName") String fileName,
-			@RequestParam(value = "showFileName") String showFileName,
-			@RequestParam(value = "suffixes") String suffixes,
-			@RequestParam(value = "filePath") String filePath,
-			HttpServletRequest request, HttpServletResponse response) throws IOException {
+    /**
+     * 文件模版下载.
+     * 
+     * 用法:Controller从FileTemplateConsts获取fileName,showFileName,suffixes,filePath
+     * ,放到model,前台获取Model请求system/file/template/download?xxx
+     * 
+     * @param fileName 模版文件名
+     * @param showFileName 显示文件名
+     * @param suffixes 文件后缀
+     * @param filePath 文件路径
+     * @param request
+     * @param response
+     * @throws IOException
+     */
+    @RequestMapping(value = "download")
+    public void getFile(@RequestParam(value = "fileName") String fileName,
+            @RequestParam(value = "showFileName") String showFileName,
+            @RequestParam(value = "suffixes") String suffixes,
+            @RequestParam(value = "filePath") String filePath, HttpServletRequest request,
+            HttpServletResponse response) throws IOException {
 
-		LOGGER.debug("getFile start: ");
+        LOGGER.debug("getFile start: ");
 
-		String recommendedName = new String(showFileName.getBytes(ApplicationConstant.GB2312), "ISO8859-1");
+        String recommendedName =
+                new String(showFileName.getBytes(ApplicationConstant.GB2312), "ISO8859-1");
 
         StringBuilder realFilePath = new StringBuilder();
         realFilePath.append(filePath);
+        // realFilePath.append(File.separator);
         realFilePath.append(fileName);
         realFilePath.append(suffixes);
 
@@ -68,35 +66,32 @@ public class FileTemplateController {
         header.append(recommendedName);
         header.append(suffixes);
 
-		response = this.handleResponseContentType(response, suffixes);
-		response.setCharacterEncoding(ApplicationConstant.GB2312);
-		response.setHeader("Content-Disposition", header.toString());
-		response.resetBuffer();
+        response = this.handleResponseContentType(response, suffixes);
+        response.setCharacterEncoding(ApplicationConstant.GB2312);
+        response.setHeader("Content-Disposition", header.toString());
+        response.resetBuffer();
 
-		InputStream is = FileTemplateController.class.getClassLoader().getResourceAsStream(realFilePath.toString());
-		BufferedInputStream bis = new BufferedInputStream(is);
-		BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
-		byte[] buffer = new byte[8192];
-		int length = 0;
-		while ((length = bis.read(buffer)) != -1) {
-			bos.write(buffer, 0, length);
-		}
+        InputStream is = FileTemplateController.class.getClassLoader()
+                .getResourceAsStream(realFilePath.toString());
+        BufferedInputStream bis = new BufferedInputStream(is);
+        BufferedOutputStream bos = new BufferedOutputStream(response.getOutputStream());
+        byte[] buffer = new byte[8192];
+        int length = 0;
+        while ((length = bis.read(buffer)) != -1) {
+            bos.write(buffer, 0, length);
+        }
 
-		bos.flush();
-		bos.close();
-		bis.close();
-		is.close();
-	}
+        bos.flush();
+        bos.close();
+        bis.close();
+        is.close();
+    }
 
     private HttpServletResponse handleResponseContentType(HttpServletResponse response,
             String suffixes) {
-        if (StringUtils.equals(FileConsts.XLSX, suffixes)) {
+        if (StringUtils.equals(FileConsts.XLSX, suffixes) || StringUtils.equals(FileConsts.XLS, suffixes)) {
             response.setContentType("application/vnd.ms-excel");
-        } else if (StringUtils.equals(FileConsts.XLS, suffixes)) {
-            response.setContentType("application/vnd.ms-excel");
-        } else if (StringUtils.equals(FileConsts.DOCX, suffixes)) {
-            response.setContentType("application/msword");
-        } else if (StringUtils.equals(FileConsts.DOC, suffixes)) {
+        } else if (StringUtils.equals(FileConsts.DOCX, suffixes) || StringUtils.equals(FileConsts.DOC, suffixes)) {
             response.setContentType("application/msword");
         } else if (StringUtils.equals(FileConsts.PDF, suffixes)) {
             response.setContentType("application/pdf");
