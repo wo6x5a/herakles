@@ -19,7 +19,7 @@
 		<property name="loginUrl" value="/web/auth/login" />
 		<property name="filterChainDefinitions">
 			<value>
-				/web/api-docs/**=anon
+				/web/system/file/template/**=anon
 				/druid/**=anon
 				/assets/**=anon
 				/webservice/**=anon

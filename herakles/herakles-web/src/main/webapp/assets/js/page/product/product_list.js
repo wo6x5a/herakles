@@ -53,7 +53,6 @@ function($, global, util, datatables){
 		});
 	};
 	
-
 	//导出报表数据
 	$('body').on('click','#btn-export',function(){
 		var inputs = $("#paras-form").html();
