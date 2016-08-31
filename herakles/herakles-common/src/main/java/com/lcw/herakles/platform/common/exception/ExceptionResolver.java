@@ -37,6 +37,7 @@ import com.lcw.herakles.platform.common.validation.ValidateException;
  * @author chenwulou
  * 
  */
+@SuppressWarnings("deprecation")
 public class ExceptionResolver implements HandlerExceptionResolver {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionResolver.class);

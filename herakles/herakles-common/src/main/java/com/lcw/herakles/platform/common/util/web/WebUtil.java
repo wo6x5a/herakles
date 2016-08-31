@@ -86,7 +86,8 @@ public final class WebUtil {
 	 *
 	 * @return
 	 */
-	public static ObjectMapper getObjectMapper() { // NOSONAR
+	@SuppressWarnings("deprecation")
+    public static ObjectMapper getObjectMapper() { // NOSONAR
 		if (objectMapper == null) {
 			synchronized (WebUtil.class) {
 				if (objectMapper == null) {

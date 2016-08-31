@@ -23,6 +23,7 @@ import com.lcw.herakles.platform.common.exception.BizServiceException;
  * @author chenwulou
  *
  */
+@SuppressWarnings("deprecation")
 public class EmailSerivce {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmailSerivce.class);
