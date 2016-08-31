@@ -2,7 +2,7 @@ package com.lcw.herakles.platform.system.entity.id;
 
 import java.util.UUID;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * @author chenwulou

@@ -3,8 +3,8 @@ package com.lcw.herakles.platform.common.dto;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.apache.commons.lang.StringUtils;
-import org.apache.commons.lang.exception.ExceptionUtils;
+import org.apache.commons.lang3.StringUtils;
+import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.springframework.validation.BindingResult;
 
 import com.lcw.herakles.platform.common.constant.ResultCode;

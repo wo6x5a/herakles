@@ -3,7 +3,7 @@ package com.lcw.herakles.platform.common.util;
 import java.io.ByteArrayOutputStream;
 import java.io.PrintStream;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;

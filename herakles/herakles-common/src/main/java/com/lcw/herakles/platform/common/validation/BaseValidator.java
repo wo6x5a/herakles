@@ -3,7 +3,7 @@ package com.lcw.herakles.platform.common.validation;
 
 import javax.validation.ConstraintValidatorContext;
 
-import org.apache.commons.lang.StringUtils;
+import org.apache.commons.lang3.StringUtils;
 
 /**
  * Class Name: BaseValidator Description: TODO
