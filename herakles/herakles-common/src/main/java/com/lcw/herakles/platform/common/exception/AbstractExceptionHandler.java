@@ -14,10 +14,10 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.codehaus.jackson.annotate.JsonProperty;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lcw.herakles.platform.common.constant.RegexpConsts;
 import com.lcw.herakles.platform.common.constant.ResultCode;
 import com.lcw.herakles.platform.common.dto.ResultDto;

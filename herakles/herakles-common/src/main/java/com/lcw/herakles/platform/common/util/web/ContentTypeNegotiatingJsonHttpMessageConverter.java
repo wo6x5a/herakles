@@ -8,7 +8,7 @@ import org.springframework.http.HttpOutputMessage;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.http.converter.HttpMessageNotWritableException;
-import org.springframework.http.converter.json.MappingJacksonHttpMessageConverter;
+import org.springframework.http.converter.json.MappingJackson2HttpMessageConverter;
 import org.springframework.http.server.ServletServerHttpRequest;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
@@ -20,11 +20,10 @@ import org.springframework.web.context.request.ServletRequestAttributes;
 * @author chenwulou
 *
 */
-@SuppressWarnings("deprecation")
 public class ContentTypeNegotiatingJsonHttpMessageConverter implements HttpMessageConverter<Object> {
-    private final MappingJacksonHttpMessageConverter converter;
+    private final MappingJackson2HttpMessageConverter converter;
 
-    public ContentTypeNegotiatingJsonHttpMessageConverter(MappingJacksonHttpMessageConverter converter) {
+    public ContentTypeNegotiatingJsonHttpMessageConverter(MappingJackson2HttpMessageConverter converter) {
         this.converter = converter;
     }
 
@@ -34,7 +33,7 @@ public class ContentTypeNegotiatingJsonHttpMessageConverter implements HttpMessa
     *
     */
     public ContentTypeNegotiatingJsonHttpMessageConverter() {
-        this(new MappingJacksonHttpMessageConverter());
+        this(new MappingJackson2HttpMessageConverter());
         converter.setObjectMapper(WebUtil.getObjectMapper());
     }
 

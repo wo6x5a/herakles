@@ -1,8 +1,7 @@
 
 package com.lcw.herakles.platform.system.security.enums;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
-
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lcw.herakles.platform.common.enums.DBStrEnum;
 import com.lcw.herakles.platform.common.util.DBStrEnumSerializer;
 

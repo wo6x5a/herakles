@@ -4,10 +4,11 @@ import java.util.List;
 import java.util.Map;
 
 import org.apache.poi.hssf.usermodel.HSSFCell;
-import org.apache.poi.hssf.usermodel.HSSFCellStyle;
-import org.apache.poi.hssf.usermodel.HSSFRow;
-import org.apache.poi.hssf.usermodel.HSSFSheet;
-import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.CellStyle;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
@@ -22,14 +23,14 @@ import com.lcw.herakles.platform.demo.dto.ProductDto;
 public class ProductInfoExcelExportService extends AbstractExcelService {
 
 	@Override
-	protected void buildExcelData(Map<String, Object> model, HSSFWorkbook workbook) {
+	protected void buildExcelData(Map<String, Object> model, Workbook workbook) {
 		@SuppressWarnings("unchecked")
 		List<ProductDto> list = (List<ProductDto>) model.get(ApplicationConstant.REPORT_DATA);
 		int rownum = 1;
-		HSSFRow row = null;
-		HSSFCell cell = null;
-		HSSFSheet sheet = workbook.getSheetAt(0);
-		HSSFCellStyle style = this.getStyle(workbook);
+		Row row = null;
+		Cell cell = null;
+		Sheet sheet = workbook.getSheetAt(0);
+		CellStyle style = this.getStyle(workbook);
 		for (ProductDto dto : list) {
 			// 创建行
 			row = sheet.createRow(rownum);

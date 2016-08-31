@@ -3,7 +3,8 @@ package com.lcw.herakles.platform.common.dto.datatable;
 import java.io.Serializable;
 import java.util.List;
 
-import org.codehaus.jackson.annotate.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonProperty;
+
 
 /**
  * Value object for jQuery DataTables JSON request. Below is an example of the request JSON:

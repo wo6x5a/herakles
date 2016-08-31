@@ -3,10 +3,9 @@ package com.lcw.herakles.platform.common.util;
 
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.map.SerializerProvider;
-import org.codehaus.jackson.map.ser.std.SerializerBase;
-
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.lcw.herakles.platform.common.enums.DBStrEnum;
 
 /**
@@ -16,14 +15,11 @@ import com.lcw.herakles.platform.common.enums.DBStrEnum;
  * 
  */
 
-public class DBStrEnumSerializer extends SerializerBase<DBStrEnum> {
+public class DBStrEnumSerializer extends JsonSerializer<DBStrEnum> {
 
-    public DBStrEnumSerializer(){
-        this(DBStrEnum.class);
-    }
-    
-    protected DBStrEnumSerializer(Class<DBStrEnum> t) {
-        super(t);
+    @Override
+    public Class<DBStrEnum> handledType() {
+        return DBStrEnum.class;
     }
 
     @Override

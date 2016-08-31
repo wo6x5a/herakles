@@ -3,12 +3,12 @@ package com.lcw.herakles.platform.common.util.web;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
-import org.codehaus.jackson.Version;
-import org.codehaus.jackson.map.ObjectMapper;
-import org.codehaus.jackson.map.module.SimpleModule;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
+import com.fasterxml.jackson.core.Version;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.module.SimpleModule;
 import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 import com.lcw.herakles.platform.common.util.DBStrEnumSerializer;
 import com.lcw.herakles.platform.common.xss.XssSantizeJsonSerializer;

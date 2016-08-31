@@ -3,10 +3,9 @@ package com.lcw.herakles.platform.common.util;
 
 import java.io.IOException;
 
-import org.codehaus.jackson.JsonGenerator;
-import org.codehaus.jackson.map.SerializerProvider;
-import org.codehaus.jackson.map.ser.std.SerializerBase;
-
+import com.fasterxml.jackson.core.JsonGenerator;
+import com.fasterxml.jackson.databind.JsonSerializer;
+import com.fasterxml.jackson.databind.SerializerProvider;
 import com.lcw.herakles.platform.common.enums.DBIntEnum;
 
 /**
@@ -16,16 +15,13 @@ import com.lcw.herakles.platform.common.enums.DBIntEnum;
  * 
  */
 
-public class DBIntEnumSerializer extends SerializerBase<DBIntEnum> {
+public class DBIntEnumSerializer extends JsonSerializer<DBIntEnum> {
 
-    public DBIntEnumSerializer(){
-        this(DBIntEnum.class);
-    }
-    
-    protected DBIntEnumSerializer(Class<DBIntEnum> t) {
-        super(t);
-    }
 
+    @Override
+    public Class<DBIntEnum> handledType() {
+        return DBIntEnum.class;
+    }
     @Override
     public void serialize(DBIntEnum value, JsonGenerator generator, SerializerProvider provider) throws IOException {
         generator.writeStartObject();
