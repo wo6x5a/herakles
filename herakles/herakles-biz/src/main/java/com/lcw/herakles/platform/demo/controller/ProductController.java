@@ -143,7 +143,7 @@ public class ProductController extends BaseController {
         listStr.add("1");
         listStr.add("2");
         listStr.add("3");
-        baseRedisDao.addStr("USER", "LCW", "楼晨武");
+        baseRedisDao.addStr("USER", "LCW", "6x5");
         baseRedisDao.getStr("USER", "LCW");
         baseRedisDao.addStr("USER", "LIST", listStr);
         listStr1 = (List<String>) baseRedisDao.getStr("USER", "LIST");
@@ -163,7 +163,7 @@ public class ProductController extends BaseController {
         model.put("nickName", securityContext.getCurrentUser().getNickName());
         model.put("url", "www.bing.com");
         model.put("isUnbound", "xxxxx");
-        emailSerivce.sendSimpleEmail("标题", "内容", "4949344008@qq.com");
+        emailSerivce.sendSimpleEmail("标题", "内容", "2669062184@qq.com");
         // emailSerivce.sendHtmlEmail(title, templateName, model,
         // "wo6x5a1@163.com");
         return "product/test";
