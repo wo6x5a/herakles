@@ -50,7 +50,7 @@ import com.lcw.herakles.platform.system.mail.service.EmailSerivce;
 import com.lcw.herakles.platform.system.security.SecurityContext;
 
 /**
- * Class Name: ProductController Description: TODO
+ * Class Name: ProductController Description
  * 
  * @author chenwulou
  * 
