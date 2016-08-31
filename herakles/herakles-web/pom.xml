@@ -21,7 +21,6 @@
 			<version>${project.version}</version>
 		</dependency>
 
-
 		<!-- db -->
 		<dependency>
 			<groupId>mysql</groupId>
@@ -33,7 +32,7 @@
 		<dependency>
 			<groupId>com.alibaba</groupId>
 			<artifactId>druid</artifactId>
-			<version>1.0.18</version>
+			<version>1.0.25</version>
 		</dependency>
 		
 	</dependencies>
