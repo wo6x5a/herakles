@@ -53,11 +53,4 @@ public class ProductDto extends BaseMaintainableDto{
         this.description = description;
     }
 
-    /**
-     * Validation group for creating a product.
-     */
-    public interface CreateProduct {
-
-    }
-
 }

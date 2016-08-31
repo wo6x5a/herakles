@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lcw.herakles.platform.common.validation.BaseValidator;
-import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.service.ProductService;
 
 
@@ -28,8 +27,8 @@ public class ProductExistenceValidator extends BaseValidator
 
     @Override
     public boolean isValid(String value, ConstraintValidatorContext context) {
-        ProductPo product = productService.findProductByName(value);
-        return product == null;
+        Integer size = productService.findProductByName(value).size();
+        return 0 == size;
     }
 
 }

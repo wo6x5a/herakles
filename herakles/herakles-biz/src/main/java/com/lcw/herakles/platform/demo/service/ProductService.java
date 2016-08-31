@@ -1,6 +1,7 @@
 package com.lcw.herakles.platform.demo.service;
 
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -36,7 +37,7 @@ public class ProductService {
     }
 
     @Transactional(readOnly = true)
-    public ProductPo findProductByName(String name) {
+    public List<ProductPo> findProductByName(String name) {
         return productRepository.findByName(name);
     }
 

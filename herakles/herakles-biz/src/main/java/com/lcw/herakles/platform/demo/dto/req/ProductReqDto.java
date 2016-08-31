@@ -25,7 +25,7 @@ public class ProductReqDto implements Serializable {
     @NullCheck
     private EProductCagetory category;
 
-    @ProductExistenceCheck(groups = CreateProduct.class)
+    @ProductExistenceCheck(groups = {CreateProduct.class})
     @NotBlank(message = "{error.required.field}")
     @Size(max = 100, message = "{error.maximum.length.exceeded}")
     private String name;
