@@ -18,20 +18,6 @@
 
 	<import resource="classpath:db-jpa.spring.xml"/>
 	
-	<!-- in-memory database and a datasource -->
-	<!-- 	<jdbc:embedded-database id="dataSource">
-		<jdbc:script location="classpath:database/hsqldb-schema.sql" />
-		<jdbc:script location="classpath:database/hsqldb-dataload.sql" />
-	</jdbc:embedded-database> -->
-
-	<!-- 配置Jdbc模板 -->
-<!-- 
-	<bean id="jdbcTemplate" class="org.springframework.jdbc.core.namedparam.NamedParameterJdbcTemplate">
-		<constructor-arg ref="dataSource"/>
-	</bean> 
- -->
-	
-	
 	<!-- dataSource -->
 	<!-- <bean id="dataSource" class="com.lcw.herakles.platform.system.security.database.DecryptDruidSource" init-method="init" destroy-method="close"> -->
 	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
@@ -87,5 +73,5 @@
 	<aop:config>
     	<aop:advisor advice-ref="druid-stat-interceptor" pointcut-ref="druid-stat-pointcut" />
 	</aop:config>
-	
+
 </beans>

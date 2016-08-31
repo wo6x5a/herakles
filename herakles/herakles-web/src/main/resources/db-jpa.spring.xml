@@ -13,87 +13,24 @@
 	 http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
 	 http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
+	<!-- 事务注解,基于类代理(cglib) 缺省proxy-target-class=false，标准的JDK 基于接口的代理-->
 	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
 	<jpa:repositories base-package="com.lcw.herakles.platform"
 		entity-manager-factory-ref="entityManagerFactory">
 		<repository:include-filter type="regex"
 			expression=".*\.[^.]*Repository" />
-		<!--<repository:include-filter type="assignable" expression="org.springframework.data.repository.Repository" 
-			/> -->
+		<!--<repository:include-filter type="assignable" expression="org.springframework.data.repository.Repository"/> -->
 	</jpa:repositories>
 
-	<bean
-		class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
-	<bean
-		class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
-<!-- 
-	<beans profile="!DEV">
-		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-			<property name="entityManagerFactory" ref="entityManagerFactory" />
-		</bean>
-		<bean id="entityManagerFactory"
-			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-			<property name="jtaDataSource" ref="dataSource" />
-			<property name="packagesToScan" value="com.lcw.herakles.platform" />
-			<property name="jpaDialect">
-				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
-			</property>
-			<property name="jpaVendorAdapter">
-				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-					<property name="database" value="${jdbc.database}" />
-				</bean>
-			</property>
-			<property name="jpaPropertyMap">
-				<map>
-					<entry key="hibernate.show_sql" value="${hibernate.show_sql}" />
-					<entry key="hibernate.format_sql" value="true" />
-					<entry key="hibernate.use_sql_comments" value="true" />
-					<entry key="javax.persistence.transactionType" value="RESOURCE_LOCAL" 
-						/>
-					<entry key="javax.persistence.transactionType" value="JTA" />
-					<entry key="hibernate.current_session_context_class" value="jta" />
-					<entry key="hibernate.transaction.factory_class"
-						value="org.hibernate.engine.transaction.internal.jta.CMTTransactionFactory" />
-					<entry key="hibernate.transaction.jta.platform"
-					value="org.hibernate.engine.transaction.jta.platform.internal.JBossAppServerJtaPlatform" 
-						/>
-				</map>
-			</property>
-		</bean>
-	</beans>
+	<bean class="org.springframework.orm.jpa.support.PersistenceAnnotationBeanPostProcessor" />
 
-	<beans profile="DEV">
-		<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
-			<property name="entityManagerFactory" ref="entityManagerFactory" />
-		</bean>
-		<bean id="entityManagerFactory"
-			class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-			<property name="jtaDataSource" ref="dataSource" />
-			<property name="packagesToScan" value="com.lcw.herakles.platform" />
-			<property name="jpaDialect">
-				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaDialect" />
-			</property>
-			<property name="jpaVendorAdapter">
-				<bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter">
-					<property name="database" value="${jdbc.database}" />
-				</bean>
-			</property>
-			<property name="jpaPropertyMap">
-				<map>
-					<entry key="hibernate.show_sql" value="${hibernate.show_sql}" />
-					<entry key="hibernate.format_sql" value="true" />
-					<entry key="hibernate.use_sql_comments" value="true" />
-					<entry key="javax.persistence.transactionType" value="RESOURCE_LOCAL" />
-				</map>
-			</property>
-		</bean>
-	</beans>
- -->
+	<bean class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor" />
 
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
+
 	<bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="jtaDataSource" ref="dataSource" />

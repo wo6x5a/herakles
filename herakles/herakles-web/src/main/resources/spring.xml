@@ -23,18 +23,12 @@
     <import resource="classpath:cache.spring.xml"/>
 	<import resource="classpath:mail.spring.xml"/>
 
-	<!-- enable component scanning (beware that this does not enable mapper 
-		scanning!) -->
-		
+	<!-- 扫描除controller外的  -->
 	<context:component-scan base-package="com.lcw.herakles.platform">
 		<context:exclude-filter type="regex" expression=".*\.[^.]*Controller" />
 	</context:component-scan>
 	
 	<task:annotation-driven />
-
-	<!-- enable AspectJ 
-	<aop:aspectj-autoproxy />
-	-->
 
 	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
 		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
