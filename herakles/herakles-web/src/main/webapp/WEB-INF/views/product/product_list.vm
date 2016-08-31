@@ -39,12 +39,14 @@
                         </div>
                     </div>
                 </div>
-				<div class="col-sm-2 row hide">
+				<div class="col-sm-2 row">
 					<div class="col-sm-2">
 						 <label style="width:100%">&nbsp;</label>
 						 <div>
         					<button class="btn btn-hengxin-primary btn-mt-3" id="btn-export">export</button>
 						</div>	
+					</div>
+				</div>
 	        </div>
 	    </form>
 	</div>

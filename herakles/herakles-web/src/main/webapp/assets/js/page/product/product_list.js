@@ -52,18 +52,23 @@ function($, global, util, datatables){
 			}
 		});
 	};
-	
-	//导出报表数据
-	$('body').on('click','#btn-export',function(){
-		var inputs = $("#paras-form").html();
-		 var url = global.context + "/web/report/product/export-xls";
-		 $('<form action="' + url + '" method="POST">' + inputs + '</form>').appendTo('body').submit().remove();
-	});
-	
+
 	var init = function(){
 		_rendarTable();
 		bindEvent();
 	};
 	
 	init();
+	
+	//导出报表数据
+	$("body").on("click","#btn-export",function(){
+		 var data = util.getSearchData("#product-form");
+		 var url = global.context + "/web/product/export-xls";
+		 var inputs = '';
+		 $.each(data,function(){
+			 inputs += '<input type="hidden" name="' + this.name + '" value="' + this.value + '" />';
+		 });
+		 $('<form action="' + url + '" method="POST">' + inputs + '</form>').appendTo('body').submit().remove();
+	});
+	
 });

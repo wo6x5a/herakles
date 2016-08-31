@@ -63,7 +63,7 @@
 			<version>20160827.1</version>
 		</dependency>
 
-		<!--google guava -->
+		<!-- google guava -->
 		<dependency>
 		    <groupId>org.codehaus.mojo</groupId>
 		    <artifactId>animal-sniffer-annotations</artifactId>

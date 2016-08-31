@@ -13,7 +13,7 @@
 	 http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
 	 http://www.springframework.org/schema/jdbc http://www.springframework.org/schema/jdbc/spring-jdbc.xsd">
 
-	<tx:annotation-driven />
+	<tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
 
 	<jpa:repositories base-package="com.lcw.herakles.platform"
 		entity-manager-factory-ref="entityManagerFactory">

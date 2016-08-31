@@ -42,6 +42,7 @@ import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
 import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
+import com.lcw.herakles.platform.demo.service.ProductInfoExcelExportService;
 import com.lcw.herakles.platform.demo.service.ProductQueryService;
 import com.lcw.herakles.platform.demo.service.ProductService;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
@@ -69,8 +70,8 @@ public class ProductController extends BaseController {
     private SecurityContext securityContext;
     @Autowired
     private ProductQueryService productQueryService;
-    // @Autowired
-    // private ProductInfoExcelExportService productInfoExcelExportService;
+    @Autowired
+    private ProductInfoExcelExportService productInfoExcelExportService;
 
     /**
      * 异步调用测试
@@ -212,18 +213,17 @@ public class ProductController extends BaseController {
         return resp;
     }
 
-    // @RequestMapping(value = "/export-xls", method = RequestMethod.POST)
-    // public ModelAndView exportBrokerInvesterXls(ProductSearchDto request) {
-    // List<ProductDto> dataList =
-    // productQueryService.searchProduct(request).getData();
-    // String fileName = "test.xls";
-    // String tempPath = "excel/report/product_repo.xls";
-    // Map<String, Object> map = new HashMap<String, Object>();
-    // map.put(ApplicationConstant.REPORT_DATA, dataList);
-    // map.put(ApplicationConstant.REPORT_FILE_NAME, fileName);
-    // map.put(ApplicationConstant.REPORT_TEMP_PATH, tempPath);
-    // return new ModelAndView(productInfoExcelExportService, map);
-    // }
+    @RequestMapping(value = "/export-xls", method = RequestMethod.POST)
+    public ModelAndView exportBrokerInvesterXls(ProductSearchDto request) {
+        List<ProductDto> dataList = productQueryService.searchProduct(request).getData();
+        String fileName = "test.xls";
+        String tempPath = "excel/report/product_repo.xls";
+        Map<String, Object> map = new HashMap<String, Object>();
+        map.put(ApplicationConstant.REPORT_DATA, dataList);
+        map.put(ApplicationConstant.REPORT_FILE_NAME, fileName);
+        map.put(ApplicationConstant.REPORT_TEMP_PATH, tempPath);
+        return new ModelAndView(productInfoExcelExportService, map);
+    }
 
     /**
      * Description: render add-product page
