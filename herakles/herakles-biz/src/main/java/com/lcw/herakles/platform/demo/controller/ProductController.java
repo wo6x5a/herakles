@@ -164,9 +164,9 @@ public class ProductController extends BaseController {
         model.put("nickName", securityContext.getCurrentUser().getNickName());
         model.put("url", "www.bing.com");
         model.put("isUnbound", "xxxxx");
-        emailSerivce.sendSimpleEmail("标题", "内容", "2669062184@qq.com");
+        emailSerivce.sendSimpleEmail("标题", "内容", "wo6x5a3@163.com");
         // emailSerivce.sendHtmlEmail(title, templateName, model,
-        // "wo6x5a1@163.com");
+        // "wo6x5a3@163.com");
         return "product/test";
     }
 
