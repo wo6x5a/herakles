@@ -12,6 +12,14 @@ import org.springframework.data.redis.core.SetOperations;
 
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
 
+/**
+ * redis for shiro cache 
+ * 
+ * @author chenwulou
+ *
+ * @param <K>
+ * @param <V>
+ */
 public class ShiroRedisCache<K, V> implements Cache<K, V> {
 
     private final String name;
