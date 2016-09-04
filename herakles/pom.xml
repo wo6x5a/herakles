@@ -17,6 +17,7 @@
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
+		<spring.data.mongodb.version>1.9.2.RELEASE</spring.data.mongodb.version>
 		<spring.data.redis.version>1.7.2.RELEASE</spring.data.redis.version>
 		<spring.data.jpa.version>1.10.2.RELEASE</spring.data.jpa.version>
 		<hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
@@ -105,15 +106,23 @@
 		</dependency>
 
 		<!-- spring data -->
+		<!-- spring-data-jpa -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring.data.jpa.version}</version>
 		</dependency>
+		<!-- spring-data-redis -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
 			<version>${spring.data.redis.version}</version>
+		</dependency>
+		<!-- spring-data-mongodb -->
+		<dependency>
+		    <groupId>org.springframework.data</groupId>
+		    <artifactId>spring-data-mongodb</artifactId>
+		    <version>${spring.data.mongodb.version}</version>
 		</dependency>
 
 		<!-- Test -->

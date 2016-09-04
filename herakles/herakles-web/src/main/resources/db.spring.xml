@@ -17,6 +17,7 @@
 	 http://www.springframework.org/schema/aop  http://www.springframework.org/schema/aop/spring-aop.xsd">
 
 	<import resource="classpath:db-jpa.spring.xml"/>
+	<import resource="classpath:db-mongo.spring.xml"/>
 	
 	<!-- dataSource -->
 	<!-- <bean id="dataSource" class="com.lcw.herakles.platform.system.security.database.DecryptDruidSource" init-method="init" destroy-method="close"> -->
