@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.common.cache.redis.shiro;
 
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 import java.util.Set;
@@ -10,6 +9,7 @@ import org.apache.shiro.cache.CacheException;
 import org.springframework.data.redis.core.RedisTemplate;
 import org.springframework.data.redis.core.SetOperations;
 
+import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
 
 /**
@@ -81,7 +81,7 @@ public class ShiroRedisCache<K, V> implements Cache<K, V> {
 
     @Override
     public Collection<V> values() {
-        List<V> values = new ArrayList<V>();
+        List<V> values = Lists.newArrayList();
         for (K key : keys()) {
             values.add(get(key));
         }

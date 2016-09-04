@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.demo.controller;
 
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -23,6 +22,7 @@ import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.WebAsyncTask;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.cache.redis.repository.BaseRedisDao;
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.controller.BaseController;
@@ -139,8 +139,8 @@ public class ProductController extends BaseController {
     @SuppressWarnings({"unused", "unchecked"})
     @RequestMapping(value = "test-redis", method = RequestMethod.GET)
     public String testRedis() {
-        List<String> listStr = new ArrayList<>();
-        List<String> listStr1 = new ArrayList<>();
+        List<String> listStr = Lists.newArrayList();
+        List<String> listStr1 = Lists.newArrayList();
         listStr.add("1");
         listStr.add("2");
         listStr.add("3");
@@ -311,7 +311,7 @@ public class ProductController extends BaseController {
 
     @SuppressWarnings("unused")
     private List<EnumOption> getProductCagetory() {
-        List<EnumOption> options = new ArrayList<EnumOption>();
+        List<EnumOption> options = Lists.newArrayList();
         options.add(
                 new EnumOption(EProductCagetory.BIRDS.name(), EProductCagetory.BIRDS.getText()));
         options.add(new EnumOption(EProductCagetory.CATS.name(), EProductCagetory.CATS.getText()));

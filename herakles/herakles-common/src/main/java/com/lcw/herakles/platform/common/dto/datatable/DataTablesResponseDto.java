@@ -1,10 +1,10 @@
 package com.lcw.herakles.platform.common.dto.datatable;
 
 import java.io.Serializable;
-import java.util.ArrayList;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
+import com.google.common.collect.Lists;
 
 /**
  * Value object for jQuery DataTables JSON response.
@@ -29,7 +29,7 @@ public class DataTablesResponseDto<T> implements Serializable {
     private String columns;
 
     @JsonProperty(value = "aaData")
-    private List<T> data = new ArrayList<T>();
+    private List<T> data = Lists.newArrayList();
 
     public long getTotalRecords() {
         return totalRecords;

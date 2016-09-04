@@ -5,7 +5,6 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
-import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -22,6 +21,7 @@ import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 
 /**
@@ -94,7 +94,7 @@ public class ExcelUtil {
 	 */
 	@SuppressWarnings("resource")
 	public static List<Object[]> readExcel(InputStream input, String fileName, int cellsize) {
-		List<Object[]> result = new ArrayList<Object[]>();
+		List<Object[]> result = Lists.newArrayList();
 		boolean cellTypeBlank = false;// 判断EXCEL是否是空行
 		try {
 			if (null == input) {

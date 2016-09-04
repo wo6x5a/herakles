@@ -1,7 +1,6 @@
 
 package com.lcw.herakles.platform.common.controller;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -11,6 +10,7 @@ import javax.validation.ConstraintViolationException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.constant.MessageConsts;
 import com.lcw.herakles.platform.common.enums.DBIntEnum;
@@ -48,7 +48,7 @@ public abstract class BaseController implements MessageConsts {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected List<EnumOption> getStaticOptions(Class<? extends Enum> enumClass, boolean containBlankOption) {
 		List<? extends Enum> enumList = EnumHelper.inspectConstants(enumClass, containBlankOption);
-		List<EnumOption> options = new ArrayList<EnumOption>();
+		List<EnumOption> options = Lists.newArrayList();
 		for (Enum em : enumList) {
 				if(em instanceof DBIntEnum){
 					options.add(new EnumOption(em.name(), ((DBIntEnum) em).getText()));

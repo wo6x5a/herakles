@@ -1,10 +1,11 @@
 
 package com.lcw.herakles.platform.common.validation;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.validation.BindingResult;
+
+import com.google.common.collect.Lists;
 
 /**
  * Class Name: ValidateException
@@ -31,7 +32,7 @@ public class ValidateException extends RuntimeException {
     }
 
     public ValidateException(final BindingResult bindingResult) {
-        bindingResults = new ArrayList<BindingResult>();
+        bindingResults = Lists.newArrayList();
         bindingResults.add(bindingResult);
     }
 
@@ -95,7 +96,7 @@ public class ValidateException extends RuntimeException {
      * @return
      */
     public List<BindingResult> getErrors() {
-        List<BindingResult> errors = new ArrayList<BindingResult>();
+        List<BindingResult> errors = Lists.newArrayList();
         if (bindingResults != null && bindingResults.size() > 0) {
             for (BindingResult bindingResult : bindingResults) {
                 if (bindingResult.hasErrors()) {

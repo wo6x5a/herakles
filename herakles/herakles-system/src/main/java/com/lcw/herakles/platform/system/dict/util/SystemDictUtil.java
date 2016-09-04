@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.system.dict.util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -11,6 +10,7 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.enums.EFlagType;
 import com.lcw.herakles.platform.system.dict.dto.DynamicOption;
 import com.lcw.herakles.platform.system.dict.entity.DictPo;
@@ -22,7 +22,7 @@ public final class SystemDictUtil {
     private static DictRepository dictRepository;
     private static final Logger LOGGER = LoggerFactory.getLogger(SystemDictUtil.class);
 
-    private static List<String> UNMEANING_PARENT_CODE = new ArrayList<String>();
+    private static List<String> UNMEANING_PARENT_CODE = Lists.newArrayList();;
     private static Map<String, DynamicOption> SYS_DIC_MAP = new ConcurrentHashMap<String, DynamicOption>();
     private static Map<String, Map<String, DynamicOption>> SYS_DIC_CODE_MAP = new HashMap<String, Map<String,DynamicOption>>();
     private static Map<String, List<DynamicOption>> ROOT_DICT_MAP = new ConcurrentHashMap<String, List<DynamicOption>>();
@@ -75,7 +75,7 @@ public final class SystemDictUtil {
                 String parentCode = sysDict.getParentCode();
                 if (isParentCodeBlank(parentCode)) {
                     if (!ROOT_DICT_MAP.containsKey(category)) {
-                        ROOT_DICT_MAP.put(category, new ArrayList<DynamicOption>());
+                        ROOT_DICT_MAP.put(category, Lists.newArrayList());
                     }
                     ROOT_DICT_MAP.get(category).add(sysDict);
                 } else {

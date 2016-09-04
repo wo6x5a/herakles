@@ -4,7 +4,6 @@ package com.lcw.herakles.platform.common.validation;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
@@ -24,6 +23,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
+import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.dto.annotation.Domain;
 import com.lcw.herakles.platform.common.dto.annotation.DomainField;
 import com.lcw.herakles.platform.common.dto.annotation.OnValid;
@@ -159,7 +159,7 @@ public class ValidateInterceptor {
     private List<Object> mapDtoToDomains(Object validatedObj, Class<?>[] domainClassList) throws Exception {
         List<Object> doaminObjectList = null;
         if (domainClassList != null && domainClassList.length > 0) {
-            doaminObjectList = new ArrayList<Object>();
+            doaminObjectList = Lists.newArrayList();
             for (Class<?> domainClass : domainClassList) {
                 doaminObjectList.add(domainClass.newInstance());
             }

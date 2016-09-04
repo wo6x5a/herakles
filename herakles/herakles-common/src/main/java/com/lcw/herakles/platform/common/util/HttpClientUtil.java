@@ -1,7 +1,6 @@
 package com.lcw.herakles.platform.common.util;
 
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +18,7 @@ import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 
 /**
@@ -51,7 +51,7 @@ public class HttpClientUtil {
     public String post(String url, Map<String, String> params) {
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(url);
-        List<NameValuePair> formparams = new ArrayList<NameValuePair>();
+        List<NameValuePair> formparams = Lists.newArrayList();
 
         Set<String> keySet = params.keySet();
         for (String key : keySet) {
