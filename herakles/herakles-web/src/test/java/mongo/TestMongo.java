@@ -65,6 +65,7 @@ public class TestMongo {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static void remove(MongoCollection<Document> collection) {
 		// alle Dokuemente mit {i: 42}
 		Bson criteria = new BasicDBObject("i", 42);
@@ -97,6 +98,7 @@ public class TestMongo {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static void find(MongoCollection<Document> collection, Bson query) {
 		FindIterable<Document> cursor;
 
@@ -111,6 +113,7 @@ public class TestMongo {
 		}
 	}
 
+	@SuppressWarnings("unused")
 	private static void bsonize() throws UnsupportedEncodingException {
 		final String key = "hello";
 		final String value = "MongoDB";
