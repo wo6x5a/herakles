@@ -47,16 +47,15 @@ public abstract class BaseController implements MessageConsts {
 	 */
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	protected List<EnumOption> getStaticOptions(Class<? extends Enum> enumClass, boolean containBlankOption) {
-		List<Enum> enumList = EnumHelper.inspectConstants(enumClass, containBlankOption);
+		List<? extends Enum> enumList = EnumHelper.inspectConstants(enumClass, containBlankOption);
 		List<EnumOption> options = new ArrayList<EnumOption>();
 		for (Enum em : enumList) {
-			try {
-				options.add(new EnumOption(em.name(), ((DBIntEnum) em).getText()));
-			} catch (ClassCastException e) {
-				// 这里我处理了下,如果DBIntEnum强转失败就用DBStrEnum.
-				options.add(new EnumOption(em.name(), ((DBStrEnum) em).getText()));
+				if(em instanceof DBIntEnum){
+					options.add(new EnumOption(em.name(), ((DBIntEnum) em).getText()));
+				} else if(em instanceof DBStrEnum){
+					options.add(new EnumOption(em.name(), ((DBStrEnum) em).getText()));
+				}
 			}
-		}
 		return options;
 	}
 
