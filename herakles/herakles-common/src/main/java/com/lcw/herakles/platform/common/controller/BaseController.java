@@ -50,12 +50,12 @@ public abstract class BaseController implements MessageConsts {
 		List<? extends Enum> enumList = EnumHelper.inspectConstants(enumClass, containBlankOption);
 		List<EnumOption> options = Lists.newArrayList();
 		for (Enum em : enumList) {
-				if(em instanceof DBIntEnum){
-					options.add(new EnumOption(em.name(), ((DBIntEnum) em).getText()));
-				} else if(em instanceof DBStrEnum){
-					options.add(new EnumOption(em.name(), ((DBStrEnum) em).getText()));
-				}
+			if (em instanceof DBIntEnum) {
+				options.add(new EnumOption(em.name(), ((DBIntEnum) em).getText()));
+			} else if (em instanceof DBStrEnum) {
+				options.add(new EnumOption(em.name(), ((DBStrEnum) em).getText()));
 			}
+		}
 		return options;
 	}
 
