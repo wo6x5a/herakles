@@ -1,14 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<contextName>herakles</contextName>
+
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%date %level [user: %X{userName:-unknown}]  %logger{55} - %msg%n</pattern>
+			<pattern>%date %level [user: %X{userName:-unknown}] %logger{55} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
+	<!-- 时间滚动存储输出日志 -->
+	<property name="LOG_HOME" value="E:\\herakles\\log" />
+	<appender name="file"
+		class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+			<FileNamePattern>${LOG_HOME}/herakles.%d{yyyy-MM-dd}.log
+			</FileNamePattern>
+			<MaxHistory>30</MaxHistory>
+		</rollingPolicy>
+
+		<encoder>
+			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{80} - %msg%n</pattern>
+		</encoder>
+	</appender>
+
+	<!-- debug project -->
 	<logger name="com.lcw" level="debug" />
 
 	<root level="info">
 		<appender-ref ref="console" />
+		<appender-ref ref="file" />
 	</root>
+
 </configuration>
