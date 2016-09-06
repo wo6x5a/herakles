@@ -80,8 +80,7 @@ public class MongoDBAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
             try {
                 StringWriter sw = new StringWriter();
                 e.printStackTrace(new PrintWriter(sw));
-                log.put("logging_error",
-                        "Could not log all the event information: " + sw.toString());
+                log.put("logging_error",  "Could not log all the event information: " + sw.toString());
                 getLogCollection(level).insertOne(log);
             } catch (Exception e2) { // really not working
                 addError("Could not insert log to mongo: " + evt, e2);
