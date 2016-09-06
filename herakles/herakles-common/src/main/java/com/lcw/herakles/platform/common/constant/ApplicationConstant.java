@@ -24,15 +24,6 @@ public final class ApplicationConstant {
 	public static final String LOG_USER_NAME = "userName";
 	public static final String LOG_SESSION_ID = "sessionId";
 
-	public static final String DATE_FORMAT = "yyyy-MM-dd";
-	public static final String TIMESTAMP_FORMAT = "yyyy-MM-dd HH:mm:ss";
-
-	public static final String START_DATE_TIME = "00:00:00";
-	public static final String END_DATE_TIME = "23:59:59";
-
-	public static final String DEFAULT_MAX_DATE_VALUE = "9999-12-31";
-	public static final String DEFAULT_MIN_DATE_VALUE = "1990-01-01";
-
 	/**
 	 * 默认最大支持导出数据条数
 	 */
