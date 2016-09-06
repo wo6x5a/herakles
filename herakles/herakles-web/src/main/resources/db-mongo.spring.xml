@@ -6,7 +6,6 @@
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
      http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
 
-	<!-- mongodb存日志文件 -->
 	<mongo:repositories base-package="com.lcw.herakles.platform.log.repository" />
 
 	<mongo:db-factory host="${mongo.host}" 
