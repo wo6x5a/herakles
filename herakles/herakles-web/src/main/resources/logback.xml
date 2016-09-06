@@ -4,7 +4,7 @@
 
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%date %level [user: %X{userName:-unknown}] %logger{55} - %msg%n</pattern>
+			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{80} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -30,7 +30,6 @@
 		<db>herakles</db>
 	</appender>
 
-	<!-- debug project -->
 	<logger name="com.lcw" level="debug" />
 
 	<root level="info">
