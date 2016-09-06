@@ -36,8 +36,7 @@ public class MongoDBAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
     private String host;
     private int port;
     private String db;
-    private Map<String, MongoCollection<Document>> logCollectionMap =
-            new HashMap<String, MongoCollection<Document>>();
+    private Map<String, MongoCollection<Document>> logCollectionMap = new HashMap<String, MongoCollection<Document>>();
     private MongoDatabase mongoDb = null;
 
     public MongoDBAppender() {}
