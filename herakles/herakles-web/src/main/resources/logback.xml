@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <configuration>
 	<contextName>herakles</contextName>
 
@@ -8,22 +7,21 @@
 		</encoder>
 	</appender>
 
-	<!-- 时间滚动存储输出日志 -->
 	<property name="LOG_HOME" value="E:\\herakles\\log" />
-	<appender name="file"
-		class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
-			<FileNamePattern>${LOG_HOME}/herakles.%d{yyyy-MM-dd}.log
-			</FileNamePattern>
+			<FileNamePattern>${LOG_HOME}/herakles.%d{yyyy-MM-dd}.log</FileNamePattern>
 			<MaxHistory>30</MaxHistory>
+			<timeBasedFileNamingAndTriggeringPolicy  
+			     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
+			     <maxFileSize>50MB</maxFileSize>  
+			</timeBasedFileNamingAndTriggeringPolicy> 
 		</rollingPolicy>
-
 		<encoder>
 			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{80} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
-	<!-- 记录日志到mongodb -->
 	<appender name="mongo" class="com.lcw.herakles.platform.common.logback.appender.MongoDBAppender">
 		<host>127.0.0.1</host>
 		<port>27017</port>
@@ -37,5 +35,4 @@
 		<appender-ref ref="file" />
 		<appender-ref ref="mongo" />
 	</root>
-
 </configuration>
