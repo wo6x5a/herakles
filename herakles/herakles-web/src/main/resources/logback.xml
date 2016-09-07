@@ -24,7 +24,7 @@
 	</appender>
 
 	<!-- 记录日志到mongodb -->
-	<appender name="mongo" class="com.lcw.herakles.platform.common.logback.mongo.MongoDBAppender">
+	<appender name="mongo" class="com.lcw.herakles.platform.common.logback.appender.MongoDBAppender">
 		<host>127.0.0.1</host>
 		<port>27017</port>
 		<db>herakles</db>

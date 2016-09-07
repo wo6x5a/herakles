@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.common.logback.mongo;
+package com.lcw.herakles.platform.common.logback.appender;
 
 import java.io.PrintWriter;
 import java.io.StringWriter;
