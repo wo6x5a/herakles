@@ -4,6 +4,8 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -25,6 +27,7 @@ import com.lcw.herakles.platform.system.security.SecurityContext;
 @Service
 public class ProductService {
 
+    private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
     @Autowired
     private SecurityContext securityContext;
     @Autowired
@@ -47,8 +50,7 @@ public class ProductService {
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        	LOGGER.error(e.getMessage());
         }
         ProductPo product = new ProductPo();
         if (StringUtils.isNotBlank(productReqDto.getId())) {
