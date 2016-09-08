@@ -1,6 +1,7 @@
 <configuration>
 	<contextName>herakles</contextName>
 
+	<!-- 控制台 -->
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
 			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{55} - %msg%n</pattern>
@@ -8,7 +9,7 @@
 	</appender>
 
 	<property name="LOG_HOME" value="E:\\herakles\\log" />
-	<!-- 按日期和大小区分的滚动日志 -->
+	<!--file 按日期和大小区分的滚动日志 -->
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_HOME}/herakles.log</file>
 
@@ -33,6 +34,7 @@
 
 	</appender>
 
+	<!-- mongo -->
 	<appender name="mongo" class="com.lcw.herakles.platform.common.logback.appender.MongoDBAppender">
 		<host>127.0.0.1</host>
 		<port>27017</port>
