@@ -3,7 +3,7 @@
 
 	<appender name="console" class="ch.qos.logback.core.ConsoleAppender">
 		<encoder>
-			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{80} - %msg%n</pattern>
+			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{55} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -11,14 +11,16 @@
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<FileNamePattern>${LOG_HOME}/herakles.%d{yyyy-MM-dd}.log</FileNamePattern>
+			<minIndex>1</minIndex>
+			<maxIndex>30</maxIndex>
 			<MaxHistory>30</MaxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy  
 			     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
-			     <maxFileSize>50MB</maxFileSize>  
+			     <maxFileSize>10MB</maxFileSize>  
 			</timeBasedFileNamingAndTriggeringPolicy> 
 		</rollingPolicy>
 		<encoder>
-			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{80} - %msg%n</pattern>
+			<pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{55} - %msg%n</pattern>
 		</encoder>
 	</appender>
 
@@ -28,9 +30,11 @@
 		<db>herakles</db>
 	</appender>
 
-	<logger name="com.lcw" level="debug" />
+	<logger name="org.mongodb" level="info" />
+	<logger name="org.apache.shiro" level="info" />
+	<logger name="org.springframework" level="info" />
 
-	<root level="info">
+	<root level="debug">
 		<appender-ref ref="console" />
 		<appender-ref ref="file" />
 		<appender-ref ref="mongo" />
