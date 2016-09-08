@@ -11,8 +11,6 @@
 	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<FileNamePattern>${LOG_HOME}/herakles.%d{yyyy-MM-dd}.log</FileNamePattern>
-			<minIndex>1</minIndex>
-			<maxIndex>30</maxIndex>
 			<MaxHistory>30</MaxHistory>
 			<timeBasedFileNamingAndTriggeringPolicy  
 			     class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">  
