@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.common.logback.appender;
 
-import java.io.PrintWriter;
 import java.io.StringWriter;
 import java.net.UnknownHostException;
 import java.util.Arrays;
@@ -78,7 +77,7 @@ public class MongoDBAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
         } catch (Exception e) {
             try {
                 StringWriter sw = new StringWriter();
-                e.printStackTrace(new PrintWriter(sw));
+//                e.printStackTrace(new PrintWriter(sw));
                 log.put("logging_error",  "Could not log all the event information: " + sw.toString());
                 getLogCollection(level).insertOne(log);
             } catch (Exception e2) { // really not working
