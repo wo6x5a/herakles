@@ -4,18 +4,38 @@
 	xsi:schemaLocation="
      http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
      http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
-     http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd">
+     http://www.springframework.org/schema/data/mongo http://www.springframework.org/schema/data/mongo/spring-mongo.xsd">
 
 	<mongo:repositories base-package="com.lcw.herakles.platform.log.repository" />
 
+    <!-- spring连接mongodb数据库的配置 -->  
+    <mongo:mongo-client  id="mongo" host="${mongo.host}"  port="${mongo.port}" credentials="${mongo.username}:${mongo.password}@${mongo.dbname}">    
+       <!-- NONE/NORMAL/SAFE/MAJORITY/FSYNC_SAFE/JOURNAL_SAFE/REPLICAS_SAFE -->
+       <mongo:client-options write-concern="SAFE"/>
+    </mongo:mongo-client>   
+
+<!-- 
+  	#mongo..address=192.168.1.199:27017,192.168.1.199:27018,192.168.1.199:27019
+	#mongo.config.replica.set.name=rs0
+  	<mongo:db-factory client-uri="mongodb://${mongo.username}:${mongo.password}@${mongo.address}/${mongo.dbname}?replicaSet=${mongo.config.replica.set.name}" />
+-->
+
+<!--
 	<mongo:db-factory host="${mongo.host}" 
 					  port="${mongo.port}"
 					  dbname="${mongo.dbname}"
 					  username="${mongo.username}" 
 					  password="${mongo.password}" />
+-->
+
+    <mongo:db-factory  id="mongoDbFactory" dbname="${mongo.dbname}" mongo-ref="mongo" />    
 
 	<!-- MongoDB Template -->
 	<bean id="mongoTemplate" class="org.springframework.data.mongodb.core.MongoTemplate">
+	<!--
+	    <constructor-arg name="mongo" ref="mongo"/>
+		<constructor-arg name="databaseName" value="${mongo.dbname}"/>
+	 --> 
 		<constructor-arg name="mongoDbFactory" ref="mongoDbFactory" />
 	</bean>
 

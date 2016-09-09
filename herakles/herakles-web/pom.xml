@@ -29,13 +29,6 @@
 			<version>5.1.38</version>
 		</dependency>
 
-		<!-- mongo -->
-		<dependency>
-		    <groupId>org.mongodb</groupId>
-		    <artifactId>mongo-java-driver</artifactId>
-		    <version>3.3.0</version>
-		</dependency>
-
 		<!-- dataSource -->
 		<dependency>
 			<groupId>com.alibaba</groupId>

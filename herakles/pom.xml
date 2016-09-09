@@ -123,6 +123,13 @@
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-mongodb</artifactId>
 		    <version>${spring.data.mongodb.version}</version>
+		    <!-- MongoDB3.0+驱动需要单独配置 1.9.2默认mongo2.0+驱动-->  
+		    <exclusions>  
+		        <exclusion>  
+		            <groupId>org.mongodb</groupId>  
+		            <artifactId>mongo-java-driver</artifactId>  
+		        </exclusion>  
+		    </exclusions>  
 		</dependency>
 
 		<!-- Test -->
