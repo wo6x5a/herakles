@@ -10,8 +10,12 @@ import com.alibaba.druid.pool.DruidDataSource;
  * @author chenwulou
  *
  */
-@SuppressWarnings("all")
 public class DecryptDruidSource extends DruidDataSource {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 2229458728075515162L;
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DecryptDruidSource.class);
 
