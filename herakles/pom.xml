@@ -15,24 +15,58 @@
 	</modules>
 
 	<properties>
+		<jdk.version>1.8</jdk.version>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 
-		<spring.data.mongodb.version>1.9.2.RELEASE</spring.data.mongodb.version>
-		<spring.data.redis.version>1.7.2.RELEASE</spring.data.redis.version>
-		<spring.data.jpa.version>1.10.2.RELEASE</spring.data.jpa.version>
-		<hibernate.jpa.version>1.0.0.Final</hibernate.jpa.version>
-		<hibernate.version>5.2.2.Final</hibernate.version>
-		<servlet-api.version>3.1.0</servlet-api.version>
+		<javax.servlet-api.version>3.1.0</javax.servlet-api.version>
+
 		<spring.version>4.3.2.RELEASE</spring.version>
-		<jackson.version>2.8.1</jackson.version>
-		<logback.version>1.1.7</logback.version>
-		<slf4j.version>1.7.21</slf4j.version>
-		<jsr311.version>1.1.1</jsr311.version>
+
+		<hibernate-core.version>5.2.2.Final</hibernate-core.version>
+		<spring-data-jpa.version>1.10.2.RELEASE</spring-data-jpa.version>
+		<spring-data-redis.version>1.7.2.RELEASE</spring-data-redis.version>
+		<spring-data-mongodb.version>1.9.2.RELEASE</spring-data-mongodb.version>
+
+		<druid.version>1.0.25</druid.version>
 		<jedis.version>2.9.0</jedis.version>
+		<mongo-java-driver.version>3.3.0</mongo-java-driver.version>
+		<mysql-connector-java.version>5.1.38</mysql-connector-java.version>
+
+		<slf4j.version>1.7.21</slf4j.version>
+		<logback.version>1.1.7</logback.version>
+
+		<validation-api.version>1.1.0.Final</validation-api.version>
+		<hibernate-validator.version>5.2.4.Final</hibernate-validator.version>
+
+		<commons-io.version>2.5</commons-io.version>
+		<commons-fileupload.version>1.3.2</commons-fileupload.version>
+
+		<encoder.version>1.2</encoder.version>
+		<owasp-java-html-sanitizer.version>20160827.1</owasp-java-html-sanitizer.version>
+
+		<javax.mail.version>1.5.6</javax.mail.version>
+		<commons-email.version>1.4</commons-email.version>
+
+		<guava.version>19.0</guava.version>
+		<animal-sniffer-annotations.version>1.15</animal-sniffer-annotations.version>
+
+		<velocity.version>1.7</velocity.version>
+		<velocity-tools.version>2.0</velocity-tools.version>
+
+		<poi.version>3.14</poi.version>
+		<pinyin4j.version>2.5.1</pinyin4j.version>
+		<httpclient.version>4.5.2</httpclient.version>
+		<commons-lang3.version>3.4</commons-lang3.version>
+
+		<junit.version>4.12</junit.version>
+		<mockito-core.version>1.10.19</mockito-core.version>
+		<hamcrest-library.version>1.3</hamcrest-library.version>
+
 		<shiro.version>1.3.0</shiro.version>
 		<cglib.version>3.2.4</cglib.version>
-		<poi.version>3.14</poi.version>
-		<jdk.version>1.8</jdk.version>
+		<jackson.version>2.8.1</jackson.version>
+		<kaptcha.version>0.0.9</kaptcha.version>
+		<javamelody-core.version>1.60.0</javamelody-core.version>
 	</properties>
 
 	<repositories>
@@ -59,7 +93,7 @@
 		<dependency>
 			<groupId>javax.servlet</groupId>
 			<artifactId>javax.servlet-api</artifactId>
-			<version>${servlet-api.version}</version>
+			<version>${javax.servlet-api.version}</version>
 			<scope>provided</scope>
 		</dependency>
 
@@ -112,19 +146,19 @@
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-jpa</artifactId>
-			<version>${spring.data.jpa.version}</version>
+			<version>${spring-data-jpa.version}</version>
 		</dependency>
 		<!-- spring-data-redis -->
 		<dependency>
 			<groupId>org.springframework.data</groupId>
 			<artifactId>spring-data-redis</artifactId>
-			<version>${spring.data.redis.version}</version>
+			<version>${spring-data-redis.version}</version>
 		</dependency>
 		<!-- spring-data-mongodb -->
 		<dependency>
 		    <groupId>org.springframework.data</groupId>
 		    <artifactId>spring-data-mongodb</artifactId>
-		    <version>${spring.data.mongodb.version}</version>
+		    <version>${spring-data-mongodb.version}</version>
 		    <!-- MongoDB3.0+驱动需要单独配置 1.9.2默认mongo2.0+驱动-->  
 		    <exclusions>  
 		        <exclusion>  
@@ -146,7 +180,7 @@
 		<dependency>
 		    <groupId>org.hibernate</groupId>
 		    <artifactId>hibernate-core</artifactId>
-		    <version>${hibernate.version}</version>
+		    <version>${hibernate-core.version}</version>
 		</dependency>
 
 		<!-- cglib -->
@@ -160,24 +194,24 @@
 		<dependency>
 			<groupId>javax.validation</groupId>
 			<artifactId>validation-api</artifactId>
-			<version>1.1.0.Final</version>
+			<version>${validation-api.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>org.hibernate</groupId>
 			<artifactId>hibernate-validator</artifactId>
-			<version>5.2.4.Final</version>
+			<version>${hibernate-validator.version}</version>
 		</dependency>
 
 		<!-- file upload util -->
 		<dependency>
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
-			<version>2.5</version>
+			<version>${commons-io.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
-			<version>1.3.2</version>
+			<version>${commons-fileupload.version}</version>
 		</dependency>
 
 		<!-- Jackson -->
@@ -206,7 +240,7 @@
 		<dependency>
 			<groupId>net.bull.javamelody</groupId>
 			<artifactId>javamelody-core</artifactId>
-			<version>1.60.0</version>
+			<version>${javamelody-core.version}</version>
 		</dependency>
 
 		<!-- Log framework -->
@@ -233,19 +267,19 @@
 		<dependency>
 			<groupId>org.hamcrest</groupId>
 			<artifactId>hamcrest-library</artifactId>
-			<version>1.3</version>
+			<version>${hamcrest-library.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>junit</groupId>
 			<artifactId>junit</artifactId>
-			<version>4.12</version>
+			<version>${junit.version}</version>
 			<scope>test</scope>
 		</dependency>
 		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
-			<version>1.10.19</version>
+			<version>${mockito-core.version}</version>
 			<scope>test</scope>
 		</dependency>
 
@@ -253,7 +287,7 @@
 		<dependency>
 			<groupId>org.apache.commons</groupId>
 			<artifactId>commons-lang3</artifactId>
-			<version>3.4</version>
+			<version>${commons-lang3.version}</version>
 			<scope>compile</scope>
 		</dependency>
 

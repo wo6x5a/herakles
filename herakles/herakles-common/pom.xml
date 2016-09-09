@@ -50,24 +50,24 @@
 		<dependency>
 			<groupId>org.owasp.encoder</groupId>
 			<artifactId>encoder</artifactId>
-			<version>1.2</version>
+			<version>${encoder.version}</version>
 		</dependency>
 		<dependency>
 			<groupId>com.googlecode.owasp-java-html-sanitizer</groupId>
 			<artifactId>owasp-java-html-sanitizer</artifactId>
-			<version>20160827.1</version>
+			<version>${owasp-java-html-sanitizer.version}</version>
 		</dependency>
 
 		<!-- google guava -->
 		<dependency>
 		    <groupId>org.codehaus.mojo</groupId>
 		    <artifactId>animal-sniffer-annotations</artifactId>
-		    <version>1.15</version>
+		    <version>${animal-sniffer-annotations.version}</version>
 		</dependency>
 		<dependency>
 		    <groupId>com.google.guava</groupId>
 		    <artifactId>guava</artifactId>
-		    <version>19.0</version>
+		    <version>${guava.version}</version>
 		</dependency>
 
 		<!-- redis -->
@@ -81,41 +81,41 @@
 		<dependency>
 			<groupId>com.github.axet</groupId>
 			<artifactId>kaptcha</artifactId>
-			<version>0.0.9</version>
+			<version>${kaptcha.version}</version>
 		</dependency>
 
 		<!-- httpclient -->
 		<dependency>
 			<groupId>org.apache.httpcomponents</groupId>
 			<artifactId>httpclient</artifactId>
-			<version>4.5.2</version>
+			<version>${httpclient.version}</version>
 		</dependency>
 
 		<!-- pinyin4j -->
 		<dependency>
 			<groupId>com.belerweb</groupId>
 			<artifactId>pinyin4j</artifactId>
-			<version>2.5.1</version>
-		</dependency>
-
-		<!-- velocity -->
-		<dependency>
-			<groupId>org.apache.velocity</groupId>
-			<artifactId>velocity</artifactId>
-			<version>1.7</version>
+			<version>${pinyin4j.version}</version>
 		</dependency>
 
 		<!-- mongo-driver -->
 		<dependency>
 		    <groupId>org.mongodb</groupId>
 		    <artifactId>mongo-java-driver</artifactId>
-		    <version>3.3.0</version>
+		    <version>${mongo-java-driver.version}</version>
+		</dependency>
+
+		<!-- velocity -->
+		<dependency>
+			<groupId>org.apache.velocity</groupId>
+			<artifactId>velocity</artifactId>
+			<version>${velocity.version}</version>
 		</dependency>
 
 		<dependency>
 			<groupId>org.apache.velocity</groupId>
 			<artifactId>velocity-tools</artifactId>
-			<version>2.0</version>
+			<version>${velocity-tools.version}</version>
 			<exclusions>
 				<exclusion>
 					<artifactId>struts-core</artifactId>
