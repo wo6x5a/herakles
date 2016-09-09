@@ -20,9 +20,8 @@
 	<import resource="classpath:db-mongo.spring.xml"/>
 	
 	<!-- dataSource -->
-	<!-- <bean id="dataSource" class="com.lcw.herakles.platform.system.security.database.DecryptDruidSource" init-method="init" destroy-method="close"> -->
-	<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource"
-		init-method="init" destroy-method="close">
+	<!--<bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource" init-method="init" destroy-method="close"> -->
+	 <bean id="dataSource" class="com.lcw.herakles.platform.system.security.database.DecryptDruidSource" init-method="init" destroy-method="close">
 		<!-- 数据库基本信息配置 -->
 		<!-- 可不写,会根据URL自动识别driver -->
 		<property name="driverClassName" value="${jdbc.driverClassName}" />

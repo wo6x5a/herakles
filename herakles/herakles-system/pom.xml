@@ -32,6 +32,13 @@
 			<artifactId>commons-email</artifactId>
 			<version>${commons-email.version}</version>
 		</dependency>
+
+		<!-- dataSource -->
+		<dependency>
+			<groupId>com.alibaba</groupId>
+			<artifactId>druid</artifactId>
+			<version>${druid.version}</version>
+		</dependency>
 	</dependencies>
 
 	<build>
