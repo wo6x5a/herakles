@@ -10,19 +10,19 @@
 
 	<property name="LOG_HOME" value="E:\\herakles\\log" />
 	<!--file 按日期和大小区分的滚动日志 -->
-	<appender name="file" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	<appender name="file_all" class="ch.qos.logback.core.rolling.RollingFileAppender">
 		<file>${LOG_HOME}/herakles.log</file>
 
 		<encoder>
 		    <pattern>%date %level [%thread] [user: %X{userName:-unknown}] %logger{55} - %msg%n</pattern>
 		</encoder>
-
+<!-- 
 		<filter class="ch.qos.logback.classic.filter.LevelFilter">
 			<level>DEBUG</level>
 			<onMatch>ACCEPT</onMatch>
 			<onMismatch>DENY</onMismatch>
 		</filter>
-
+ -->
 		<rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
 			<!-- rollover daily -->
 			<fileNamePattern>${LOG_HOME}/herakles.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
@@ -57,7 +57,7 @@
 
 	<root level="debug">
 		<appender-ref ref="console" />
-		<appender-ref ref="file" />
+		<appender-ref ref="file_all" />
 		<appender-ref ref="mongo" />
 	</root>
 </configuration>
