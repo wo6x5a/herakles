@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.druid.filter.config.ConfigTools;
 import com.alibaba.druid.pool.DruidDataSource;
+import com.lcw.herakles.platform.system.security.util.EndecryptUtils;
 
 /**
  * @author chenwulou
@@ -22,7 +23,7 @@ public class DecryptDruidSource extends DruidDataSource {
     @Override
     public void setUsername(String username) {
         try {
-            username = ConfigTools.decrypt(username);
+            username = EndecryptUtils.decryptAes(username, null);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
         }
@@ -32,7 +33,7 @@ public class DecryptDruidSource extends DruidDataSource {
     @Override
     public void setPassword(String password) {
         try {
-            password = ConfigTools.decrypt(password);
+            password = EndecryptUtils.decryptAes(password, null);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
         }
@@ -42,7 +43,7 @@ public class DecryptDruidSource extends DruidDataSource {
     @Override
     public void setUrl(String url) {
         try {
-            url = ConfigTools.decrypt(url);
+            url = EndecryptUtils.decryptAes(url, null);
         } catch (Exception e) {
             LOGGER.error(e.getMessage());
         }
