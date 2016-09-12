@@ -34,10 +34,10 @@ public class DateUtils {
         // Date nextDate = DateUtils.getDate("2015-09-10", "yyyy-MM-dd");
         // System.out.println(DateUtils.betweenDays(preDate, nextDate));
 
-//        String dateStr = "2015-07-11";
-//        String dateStr1 = "2015-06-12";
-//        System.out.println(DateUtils.getLastDateOfMonth(dateStr));
-//        System.out.println(dateStr1.compareTo(dateStr));
+        // String dateStr = "2015-07-11";
+        // String dateStr1 = "2015-06-12";
+        // System.out.println(DateUtils.getLastDateOfMonth(dateStr));
+        // System.out.println(dateStr1.compareTo(dateStr));
         System.out.println(DateUtils.formatDate(new Date(), DateUtils.YYYYMMDDHHMMSSSSS));
     }
 
