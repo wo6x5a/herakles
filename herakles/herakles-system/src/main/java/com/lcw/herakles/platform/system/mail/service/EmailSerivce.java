@@ -50,7 +50,7 @@ public class EmailSerivce {
 			email.setMsg(message);
 			email.send();
 		} catch (Exception e) {
-			LOGGER.error("failed to send simple email", e);
+			LOGGER.error("failed to send simple email, {}", e);
 			throw new BizServiceException(EErrorCode.COMM_ERROR_HINTS, "邮件发送失败");
 		}
 	}
@@ -78,7 +78,7 @@ public class EmailSerivce {
 			email.setTextMsg("Your email client does not support HTML messages");
 			email.send();
 		} catch (Exception e) {
-			LOGGER.error("failed to send html email", e);
+			LOGGER.error("failed to send html email, {}", e);
 			throw new BizServiceException(EErrorCode.COMM_ERROR_HINTS, "邮件发送失败");
 		}
 	}
@@ -99,7 +99,7 @@ public class EmailSerivce {
 		try {
 			email.setFrom(from);
 		} catch (EmailException e) {
-			LOGGER.error("failed to send html email", e);
+			LOGGER.error("failed to send html email, {}", e);
 			throw new BizServiceException(EErrorCode.COMM_ERROR_HINTS, "邮件发送失败");
 		}
 	}
