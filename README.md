@@ -9,7 +9,7 @@
 - 持久层框架：Spring data jpa 1.10.2.RELEASE
 - 数据库连接池：Alibaba Druid 1.0.25
 - 缓存框架：Redis
-- 日志管理：SLF4J,Logback
+- 日志管理：SLF4J + Logback + mongodb
 - 前端框架：Bootstrap + Jquary
 - 模板引擎：Velocity
 
