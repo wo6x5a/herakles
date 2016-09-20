@@ -9,9 +9,9 @@ import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-public class RedisCacheSessionDAO extends CachingSessionDAO {
+public class ShiroRedisCacheSessionDAO extends CachingSessionDAO {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(RedisCacheSessionDAO.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(ShiroRedisCacheSessionDAO.class);
 
     // 1000*60*30 = 30 min
     private long sessionTimeout = 0;
