@@ -4,6 +4,7 @@ import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.net.URLEncoder;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -52,8 +53,7 @@ public class FileTemplateController {
 
         LOGGER.debug("getFile start: ");
 
-        String recommendedName =
-                new String(showFileName.getBytes(ApplicationConstant.GB2312), "ISO8859-1");
+        String recommendedName = URLEncoder.encode(showFileName, ApplicationConstant.UTF_8);
 
         StringBuilder realFilePath = new StringBuilder();
         realFilePath.append(filePath);
@@ -67,7 +67,7 @@ public class FileTemplateController {
         header.append(suffixes);
 
         response = this.handleResponseContentType(response, suffixes);
-        response.setCharacterEncoding(ApplicationConstant.GB2312);
+        response.setCharacterEncoding(ApplicationConstant.UTF_8);
         response.setHeader("Content-Disposition", header.toString());
         response.resetBuffer();
 
