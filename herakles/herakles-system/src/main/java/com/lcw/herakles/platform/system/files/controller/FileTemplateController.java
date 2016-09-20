@@ -51,8 +51,6 @@ public class FileTemplateController {
             @RequestParam(value = "filePath") String filePath, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
 
-        LOGGER.debug("getFile start: ");
-
         String recommendedName = URLEncoder.encode(showFileName, ApplicationConstant.UTF_8);
 
         StringBuilder realFilePath = new StringBuilder();
@@ -96,7 +94,7 @@ public class FileTemplateController {
         } else if (StringUtils.equals(FileConsts.PDF, suffixes)) {
             response.setContentType("application/pdf");
         } else {
-            LOGGER.debug("out of file type : {}", suffixes);
+            LOGGER.info("out of file type : {}", suffixes);
             response.setContentType("application/octet-stream");
         }
         return response;
