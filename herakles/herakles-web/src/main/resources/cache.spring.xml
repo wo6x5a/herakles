@@ -11,6 +11,8 @@
 	<cache:annotation-driven cache-manager="cacheManager" />
 
 	<bean id="redisCacheManager" class="org.springframework.data.redis.cache.RedisCacheManager">
+		<!-- 缓存过期时间(毫秒) -->
+		<property name="defaultExpiration" value="${cache.expiration}" />
 		<constructor-arg ref="redisTemplate" />
 	</bean>
 
