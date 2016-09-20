@@ -11,6 +11,8 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.domain.Specification;
@@ -48,7 +50,7 @@ public class ConfigService {
 	private ConfigRepository configRepository;
 
 	@Transactional(readOnly = true)
-	public DataTablesResponseDto<ConfigDto> search(final CfgSearchDto searchDto, final List<ECfgType> cfgTypeList) {
+    public DataTablesResponseDto<ConfigDto> search(final CfgSearchDto searchDto, final List<ECfgType> cfgTypeList) {
 		Specification<ConfigPo> spec = new Specification<ConfigPo>() {
 			@Override
 			public Predicate toPredicate(Root<ConfigPo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
@@ -76,6 +78,7 @@ public class ConfigService {
 		return result;
 	}
 
+	@CacheEvict(value = "CONFIG_CACHE", key = "'CONFIG_' + #reqDto.key")
 	@Transactional
 	public void modify(CfgModReqDto reqDto) {
 		ConfigPo cfg = configRepository.findOne(reqDto.getKey());
@@ -92,4 +95,9 @@ public class ConfigService {
 		configRepository.save(cfg);
 	}
 
+	@Cacheable(value = "CONFIG_CACHE", key = "'CONFIG_' + #key")
+	@Transactional(readOnly = true)
+	public ConfigDto findByKey(String key){
+	    return ConverterService.convert(configRepository.findOne(key), ConfigDto.class) ;
+	}
 }
