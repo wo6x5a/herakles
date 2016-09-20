@@ -7,9 +7,9 @@ import com.lcw.herakles.platform.common.util.DBIntEnumSerializer;
 @JsonSerialize(using = DBIntEnumSerializer.class)
 public enum ECfgType implements DBIntEnum {
 
-	SYS(0, "系统参数"),
-	CFG(1, "配置参数"),
-	BIZ(2, "业务参数"),
+	SYS(1, "系统参数"),
+	CFG(2, "配置参数"),
+	BIZ(3, "业务参数"),
 	;
 	
 	ECfgType(Integer code, String text) {
