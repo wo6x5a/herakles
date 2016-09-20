@@ -7,6 +7,8 @@ import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -33,7 +35,7 @@ public class ProductService {
     @Autowired
     private ProductRepository productRepository;
 
-    // @Cacheable(value = "productCache", key = "'PROD_' + #id")
+    @Cacheable(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #id")
     @Transactional(readOnly = true)
     public ProductPo findProductById(String id) {
         return productRepository.findOne(id);
@@ -44,7 +46,7 @@ public class ProductService {
         return productRepository.findByName(name);
     }
 
-    // @CacheEvict(value = "productCache", key = "'PROD_' + #productDto.id")
+    @CacheEvict(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #productReqDto.id")
     @Transactional
     public ProductPo saveProduct(ProductReqDto productReqDto) {
         try {
@@ -63,7 +65,7 @@ public class ProductService {
 
     }
 
-    // @CacheEvict(value = "productCache", key = "'PROD_' + #id")
+    @CacheEvict(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #id")
     @Transactional
     public void deleteProduct(String id) {
         if (StringUtils.isBlank(id)) {
