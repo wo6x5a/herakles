@@ -11,7 +11,7 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -78,7 +78,7 @@ public class ConfigService {
 		return result;
 	}
 
-	@CacheEvict(value = "CONFIG_CACHE", key = "'CONFIG_' + #reqDto.key")
+	@CachePut(value = "CONFIG_CACHE", key = "'CONFIG_' + #reqDto.key")
 	@Transactional
 	public void modify(CfgModReqDto reqDto) {
 		ConfigPo cfg = configRepository.findOne(reqDto.getKey());
