@@ -1,5 +1,7 @@
 package com.lcw.herakles.platform.demo.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
@@ -179,7 +181,11 @@ public class ProductController extends BaseController {
     public ModelAndView printApplicationForm() {
         ModelAndView model = new ModelAndView(FileTemplateConsts.REDIRECT);
         model.addObject("fileName", FileTemplateConsts.TEST_TEMP);
-        model.addObject("showFileName", FileTemplateConsts.TEST_TEMP_NAME);
+        try {
+            model.addObject("showFileName", URLEncoder.encode(FileTemplateConsts.TEST_TEMP_NAME, ApplicationConstant.UTF_8));
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         model.addObject("suffixes", FileConsts.DOC);
         model.addObject("filePath", FileTemplateConsts.WORD_PATH);
         return model;
