@@ -1,5 +1,9 @@
 package com.lcw.herakles.platform.demo.controller;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import java.util.Calendar;
@@ -37,6 +41,7 @@ import com.lcw.herakles.platform.common.enums.EnumOption;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.common.util.DateUtils;
 import com.lcw.herakles.platform.common.util.EnumHelper;
+import com.lcw.herakles.platform.common.util.ftp.FtpUtil;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
 import com.lcw.herakles.platform.demo.dto.ProductDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
@@ -75,6 +80,19 @@ public class ProductController extends BaseController {
     @Autowired
     private ProductInfoExcelExportService productInfoExcelExportService;
 
+    @RequestMapping(value = "ftp-test", method = RequestMethod.GET)
+    public String ftpTest(){
+        File file = new File("D:\\aaaa.png");
+        InputStream in = null;
+        try {
+            in = new FileInputStream(file);
+        } catch (FileNotFoundException e) {
+            e.printStackTrace();
+        }
+        FtpUtil.upload("aaaaaa.png", in , "test","/test1");
+        return "product/test";
+    }
+    
     /**
      * 异步调用测试
      * 
