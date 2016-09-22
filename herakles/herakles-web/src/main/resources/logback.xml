@@ -59,6 +59,8 @@
 	<root level="debug">
 		<appender-ref ref="console" />
 		<appender-ref ref="file_all" />
+		<!-- 
 		<appender-ref ref="mongo" />
+		 -->
 	</root>
 </configuration>
