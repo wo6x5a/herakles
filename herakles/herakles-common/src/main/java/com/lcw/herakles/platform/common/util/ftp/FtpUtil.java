@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.common.util.ftp.pool;
+package com.lcw.herakles.platform.common.util.ftp;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -8,6 +8,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
+import com.lcw.herakles.platform.common.util.ftp.pool.FtpClientPoolFactory;
 
 /**
  * Class Name: FtpUtil
