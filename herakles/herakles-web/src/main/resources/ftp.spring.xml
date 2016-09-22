@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- ftp配置 -->
+	<bean id="ftpInfo" class="cn.dolphinsoft.hilife.common.pool.ftpPool.FtpInfo">
+		<property name="ftpHost" value="${ftp.server.ip}" />
+		<property name="ftpUserName" value="${ftp.server.userName}" />
+		<property name="ftpPassword" value="${ftp.server.userPwd}" />
+		<property name="ftpPort" value="${ftp.server.port}" />
+	</bean>
+
+	<!-- ftp线程池工厂 -->
+	<bean id="ftpClientPoolFactory" class="com.lcw.herakles.platform.common.util.ftp.pool.FtpClientPoolFactory">
+		<constructor-arg>
+			<bean class="com.lcw.herakles.platform.common.util.ftp.pool.FtpClientFactory">
+				<property name="ftpInfo" ref="ftpInfo" />
+			</bean>
+		</constructor-arg>
+		<constructor-arg>
+			<bean class="org.apache.commons.pool2.impl.GenericObjectPoolConfig">
+				<!-- 最多连接数 -->
+				<property name="maxTotal" value="20" />
+				<!-- 最多空闲连接数 -->
+				<property name="maxIdle" value="15" />
+				<!-- 空闲连接检测周期（毫秒） -->
+				<property name="timeBetweenEvictionRunsMillis" value="300000" />
+				<!-- 空闲连接多久后会被移除 （毫秒） -->
+				<property name="minEvictableIdleTimeMillis" value="500000" />
+				<!-- 线程池空时是否阻塞 -->
+				<property name="blockWhenExhausted" value="true" />
+				<!-- 阻塞等待时间 （毫秒） -->
+				<property name="maxWaitMillis" value="5000" />
+				<!-- 从池中取出连接时是否验证有效性 -->
+				<property name="testOnBorrow" value="true" />
+			</bean>
+		</constructor-arg>
+	</bean>
+
+</beans>

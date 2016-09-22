@@ -22,6 +22,7 @@
     <import resource="classpath:monitor.spring.xml"/>
     <import resource="classpath:cache.spring.xml"/>
 	<import resource="classpath:mail.spring.xml"/>
+	<import resource="classpath:ftp.spring.xml" />
 
 	<!-- 扫描除controller外的  -->
 	<context:component-scan base-package="com.lcw.herakles.platform">
