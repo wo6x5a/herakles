@@ -95,7 +95,6 @@ public class ExcelUtil {
 	@SuppressWarnings("resource")
 	public static List<Object[]> readExcel(InputStream input, String fileName, int cellsize) {
 		List<Object[]> result = Lists.newArrayList();
-		boolean cellTypeBlank = false;// 判断EXCEL是否是空行
 		try {
 			if (null == input) {
 				ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, "输入流不能为空");
@@ -125,7 +124,7 @@ public class ExcelUtil {
 						switch (cell.getCellType()) { // 根据cell中的类型来输出数据
 						case HSSFCell.CELL_TYPE_NUMERIC:
 							String str = String.valueOf(cell.getNumericCellValue());
-							str = str.substring(0, str.indexOf('.'));
+//							str = str.substring(0, str.indexOf('.'));
 							cellObj[cell.getColumnIndex()] = str;
 							break;
 						case HSSFCell.CELL_TYPE_STRING:
@@ -138,16 +137,15 @@ public class ExcelUtil {
 							cellObj[cell.getColumnIndex()] = cell.getCellFormula();
 							break;
 						case HSSFCell.CELL_TYPE_BLANK:
-							cellTypeBlank = true;
 							break;
 						default:
 							break;
 						}
 					}
-					if (!cellTypeBlank) {
-						result.add(cellObj);
-						cellTypeBlank = false;
-					}
+                    /** 如果某一行第一(项)列为空,则认为该行数据无效() **/
+                    if (null != cellObj[0]) {
+                        result.add(cellObj);
+                    }
 				}
 			}
 		} catch (IOException e) {
