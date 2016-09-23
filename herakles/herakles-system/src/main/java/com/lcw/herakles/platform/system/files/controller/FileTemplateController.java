@@ -52,7 +52,6 @@ public class FileTemplateController {
 
         StringBuilder realFilePath = new StringBuilder();
         realFilePath.append(filePath);
-        // realFilePath.append(File.separator);
         realFilePath.append(fileName);
         realFilePath.append(suffixes);
 
