@@ -1,5 +1,6 @@
 package com.lcw.herakles.platform.common.util.ftp;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
@@ -15,6 +16,7 @@ import com.lcw.herakles.platform.common.util.ftp.pool.FtpClientPoolFactory;
  * 
  * Description: ftp工具类
  * 
+ * @author chenwulou
  *
  */
 public class FtpUtil {
@@ -24,37 +26,54 @@ public class FtpUtil {
     /**
      * Description: 上传文件
      *
-     * @param fileName
+     * @param fileName 文件名
      * @param input
-     * @param image
-     * @param imagePath
+     * @param filePath ftp相对目录
      */
-    public static void upload(String fileName, InputStream input, String image, String imagePath) {
+    public static String upload(String fileName, InputStream input, String filePath) {
+        StringBuilder resp = new StringBuilder("");
         FtpClientPoolFactory pool = ApplicationContextUtil.getBean(FtpClientPoolFactory.class);
         FTPClient ftpClient = pool.getConnection();
         try {
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
-            changeWorkingDirectory(ftpClient, image + imagePath);
+            changeWorkingDirectory(ftpClient, filePath);
             ftpClient.storeFile(fileName, input);
         } catch (Exception e) {
             LOGGER.error("文件上传失败", e);
         } finally {
             pool.releaseConnection(ftpClient);
         }
+
+        resp.append(filePath);
+//        resp.append(File.separator);
+        resp.append(fileName);
+        return resp.toString();
+    }
+
+    /**
+     * Description: 删除文件
+     * 
+     * @param filePath : product/pic/111.png
+     */
+    public static void delete(String filePath) {
+        File file = new File(filePath);
+        String remotePath = file.getParent();
+        String fileName = file.getName();
+
+        delete(fileName, remotePath);
     }
 
     /**
      * Description: 删除文件
      *
      * @param fileName
-     * @param image
-     * @param imagePath
+     * @param filePath
      */
-    public static void delete(String fileName, String image, String imagePath) {
+    public static void delete(String fileName, String filePath) {
         FtpClientPoolFactory pool = ApplicationContextUtil.getBean(FtpClientPoolFactory.class);
         FTPClient ftpClient = pool.getConnection();
         try {
-            changeWorkingDirectory(ftpClient, image + imagePath);
+            changeWorkingDirectory(ftpClient, filePath);
             ftpClient.deleteFile(fileName);
         } catch (Exception e) {
             LOGGER.error("文件删除失败", e);
@@ -89,5 +108,31 @@ public class FtpUtil {
             LOGGER.error("调转到目标目录失败", e);
         }
         LOGGER.debug("调转到目标目录");
+    }
+
+    /**
+     * 重命名文件
+     * 
+     * @param fileName
+     * @return 保存到FTP服务器的文件名称
+     */
+    public static String rename(String fileName) {
+        StringBuilder resp = new StringBuilder();
+        long newName = System.currentTimeMillis();
+        newName = newName + Long.valueOf((long) (Math.random() * 10000));
+        resp.append(newName);
+        resp.append(".");
+        resp.append(suffix(fileName));
+        return resp.toString();
+    }
+
+    /**
+     * 获取文件后缀名
+     * 
+     * @param fileName
+     * @return
+     */
+    private static String suffix(String fileName) {
+        return fileName.substring(fileName.indexOf(".") + 1);
     }
 }

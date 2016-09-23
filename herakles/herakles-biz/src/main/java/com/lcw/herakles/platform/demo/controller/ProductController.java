@@ -54,6 +54,7 @@ import com.lcw.herakles.platform.demo.service.ProductQueryService;
 import com.lcw.herakles.platform.demo.service.ProductService;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
 import com.lcw.herakles.platform.system.files.consts.FileTemplateConsts;
+import com.lcw.herakles.platform.system.files.consts.FtpFileConsts;
 import com.lcw.herakles.platform.system.mail.service.EmailSerivce;
 import com.lcw.herakles.platform.system.security.SecurityContext;
 
@@ -81,18 +82,22 @@ public class ProductController extends BaseController {
     private ProductInfoExcelExportService productInfoExcelExportService;
 
     @RequestMapping(value = "ftp-test", method = RequestMethod.GET)
-    public String ftpTest(){
-        File file = new File("D:\\aaaa.png");
+    public String ftpTest() {
+        File file = new File("D:/test.png");
+        StringBuilder filePath = new StringBuilder("");
+        filePath.append(FtpFileConsts.TP_PIC);
+        filePath.append(FtpFileConsts.PG_PRODUCT);
         InputStream in = null;
         try {
             in = new FileInputStream(file);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        FtpUtil.upload("aaaaaa.png", in , "test","/test1");
+        @SuppressWarnings("unused")
+        String resp = FtpUtil.upload(FtpUtil.rename(file.getName()), in, filePath.toString());
         return "product/test";
     }
-    
+
     /**
      * 异步调用测试
      * 
@@ -101,7 +106,7 @@ public class ProductController extends BaseController {
     @ResponseBody
     @RequestMapping(value = "longtimetask1", method = RequestMethod.GET)
     public WebAsyncTask<String> longTimeTask1() {
-        System.out.println("/longtimetask1 被调用 thread id : " + Thread.currentThread().getId());
+        System.out.println("longtimetask1 被调用 thread id : " + Thread.currentThread().getId());
         Callable<String> callable = new Callable<String>() {
             @Override
             public String call() throws Exception {
@@ -117,7 +122,7 @@ public class ProductController extends BaseController {
     @RequestMapping("longtimetask2")
     public Callable<String> longtimetask2(
             final @RequestParam(required = false, defaultValue = "true") boolean handled) {
-        System.out.println("/longtimetask2 被调用 thread id : " + Thread.currentThread().getId());
+        System.out.println("longtimetask2 被调用 thread id : " + Thread.currentThread().getId());
         // 进行一些与处理之后，把最耗时的业务逻辑部分放到Callable中，注意，如果你需要在new
         // Callable中用到从页面传入的参数，需要在参数前加入final
         return new Callable<String>() {
@@ -137,7 +142,7 @@ public class ProductController extends BaseController {
     @RequestMapping("/longtimetask3")
     @ResponseBody
     public DeferredResult<String> longtimetask3() {
-        System.out.println("/longtimetask3 被调用 thread id : " + Thread.currentThread().getId());
+        System.out.println("longtimetask3 被调用 thread id : " + Thread.currentThread().getId());
         DeferredResult<String> deferredResult = new DeferredResult<String>();
         // try {
         // Thread.sleep(2000);
