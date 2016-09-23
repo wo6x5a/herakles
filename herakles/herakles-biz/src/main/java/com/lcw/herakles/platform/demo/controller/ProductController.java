@@ -42,6 +42,7 @@ import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.common.util.DateUtils;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.ftp.FtpUtil;
+import com.lcw.herakles.platform.common.util.http.HttpClientUtil;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
 import com.lcw.herakles.platform.demo.dto.ProductDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
@@ -80,6 +81,16 @@ public class ProductController extends BaseController {
     private ProductQueryService productQueryService;
     @Autowired
     private ProductInfoExcelExportService productInfoExcelExportService;
+    
+
+    @RequestMapping(value = "http-client-test", method = RequestMethod.GET)
+    public String httpClientTest(){
+        String url = "http://127.0.0.1:8081/herakles-web/web/product/delete";
+        Map<String, String> params = new HashMap<String, String>();
+        params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
+        HttpClientUtil.getInstance().post(url, params);
+        return "product/test";
+    }
 
     @RequestMapping(value = "ftp-test", method = RequestMethod.GET)
     public String ftpTest() {

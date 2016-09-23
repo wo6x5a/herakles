@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.common.util;
+package com.lcw.herakles.platform.common.util.http;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -13,7 +13,6 @@ import org.apache.http.client.methods.CloseableHttpResponse;
 import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
-import org.apache.http.impl.client.HttpClients;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
 import org.slf4j.Logger;
@@ -21,6 +20,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.util.http.pool.HttpClientPoolConnectionManager;
 
 /**
  * HTTP client util
@@ -39,19 +39,21 @@ public class HttpClientUtil {
     }
 
     public static void main(String[] args) {
-        String url = "http://localhost:8080/herakles-web/web/system/file/form/template/write";
+        String url = "http://127.0.0.1:8081/herakles-web/web/product/delete";
         Map<String, String> params = new HashMap<String, String>();
-        params.put("name", "的撒打算打算");
-        params.put("value", "打算打算是滴是滴打");
+        params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
         HttpClientUtil.getInstance().post(url, params);
     }
 
     /**
-     * 发送 post请求.
+     * 发送 post请求
+     * @param url
+     * @param params
+     * @return
      */
     public String post(String url, Map<String, String> params) {
         String result = null;
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpClient httpclient = HttpClientPoolConnectionManager.getInstance().getHttpClient();
         HttpPost httppost = new HttpPost(url);
         List<NameValuePair> formparams = Lists.newArrayList();
         CloseableHttpResponse response = null;
@@ -72,40 +74,56 @@ public class HttpClientUtil {
             }
 
         } catch (IOException e) {
+            httppost.abort();
             LOGGER.error("HttpClientUtil.post,{}", e);
         } finally {
-            try {
-                response.close();
-                httpclient.close();
-            } catch (IOException e) {
-                LOGGER.error("HttpClientUtil.post,{}", e);
+            if (response != null) {
+                try {
+                    response.close();
+                    // httpclient.close();
+                } catch (IOException e) {
+                    httppost.abort();
+                    LOGGER.error("HttpClientUtil.post,{}", e);
+                }
             }
+            httppost.releaseConnection();
         }
         return result;
     }
 
-    public static String get(String url, Map<String, String> map) {
+    /**
+     * 发送 get请求
+     * 
+     * @param url
+     * @param map
+     * @return
+     */
+    public static String get(String url) {
         String result = null;
-        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpClient httpclient = HttpClientPoolConnectionManager.getInstance().getHttpClient();
         CloseableHttpResponse response = null;
+        HttpGet httpGet = new HttpGet(url);
         try {
-            HttpGet httpGet = new HttpGet(url);
             response = httpclient.execute(httpGet);
-
             HttpEntity entity = response.getEntity();
             if (entity != null) {
                 result = EntityUtils.toString(entity, ApplicationConstant.UTF_8);
                 EntityUtils.consume(entity);
             }
         } catch (IOException e) {
+            httpGet.abort();
             LOGGER.error("HttpClientUtil.get,{}", e);
         } finally {
-            try {
-                response.close();
-                httpclient.close();
-            } catch (IOException e) {
-                LOGGER.error("HttpClientUtil.get,{}", e);
+            if (response != null) {
+                try {
+                    response.close();
+                    // httpclient.close();
+                } catch (IOException e) {
+                    httpGet.abort();
+                    LOGGER.error("HttpClientUtil.get,{}", e);
+                }
             }
+            httpGet.releaseConnection();
         }
         return result;
     }
