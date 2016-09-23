@@ -32,17 +32,11 @@ public class HttpClientUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientUtil.class);
 
-    private final static HttpClientUtil instance = new HttpClientUtil();
-
-    public static HttpClientUtil getInstance() {
-        return instance;
-    }
-
     public static void main(String[] args) {
         String url = "http://127.0.0.1:8081/herakles-web/web/product/delete";
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
-        HttpClientUtil.getInstance().post(url, params);
+        HttpClientUtil.post(url, params);
     }
 
     /**
@@ -51,7 +45,7 @@ public class HttpClientUtil {
      * @param params
      * @return
      */
-    public String post(String url, Map<String, String> params) {
+    public static String post(String url, Map<String, String> params) {
         String result = null;
         CloseableHttpClient httpclient = HttpClientPoolConnectionManager.getInstance().getHttpClient();
         HttpPost httppost = new HttpPost(url);

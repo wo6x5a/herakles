@@ -88,7 +88,7 @@ public class ProductController extends BaseController {
         String url = "http://127.0.0.1:8081/herakles-web/web/product/delete";
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
-        HttpClientUtil.getInstance().post(url, params);
+        HttpClientUtil.post(url, params);
         return "product/test";
     }
 
