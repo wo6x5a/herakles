@@ -3,6 +3,7 @@ package com.lcw.herakles.platform.demo.controller;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -26,6 +27,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.context.request.async.DeferredResult;
 import org.springframework.web.context.request.async.WebAsyncTask;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
@@ -90,6 +92,21 @@ public class ProductController extends BaseController {
         params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
         HttpClientUtil.post(url, params);
         return "product/test";
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/upload-image", method = RequestMethod.POST)
+    public ResultDto uploadImage(@RequestParam MultipartFile file) {
+        String resp = null;
+        StringBuilder filePath = new StringBuilder("");
+        filePath.append(FtpFileConsts.TP_PIC);
+        filePath.append(FtpFileConsts.PG_PRODUCT);
+        try {
+            resp = FtpUtil.upload(FtpUtil.rename(file.getName()), file.getInputStream(), filePath.toString());
+        } catch (IOException e) {
+            ResultDtoFactory.toNack(e.getMessage());
+        }
+        return ResultDtoFactory.toAck("上传成功", resp);
     }
 
     @RequestMapping(value = "ftp-test", method = RequestMethod.GET)
