@@ -20,7 +20,7 @@ public final class ApplicationConstant {
 
 	public static final String MANUAL_VALIDATE = "manualValidate";
 
-	// Log discriminator
+	/** Log discriminator **/
 	public static final String LOG_USER_NAME = "userName";
 	public static final String LOG_SESSION_ID = "sessionId";
 
