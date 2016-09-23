@@ -10,6 +10,7 @@ import org.apache.http.HttpEntity;
 import org.apache.http.NameValuePair;
 import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.CloseableHttpResponse;
+import org.apache.http.client.methods.HttpGet;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClients;
@@ -49,36 +50,64 @@ public class HttpClientUtil {
      * 发送 post请求.
      */
     public String post(String url, Map<String, String> params) {
+        String result = null;
         CloseableHttpClient httpclient = HttpClients.createDefault();
         HttpPost httppost = new HttpPost(url);
         List<NameValuePair> formparams = Lists.newArrayList();
+        CloseableHttpResponse response = null;
 
         Set<String> keySet = params.keySet();
         for (String key : keySet) {
             formparams.add(new BasicNameValuePair(key, params.get(key)));
         }
         try {
-            UrlEncodedFormEntity uefEntity =
-                    new UrlEncodedFormEntity(formparams, ApplicationConstant.UTF_8);
+            UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(formparams, ApplicationConstant.UTF_8);
             httppost.setEntity(uefEntity);
-            CloseableHttpResponse response = httpclient.execute(httppost);
+            response = httpclient.execute(httppost);
 
             HttpEntity entity = response.getEntity();
             if (entity != null) {
-                return EntityUtils.toString(entity, ApplicationConstant.UTF_8);
+                result = EntityUtils.toString(entity, ApplicationConstant.UTF_8);
+                EntityUtils.consume(entity);
             }
-            response.close();
 
         } catch (IOException e) {
             LOGGER.error("HttpClientUtil.post,{}", e);
         } finally {
             try {
+                response.close();
                 httpclient.close();
             } catch (IOException e) {
                 LOGGER.error("HttpClientUtil.post,{}", e);
             }
         }
-        return null;
+        return result;
+    }
+
+    public static String get(String url, Map<String, String> map) {
+        String result = null;
+        CloseableHttpClient httpclient = HttpClients.createDefault();
+        CloseableHttpResponse response = null;
+        try {
+            HttpGet httpGet = new HttpGet(url);
+            response = httpclient.execute(httpGet);
+
+            HttpEntity entity = response.getEntity();
+            if (entity != null) {
+                result = EntityUtils.toString(entity, ApplicationConstant.UTF_8);
+                EntityUtils.consume(entity);
+            }
+        } catch (IOException e) {
+            LOGGER.error("HttpClientUtil.get,{}", e);
+        } finally {
+            try {
+                response.close();
+                httpclient.close();
+            } catch (IOException e) {
+                LOGGER.error("HttpClientUtil.get,{}", e);
+            }
+        }
+        return result;
     }
 
 }
