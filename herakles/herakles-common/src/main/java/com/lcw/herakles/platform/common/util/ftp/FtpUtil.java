@@ -122,7 +122,7 @@ public class FtpUtil {
         newName = newName + Long.valueOf((long) (Math.random() * 10000));
         resp.append(newName);
         resp.append(".");
-        resp.append(suffix(fileName));
+        resp.append(suffix(fileName).toLowerCase());
         return resp.toString();
     }
 
