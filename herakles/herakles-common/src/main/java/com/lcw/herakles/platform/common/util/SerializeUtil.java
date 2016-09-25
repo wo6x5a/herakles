@@ -13,6 +13,10 @@ public class SerializeUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(SerializeUtil.class);
 
+    private SerializeUtil() {
+
+    }
+
     /**
      * 对象序列化
      * 

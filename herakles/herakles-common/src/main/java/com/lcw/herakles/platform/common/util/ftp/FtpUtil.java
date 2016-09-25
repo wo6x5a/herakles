@@ -24,6 +24,11 @@ public class FtpUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(FtpUtil.class);
 
+    private FtpUtil() {
+
+    }
+
+
     /**
      * Description: 上传文件
      *

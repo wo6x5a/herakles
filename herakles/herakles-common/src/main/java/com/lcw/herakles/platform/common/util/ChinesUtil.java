@@ -24,10 +24,8 @@ public class ChinesUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ChinesUtil.class);
 
-    private final static ChinesUtil instance = new ChinesUtil();
+    private ChinesUtil() {
 
-    public static ChinesUtil getInstance() {
-        return instance;
     }
 
     public static void main(String[] args) {
@@ -36,26 +34,26 @@ public class ChinesUtil {
                 "！￥……（）——：；“”‘’《》，。？、", "不要啊", "やめて", "韩佳人", "???"};
         for (String str : strArr) {
             System.out.println("===========> 测试字符串：" + str);
-            System.out.println("正则判断结果：" + ChinesUtil.getInstance().isChineseByREG(str) + " -- "
-                    + ChinesUtil.getInstance().isChineseByName(str));
-            System.out.println("Unicode判断结果 ：" + ChinesUtil.getInstance().isChinese(str));
+            System.out.println("正则判断结果：" + ChinesUtil.isChineseByREG(str) + " -- "
+                    + ChinesUtil.isChineseByName(str));
+            System.out.println("Unicode判断结果 ：" + ChinesUtil.isChinese(str));
             System.out.println("详细判断列表：");
         }
 
         System.out.println("===========");
         String input = "234判234断一的fg456个字符rer串d23213fg中有de多少g45fhh个中文324";
-        System.out.println(ChinesUtil.getInstance().ChineseLength(input));
+        System.out.println(ChinesUtil.ChineseLength(input));
 
 
         System.out.println("===========");
         String input0 = "234判234断一的fg456个字符rer串d23213fg中有de多少g45fhh个中文324";
         String input1 = "Process finished with exit code 0";
-        System.out.println(ChinesUtil.getInstance().isChinese(input0));
-        System.out.println(ChinesUtil.getInstance().isChinese(input1));
+        System.out.println(ChinesUtil.isChinese(input0));
+        System.out.println(ChinesUtil.isChinese(input1));
 
         System.out.println("===========");
         String str2 = "涓枃鐨勫瓧绗︿覆,缂栫爜缁撴灉浼氬簲椤圭洰鐨勭紪璇戝拰JVM鐨勮繍琛岀幆澧冧笉鐥涙湁鎵�奖鍝�";
-        System.out.println(ChinesUtil.getInstance().isMessyCode(str2));
+        System.out.println(ChinesUtil.isMessyCode(str2));
     }
 
     /**
@@ -64,7 +62,7 @@ public class ChinesUtil {
      * @param inputString
      * @return
      */
-    public String getPingYin(String inputString) {
+    public static String getPingYin(String inputString) {
         HanyuPinyinOutputFormat format = new HanyuPinyinOutputFormat();
         format.setCaseType(HanyuPinyinCaseType.LOWERCASE);
         format.setToneType(HanyuPinyinToneType.WITHOUT_TONE);
@@ -93,7 +91,7 @@ public class ChinesUtil {
      * @param chinese 汉字串
      * @return 汉语拼音首字母
      */
-    public String getFirstSpell(String chinese) {
+    public static String getFirstSpell(String chinese) {
         StringBuffer pybf = new StringBuffer();
         char[] arr = chinese.toCharArray();
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
@@ -122,7 +120,7 @@ public class ChinesUtil {
      * @param chinese 汉字串
      * @return 汉语拼音
      */
-    public String getFullSpell(String chinese) {
+    public static String getFullSpell(String chinese) {
         StringBuffer pybf = new StringBuffer();
         char[] arr = chinese.toCharArray();
         HanyuPinyinOutputFormat defaultFormat = new HanyuPinyinOutputFormat();
@@ -148,7 +146,7 @@ public class ChinesUtil {
      * @param str
      * @return
      */
-    public boolean isChineseByREG(String str) {
+    public static boolean isChineseByREG(String str) {
         if (str == null) {
             return false;
         }
@@ -162,7 +160,7 @@ public class ChinesUtil {
      * @param str
      * @return
      */
-    public boolean isChineseByName(String str) {
+    public static boolean isChineseByName(String str) {
         if (str == null) {
             return false;
         }
@@ -180,7 +178,7 @@ public class ChinesUtil {
      * @param strName
      * @return
      */
-    public boolean isChinese(String strName) {
+    public static boolean isChinese(String strName) {
         char[] ch = strName.toCharArray();
         for (int i = 0; i < ch.length; i++) {
             char c = ch[i];
@@ -197,7 +195,7 @@ public class ChinesUtil {
      * @param c
      * @return
      */
-    public boolean isChinese(char c) {
+    public static boolean isChinese(char c) {
         Character.UnicodeBlock ub = Character.UnicodeBlock.of(c);
         if (ub == Character.UnicodeBlock.CJK_UNIFIED_IDEOGRAPHS
                 || ub == Character.UnicodeBlock.CJK_COMPATIBILITY_IDEOGRAPHS
@@ -213,7 +211,7 @@ public class ChinesUtil {
     /**
      * 获取一个字符串中中文字符的个数
      */
-    public int ChineseLength(String str) {
+    public static int ChineseLength(String str) {
         Pattern p = Pattern.compile("[\u4E00-\u9FA5]+");
         Matcher m = p.matcher(str);
         int i = 0;
@@ -230,7 +228,7 @@ public class ChinesUtil {
      * @param strName
      * @return
      */
-    public boolean isMessyCode(String strName) {
+    public static boolean isMessyCode(String strName) {
         Pattern p = Pattern.compile("\\s*|\t*|\r*|\n*");
         Matcher m = p.matcher(strName);
         String after = m.replaceAll("");
@@ -241,7 +239,7 @@ public class ChinesUtil {
         for (int i = 0; i < ch.length; i++) {
             char c = ch[i];
             if (!Character.isLetterOrDigit(c)) {
-                if (!ChinesUtil.getInstance().isChinese(c)) {
+                if (!ChinesUtil.isChinese(c)) {
                     count = count + 1;
                 }
                 chLength++;

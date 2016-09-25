@@ -32,6 +32,11 @@ public class HttpClientUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientUtil.class);
 
+    private HttpClientUtil() {
+
+    }
+
+
     public static void main(String[] args) {
         String url = "http://127.0.0.1:8081/herakles-web/web/product/delete";
         Map<String, String> params = new HashMap<String, String>();

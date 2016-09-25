@@ -28,9 +28,11 @@ public final class EnumHelper implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = -3433879717700256250L;
+
+    private static final Logger LOGGER = LoggerFactory.getLogger(EnumHelper.class);
+	
 	private static final String GET_CODE_METHOD = "getCode";
     private static final String GET_LABEL_METHOD = "getText";
-	private static final Logger LOGGER = LoggerFactory.getLogger(EnumHelper.class);
 
 	private EnumHelper() {
 

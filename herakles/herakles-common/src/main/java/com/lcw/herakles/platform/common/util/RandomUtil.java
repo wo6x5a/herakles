@@ -13,6 +13,10 @@ public class RandomUtil {
     private final static String _ALPHABETS = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ";
     private final static String _NUMBER = "0123456789";
 
+    private RandomUtil() {
+
+    }
+
     /**
      * 随机数字
      * 

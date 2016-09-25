@@ -5,7 +5,10 @@ package com.lcw.herakles.platform.common.util;
  *
  */
 public final class NumberUtil {
-    private NumberUtil() {}
+
+    private NumberUtil() {
+
+    }
 
     public static String toRMB(double money) {
         if (money > 9999999999999.99 || money < -9999999999999.99) {

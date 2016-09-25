@@ -15,6 +15,9 @@ public final class ApplicationContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
 
+    private ApplicationContextUtil() {
+
+    }
     
     /**
     * Description: get a bean from Spring context by type

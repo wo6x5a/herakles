@@ -34,6 +34,11 @@ public class ExcelUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
 
+    private ExcelUtil() {
+
+    }
+
+
 	/**
 	 * TODO 生成 xlsx 文件
 	 * 

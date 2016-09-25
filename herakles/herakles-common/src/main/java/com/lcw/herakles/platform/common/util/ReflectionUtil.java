@@ -20,6 +20,10 @@ public final class ReflectionUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionUtil.class);
 
+    private ReflectionUtil() {
+
+    }
+
 	public static Method getGetter(Class<?> clazz, Field field) {
 		String filedName = field.getName();
 		String firstLetter = filedName.substring(0, 1).toUpperCase();

@@ -14,6 +14,10 @@ import com.lcw.herakles.platform.common.exception.BizServiceException;
  */
 public class ErrorUtil {
 
+    private ErrorUtil() {
+
+    }
+
 	public static String getExceptionStack(Exception ex, int length) {
 		String errMsg = getExceptionStack(ex);
 		if(length > 0 && StringUtils.isNotBlank(errMsg)){

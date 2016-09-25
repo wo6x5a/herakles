@@ -16,6 +16,10 @@ public class SecurityUtil {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUtil.class);
 
+    private SecurityUtil() {
+
+    }
+
 	/**
 	 * MD5 加密
 	 * 

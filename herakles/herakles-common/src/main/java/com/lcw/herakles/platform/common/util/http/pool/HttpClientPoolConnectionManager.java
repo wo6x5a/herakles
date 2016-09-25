@@ -14,7 +14,7 @@ public class HttpClientPoolConnectionManager {
 
     private static final HttpClientPoolConnectionManager instance = new HttpClientPoolConnectionManager();
 
-    public static synchronized HttpClientPoolConnectionManager getInstance() {
+    public static HttpClientPoolConnectionManager getInstance() {
         return instance;
     }
 
