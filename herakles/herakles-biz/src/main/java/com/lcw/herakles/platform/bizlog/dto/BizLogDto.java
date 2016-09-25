@@ -1,69 +1,46 @@
 
-package com.lcw.herakles.platform.log.entity;
+package com.lcw.herakles.platform.bizlog.dto;
 
-import javax.persistence.Column;
-import javax.persistence.Convert;
-import javax.persistence.Entity;
-import javax.persistence.EntityListeners;
-import javax.persistence.Id;
-import javax.persistence.Table;
-
+import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.common.annotation.Comment;
-import com.lcw.herakles.platform.log.enums.EOptType;
-import com.lcw.herakles.platform.log.enums.converter.ELogOptTypeConverter;
-import com.lcw.herakles.platform.system.entity.BasePo;
-import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
+import com.lcw.herakles.platform.common.dto.BaseDto;
 
 /**
  * @author chenwulou
  *
  */
-@Entity
-@Table(name = "SYS_LOG")
-@EntityListeners(IdInjectionEntityListener.class)
-public class LogPo extends BasePo {
+public class BizLogDto extends BaseDto {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name = "ID")
 	@Comment("编号")
 	private String id;
 
-	@Column(name = "ENTITY")
 	@Comment("操作实体")
 	private String entity;
 
-	@Column(name = "ENTITY_ID")
 	@Comment("实体编号")
 	private String entityId;
 
-	@Column(name = "OPT_TYPE")
 	@Comment("操作类型")
-	@Convert(converter = ELogOptTypeConverter.class)
 	private EOptType optType;
 
-	@Column(name = "OPERATE")
 	@Comment("具体操作")
 	private String operate;
 
-	@Column(name = "OPT_IP")
 	@Comment("操作IP地址")
 	private String optIp;
 
-	@Column(name = "NEW_VALUE")
 	@Comment("新数据")
 	private String newVaule;
 
-	@Column(name = "OLD_VALUE")
 	@Comment("旧数据")
 	private String oldVaule;
 
 	@Comment("备注")
-	@Column(name = "COMMENT")
 	private String comment;
 
 	public String getId() {

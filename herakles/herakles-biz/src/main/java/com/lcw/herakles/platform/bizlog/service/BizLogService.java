@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.log.service;
+package com.lcw.herakles.platform.bizlog.service;
 
 import java.io.IOException;
 import java.util.List;
@@ -22,31 +22,31 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Function;
+import com.lcw.herakles.platform.bizlog.dto.BizLogDto;
+import com.lcw.herakles.platform.bizlog.dto.req.BizLogQueryDto;
+import com.lcw.herakles.platform.bizlog.entity.BizLogPo;
+import com.lcw.herakles.platform.bizlog.enums.EOptType;
+import com.lcw.herakles.platform.bizlog.reposipory.BizLogRepository;
 import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.paging.PaginationUtil;
 import com.lcw.herakles.platform.common.util.ReflectionUtil;
-import com.lcw.herakles.platform.log.dto.LogDto;
-import com.lcw.herakles.platform.log.dto.req.LogQueryDto;
-import com.lcw.herakles.platform.log.entity.LogPo;
-import com.lcw.herakles.platform.log.enums.EOptType;
-import com.lcw.herakles.platform.log.reposipory.LogRepository;
 
 /**
  * @author chenwulou
  *
  */
 @Service
-public class LogService {
+public class BizLogService {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(LogService.class);
+	private static final Logger LOGGER = LoggerFactory.getLogger(BizLogService.class);
 
 	@Autowired
-	private LogRepository logRepository;
+	private BizLogRepository bizLogRepository;
 
 	@Transactional(readOnly = true)
-	public LogDto getLog(String logId) {
-		return ConverterService.convert(logRepository.findOne(logId), LogDto.class);
+	public BizLogDto getLog(String logId) {
+		return ConverterService.convert(bizLogRepository.findOne(logId), BizLogDto.class);
 	}
 
 	@Transactional
@@ -54,23 +54,23 @@ public class LogService {
 			Object newObject, String comment) {
 		String oldValue = getVlaueByObj(oldObject);
 		String newVaule = getVlaueByObj(newObject);
-		LogPo logPo = new LogPo();
-		logPo.setEntity(entity.getSimpleName());
-		logPo.setOptType(optType);
-		logPo.setOperate(operate);
-		logPo.setOptIp(optIp);
-		logPo.setOldVaule(oldValue);
-		logPo.setNewVaule(newVaule);
-		logPo.setComment(comment);
-		logRepository.save(logPo);
+		BizLogPo bizLogPo = new BizLogPo();
+		bizLogPo.setEntity(entity.getSimpleName());
+		bizLogPo.setOptType(optType);
+		bizLogPo.setOperate(operate);
+		bizLogPo.setOptIp(optIp);
+		bizLogPo.setOldVaule(oldValue);
+		bizLogPo.setNewVaule(newVaule);
+		bizLogPo.setComment(comment);
+		bizLogRepository.save(bizLogPo);
 	}
 
 	@Transactional(readOnly = true)
-	public DataTablesResponseDto<LogDto> searchLog(final LogQueryDto queryDto) {
+	public DataTablesResponseDto<BizLogDto> searchLog(final BizLogQueryDto queryDto) {
 
-		Specification<LogPo> specification = new Specification<LogPo>() {
+		Specification<BizLogPo> specification = new Specification<BizLogPo>() {
 			@Override
-			public Predicate toPredicate(Root<LogPo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
+			public Predicate toPredicate(Root<BizLogPo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
 				Predicate predicate = cb.conjunction();
 				List<Expression<Boolean>> expressions = predicate.getExpressions();
 
@@ -91,11 +91,11 @@ public class LogService {
 			}
 		};
 		Pageable pageRequest = PaginationUtil.buildPageRequest(queryDto);
-		Page<LogPo> pos = logRepository.findAll(specification, pageRequest);
-		DataTablesResponseDto<LogDto> result = PaginationUtil.populateFromPage(pos, new Function<LogPo, LogDto>() {
+		Page<BizLogPo> pos = bizLogRepository.findAll(specification, pageRequest);
+		DataTablesResponseDto<BizLogDto> result = PaginationUtil.populateFromPage(pos, new Function<BizLogPo, BizLogDto>() {
 			@Override
-			public LogDto apply(LogPo po) {
-				LogDto dto = ConverterService.convert(po, LogDto.class);
+			public BizLogDto apply(BizLogPo po) {
+				BizLogDto dto = ConverterService.convert(po, BizLogDto.class);
 				return dto;
 			}
 		}, queryDto.getEcho());

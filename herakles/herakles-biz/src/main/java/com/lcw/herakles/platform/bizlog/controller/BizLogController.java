@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.log.controller;
+package com.lcw.herakles.platform.bizlog.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.lcw.herakles.platform.bizlog.dto.BizLogDto;
+import com.lcw.herakles.platform.bizlog.dto.req.BizLogQueryDto;
+import com.lcw.herakles.platform.bizlog.enums.EOptType;
+import com.lcw.herakles.platform.bizlog.service.BizLogService;
 import com.lcw.herakles.platform.common.controller.BaseController;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
-import com.lcw.herakles.platform.log.dto.LogDto;
-import com.lcw.herakles.platform.log.dto.req.LogQueryDto;
-import com.lcw.herakles.platform.log.enums.EOptType;
-import com.lcw.herakles.platform.log.service.LogService;
 
 /**
  * @author chenwulou
@@ -22,10 +22,10 @@ import com.lcw.herakles.platform.log.service.LogService;
  */
 @Controller
 @RequestMapping(value = "system/log")
-public class LogController extends BaseController {
+public class BizLogController extends BaseController {
 
 	@Autowired
-	private LogService logService;
+	private BizLogService bizLogService;
 
 	@RequestMapping(value = "view", method = RequestMethod.GET)
 	public String view(Model model) {
@@ -35,15 +35,15 @@ public class LogController extends BaseController {
 
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	@ResponseBody
-	public DataTablesResponseDto<LogDto> search(@RequestBody LogQueryDto request) {
-		DataTablesResponseDto<LogDto> resp = logService.searchLog(request);
+	public DataTablesResponseDto<BizLogDto> search(@RequestBody BizLogQueryDto request) {
+		DataTablesResponseDto<BizLogDto> resp = bizLogService.searchLog(request);
 		return resp;
 	}
 
 	@RequestMapping(value = "details")
 	@ResponseBody
-	public LogDto getDetails(@RequestParam(value = "logId") String logId) {
-		return logService.getLog(logId);
+	public BizLogDto getDetails(@RequestParam(value = "logId") String logId) {
+		return bizLogService.getLog(logId);
 	}
 
 }

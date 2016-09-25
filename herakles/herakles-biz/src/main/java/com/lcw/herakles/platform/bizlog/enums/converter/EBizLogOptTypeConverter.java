@@ -1,12 +1,12 @@
-package com.lcw.herakles.platform.log.enums.converter;
+package com.lcw.herakles.platform.bizlog.enums.converter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
+import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.common.converter.DBIntAttributeConverter;
-import com.lcw.herakles.platform.log.enums.EOptType;
 
 @Converter
-public class ELogOptTypeConverter extends DBIntAttributeConverter<EOptType>
+public class EBizLogOptTypeConverter extends DBIntAttributeConverter<EOptType>
 		implements AttributeConverter<EOptType, Integer> {
 }

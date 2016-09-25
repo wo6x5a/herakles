@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.log.enums;
+package com.lcw.herakles.platform.bizlog.enums;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lcw.herakles.platform.common.enums.DBIntEnum;

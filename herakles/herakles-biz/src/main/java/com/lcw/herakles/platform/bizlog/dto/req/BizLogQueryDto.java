@@ -1,8 +1,8 @@
-package com.lcw.herakles.platform.log.dto.req;
+package com.lcw.herakles.platform.bizlog.dto.req;
 
+import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
-import com.lcw.herakles.platform.log.enums.EOptType;
 
 /**
  * 日志查询dto
@@ -10,7 +10,7 @@ import com.lcw.herakles.platform.log.enums.EOptType;
  * @author chenwulou
  *
  */
-public class LogQueryDto extends DataTablesRequestDto {
+public class BizLogQueryDto extends DataTablesRequestDto {
 
 	/**
 	 * 
