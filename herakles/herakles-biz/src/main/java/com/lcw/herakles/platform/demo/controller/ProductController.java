@@ -95,7 +95,7 @@ public class ProductController extends BaseController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/upload-image", method = RequestMethod.POST)
+    @RequestMapping(value = "upload-image", method = RequestMethod.POST)
     public ResultDto uploadImage(@RequestParam MultipartFile file) {
         String resp = null;
         StringBuilder filePath = new StringBuilder("");
