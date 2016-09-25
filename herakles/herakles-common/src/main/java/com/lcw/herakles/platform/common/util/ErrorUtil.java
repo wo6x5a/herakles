@@ -12,7 +12,7 @@ import com.lcw.herakles.platform.common.exception.BizServiceException;
  * @author chenwulou
  *
  */
-public class ErrorUtils {
+public class ErrorUtil {
 
 	public static String getExceptionStack(Exception ex, int length) {
 		String errMsg = getExceptionStack(ex);

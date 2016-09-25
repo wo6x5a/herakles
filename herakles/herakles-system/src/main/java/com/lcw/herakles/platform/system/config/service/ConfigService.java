@@ -25,7 +25,7 @@ import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.paging.PaginationUtil;
 import com.lcw.herakles.platform.common.util.EnumHelper;
-import com.lcw.herakles.platform.common.util.ErrorUtils;
+import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.system.config.dto.ConfigDto;
 import com.lcw.herakles.platform.system.config.dto.req.CfgModReqDto;
 import com.lcw.herakles.platform.system.config.dto.req.CfgSearchDto;
@@ -83,10 +83,10 @@ public class ConfigService {
 	public void modify(CfgModReqDto reqDto) {
 		ConfigPo cfg = configRepository.findOne(reqDto.getKey());
 		if (cfg == null) {
-			ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, "参数不存在");
+			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "参数不存在");
 		}
 		if (cfg.getType() != ECfgType.BIZ) {
-			ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, "此类型参数不允许修改");
+			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "此类型参数不允许修改");
 		}
 		cfg.setValue(reqDto.getValue());
 		cfg.setMemo(reqDto.getMemo());

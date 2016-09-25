@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 
+import org.apache.commons.lang3.RandomStringUtils;
 import org.apache.commons.net.ftp.FTPClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -117,9 +118,10 @@ public class FtpUtil {
      * @return 保存到FTP服务器的文件名称
      */
     public static String rename(String fileName) {
-        StringBuilder resp = new StringBuilder();
-        long newName = System.currentTimeMillis();
-        newName = newName + Long.valueOf((long) (Math.random() * 10000));
+		StringBuilder resp = new StringBuilder();
+		String newName = String.valueOf(System.currentTimeMillis());
+		// RandomUtil.getAlnum(5);
+		newName = newName + RandomStringUtils.randomNumeric(5);
         resp.append(newName);
         resp.append(".");
         resp.append(suffix(fileName).toLowerCase());

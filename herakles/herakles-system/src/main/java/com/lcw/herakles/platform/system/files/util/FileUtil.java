@@ -16,7 +16,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.util.AppConfigUtil;
-import com.lcw.herakles.platform.common.util.ErrorUtils;
+import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
 import com.lcw.herakles.platform.system.files.dto.FileDto;
 
@@ -66,7 +66,7 @@ public class FileUtil {
 			response.flushBuffer();
 		} catch (IOException e) {
 			LOGGER.error("download file error", e);
-			ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, e);
+			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, e);
 		}
 	}
 
@@ -81,7 +81,7 @@ public class FileUtil {
 			FileUtils.forceDeleteOnExit(file);
 		} catch (IOException e) {
 			LOGGER.error("delete file error", e);
-			ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, e);
+			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, e);
 		}
 	}
 

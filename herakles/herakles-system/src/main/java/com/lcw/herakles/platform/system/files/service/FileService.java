@@ -8,7 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lcw.herakles.platform.common.enums.EErrorCode;
-import com.lcw.herakles.platform.common.util.ErrorUtils;
+import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.system.files.dto.FileDto;
 import com.lcw.herakles.platform.system.files.entity.FilePo;
 import com.lcw.herakles.platform.system.files.repository.FileRepository;
@@ -41,7 +41,7 @@ public class FileService {
 	public void download(String filePath, HttpServletResponse response) {
 		FilePo filePo = fileRepository.findByFilePath(filePath);
 		if (filePo == null) {
-			ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, "文件不存在");
+			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "文件不存在");
 		}
 		FileUtil.download(filePo.getFileName(), filePo.getFilePath(), response);
 	}
@@ -50,7 +50,7 @@ public class FileService {
 	public void removeFile(String filePath) {
 		FilePo filePo = fileRepository.findByFilePath(filePath);
 		if (filePo == null) {
-			ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, "文件不存在");
+			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "文件不存在");
 		}
 		fileRepository.delete(filePo);
 		FileUtil.delete(filePo.getFilePath());

@@ -97,7 +97,7 @@ public class ExcelUtil {
 		List<Object[]> result = Lists.newArrayList();
 		try {
 			if (null == input) {
-				ErrorUtils.throwBizException(EErrorCode.COMM_ERROR_HINTS, "输入流不能为空");
+				ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "输入流不能为空");
 			}
 			Workbook wb = null;
 			// 根据文件格式(2003或者2007)来初始化
