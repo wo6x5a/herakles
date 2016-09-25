@@ -15,7 +15,8 @@ import com.lcw.herakles.platform.common.exception.DisplayableError;
 public enum EErrorCode implements DisplayableError {
 	// Default error
 	COMM_INTERNAL_ERROR("COMM0001"), 
-	COMM_ERROR_HINTS("COMM0002", "common.error.hints"), // 一般用这个
+	// 一般用这个
+	COMM_ERROR_HINTS("COMM0002", "common.error.hints"), 
 
 	// Errors for internal technical issues.
 	TECH_PARAM_REQUIRED("TECH0001"), 

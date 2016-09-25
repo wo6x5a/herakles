@@ -11,7 +11,6 @@ package com.lcw.herakles.platform.common.exception;
 public class BizServiceException extends BaseException {
     private static final long serialVersionUID = 1L;
     
-    
     /**
     * BizServiceException Constructor
     *

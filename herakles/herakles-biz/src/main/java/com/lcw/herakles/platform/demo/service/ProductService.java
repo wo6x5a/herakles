@@ -30,6 +30,7 @@ import com.lcw.herakles.platform.system.security.SecurityContext;
 @Service
 public class ProductService {
 
+    @SuppressWarnings("unused")
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
     @Autowired
     private SecurityContext securityContext;
@@ -39,22 +40,23 @@ public class ProductService {
     @Cacheable(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #id")
     @Transactional(readOnly = true)
     public ProductPo findProductById(String id) {
+        if (StringUtils.isBlank(id)) {
+            ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "id不能为空");
+        }
         return productRepository.findOne(id);
     }
 
     @Transactional(readOnly = true)
     public List<ProductPo> findProductByName(String name) {
+        if (StringUtils.isBlank(name)) {
+            ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "name不能为空");
+        }
         return productRepository.findByName(name);
     }
 
     @CachePut(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #productReqDto.id")
     @Transactional
     public ProductPo saveProduct(ProductReqDto productReqDto) {
-        try {
-            Thread.sleep(1000);
-        } catch (InterruptedException e) {
-        	LOGGER.error(e.getMessage());
-        }
         ProductPo product = new ProductPo();
         if (StringUtils.isNotBlank(productReqDto.getId())) {
             product = productRepository.findOne(productReqDto.getId());

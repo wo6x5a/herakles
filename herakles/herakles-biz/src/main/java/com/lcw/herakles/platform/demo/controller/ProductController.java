@@ -38,7 +38,6 @@ import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ResultDtoFactory;
 import com.lcw.herakles.platform.common.dto.annotation.OnValid;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
-import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.enums.EnumOption;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.common.util.DateUtils;
@@ -50,7 +49,6 @@ import com.lcw.herakles.platform.demo.dto.ProductDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
 import com.lcw.herakles.platform.demo.dto.req.ProductReqDto.CreateProduct;
 import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
-import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.service.ProductInfoExcelExportService;
 import com.lcw.herakles.platform.demo.service.ProductQueryService;
@@ -304,8 +302,8 @@ public class ProductController extends BaseController {
     // @RequiresPermissions("product:add")
     @RequestMapping(value = "add", method = RequestMethod.POST)
     @ResponseBody
-    public ResultDto add( @RequestBody @OnValid ProductReqDto dto) {
-        validate(dto, new Class<?>[] {CreateProduct.class, Default.class});
+    public ResultDto add( @RequestBody @OnValid({CreateProduct.class, Default.class}) ProductReqDto dto) {
+//        validate(dto, new Class<?>[] {CreateProduct.class, Default.class});
         dto.setId(null);
         productService.saveProduct(dto);
         return ResultDtoFactory.toRedirect(
@@ -323,11 +321,7 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "detatil", method = RequestMethod.GET)
     public String detail( @RequestParam(value = "id") String id,
             Model model) {
-        ProductPo detail = productService.findProductById(id);
-        if (detail == null) {
-            throw new BizServiceException(EErrorCode.PRODUCT_NOT_FOUND);
-        }
-        model.addAttribute("detail", detail);
+        model.addAttribute("detail", productService.findProductById(id));
         model.addAttribute("categoryList", EnumHelper.inspectConstants(EProductCagetory.class));
         return "product/product_edit";
     }
@@ -357,7 +351,6 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "delete", method = RequestMethod.POST)
     @ResponseBody
     public ResultDto delete(@RequestParam("id") String id) {
-        // id = null;
         try {
             productService.deleteProduct(id);
         } catch (BizServiceException ex) {

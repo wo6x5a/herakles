@@ -29,7 +29,9 @@ import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.bizlog.reposipory.BizLogRepository;
 import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
+import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.paging.PaginationUtil;
+import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.common.util.ReflectionUtil;
 
 /**
@@ -46,6 +48,9 @@ public class BizLogService {
 
 	@Transactional(readOnly = true)
 	public BizLogDto getLog(String logId) {
+	    if(StringUtils.isBlank(logId)){
+	        ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "logId不能为空");
+	    }
 		return ConverterService.convert(bizLogRepository.findOne(logId), BizLogDto.class);
 	}
 
@@ -76,16 +81,14 @@ public class BizLogService {
 
 				if (queryDto != null) {
 					if (StringUtils.isNotBlank(queryDto.getId())) {
-						expressions.add(cb.like(cb.lower(root.<String> get("id")),
-								"%" + queryDto.getId().trim().toLowerCase() + "%"));
+                        expressions.add(cb.equal(root.<String> get("id"), queryDto.getId()));
 					}
 					if (null != queryDto.getType() && EOptType.ALL != queryDto.getType()) {
 						expressions.add(cb.equal(root.<EOptType> get("optType"), queryDto.getType()));
 					}
-					if (StringUtils.isNotBlank(queryDto.getEntity())) {
-						expressions.add(cb.like(cb.lower(root.<String> get("entity")),
-								"%" + queryDto.getEntity().trim().toLowerCase() + "%"));
-					}
+                    if (StringUtils.isNotBlank(queryDto.getEntity())) {
+                        expressions.add(cb.equal(cb.lower(root.<String> get("entity")), queryDto.getEntity()));
+                    }
 				}
 				return predicate;
 			}
