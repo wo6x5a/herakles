@@ -54,6 +54,17 @@ public class BizLogService {
 		return ConverterService.convert(bizLogRepository.findOne(logId), BizLogDto.class);
 	}
 
+	/**
+	 * 添加log
+	 * 
+	 * @param entity 操作实体
+	 * @param optType 操作类型
+	 * @param operate 具体操作
+	 * @param optIp 操作IP地址
+	 * @param oldObject 操作前实体对象
+	 * @param newObject 操作后实体对象
+	 * @param comment 备注
+	 */
 	@Transactional
 	public void save(Class<?> entity, EOptType optType, String operate, String optIp, Object oldObject,
 			Object newObject, String comment) {
