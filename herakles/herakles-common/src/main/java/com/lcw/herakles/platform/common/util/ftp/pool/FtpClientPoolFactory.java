@@ -32,7 +32,7 @@ public class FtpClientPoolFactory {
 				LOGGER.info("获得FTP连接成功");
 			}
 		} catch (Exception e) {
-			LOGGER.error("获得FTP连接失败");
+			LOGGER.error("获得FTP连接失败, {}", e);
 		}
 		return ftpClient;
 	}

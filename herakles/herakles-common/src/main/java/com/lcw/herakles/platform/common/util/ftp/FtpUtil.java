@@ -45,7 +45,7 @@ public class FtpUtil {
             changeWorkingDirectory(ftpClient, filePath);
             ftpClient.storeFile(fileName, input);
         } catch (Exception e) {
-            LOGGER.error("文件上传失败", e);
+            LOGGER.error("文件上传失败, {}", e);
         } finally {
             pool.releaseConnection(ftpClient);
         }
@@ -82,7 +82,7 @@ public class FtpUtil {
             changeWorkingDirectory(ftpClient, filePath);
             ftpClient.deleteFile(fileName);
         } catch (Exception e) {
-            LOGGER.error("文件删除失败", e);
+            LOGGER.error("文件删除失败, {}", e);
         } finally {
             pool.releaseConnection(ftpClient);
         }
@@ -111,9 +111,9 @@ public class FtpUtil {
                 }
             }
         } catch (IOException e) {
-            LOGGER.error("调转到目标目录失败", e);
+            LOGGER.error("调转到目标目录失败, {}", e);
         }
-        LOGGER.debug("调转到目标目录");
+//        LOGGER.debug("调转到目标目录");
     }
 
     /**

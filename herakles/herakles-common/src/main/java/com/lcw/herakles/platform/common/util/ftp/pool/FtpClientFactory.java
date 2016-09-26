@@ -46,7 +46,7 @@ public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 				LOGGER.error("未连接到FTP,用户名或密码错误");
 			}
 		} catch (SocketException e) {
-			LOGGER.error("FTP的IP地址可能错误,请正确配置", e);
+			LOGGER.error("FTP的IP地址可能错误,请正确配置, {}", e);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
