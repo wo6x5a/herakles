@@ -49,12 +49,13 @@ public class ProductQueryService {
 				List<Expression<Boolean>> expressions = predicate.getExpressions();
 
 				if (searchDto != null) {
-					if (StringUtils.isNotBlank(searchDto.getKeyword())) {
+				    String keyWord = StringUtils.deleteWhitespace(searchDto.getKeyword());
+					if (StringUtils.isNotBlank(keyWord)) {
 						expressions.add(cb.or(
 								cb.like(cb.lower(root.<String> get("name")),
-										"%" + searchDto.getKeyword().trim().toLowerCase()),
+										"%" + keyWord.toLowerCase()),
 								cb.like(cb.lower(root.<String> get("description")),
-										"%" + searchDto.getKeyword().trim().toLowerCase())));
+										"%" + keyWord.toLowerCase())));
 					}
 					if (null != searchDto.getCategory() && EProductCagetory.ALL != searchDto.getCategory()) {
 						expressions.add(cb.equal(root.<EProductCagetory> get("category"),  searchDto.getCategory()));
