@@ -64,7 +64,7 @@ public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 			p.getObject().disconnect();
 			LOGGER.info("FTP连接关闭");
 		} catch (IOException e) {
-			LOGGER.error("FTP关闭连接错误", e);
+			LOGGER.error("FTP关闭连接错误, {}", e);
 		}
 	}
 

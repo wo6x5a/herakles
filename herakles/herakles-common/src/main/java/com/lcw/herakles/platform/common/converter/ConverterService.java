@@ -133,9 +133,9 @@ public final class ConverterService {
 		try {
 			target = targetClass.newInstance();
 		} catch (InstantiationException e) {
-			LOGGER.error("InstantiationException occured", e);
+			LOGGER.error("InstantiationException occured, {}", e);
 		} catch (IllegalAccessException e) {
-			LOGGER.error("IllegalAccessException occured", e);
+			LOGGER.error("IllegalAccessException occured, {}", e);
 		}
 		return target;
 	}

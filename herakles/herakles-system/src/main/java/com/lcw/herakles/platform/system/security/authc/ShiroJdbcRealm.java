@@ -211,7 +211,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
                 }
             }
         } catch (Exception e) {
-            final String message = "There was an error while executing query [" + query + "]";
+            final String message = "There was an error while executing query [" + query + "], {}";
             LOGGER.error(message, e);
             throw new AuthenticationException(message, e);
         } finally {

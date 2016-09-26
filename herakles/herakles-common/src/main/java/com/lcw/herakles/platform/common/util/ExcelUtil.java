@@ -76,15 +76,15 @@ public class ExcelUtil {
 			workbook.write(out);
 			System.out.println("文件写入成功");
 		} catch (FileNotFoundException e) {
-			LOGGER.error("ExcelUtil.createExcelByFileName(),{}.", e);
+			LOGGER.error("ExcelUtil.createExcelByFileName(), {}.", e);
 		} catch (IOException e) {
-			LOGGER.error("ExcelUtil.createExcelByFileName(),{}.", e);
+			LOGGER.error("ExcelUtil.createExcelByFileName(), {}.", e);
 		} finally {
 			try {
 				out.flush();
 				out.close();
 			} catch (IOException e) {
-				LOGGER.error("ExcelUtil.createExcelByFileName(),{}.", e);
+				LOGGER.error("ExcelUtil.createExcelByFileName(), {}.", e);
 			}
 		}
 	}
@@ -154,7 +154,7 @@ public class ExcelUtil {
 				}
 			}
 		} catch (IOException e) {
-			LOGGER.error("ExcelUtil.readExcel(),{}.", e);
+			LOGGER.error("ExcelUtil.readExcel(), {}", e);
 		}
 		return result;
 	}

@@ -65,7 +65,7 @@ public class FileUtil {
 			IOUtils.copy(inputStream, response.getOutputStream());
 			response.flushBuffer();
 		} catch (IOException e) {
-			LOGGER.error("download file error", e);
+			LOGGER.error("download file error, {}", e);
 			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, e);
 		}
 	}
@@ -80,7 +80,7 @@ public class FileUtil {
 			File file = new File(AppConfigUtil.getConfig(FileConsts.FILE_UPLOAD_PATH), filePath);
 			FileUtils.forceDeleteOnExit(file);
 		} catch (IOException e) {
-			LOGGER.error("delete file error", e);
+			LOGGER.error("delete file error, {}", e);
 			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, e);
 		}
 	}

@@ -73,7 +73,7 @@ public class HttpClientUtil {
 
         } catch (IOException e) {
             httppost.abort();
-            LOGGER.error("HttpClientUtil.post,{}", e);
+            LOGGER.error("HttpClientUtil.post, {}", e);
         } finally {
             if (response != null) {
                 try {
