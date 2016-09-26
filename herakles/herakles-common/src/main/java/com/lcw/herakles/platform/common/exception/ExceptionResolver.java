@@ -74,7 +74,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
                 objectMapper.writeValue(response.getWriter(), error);
                 writer.flush();
             } catch (IOException ie) {
-                LOGGER.error("Failed to serialize the object to json for exception handling.", ie);
+                LOGGER.error("Failed to serialize the object to json for exception handling.{}", ie);
             }
             return new ModelAndView();
         } else {
@@ -82,10 +82,10 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             ModelAndView mav = new ModelAndView();
             mav.addObject("errorMessage", ExceptionUtils.getStackTrace(ex));
             if(ex instanceof AuthorizationException){
-                LOGGER.warn("AuthorizationException handled (non-ajax style):", ex);
+                LOGGER.warn("AuthorizationException handled (non-ajax style):{}", ex);
                 mav.setViewName("error/access_denied");
             }else{
-                LOGGER.error("Unknown exception handled (non-ajax style):", ex);
+                LOGGER.error("Unknown exception handled (non-ajax style):{}", ex);
                 mav.setViewName("error/404");
             }
             return mav;
@@ -132,7 +132,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
         }
         else {
             error = ResultDtoFactory.toCommonError( ex);
-            LOGGER.error("Unknown exception handled:", ex);
+            LOGGER.error("Unknown exception handled:{}", ex);
         }
         return error;
     }

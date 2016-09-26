@@ -45,7 +45,7 @@ public abstract class AbstractExcelService extends AbstractXlsView {
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			LOGGER.error("error in export xls", e);
+			LOGGER.error("error in export xls, {}", e);
 		}
 	}
 
