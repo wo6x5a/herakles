@@ -15,9 +15,11 @@
 
 
 # 模块介绍
-- herakles-biz--业务模块
 - herakles-common--公共模块
 - herakles-system--系统模块
+- herakles-biz-api--业务接口模块
+- herakles-biz-service--业务接口服务模块
+- herakles-biz-dao--业务数据访问服务模块
 - herakles-web--web前端模块
 
 
