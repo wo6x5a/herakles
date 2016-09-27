@@ -8,7 +8,10 @@ import java.io.Serializable;
  */
 public class RolePermPK implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 7304468458307888125L;
 
     private String roleId;
 
@@ -28,6 +31,16 @@ public class RolePermPK implements Serializable {
 
     public void setPermId(String permId) {
         this.permId = permId;
+    }
+    
+    @Override
+    public boolean equals(Object obj) {
+        return super.equals(obj);
+    }
+    
+    @Override
+    public int hashCode() {
+        return super.hashCode();
     }
 
 }

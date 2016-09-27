@@ -8,12 +8,12 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
+import com.lcw.herakles.platform.common.entity.BasePo;
+import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.common.enums.EFlagType;
 import com.lcw.herakles.platform.common.enums.converter.EFlagTypeConverter;
 import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
 import com.lcw.herakles.platform.system.dict.enums.converter.EDictCategoryConverter;
-import com.lcw.herakles.platform.system.entity.BasePo;
-import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
 
 /**
  * @author chenwulou

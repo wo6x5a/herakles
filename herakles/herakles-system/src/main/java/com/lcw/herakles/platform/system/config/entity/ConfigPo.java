@@ -6,9 +6,9 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.enums.converter.ECfgTypeEnumConverter;
-import com.lcw.herakles.platform.system.entity.BaseMaintainablePo;
 
 /**
  * @author chenwulou

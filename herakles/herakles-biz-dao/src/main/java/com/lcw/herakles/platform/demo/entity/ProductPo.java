@@ -10,10 +10,10 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
+import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.enums.converter.EProductCagetoryConverter;
-import com.lcw.herakles.platform.system.entity.BaseMaintainablePo;
-import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
 
 /**
  * Class Name: Product Description: TODO

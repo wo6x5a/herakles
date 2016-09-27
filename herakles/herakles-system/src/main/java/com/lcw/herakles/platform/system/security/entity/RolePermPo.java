@@ -9,7 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-import com.lcw.herakles.platform.system.entity.BaseMaintainablePo;
+import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.security.entity.id.RolePermPK;
 
 @Entity

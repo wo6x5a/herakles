@@ -9,9 +9,11 @@
 
 	<modules>
 		<module>herakles-common</module>
-		<module>herakles-biz</module>
-		<module>herakles-web</module>
 		<module>herakles-system</module>
+		<module>herakles-biz-dao</module>
+		<module>herakles-biz-service</module>
+		<module>herakles-biz-api</module>
+		<module>herakles-web</module>
 	</modules>
 
 	<properties>

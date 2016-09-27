@@ -11,8 +11,8 @@ import javax.persistence.Table;
 import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.bizlog.enums.converter.EBizLogOptTypeConverter;
 import com.lcw.herakles.platform.common.annotation.Comment;
-import com.lcw.herakles.platform.system.entity.BasePo;
-import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
+import com.lcw.herakles.platform.common.entity.BasePo;
+import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
 /**
  * 系统业务日志

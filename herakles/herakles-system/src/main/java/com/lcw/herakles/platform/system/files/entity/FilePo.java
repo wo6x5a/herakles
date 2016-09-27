@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
-import com.lcw.herakles.platform.system.entity.BasePo;
-import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
+import com.lcw.herakles.platform.common.entity.BasePo;
+import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
 @Entity
 @Table(name = "GL_FILE")

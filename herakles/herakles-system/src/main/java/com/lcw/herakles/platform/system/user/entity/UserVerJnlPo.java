@@ -8,8 +8,8 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
-import com.lcw.herakles.platform.system.entity.BaseMaintainablePo;
-import com.lcw.herakles.platform.system.entity.id.IdInjectionEntityListener;
+import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
+import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.system.user.enums.EVerStatus;
 import com.lcw.herakles.platform.system.user.enums.converter.EVerStatusEnumConverter;
 

@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.entity.id;
+package com.lcw.herakles.platform.common.entity.id;
 
 import java.lang.reflect.Field;
 import java.util.Date;
@@ -11,8 +11,7 @@ import javax.persistence.PrePersist;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lcw.herakles.platform.system.entity.BasePo;
-import com.lcw.herakles.platform.system.security.SecurityContext;
+import com.lcw.herakles.platform.common.entity.BasePo;
 
 /**
  * Injects identifiers automatically for target entities
@@ -36,7 +35,7 @@ public class IdInjectionEntityListener {
 	public void prePersist(Object entity) {
 		injectId(entity);
 		injectCreateTs(entity);
-		injectCreateOpId(entity);
+//		injectCreateOpId(entity);
 	}
 
 	/**
@@ -60,15 +59,15 @@ public class IdInjectionEntityListener {
 		}
 	}
 
-	private void injectCreateOpId(Object entity) {
-		if (entity instanceof BasePo) {
-			BasePo e = (BasePo) entity;
-			if (e.getCreateOpId() == null) {
-				e.setCreateOpId(SecurityContext.getInstance().getCurrentOperatorId());
-			}
-		}
-
-	}
+//	private void injectCreateOpId(Object entity) {
+//		if (entity instanceof BasePo) {
+//			BasePo e = (BasePo) entity;
+//			if (e.getCreateOpId() == null) {
+//				e.setCreateOpId(SecurityContext.getInstance().getCurrentOperatorId());
+//			}
+//		}
+//
+//	}
 
 	private void injectId(Object entity) {
 		try {

@@ -18,6 +18,7 @@ import org.slf4j.LoggerFactory;
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.servlet.KaptchaExtend;
 import com.google.code.kaptcha.util.Config;
+import com.lcw.herakles.platform.system.security.KaptchaSupport;
 
 
 /**

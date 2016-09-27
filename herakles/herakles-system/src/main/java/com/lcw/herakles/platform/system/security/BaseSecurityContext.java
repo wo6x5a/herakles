@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.util.AppConfigUtil;
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
+import com.lcw.herakles.platform.system.security.BaseSecurityContext;
 import com.lcw.herakles.platform.system.security.authc.ShiroJdbcRealm;
 import com.lcw.herakles.platform.system.user.dto.UserDto;
 import com.lcw.herakles.platform.system.user.service.UserPasswdService;

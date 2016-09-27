@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.entity;
+package com.lcw.herakles.platform.common.entity;
 
 import java.io.Serializable;
 import java.util.Date;
