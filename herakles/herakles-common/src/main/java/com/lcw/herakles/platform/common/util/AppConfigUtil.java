@@ -12,10 +12,6 @@ import org.springframework.context.MessageSource;
  */
 public final class AppConfigUtil {
 
-    private AppConfigUtil() {
-
-    }
-
     private static final String ENVIRONMENT = "env";
 
     private static MessageSource messageSource;
