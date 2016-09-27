@@ -17,7 +17,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lcw</groupId>
-			<artifactId>herakles-biz</artifactId>
+			<artifactId>herakles-biz-api</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 
