@@ -11,7 +11,7 @@ import org.apache.commons.pool2.impl.DefaultPooledObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lcw.herakles.platform.common.util.ftp.pool.dto.FtpInfo;
+import com.lcw.herakles.platform.common.util.ftp.dto.FtpInfo;
 
 /**
  * 

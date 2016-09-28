@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.common.util.ftp.pool.dto;
+package com.lcw.herakles.platform.common.util.ftp.dto;
 
 import com.lcw.herakles.platform.common.util.EndecryptUtils;
 
