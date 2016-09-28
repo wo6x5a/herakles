@@ -6,12 +6,17 @@
 	http://www.springframework.org/schema/jee 
 	http://www.springframework.org/schema/jee/spring-jee.xsd">
 
-	<bean id="emailService" class="com.lcw.herakles.platform.system.mail.service.EmailSerivce">
+	<!-- mail配置 -->
+	<bean id="mailInfo" class="com.lcw.herakles.platform.system.mail.dto.MailInfo">
 		<property name="hostName" value="${email.host}" />
 		<property name="smtpPort" value="${email.port}" />
 		<property name="userName" value="${email.userName}" />
 		<property name="password" value="${email.password}" />
 		<property name="from" value="${email.defaultFrom}" />
+	</bean>
+
+	<bean id="emailService" class="com.lcw.herakles.platform.system.mail.service.EmailSerivce">
+		<property name="mailInfo" ref="mailInfo" />
 	</bean>
 
 </beans>
