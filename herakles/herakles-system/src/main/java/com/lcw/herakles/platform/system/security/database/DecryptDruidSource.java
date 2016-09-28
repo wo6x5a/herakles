@@ -20,33 +20,23 @@ public class DecryptDruidSource extends DruidDataSource {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(DecryptDruidSource.class);
 
+    private static final String DB_AES_KEY = "HdiDnPCCXLjija+1lQkSnw==";
+
     @Override
     public void setUsername(String username) {
-        try {
-            username = EndecryptUtils.decryptAes(username, null);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-        }
+        username = EndecryptUtils.decryptAes(username, DB_AES_KEY);
         super.setUsername(username);
     }
 
     @Override
     public void setPassword(String password) {
-        try {
-            password = EndecryptUtils.decryptAes(password, null);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-        }
+        password = EndecryptUtils.decryptAes(password, DB_AES_KEY);
         super.setPassword(password);
     }
 
     @Override
     public void setUrl(String url) {
-        try {
-            url = EndecryptUtils.decryptAes(url, null);
-        } catch (Exception e) {
-            LOGGER.error(e.getMessage());
-        }
+        url = EndecryptUtils.decryptAes(url, DB_AES_KEY);
         super.setUrl(url + "?useUnicode=true&characterEncoding=utf-8&useSSL=false");
     }
 

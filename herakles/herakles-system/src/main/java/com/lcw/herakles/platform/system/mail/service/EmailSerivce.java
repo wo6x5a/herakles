@@ -18,6 +18,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
+import com.lcw.herakles.platform.system.security.util.EndecryptUtils;
 
 /**
  * @author chenwulou
@@ -27,6 +28,8 @@ import com.lcw.herakles.platform.common.exception.BizServiceException;
 public class EmailSerivce {
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(EmailSerivce.class);
+
+    private static final String EMAIL_AES_KEY = "IHqLKGEYHRxLPCTbCtZfbA==";
 
 	@Autowired
 	private VelocityEngine velocityEngine;
@@ -109,6 +112,7 @@ public class EmailSerivce {
 	}
 
 	public void setHostName(String hostName) {
+	    hostName = EndecryptUtils.decryptAes(hostName, EMAIL_AES_KEY);
 		this.hostName = hostName;
 	}
 
@@ -117,6 +121,7 @@ public class EmailSerivce {
 	}
 
 	public void setSmtpPort(String smtpPort) {
+	    smtpPort = EndecryptUtils.decryptAes(smtpPort, EMAIL_AES_KEY);
 		this.smtpPort = smtpPort;
 	}
 
@@ -125,6 +130,7 @@ public class EmailSerivce {
 	}
 
 	public void setUserName(String userName) {
+	    userName = EndecryptUtils.decryptAes(userName, EMAIL_AES_KEY);
 		this.userName = userName;
 	}
 
@@ -133,6 +139,7 @@ public class EmailSerivce {
 	}
 
 	public void setPassword(String password) {
+	    password = EndecryptUtils.decryptAes(password, EMAIL_AES_KEY);
 		this.password = password;
 	}
 
@@ -141,6 +148,7 @@ public class EmailSerivce {
 	}
 
 	public void setFrom(String from) {
+	    from = EndecryptUtils.decryptAes(from, EMAIL_AES_KEY);
 		this.from = from;
 	}
 

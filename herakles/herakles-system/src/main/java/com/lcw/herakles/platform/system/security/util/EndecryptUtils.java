@@ -22,8 +22,6 @@ public class EndecryptUtils {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(EndecryptUtils.class);
 
-    private static final String DEFAULT_AES_KEY = "HdiDnPCCXLjija+1lQkSnw==";
-
     /**
      * base64进制加密
      * 
@@ -95,7 +93,10 @@ public class EndecryptUtils {
             LOGGER.error("EndecryptUtils.encryptAes(), plainText不能为空");
             throw new IllegalArgumentException(String.valueOf("plainText不能为空"));
         }
-        key = StringUtils.isBlank(key) ? DEFAULT_AES_KEY : key;
+        if (StringUtils.isBlank(key)) {
+            LOGGER.error("EndecryptUtils.encryptAes(), key不能为空");
+            throw new IllegalArgumentException(String.valueOf("key不能为空"));
+        }
         AesCipherService aesCipherService = new AesCipherService();
         aesCipherService.setKeySize(128);
         return aesCipherService.encrypt(plainText.getBytes(), Base64.decode(key)).toHex();
@@ -113,7 +114,10 @@ public class EndecryptUtils {
             LOGGER.error("EndecryptUtils.decryptAes(), cipherText不能为空");
             throw new IllegalArgumentException(String.valueOf("cipherText不能为空"));
         }
-        key = StringUtils.isBlank(key) ? DEFAULT_AES_KEY : key;
+        if (StringUtils.isBlank(key)) {
+            LOGGER.error("EndecryptUtils.encryptAes(), key不能为空");
+            throw new IllegalArgumentException(String.valueOf("key不能为空"));
+        }
         AesCipherService aes = new AesCipherService();
         aes.setKeySize(128);
         return new String(aes.decrypt(Hex.decode(cipherText), Base64.decode(key)).getBytes());
@@ -173,10 +177,10 @@ public class EndecryptUtils {
         // String aes_mingwen = new String(
         // aesCipherService.decrypt(Hex.decode(aes_cipherText), key.getEncoded()).getBytes());
         // System.out.println(aes_cipherText + " aes解密的明文是：" + aes_mingwen);
-        System.out.println(encryptAes("123456", null));
-        System.out.println(decryptAes(
-                "949a88e84577cdb3299d15846a02ecf7b63644186747848e96ef1885406abc00444da42b77676a6df786c6c0a3579eb4835e2ac184eb361ecd725cbc1171f3f5",
-                null));
-        System.out.println(generateKey());
+         System.out.println(encryptAes("wo6x5a7@163.com", "IHqLKGEYHRxLPCTbCtZfbA=="));
+        // System.out.println(decryptAes(
+        // "949a88e84577cdb3299d15846a02ecf7b63644186747848e96ef1885406abc00444da42b77676a6df786c6c0a3579eb4835e2ac184eb361ecd725cbc1171f3f5",
+        // null));
+//        System.out.println(generateKey());
     }
 }
