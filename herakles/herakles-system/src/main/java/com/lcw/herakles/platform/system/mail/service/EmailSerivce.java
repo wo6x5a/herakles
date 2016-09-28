@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.system.mail.dto.MailInfo;
@@ -91,12 +91,12 @@ public class EmailSerivce {
     private String getMessage(String templateName, Map<String, Object> model) {
         String templateLocation = "email/" + templateName + ".vm";
         String result = VelocityEngineUtils.mergeTemplateIntoString(velocityEngine,
-                templateLocation, ApplicationConstant.UTF_8, model);
+                templateLocation, ApplicationConsts.UTF_8, model);
         return result;
     }
 
     private void initEmail(Email email) {
-        email.setCharset(ApplicationConstant.UTF_8);
+        email.setCharset(ApplicationConsts.UTF_8);
         email.setHostName(mailInfo.getHostName());
         email.setSmtpPort(Integer.valueOf(mailInfo.getSmtpPort()));
         email.setAuthenticator(new DefaultAuthenticator(mailInfo.getUserName(), mailInfo.getPassword()));

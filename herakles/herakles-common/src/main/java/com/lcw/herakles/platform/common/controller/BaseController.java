@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.beanvalidation.LocalValidatorFactoryBean;
 
 import com.google.common.collect.Lists;
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.constant.MessageConsts;
 import com.lcw.herakles.platform.common.enums.DBIntEnum;
 import com.lcw.herakles.platform.common.enums.DBStrEnum;
@@ -34,7 +34,7 @@ public abstract class BaseController implements MessageConsts {
 	protected void validate(final Object validatedObj, final Class<?>[] groups) {
 		final Set<ConstraintViolation<Object>> constraintViolations = validator.validate(validatedObj, groups);
 		if (!constraintViolations.isEmpty()) {
-			throw new ConstraintViolationException(ApplicationConstant.MANUAL_VALIDATE, constraintViolations);
+			throw new ConstraintViolationException(ApplicationConsts.MANUAL_VALIDATE, constraintViolations);
 		}
 	}
 

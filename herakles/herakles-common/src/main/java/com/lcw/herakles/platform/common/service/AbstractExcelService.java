@@ -18,7 +18,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 
 /**
  * @author chenwulou
@@ -31,8 +31,8 @@ public abstract class AbstractExcelService extends AbstractXlsView {
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
 			HttpServletResponse response) throws Exception {
-		String fileName = String.valueOf(model.get(ApplicationConstant.REPORT_FILE_NAME));
-		String tempPath = String.valueOf(model.get(ApplicationConstant.REPORT_TEMP_PATH));
+		String fileName = String.valueOf(model.get(ApplicationConsts.REPORT_FILE_NAME));
+		String tempPath = String.valueOf(model.get(ApplicationConsts.REPORT_TEMP_PATH));
 		InputStream ins = AbstractExcelService.class.getClassLoader().getResourceAsStream(tempPath);
 		workbook = new HSSFWorkbook(ins);
 		try {

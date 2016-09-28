@@ -20,7 +20,7 @@ import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ResultDtoFactory;
 import com.lcw.herakles.platform.common.util.MessageUtil;
@@ -60,7 +60,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             final Object handler, final Exception ex) {
         if (WebUtil.isAjaxRequest(request)) {
             try {
-                String formId = request.getHeader(ApplicationConstant.X_FORM_ID);
+                String formId = request.getHeader(ApplicationConsts.X_FORM_ID);
                 Locale locale = request.getLocale();
                 ObjectMapper objectMapper = new ObjectMapper();
                 response.setContentType("application/json;charset=UTF-8");

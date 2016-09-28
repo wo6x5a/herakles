@@ -32,7 +32,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.cache.redis.repository.BaseRedisDao;
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.controller.BaseController;
 import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ResultDtoFactory;
@@ -229,7 +229,7 @@ public class ProductController extends BaseController {
         ModelAndView model = new ModelAndView(FileTemplateConsts.REDIRECT);
         model.addObject("fileName", FileTemplateConsts.TEST_TEMP);
         try {
-            model.addObject("showFileName", URLEncoder.encode(FileTemplateConsts.TEST_TEMP_NAME, ApplicationConstant.UTF_8));
+            model.addObject("showFileName", URLEncoder.encode(FileTemplateConsts.TEST_TEMP_NAME, ApplicationConsts.UTF_8));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
@@ -272,9 +272,9 @@ public class ProductController extends BaseController {
         String fileName = "test.xls";
         String tempPath = "excel/report/product_repo.xls";
         Map<String, Object> map = new HashMap<String, Object>();
-        map.put(ApplicationConstant.REPORT_DATA, dataList);
-        map.put(ApplicationConstant.REPORT_FILE_NAME, fileName);
-        map.put(ApplicationConstant.REPORT_TEMP_PATH, tempPath);
+        map.put(ApplicationConsts.REPORT_DATA, dataList);
+        map.put(ApplicationConsts.REPORT_FILE_NAME, fileName);
+        map.put(ApplicationConsts.REPORT_TEMP_PATH, tempPath);
         return new ModelAndView(productInfoExcelExportService, map);
     }
 
@@ -305,7 +305,7 @@ public class ProductController extends BaseController {
         dto.setId(null);
         productService.saveProduct(dto);
         return ResultDtoFactory.toRedirect(
-                WebUtil.getFullUrlBasedOn(ApplicationConstant.GLOBAL_CONTEXT + "product/view"));
+                WebUtil.getFullUrlBasedOn(ApplicationConsts.GLOBAL_CONTEXT + "product/view"));
     }
 
     /**

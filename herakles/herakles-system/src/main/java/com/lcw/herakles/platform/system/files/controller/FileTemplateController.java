@@ -15,7 +15,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.system.files.consts.FileConsts;
 
 /**
@@ -61,7 +61,7 @@ public class FileTemplateController {
         header.append(suffixes);
 
         response = this.handleResponseContentType(response, suffixes);
-        response.setCharacterEncoding(ApplicationConstant.UTF_8);
+        response.setCharacterEncoding(ApplicationConsts.UTF_8);
         response.setHeader("Content-Disposition", header.toString());
         response.resetBuffer();
 

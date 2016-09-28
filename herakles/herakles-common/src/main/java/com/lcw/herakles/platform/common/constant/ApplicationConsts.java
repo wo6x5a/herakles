@@ -6,9 +6,9 @@ package com.lcw.herakles.platform.common.constant;
  * @author chenwulou
  * 
  */
-public final class ApplicationConstant {
+public final class ApplicationConsts {
 
-	private ApplicationConstant() {
+	private ApplicationConsts() {
 
 	}
 

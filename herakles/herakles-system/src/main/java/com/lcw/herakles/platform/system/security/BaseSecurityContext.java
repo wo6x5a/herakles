@@ -4,6 +4,7 @@ package com.lcw.herakles.platform.system.security;
 import java.util.Collection;
 import java.util.List;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.IncorrectCredentialsException;
 import org.apache.shiro.authc.LockedAccountException;
@@ -19,10 +20,10 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
+import com.lcw.herakles.platform.common.constant.CacheConsts;
 import com.lcw.herakles.platform.common.util.AppConfigUtil;
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
-import com.lcw.herakles.platform.system.security.BaseSecurityContext;
 import com.lcw.herakles.platform.system.security.authc.ShiroJdbcRealm;
 import com.lcw.herakles.platform.system.user.dto.UserDto;
 import com.lcw.herakles.platform.system.user.service.UserPasswdService;
@@ -36,13 +37,7 @@ import com.lcw.herakles.platform.system.user.service.UserService;
  */
 public class BaseSecurityContext {
 
-	private static final String USER_KEY = "shiro.user";
-
 	private static final Logger LOGGER = LoggerFactory.getLogger(BaseSecurityContext.class);
-
-	private static final String CACHE_NAME_AUTHZ = "cache.name.authz";
-
-	private static final String CACHE_NAME_AUTHC = "cache.name.authc";
 
 	/**
 	 * Description: 获取创建人编号,如果没有就默认.
@@ -50,7 +45,12 @@ public class BaseSecurityContext {
 	 * @return
 	 */
 	public String getCurrentOperatorId() {
-		return (null == getCurrentUser() ? ApplicationConstant.DEFAULT_CREATE_OPID : getCurrentUser().getUserId());
+        Subject subject = getSubject();
+        if (subject == null) {
+            return null;
+        }
+        String userId = (String) subject.getSession().getAttribute(CacheConsts.USER_ID_KEY);
+	    return (StringUtils.isBlank(userId) ? ApplicationConsts.DEFAULT_CREATE_OPID : userId);
 	}
 
 	/**
@@ -63,7 +63,7 @@ public class BaseSecurityContext {
 		if (subject == null) {
 			return null;
 		}
-		return (UserDto) subject.getSession().getAttribute(USER_KEY);
+		return (UserDto) subject.getSession().getAttribute(CacheConsts.USER_KEY);
 	}
 
 	/**
@@ -105,7 +105,8 @@ public class BaseSecurityContext {
 		LOGGER.debug("User {} login successfully, session id {}", userName, session.getId());
 		UserService userService = ApplicationContextUtil.getBean(UserService.class);
 		UserDto userDto = userService.findByNickName(userName);
-		session.setAttribute(USER_KEY, userDto);
+        session.setAttribute(CacheConsts.USER_KEY, userDto);
+        session.setAttribute(CacheConsts.USER_ID_KEY, userDto.getUserId());
 		encryptUserPwd(userDto.getUserId());
 		long end = System.currentTimeMillis();
 		LOGGER.debug("login() completed for user {}, total time spent: {}ms", userName, end - start);
@@ -160,7 +161,7 @@ public class BaseSecurityContext {
 	public static void clearAllAuthzCache() {
 		CacheManager cm = (CacheManager) ((CachingSecurityManager) SecurityUtils.getSecurityManager())
 				.getCacheManager();
-		cm.getCache(AppConfigUtil.getConfig(CACHE_NAME_AUTHZ)).clear();
+		cm.getCache(AppConfigUtil.getConfig(CacheConsts.CACHE_NAME_AUTHZ)).clear();
 	}
 
 	/**
@@ -198,7 +199,7 @@ public class BaseSecurityContext {
 	public static void clearAllAuthcCache() {
 		CacheManager cm = (CacheManager) ((CachingSecurityManager) SecurityUtils.getSecurityManager())
 				.getCacheManager();
-		cm.getCache(AppConfigUtil.getConfig(CACHE_NAME_AUTHC)).clear();
+		cm.getCache(AppConfigUtil.getConfig(CacheConsts.CACHE_NAME_AUTHC)).clear();
 	}
 
 	/**

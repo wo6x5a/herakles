@@ -12,7 +12,7 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 
 /**
  * @author chenwulou
@@ -135,7 +135,7 @@ public class EndecryptUtils {
             LOGGER.error("EndecryptUtils.encrytMD5(), plainText不能为空");
             throw new IllegalArgumentException(String.valueOf("plainText不能为空"));
         }
-        return new Md5Hash(plainText, salt, ApplicationConstant.ITERATIONS).toHex();
+        return new Md5Hash(plainText, salt, ApplicationConsts.ITERATIONS).toHex();
     }
 
     /**

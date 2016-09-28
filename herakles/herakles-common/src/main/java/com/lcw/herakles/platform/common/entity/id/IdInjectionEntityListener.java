@@ -1,7 +1,6 @@
 package com.lcw.herakles.platform.common.entity.id;
 
 import java.lang.reflect.Field;
-import java.util.Date;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -10,8 +9,6 @@ import javax.persistence.PrePersist;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import com.lcw.herakles.platform.common.entity.BasePo;
 
 /**
  * Injects identifiers automatically for target entities
@@ -34,7 +31,7 @@ public class IdInjectionEntityListener {
 	@PrePersist
 	public void prePersist(Object entity) {
 		injectId(entity);
-		injectCreateTs(entity);
+//		injectCreateTs(entity);
 //		injectCreateOpId(entity);
 	}
 
@@ -50,14 +47,14 @@ public class IdInjectionEntityListener {
 		return IdUtil.produce();
 	}
 
-	private void injectCreateTs(Object entity) {
-		if (entity instanceof BasePo) {
-			BasePo e = (BasePo) entity;
-			if (e.getCreateTs() == null) {
-				e.setCreateTs(new Date());
-			}
-		}
-	}
+//	private void injectCreateTs(Object entity) {
+//		if (entity instanceof BasePo) {
+//			BasePo e = (BasePo) entity;
+//			if (e.getCreateTs() == null) {
+//				e.setCreateTs(new Date());
+//			}
+//		}
+//	}
 
 //	private void injectCreateOpId(Object entity) {
 //		if (entity instanceof BasePo) {

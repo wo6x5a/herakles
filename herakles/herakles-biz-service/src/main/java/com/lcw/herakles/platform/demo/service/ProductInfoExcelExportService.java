@@ -11,7 +11,7 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.stereotype.Service;
 
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.service.AbstractExcelService;
 import com.lcw.herakles.platform.demo.dto.ProductDto;
 
@@ -25,7 +25,7 @@ public class ProductInfoExcelExportService extends AbstractExcelService {
 	@Override
 	protected void buildExcelData(Map<String, Object> model, Workbook workbook) {
 		@SuppressWarnings("unchecked")
-		List<ProductDto> list = (List<ProductDto>) model.get(ApplicationConstant.REPORT_DATA);
+		List<ProductDto> list = (List<ProductDto>) model.get(ApplicationConsts.REPORT_DATA);
 		int rownum = 1;
 		Row row = null;
 		Cell cell = null;

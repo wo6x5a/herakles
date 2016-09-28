@@ -21,7 +21,7 @@ import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.constant.ResultCode;
 import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.util.MessageUtil;
@@ -94,11 +94,11 @@ public class SessionTimeoutAuthenticationFilter extends FormAuthenticationFilter
     public boolean onPreHandle(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception { // NOSONAR
         boolean res = super.onPreHandle(request, response, mappedValue);
         if(SecurityContext.getInstance().isAuthenticated()){
-            MDC.put(ApplicationConstant.LOG_USER_NAME, SecurityContext.getInstance().getCurrentUser().getNickName());
+            MDC.put(ApplicationConsts.LOG_USER_NAME, SecurityContext.getInstance().getCurrentUser().getNickName());
         }
         String sessionId = ((HttpServletRequest)request).getSession(false).getId();
         if(sessionId!=null){
-            MDC.put(ApplicationConstant.LOG_SESSION_ID, sessionId.substring(sessionId.length()-SESSION_ID_SECTION_LEN));
+            MDC.put(ApplicationConsts.LOG_SESSION_ID, sessionId.substring(sessionId.length()-SESSION_ID_SECTION_LEN));
         }
         return res;
     }
@@ -106,8 +106,8 @@ public class SessionTimeoutAuthenticationFilter extends FormAuthenticationFilter
     @Override
     protected void cleanup(ServletRequest request, ServletResponse response, Exception existing)
             throws ServletException, IOException {
-        MDC.remove(ApplicationConstant.LOG_USER_NAME);
-        MDC.remove(ApplicationConstant.LOG_SESSION_ID);
+        MDC.remove(ApplicationConsts.LOG_USER_NAME);
+        MDC.remove(ApplicationConsts.LOG_SESSION_ID);
         super.cleanup(request, response, existing);
     }
     

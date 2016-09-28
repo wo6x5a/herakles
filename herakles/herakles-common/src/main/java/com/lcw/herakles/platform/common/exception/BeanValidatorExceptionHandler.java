@@ -11,7 +11,7 @@ import org.springframework.core.MethodParameter;
 import org.springframework.stereotype.Service;
 import org.springframework.web.method.HandlerMethod;
 
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ValidationResultDto;
 
@@ -48,7 +48,7 @@ public class BeanValidatorExceptionHandler extends AbstractExceptionHandler {
             // method parameter arrays
             MethodParameter[] methodParameters = handlerMethod.getMethodParameters();
             if (methodParameters != null && methodParameters.length > 0
-                    && !ApplicationConstant.MANUAL_VALIDATE.equals(vex.getMessage())) {
+                    && !ApplicationConsts.MANUAL_VALIDATE.equals(vex.getMessage())) {
                 for (ConstraintViolation<?> constraintViolation : constraintsViolatioins) {
                     Class<?> doaminClass = constraintViolation.getRootBeanClass();
                     for (MethodParameter methodParameter : methodParameters) {

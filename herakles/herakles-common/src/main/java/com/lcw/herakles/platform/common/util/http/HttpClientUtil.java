@@ -19,7 +19,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
-import com.lcw.herakles.platform.common.constant.ApplicationConstant;
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.util.http.pool.HttpClientPoolConnectionManager;
 
 /**
@@ -61,13 +61,13 @@ public class HttpClientUtil {
             formparams.add(new BasicNameValuePair(key, params.get(key)));
         }
         try {
-            UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(formparams, ApplicationConstant.UTF_8);
+            UrlEncodedFormEntity uefEntity = new UrlEncodedFormEntity(formparams, ApplicationConsts.UTF_8);
             httppost.setEntity(uefEntity);
             response = httpclient.execute(httppost);
 
             HttpEntity entity = response.getEntity();
             if (entity != null) {
-                result = EntityUtils.toString(entity, ApplicationConstant.UTF_8);
+                result = EntityUtils.toString(entity, ApplicationConsts.UTF_8);
                 EntityUtils.consume(entity);
             }
 
@@ -105,7 +105,7 @@ public class HttpClientUtil {
             response = httpclient.execute(httpGet);
             HttpEntity entity = response.getEntity();
             if (entity != null) {
-                result = EntityUtils.toString(entity, ApplicationConstant.UTF_8);
+                result = EntityUtils.toString(entity, ApplicationConsts.UTF_8);
                 EntityUtils.consume(entity);
             }
         } catch (IOException e) {

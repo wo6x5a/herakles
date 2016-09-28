@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.demo.service;
 
-import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
@@ -15,11 +14,11 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
+import com.lcw.herakles.platform.common.service.BaseService;
 import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
 import com.lcw.herakles.platform.demo.entity.ProductPo;
 import com.lcw.herakles.platform.demo.repository.ProductRepository;
-import com.lcw.herakles.platform.system.security.SecurityContext;
 
 /**
  * Class Name: ProductService Description: TODO
@@ -28,12 +27,10 @@ import com.lcw.herakles.platform.system.security.SecurityContext;
  *
  */
 @Service
-public class ProductService {
+public class ProductService extends BaseService{
 
     @SuppressWarnings("unused")
     private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
-    @Autowired
-    private SecurityContext securityContext;
     @Autowired
     private ProductRepository productRepository;
 
@@ -60,10 +57,10 @@ public class ProductService {
         ProductPo product = new ProductPo();
         if (StringUtils.isNotBlank(productReqDto.getId())) {
             product = productRepository.findOne(productReqDto.getId());
-            product.setLastMntOpId(securityContext.getCurrentOperatorId());
-            product.setLastMntTs(new Date());
+            super.setUpdate(product);
         }
         product = ConverterService.convert(productReqDto, product);
+        super.setCreate(product);
         return productRepository.save(product);
 
     }
