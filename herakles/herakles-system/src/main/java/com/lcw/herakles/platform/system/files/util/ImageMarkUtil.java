@@ -18,6 +18,12 @@ import javax.swing.ImageIcon;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * 图片水印工具
+ * 
+ * @author chenwulou
+ *
+ */
 public class ImageMarkUtil {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ImageMarkUtil.class);
@@ -26,26 +32,26 @@ public class ImageMarkUtil {
      * @param args
      */
     public static void main(String[] args) {
-         String srcImgPath = "d:/test.png";
-         String iconPath = "d:/logo.png";
-         String targerPath = "d:/test_mark_icon.png";
-         String targerPath2 = "d:/test_mark1_icon.png";
-         // 给图片添加水印
-         ImageMarkUtil.markImageByIcon(iconPath, srcImgPath, targerPath);
-         // 给图片添加水印,水印旋转-45
-         ImageMarkUtil.markImageByIcon(iconPath, srcImgPath, targerPath2, -45);
+//         String srcImgPath = "d:/test.png";
+//         String iconPath = "d:/logo.png";
+//         String targerPath = "d:/test_mark_icon.png";
+//         String targerPath2 = "d:/test_mark1_icon.png";
+//         // 给图片添加水印
+//         ImageMarkUtil.markImageByIcon(iconPath, srcImgPath, targerPath);
+//         // 给图片添加水印,水印旋转-45
+//         ImageMarkUtil.markImageByIcon(iconPath, srcImgPath, targerPath2, -45);
 
-//        String srcImgPath = "d:/test.png";
-//        String logoText = "[ 测试文字水印 http://herakles.space ]";
-//        String targerPath = "d:/test_mark_text.png";
-//
-//        String targerPath2 = "d:/test_mark1_text.png";
-//
-//        // 给图片添加水印
-//        ImageMarkUtil.markByText(logoText, srcImgPath, targerPath);
-//
-//        // 给图片添加水印,水印旋转-45
-//        ImageMarkUtil.markByText(logoText, srcImgPath, targerPath2, -45);
+        String srcImgPath = "d:/test.png";
+        String logoText = "[ 测试文字水印 http://test.com ]";
+        String targerPath = "d:/test_mark_text.png";
+
+        String targerPath2 = "d:/test_mark1_text.png";
+
+        // 给图片添加水印
+        ImageMarkUtil.markByText(logoText, srcImgPath, targerPath);
+
+        // 给图片添加水印,水印旋转-45
+        ImageMarkUtil.markByText(logoText, srcImgPath, targerPath2, -45);
 
     }
 
@@ -104,17 +110,19 @@ public class ImageMarkUtil {
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
 
             // 表示水印图片的位置
-            int srcImgWidth = srcImg.getWidth(null);
-            int srcImgHeight = srcImg.getHeight(null);
-            BufferedImage bufImg = new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
-            Integer imgWidth = bufImg.getWidth();
-            Integer imgHigh = bufImg.getHeight();
-            for (int x = 0; x < imgWidth; x = x + 300) {
-                for (int y = 0; y < imgHigh; y = y + 300) {
-                    g.drawImage(img, x, y, null);
-                }
-            }
+//            int srcImgWidth = srcImg.getWidth(null);
+//            int srcImgHeight = srcImg.getHeight(null);
+//            BufferedImage bufImg = new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
+//            Integer imgWidth = bufImg.getWidth();
+//            Integer imgHigh = bufImg.getHeight();
+//            for (int x = 0; x < imgWidth; x = x + 300) {
+//                for (int y = 0; y < imgHigh; y = y + 300) {
+//                    g.drawImage(img, x, y, null);
+//                }
+//            }
 
+            g.drawImage(img, 150, 300, null);
+            
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_OVER));
 
             g.dispose();
@@ -135,7 +143,7 @@ public class ImageMarkUtil {
             }
         }
     }
-
+    
     /**
      * 给图片添加文字水印
      * 
@@ -193,6 +201,16 @@ public class ImageMarkUtil {
             g.setComposite(AlphaComposite.getInstance(AlphaComposite.SRC_ATOP, alpha));
 
             // 第一参数->设置的内容，后面两个参数->文字在图片上的坐标位置(x,y) .
+//            int srcImgWidth = srcImg.getWidth(null);
+//            int srcImgHeight = srcImg.getHeight(null);
+//            BufferedImage bufImg = new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
+//            Integer imgWidth = bufImg.getWidth();
+//            Integer imgHigh = bufImg.getHeight();
+//            for (int x = 0; x < imgWidth; x = x + 300) {
+//                for (int y = 0; y < imgHigh; y = y + 300) {
+//                    g.drawString(logoText, x, y);
+//                }
+//            }
             g.drawString(logoText, 150, 300);
 
             g.dispose();
