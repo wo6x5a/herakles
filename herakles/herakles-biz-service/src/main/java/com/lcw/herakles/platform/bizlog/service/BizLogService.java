@@ -31,6 +31,7 @@ import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.paging.PaginationUtil;
+import com.lcw.herakles.platform.common.service.BaseService;
 import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.common.util.ReflectionUtil;
 
@@ -39,7 +40,7 @@ import com.lcw.herakles.platform.common.util.ReflectionUtil;
  *
  */
 @Service
-public class BizLogService {
+public class BizLogService extends BaseService{
 
 	private static final Logger LOGGER = LoggerFactory.getLogger(BizLogService.class);
 
@@ -78,6 +79,7 @@ public class BizLogService {
 		bizLogPo.setOldVaule(oldValue);
 		bizLogPo.setNewVaule(newVaule);
 		bizLogPo.setComment(comment);
+		super.setCreateInfo(bizLogPo);
 		bizLogRepository.save(bizLogPo);
 	}
 

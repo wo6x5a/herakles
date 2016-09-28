@@ -6,6 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.lcw.herakles.platform.common.converter.ConverterService;
+import com.lcw.herakles.platform.common.service.BaseService;
 import com.lcw.herakles.platform.system.user.dto.req.UserRegisterReqDto;
 import com.lcw.herakles.platform.system.user.entity.UserPo;
 import com.lcw.herakles.platform.system.user.repository.UserRepository;
@@ -17,7 +18,7 @@ import com.lcw.herakles.platform.system.user.repository.UserRepository;
  *
  */
 @Service
-public class UserRegisterService {
+public class UserRegisterService extends BaseService{
 
     @Autowired
     private UserRepository userRepository;
@@ -25,6 +26,7 @@ public class UserRegisterService {
     @Transactional
     public void register(UserRegisterReqDto req) {
         UserPo po = ConverterService.convert(req, UserPo.class);
+        super.setCreateInfo(po);
         userRepository.save(po);
     }
 

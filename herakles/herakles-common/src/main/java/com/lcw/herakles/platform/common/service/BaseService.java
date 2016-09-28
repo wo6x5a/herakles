@@ -18,13 +18,13 @@ import com.lcw.herakles.platform.common.entity.BasePo;
  */
 public class BaseService {
 
-    public void setCreate(Object entity) {
+    public void setCreateInfo(Object entity) {
         BasePo po = (BasePo) entity;
         po.setCreateOpId(getCurrentOperatorId());
         po.setCreateTs(new Date());
     }
 
-    public void setUpdate(Object entity) {
+    public void setUpdateInfo(Object entity) {
         BaseMaintainablePo po = (BaseMaintainablePo) entity;
         po.setLastMntOpId(getCurrentOperatorId());
         po.setLastMntTs(new Date());

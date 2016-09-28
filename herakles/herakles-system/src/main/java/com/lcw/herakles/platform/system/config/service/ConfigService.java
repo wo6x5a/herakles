@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.system.config.service;
 
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.criteria.CriteriaBuilder;
@@ -24,6 +23,7 @@ import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.paging.PaginationUtil;
+import com.lcw.herakles.platform.common.service.BaseService;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.system.config.dto.ConfigDto;
@@ -33,7 +33,6 @@ import com.lcw.herakles.platform.system.config.entity.ConfigPo;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.enums.EConfig;
 import com.lcw.herakles.platform.system.config.repository.ConfigRepository;
-import com.lcw.herakles.platform.system.security.SecurityContext;
 
 /**
  * Class Name: ConfigService Description: TODO
@@ -42,10 +41,8 @@ import com.lcw.herakles.platform.system.security.SecurityContext;
  *
  */
 @Service
-public class ConfigService {
+public class ConfigService extends BaseService {
 
-	@Autowired
-	private SecurityContext securityContext;
 	@Autowired
 	private ConfigRepository configRepository;
 
@@ -57,9 +54,9 @@ public class ConfigService {
 				Predicate predicate = cb.conjunction();
 				List<Expression<Boolean>> expressions = predicate.getExpressions();
 				expressions.add(root.<ECfgType> get("type").in(cfgTypeList));
-				if (StringUtils.isNotBlank(searchDto.getKeyword())) {
-					String keyWord = "%" + searchDto.getKeyword() + "%";
-					expressions.add(cb.like(root.<String> get("memo"), keyWord));
+				String keyWord = StringUtils.deleteWhitespace(searchDto.getKeyword());
+				if (StringUtils.isNotBlank(keyWord)) {
+					expressions.add(cb.like(root.<String> get("memo"), "%" + keyWord + "%"));
 				}
 				return predicate;
 			}
@@ -90,8 +87,7 @@ public class ConfigService {
 		}
 		cfg.setValue(reqDto.getValue());
 		cfg.setMemo(reqDto.getMemo());
-		cfg.setLastMntOpId(securityContext.getCurrentOperatorId());
-		cfg.setLastMntTs(new Date());
+		super.setUpdateInfo(cfg);
 		configRepository.save(cfg);
 	}
 

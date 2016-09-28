@@ -8,6 +8,7 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.lcw.herakles.platform.common.enums.EErrorCode;
+import com.lcw.herakles.platform.common.service.BaseService;
 import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.system.files.dto.FileDto;
 import com.lcw.herakles.platform.system.files.entity.FilePo;
@@ -19,7 +20,7 @@ import com.lcw.herakles.platform.system.files.util.FileUtil;
  *
  */
 @Service
-public class FileService {
+public class FileService extends BaseService{
 
 	@Autowired
 	private FileRepository fileRepository;
@@ -32,6 +33,7 @@ public class FileService {
 		filePo.setFileCode(fileCode);
 		filePo.setFileName(fileDto.getFileName());
 		filePo.setFilePath(fileDto.getFilePath());
+        super.setCreateInfo(filePo);
 		fileRepository.save(filePo);
 		fileDto.setFileCode(fileCode);
 		return fileDto;

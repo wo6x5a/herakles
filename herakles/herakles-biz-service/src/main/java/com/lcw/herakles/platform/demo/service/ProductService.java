@@ -57,10 +57,10 @@ public class ProductService extends BaseService{
         ProductPo product = new ProductPo();
         if (StringUtils.isNotBlank(productReqDto.getId())) {
             product = productRepository.findOne(productReqDto.getId());
-            super.setUpdate(product);
+            super.setUpdateInfo(product);
         }
         product = ConverterService.convert(productReqDto, product);
-        super.setCreate(product);
+        super.setCreateInfo(product);
         return productRepository.save(product);
 
     }
