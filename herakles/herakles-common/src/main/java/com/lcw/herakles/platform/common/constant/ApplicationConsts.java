@@ -46,5 +46,9 @@ public final class ApplicationConsts {
 	 * MD5默认迭代次数
 	 */
 	public static final int ITERATIONS = 3;
+    /**
+     * 水印图片的路径
+     */
+    public static final String WATERMARK_PATTERN = "image/watermark{0}.png";
 
 }

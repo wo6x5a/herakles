@@ -138,7 +138,7 @@ public class FtpUtil {
      * @param fileName
      * @return
      */
-    private static String suffix(String fileName) {
+    public static String suffix(String fileName) {
         return fileName.substring(fileName.indexOf(".") + 1);
     }
 }
