@@ -1,5 +1,7 @@
 package com.lcw.herakles.platform.common.util.ftp.pool.dto;
 
+import com.lcw.herakles.platform.common.util.EndecryptUtils;
+
 /**
  * Description: ftp信息
  * 
@@ -7,6 +9,8 @@ package com.lcw.herakles.platform.common.util.ftp.pool.dto;
  *
  */
 public class FtpInfo {
+
+    private static final String FTP_AES_KEY = "5QSC8vwvBi7ohPkukgT0Bw==";
 
 	private String ftpHost;
 
@@ -21,6 +25,7 @@ public class FtpInfo {
 	}
 
 	public void setFtpHost(String ftpHost) {
+	    ftpHost = EndecryptUtils.decryptAes(ftpHost, FTP_AES_KEY);
 		this.ftpHost = ftpHost;
 	}
 
@@ -29,6 +34,7 @@ public class FtpInfo {
 	}
 
 	public void setFtpUserName(String ftpUserName) {
+	    ftpUserName = EndecryptUtils.decryptAes(ftpUserName, FTP_AES_KEY);
 		this.ftpUserName = ftpUserName;
 	}
 
@@ -37,6 +43,7 @@ public class FtpInfo {
 	}
 
 	public void setFtpPassword(String ftpPassword) {
+	    ftpPassword = EndecryptUtils.decryptAes(ftpPassword, FTP_AES_KEY);
 		this.ftpPassword = ftpPassword;
 	}
 

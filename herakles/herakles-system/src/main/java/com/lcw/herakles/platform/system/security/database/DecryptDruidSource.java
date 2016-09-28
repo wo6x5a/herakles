@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.druid.filter.config.ConfigTools;
 import com.alibaba.druid.pool.DruidDataSource;
-import com.lcw.herakles.platform.system.security.util.EndecryptUtils;
+import com.lcw.herakles.platform.common.util.EndecryptUtils;
 
 /**
  * @author chenwulou

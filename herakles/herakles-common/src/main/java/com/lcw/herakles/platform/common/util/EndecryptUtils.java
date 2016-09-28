@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.security.util;
+package com.lcw.herakles.platform.common.util;
 
 import java.security.Key;
 
@@ -165,7 +165,7 @@ public class EndecryptUtils {
         // String salt = "7road";
         // String cipherText_md5 = new Md5Hash(password, salt, 4).toHex();
         // System.out.println(password + " 通过md5加密之后的密文是：" + cipherText_md5);
-        // System.out.println(generateKey());
+//         System.out.println(generateKey());
         // System.out.println("==========================================================");
         // AesCipherService aesCipherService = new AesCipherService();
         // aesCipherService.setKeySize(128);
@@ -177,7 +177,7 @@ public class EndecryptUtils {
         // String aes_mingwen = new String(
         // aesCipherService.decrypt(Hex.decode(aes_cipherText), key.getEncoded()).getBytes());
         // System.out.println(aes_cipherText + " aes解密的明文是：" + aes_mingwen);
-         System.out.println(encryptAes("wo6x5a7@163.com", "IHqLKGEYHRxLPCTbCtZfbA=="));
+         System.out.println(encryptAes("123456", "5QSC8vwvBi7ohPkukgT0Bw=="));
         // System.out.println(decryptAes(
         // "949a88e84577cdb3299d15846a02ecf7b63644186747848e96ef1885406abc00444da42b77676a6df786c6c0a3579eb4835e2ac184eb361ecd725cbc1171f3f5",
         // null));

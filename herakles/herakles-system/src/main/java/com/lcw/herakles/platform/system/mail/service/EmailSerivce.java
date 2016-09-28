@@ -18,7 +18,7 @@ import org.springframework.ui.velocity.VelocityEngineUtils;
 import com.lcw.herakles.platform.common.constant.ApplicationConstant;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
-import com.lcw.herakles.platform.system.security.util.EndecryptUtils;
+import com.lcw.herakles.platform.common.util.EndecryptUtils;
 
 /**
  * @author chenwulou
