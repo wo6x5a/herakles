@@ -80,7 +80,7 @@ public class ChinesUtil {
                     output += java.lang.Character.toString(input[i]);
             }
         } catch (BadHanyuPinyinOutputFormatCombination e) {
-            LOGGER.error("ChinesUtil.getPingYin, {}", e);
+            LOGGER.error("ChinesUtil.getPingYin:", e);
         }
         return output;
     }
@@ -105,7 +105,7 @@ public class ChinesUtil {
                         pybf.append(temp[0].charAt(0));
                     }
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    LOGGER.error("ChinesUtil.getFirstSpell, {}", e);
+                    LOGGER.error("ChinesUtil.getFirstSpell:", e);
                 }
             } else {
                 pybf.append(arr[i]);
@@ -131,7 +131,7 @@ public class ChinesUtil {
                 try {
                     pybf.append(PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat)[0]);
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    LOGGER.error("ChinesUtil.getFullSpell, {}", e);
+                    LOGGER.error("ChinesUtil.getFullSpell:", e);
                 }
             } else {
                 pybf.append(arr[i]);

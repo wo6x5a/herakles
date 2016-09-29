@@ -32,7 +32,7 @@ public final class ReflectionUtil {
 		try {
 			getMethod = clazz.getDeclaredMethod(getMethodName);
 		} catch (Exception e) {
-			LOGGER.error("error while get getter, {}", e);
+			LOGGER.error("error while get getter:", e);
 		}
 		return getMethod;
 	}
@@ -46,7 +46,7 @@ public final class ReflectionUtil {
 		try {
 			setMethod = clazz.getDeclaredMethod(setMethodName, fieldType);
 		} catch (Exception e) {
-			LOGGER.error("error while get setter, {}", e);
+			LOGGER.error("error while get setter:", e);
 		}
 		return setMethod;
 	}

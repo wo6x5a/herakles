@@ -70,7 +70,7 @@ public class ImageMarkUtil {
         try {
             iconByteData = IOUtils.toByteArray(ins);
         } catch (IOException e) {
-            LOGGER.error("ImageMarkUtil error, {}", e);
+            LOGGER.error("ImageMarkUtil error:", e);
         }
         return markImageByIcon(iconByteData, srcImgInput, targerPath, degree);
     }
@@ -174,13 +174,13 @@ public class ImageMarkUtil {
             // ImageIO.write(buffImg, suffix, os);
 
         } catch (Exception e) {
-            LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
+            LOGGER.error("ImageMarkUtil error:", e);
         } finally {
             try {
                 if (null != os)
                     os.close();
             } catch (Exception e) {
-                LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
+                LOGGER.error("ImageMarkUtil error:", e);
             }
         }
         return buffImg;
@@ -260,13 +260,13 @@ public class ImageMarkUtil {
                 if (null != is)
                     is.close();
             } catch (Exception e) {
-                LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
+                LOGGER.error("ImageMarkUtil error:", e);
             }
             try {
                 if (null != os)
                     os.close();
             } catch (Exception e) {
-                LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
+                LOGGER.error("ImageMarkUtil error:", e);
             }
         }
     }

@@ -69,7 +69,7 @@ public class FileUtil {
             ImageIO.write(bimage, "png", imOut);
             is = new ByteArrayInputStream(bs.toByteArray());
         } catch (IOException e) {
-            LOGGER.error("FtpUtil.getImageStream() error, {}", e);
+            LOGGER.error("FtpUtil.getImageStream() error:", e);
         }
         return is;
     }

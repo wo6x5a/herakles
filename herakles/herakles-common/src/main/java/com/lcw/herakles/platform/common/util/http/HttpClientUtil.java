@@ -73,7 +73,7 @@ public class HttpClientUtil {
 
         } catch (IOException e) {
             httppost.abort();
-            LOGGER.error("HttpClientUtil.post, {}", e);
+            LOGGER.error("HttpClientUtil.post:", e);
         } finally {
             if (response != null) {
                 try {
@@ -81,7 +81,7 @@ public class HttpClientUtil {
                     // httpclient.close();
                 } catch (IOException e) {
                     httppost.abort();
-                    LOGGER.error("HttpClientUtil.post, {}", e);
+                    LOGGER.error("HttpClientUtil.post:", e);
                 }
             }
             httppost.releaseConnection();
@@ -110,7 +110,7 @@ public class HttpClientUtil {
             }
         } catch (IOException e) {
             httpGet.abort();
-            LOGGER.error("HttpClientUtil.get, {}", e);
+            LOGGER.error("HttpClientUtil.get:", e);
         } finally {
             if (response != null) {
                 try {
@@ -118,7 +118,7 @@ public class HttpClientUtil {
                     // httpclient.close();
                 } catch (IOException e) {
                     httpGet.abort();
-                    LOGGER.error("HttpClientUtil.get, {}", e);
+                    LOGGER.error("HttpClientUtil.get:", e);
                 }
             }
             httpGet.releaseConnection();

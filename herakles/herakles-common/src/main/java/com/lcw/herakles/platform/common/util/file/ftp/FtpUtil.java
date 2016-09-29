@@ -79,9 +79,10 @@ public class FtpUtil {
         try {
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
             changeWorkingDirectory(ftpClient, filePath);
+            input = null;
             ftpClient.storeFile(fileName, input);
         } catch (Exception e) {
-            LOGGER.error("文件上传失败, {}", e);
+            LOGGER.error("文件上传失败:", e);
         } finally {
             pool.releaseConnection(ftpClient);
         }
@@ -114,7 +115,7 @@ public class FtpUtil {
             changeWorkingDirectory(ftpClient, filePath);
             ftpClient.deleteFile(fileName);
         } catch (Exception e) {
-            LOGGER.error("文件删除失败, {}", e);
+            LOGGER.error("文件删除失败:", e);
         } finally {
             pool.releaseConnection(ftpClient);
         }
@@ -129,13 +130,11 @@ public class FtpUtil {
     private static void changeWorkingDirectory(FTPClient ftpClient, String targetPath) {
         ftpClient.enterLocalPassiveMode();
         try {
-            boolean result = ftpClient.changeWorkingDirectory(targetPath);
-            if (!result) {
+            if (!ftpClient.changeWorkingDirectory(targetPath)) {
                 ftpClient.changeWorkingDirectory("/");
                 String[] paths = targetPath.split("/");
                 for (int i = 0; i < paths.length; i++) {
                     ftpClient.makeDirectory(paths[i]);
-                    ftpClient.changeWorkingDirectory(paths[i]);
                 }
                 if (!ftpClient.changeWorkingDirectory(targetPath)) {
                     LOGGER.error("调转到目标目录失败");
@@ -143,8 +142,8 @@ public class FtpUtil {
                 }
             }
         } catch (IOException e) {
-            LOGGER.error("调转到目标目录失败, {}", e);
+            LOGGER.error("调转到目标目录失败:", e);
         }
-         LOGGER.debug("调转到目标目录");
+        LOGGER.debug("调转到目标目录");
     }
 }

@@ -119,7 +119,7 @@ public abstract class AbstractExceptionHandler {
                 try {
                     rootClass = getNextRootClass(rootClass, parseFieldName, isFound);
                 } catch (NoSuchFieldException e) {
-                    LOGGER.debug("NoSuchFieldException, {}", e);
+                    LOGGER.debug("NoSuchFieldException:", e);
                 }
             }
         }

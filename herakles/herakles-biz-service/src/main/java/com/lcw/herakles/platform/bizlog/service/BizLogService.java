@@ -132,7 +132,7 @@ public class BizLogService extends BaseService{
 		try {
 			result = objectMapper.writeValueAsString(value);
 		} catch (IOException e) {
-            LOGGER.error("LogService.convertMap2String error, {}", e);
+            LOGGER.error("LogService.convertMap2String error:", e);
         }
 		return result;
 	}
