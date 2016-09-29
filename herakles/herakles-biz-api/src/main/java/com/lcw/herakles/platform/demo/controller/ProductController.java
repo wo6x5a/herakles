@@ -227,14 +227,15 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "test-temp-form", method = RequestMethod.GET)
     public ModelAndView printApplicationForm() {
         ModelAndView model = new ModelAndView(FileTemplateConsts.REDIRECT);
-        model.addObject("fileName", FileTemplateConsts.TEST_TEMP);
+        model.addObject(FileTemplateConsts.FILE_NAME, FileTemplateConsts.TEST_TEMP);
         try {
-            model.addObject("showFileName", URLEncoder.encode(FileTemplateConsts.TEST_TEMP_NAME, ApplicationConsts.UTF_8));
+            model.addObject(FileTemplateConsts.FILE_SHOW_NAME,
+                    URLEncoder.encode(FileTemplateConsts.TEST_TEMP_NAME, ApplicationConsts.UTF_8));
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        model.addObject("suffixes", FileConsts.DOC);
-        model.addObject("filePath", FileTemplateConsts.WORD_PATH);
+        model.addObject(FileTemplateConsts.FILE_SUFFIXES, FileConsts.DOC);
+        model.addObject(FileTemplateConsts.FILE_PATH, FileTemplateConsts.WORD_PATH);
         return model;
     }
 

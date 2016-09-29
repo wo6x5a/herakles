@@ -45,7 +45,7 @@ public class FileTemplateController {
      */
     @RequestMapping(value = "download")
     public void getFile(@RequestParam(value = "fileName") String fileName,
-            @RequestParam(value = "showFileName") String showFileName,
+            @RequestParam(value = "fileShowName") String fileShowName,
             @RequestParam(value = "suffixes") String suffixes,
             @RequestParam(value = "filePath") String filePath, HttpServletRequest request,
             HttpServletResponse response) throws IOException {
@@ -57,7 +57,7 @@ public class FileTemplateController {
 
         StringBuilder header = new StringBuilder();
         header.append("attachment; filename=");
-        header.append(showFileName);
+        header.append(fileShowName);
         header.append(suffixes);
 
         response = this.handleResponseContentType(response, suffixes);
