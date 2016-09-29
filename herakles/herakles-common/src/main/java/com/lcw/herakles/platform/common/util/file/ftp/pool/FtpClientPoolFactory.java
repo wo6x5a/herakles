@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.common.util.ftp.pool;
+package com.lcw.herakles.platform.common.util.file.ftp.pool;
 
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.pool2.impl.GenericObjectPool;

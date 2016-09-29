@@ -42,7 +42,7 @@ import com.lcw.herakles.platform.common.enums.EnumOption;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.common.util.DateUtils;
 import com.lcw.herakles.platform.common.util.EnumHelper;
-import com.lcw.herakles.platform.common.util.ftp.FtpUtil;
+import com.lcw.herakles.platform.common.util.file.ftp.FtpUtil;
 import com.lcw.herakles.platform.common.util.http.HttpClientUtil;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
 import com.lcw.herakles.platform.demo.dto.ProductDto;

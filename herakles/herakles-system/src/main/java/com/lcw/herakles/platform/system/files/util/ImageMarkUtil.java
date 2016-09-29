@@ -23,7 +23,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
-import com.lcw.herakles.platform.common.util.ftp.FtpUtil;
+import com.lcw.herakles.platform.common.util.file.ftp.FtpUtil;
 
 /**
  * 图片水印工具

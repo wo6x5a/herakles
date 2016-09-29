@@ -7,7 +7,7 @@
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 
 	<!-- ftp配置 -->
-	<bean id="ftpInfo" class="com.lcw.herakles.platform.common.util.ftp.dto.FtpInfo">
+	<bean id="ftpInfo" class="com.lcw.herakles.platform.common.util.file.ftp.dto.FtpInfo">
 		<property name="ftpHost" value="${ftp.server.ip}" />
 		<property name="ftpUserName" value="${ftp.server.userName}" />
 		<property name="ftpPassword" value="${ftp.server.userPwd}" />
@@ -15,9 +15,9 @@
 	</bean>
 
 	<!-- ftp线程池工厂 -->
-	<bean id="ftpClientPoolFactory" class="com.lcw.herakles.platform.common.util.ftp.pool.FtpClientPoolFactory">
+	<bean id="ftpClientPoolFactory" class="com.lcw.herakles.platform.common.util.file.ftp.pool.FtpClientPoolFactory">
 		<constructor-arg>
-			<bean class="com.lcw.herakles.platform.common.util.ftp.pool.FtpClientFactory">
+			<bean class="com.lcw.herakles.platform.common.util.file.ftp.pool.FtpClientFactory">
 				<property name="ftpInfo" ref="ftpInfo" />
 			</bean>
 		</constructor-arg>
