@@ -93,7 +93,7 @@ public class FtpUtil {
             pool.releaseConnection(ftpClient);
         }
     }
-
+    
     /**
      * Description: 目录切换
      *
@@ -119,6 +119,6 @@ public class FtpUtil {
         } catch (IOException e) {
             LOGGER.error("调转到目标目录失败, {}", e);
         }
-        // LOGGER.debug("调转到目标目录");
+         LOGGER.debug("调转到目标目录");
     }
 }
