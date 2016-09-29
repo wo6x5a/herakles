@@ -49,6 +49,7 @@ public final class ApplicationConsts {
     /**
      * 水印图片的路径
      */
-    public static final String WATERMARK_PATTERN = "image/watermark{0}.png";
+//    public static final String WATERMARK_PATTERN = "image/watermark{0}.png";
+	public static final String WATERMARK_PATTERN_PATH = "image/watermark_logo.png";
 
 }

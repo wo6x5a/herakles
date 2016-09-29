@@ -14,13 +14,11 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
-import java.text.MessageFormat;
 
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import org.apache.commons.io.IOUtils;
-import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -94,15 +92,16 @@ public class ImageMarkUtil {
      * @return
      */
     private static String getWaterImage() {
-        StringBuilder param = new StringBuilder();
-        String pattern = ApplicationConsts.WATERMARK_PATTERN;
-        // TODO name
-        String customSource = "logo";
-        if (StringUtils.isNotBlank(customSource)) {
-            param.append("_");
-            param.append(customSource.toLowerCase());
-        }
-        return MessageFormat.format(pattern, param.toString());
+//        StringBuilder param = new StringBuilder();
+//        String pattern = ApplicationConsts.WATERMARK_PATTERN;
+//        // TODO name
+//        String customSource = "logo";
+//        if (StringUtils.isNotBlank(customSource)) {
+//            param.append("_");
+//            param.append(customSource.toLowerCase());
+//        }
+//        return MessageFormat.format(pattern, param.toString());
+        return ApplicationConsts.WATERMARK_PATTERN_PATH;
     }
 
     /**
