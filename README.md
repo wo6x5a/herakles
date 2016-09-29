@@ -46,7 +46,7 @@
 
 注意事项
 --------------------------------------------------
-- 因为项目用的是spring data jpa,感觉国内公司在项目中使用不多,但是我觉得却能很大程度提升开发效率.有一定的学习成本,可参考文档http://docs.spring.io/spring-data/jpa/docs/1.10.3.RELEASE/reference/html/ jpa的使用可参考:https://en.wikibooks.org/wiki/Java_Persistence/Criteria  虽然也支持写sql,但是本人还是建议不要在项目中写直接写sql
+- 因为项目用的是spring data jpa,感觉国内公司在项目中使用不多,但是我觉得却能很大程度提升开发效率.有一定的学习成本,可参考文档:http://docs.spring.io/spring-data/jpa/docs/1.10.3.RELEASE/reference/html/ ,虽然spring data jpa也支持写sql,但是本人还是建议不要在项目中写直接写sql,jpa的使用可参考:https://en.wikibooks.org/wiki/Java_Persistence/Criteria ,
 
 
 # 其他
