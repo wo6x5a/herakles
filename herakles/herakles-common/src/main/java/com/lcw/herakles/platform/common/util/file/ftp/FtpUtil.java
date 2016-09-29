@@ -28,6 +28,11 @@ public class FtpUtil {
 
     }
 
+    public static String upload(String fileName, InputStream input, String filePath,
+            boolean ismark) {
+        return upload(fileName, input, filePath);
+    }
+
     /**
      * Description: 上传文件
      *
@@ -50,7 +55,7 @@ public class FtpUtil {
         }
 
         resp.append(filePath);
-//        resp.append(File.separator);
+        // resp.append(File.separator);
         resp.append(fileName);
         return resp.toString();
     }
@@ -112,7 +117,7 @@ public class FtpUtil {
         } catch (IOException e) {
             LOGGER.error("调转到目标目录失败, {}", e);
         }
-//        LOGGER.debug("调转到目标目录");
+        // LOGGER.debug("调转到目标目录");
     }
 
     /**
@@ -122,10 +127,10 @@ public class FtpUtil {
      * @return 保存到FTP服务器的文件名称
      */
     public static String rename(String fileName) {
-		StringBuilder resp = new StringBuilder();
-		String newName = String.valueOf(System.currentTimeMillis());
-		// RandomUtil.getAlnum(5);
-		newName = newName + RandomStringUtils.randomNumeric(5);
+        StringBuilder resp = new StringBuilder();
+        String newName = String.valueOf(System.currentTimeMillis());
+        // RandomUtil.getAlnum(5);
+        newName = newName + RandomStringUtils.randomNumeric(5);
         resp.append(newName);
         resp.append(".");
         resp.append(suffix(fileName).toLowerCase());

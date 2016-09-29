@@ -8,6 +8,8 @@ import java.awt.Image;
 import java.awt.RenderingHints;
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
@@ -37,12 +39,15 @@ public class ImageMarkUtil {
 
     /**
      * @param args
+     * @throws FileNotFoundException 
      */
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
         String srcImgPath = "d:/test.png";
+        File file = new File(srcImgPath);
+        InputStream input = new FileInputStream(file);
         String targerPath2 = "d:/test_mark1_icon.png";
         // 给图片添加水印,水印旋转-45
-        ImageMarkUtil.markImageByIcon(srcImgPath, targerPath2, -45);
+        ImageMarkUtil.markImageByIcon(input, targerPath2, -45);
 
         // String srcImgPath = "d:/test.png";
         // String logoText = "[ 测试文字水印 herakles ]";
@@ -56,14 +61,14 @@ public class ImageMarkUtil {
     /**
      * 给图片添加水印
      * 
-     * @param srcImgPath
-     *            源图片路径
+     * @param srcImgInput
+     *            源图片输入流
      * @param targerPath
      *            目标图片路径
      * @param degree
      *            旋转角度
      */
-    public static void markImageByIcon(String srcImgPath, String targerPath, Integer degree) {
+    public static void markImageByIcon(InputStream srcImgInput, String targerPath, Integer degree) {
         InputStream ins = getWaterImageInputStream();
         byte[] iconByteData = null;
         try {
@@ -71,7 +76,7 @@ public class ImageMarkUtil {
         } catch (IOException e) {
             LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
         }
-        markImageByIcon(iconByteData, srcImgPath, targerPath, degree);
+        markImageByIcon(iconByteData, srcImgInput, targerPath, degree);
     }
 
     private static InputStream getWaterImageInputStream() {
@@ -97,20 +102,21 @@ public class ImageMarkUtil {
      * 
      * @param imageData
      *            水印图片数据
-     * @param srcImgPath
-     *            源图片路径
+     * @param srcImgInput
+     *            源图片输入流
      * @param targerPath
-     *            目标图片路径
+     *            目标图片完整路径
      * @param degree
      *            水印图片旋转角度
      */
-    public static void markImageByIcon(byte[] imageData, String srcImgPath, String targerPath, Integer degree) {
-        String suffix = FtpUtil.suffix(srcImgPath);
+    public static BufferedImage markImageByIcon(byte[] imageData, InputStream srcImgInput, String targerPath, Integer degree) {
+        String suffix = FtpUtil.suffix(targerPath);
         OutputStream os = null;
+        BufferedImage buffImg = null;
         try {
-            Image srcImg = ImageIO.read(new File(srcImgPath));
+            Image srcImg = ImageIO.read(srcImgInput);
 
-            BufferedImage buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
+            buffImg = new BufferedImage(srcImg.getWidth(null), srcImg.getHeight(null),
                     BufferedImage.TYPE_INT_RGB);
 
             // 得到画笔对象
@@ -159,7 +165,7 @@ public class ImageMarkUtil {
 
             // 生成图片
             ImageIO.write(buffImg, suffix, os);
-
+            
         } catch (Exception e) {
             LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
         } finally {
@@ -170,6 +176,7 @@ public class ImageMarkUtil {
                 LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
             }
         }
+        return buffImg;
     }
 
     /**
