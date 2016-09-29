@@ -7,6 +7,7 @@ package com.lcw.herakles.platform.common.constant;
  *
  */
 public final class FileTemplateConsts {
+
     /** 文件模板参数 **/
     public static final String FILE_NAME = "fileName";
     public static final String FILE_SHOW_NAME = "fileShowName";
