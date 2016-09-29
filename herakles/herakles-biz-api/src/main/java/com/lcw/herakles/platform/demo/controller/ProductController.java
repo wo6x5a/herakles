@@ -102,7 +102,7 @@ public class ProductController extends BaseController {
         filePath.append(FtpFileConsts.TP_PIC);
         filePath.append(FtpFileConsts.PG_PRODUCT);
         try {
-            resp = FtpUtil.upload(FileUtil.rename(file.getName()), file.getInputStream(), filePath.toString(), true);
+            resp = FtpUtil.uploadImgWithMark(FileUtil.rename(file.getName()), file.getInputStream(), filePath.toString());
         } catch (IOException e) {
             ResultDtoFactory.toNack(e.getMessage());
         }
@@ -110,6 +110,7 @@ public class ProductController extends BaseController {
     }
 
     @RequestMapping(value = "ftp-test", method = RequestMethod.GET)
+    @SuppressWarnings("unused")
     public String ftpTest() {
         File file = new File("D:/test.png");
         StringBuilder filePath = new StringBuilder("");
@@ -121,8 +122,9 @@ public class ProductController extends BaseController {
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         }
-        @SuppressWarnings("unused")
-        String resp = FtpUtil.upload(FileUtil.rename(file.getName()), in, filePath.toString(), true);
+//        String resp = FtpUtil.uploadFile(FileUtil.rename(file.getName()), in, filePath.toString());
+        String resp1 = FtpUtil.uploadImgWithMark(FileUtil.rename(file.getName()), in, filePath.toString());
+//        System.out.println(resp + "," + resp1);
         return "biz/product/test";
     }
 

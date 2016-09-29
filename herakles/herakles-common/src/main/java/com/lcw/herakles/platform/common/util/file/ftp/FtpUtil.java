@@ -31,14 +31,45 @@ public class FtpUtil {
     }
 
     /**
+     * 上传图片或文件
+     * 
+     * @param fileName
+     * @param input
+     * @param filePath
+     * @return
+     */
+    public static String uploadFile(String fileName, InputStream input, String filePath) {
+        return upload(fileName, input, filePath);
+    }
+
+    /**
+     * 上传图片并打水印
+     * 
+     * @param fileName
+     * @param input
+     * @param filePath
+     * @return
+     */
+    public static String uploadImgWithMark(String fileName, InputStream input, String filePath) {
+        // 如果水印,输入流则为水印图片输入流
+        BufferedImage buf = ImageMarkUtil.markImageByIcon(input, filePath + fileName, -45);
+        if(null != buf){
+            input = FileUtil.getImageStream(buf);
+        } else{
+            LOGGER.error("FtpUtil.uploadImgWithMark(), buf为空");
+        }
+        return upload(fileName, input, filePath);
+    }
+
+    /**
      * Description: 上传文件
      *
      * @param fileName 文件名
      * @param input
      * @param filePath ftp相对目录
+     * @param ismark 是否图片水印
      */
-    public static String upload(String fileName, InputStream input, String filePath,
-            boolean ismark) {
+    private static String upload(String fileName, InputStream input, String filePath) {
         StringBuilder resp = new StringBuilder("");
         resp.append(filePath);
         // resp.append(File.separator);
@@ -48,11 +79,6 @@ public class FtpUtil {
         try {
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
             changeWorkingDirectory(ftpClient, filePath);
-            if (ismark) {
-                // 如果水印,图片输入流则为水印图片输入流
-                BufferedImage buf = ImageMarkUtil.markImageByIcon(input, resp.toString(), -45);
-                input = FileUtil.getImageStream(buf);
-            }
             ftpClient.storeFile(fileName, input);
         } catch (Exception e) {
             LOGGER.error("文件上传失败, {}", e);

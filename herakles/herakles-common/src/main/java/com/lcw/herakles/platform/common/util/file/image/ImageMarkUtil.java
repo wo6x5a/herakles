@@ -70,7 +70,7 @@ public class ImageMarkUtil {
         try {
             iconByteData = IOUtils.toByteArray(ins);
         } catch (IOException e) {
-            LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
+            LOGGER.error("ImageMarkUtil error, {}", e);
         }
         return markImageByIcon(iconByteData, srcImgInput, targerPath, degree);
     }
