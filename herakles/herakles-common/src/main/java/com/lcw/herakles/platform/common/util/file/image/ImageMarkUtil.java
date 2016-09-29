@@ -25,7 +25,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
-import com.lcw.herakles.platform.common.util.file.ftp.FtpUtil;
+import com.lcw.herakles.platform.common.util.file.FileUtil;
 
 /**
  * 图片水印工具
@@ -39,7 +39,7 @@ public class ImageMarkUtil {
 
     /**
      * @param args
-     * @throws FileNotFoundException 
+     * @throws FileNotFoundException
      */
     public static void main(String[] args) throws FileNotFoundException {
         String srcImgPath = "d:/test.png";
@@ -61,14 +61,12 @@ public class ImageMarkUtil {
     /**
      * 给图片添加水印
      * 
-     * @param srcImgInput
-     *            源图片输入流
-     * @param targerPath
-     *            目标图片路径
-     * @param degree
-     *            旋转角度
+     * @param srcImgInput 源图片输入流
+     * @param targerPath 目标图片路径
+     * @param degree 旋转角度
      */
-    public static void markImageByIcon(InputStream srcImgInput, String targerPath, Integer degree) {
+    public static BufferedImage markImageByIcon(InputStream srcImgInput, String targerPath,
+            Integer degree) {
         InputStream ins = getWaterImageInputStream();
         byte[] iconByteData = null;
         try {
@@ -76,15 +74,25 @@ public class ImageMarkUtil {
         } catch (IOException e) {
             LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
         }
-        markImageByIcon(iconByteData, srcImgInput, targerPath, degree);
+        return markImageByIcon(iconByteData, srcImgInput, targerPath, degree);
     }
 
+    /**
+     * 获取水印图片输入流
+     * 
+     * @return
+     */
     private static InputStream getWaterImageInputStream() {
         String waterImage = getWaterImage();
         InputStream ins = ImageMarkUtil.class.getClassLoader().getResourceAsStream(waterImage);
         return ins;
     }
 
+    /**
+     * 获取水印图片项目内地址
+     * 
+     * @return
+     */
     private static String getWaterImage() {
         StringBuilder param = new StringBuilder();
         String pattern = ApplicationConsts.WATERMARK_PATTERN;
@@ -100,17 +108,14 @@ public class ImageMarkUtil {
     /**
      * 给图片添加水印、可设置水印图片旋转角度
      * 
-     * @param imageData
-     *            水印图片数据
-     * @param srcImgInput
-     *            源图片输入流
-     * @param targerPath
-     *            目标图片完整路径
-     * @param degree
-     *            水印图片旋转角度
+     * @param imageData 水印图片数据
+     * @param srcImgInput 源图片输入流
+     * @param targerPath 目标图片完整路径
+     * @param degree 水印图片旋转角度
      */
-    public static BufferedImage markImageByIcon(byte[] imageData, InputStream srcImgInput, String targerPath, Integer degree) {
-        String suffix = FtpUtil.suffix(targerPath);
+    public static BufferedImage markImageByIcon(byte[] imageData, InputStream srcImgInput,
+            String targerPath, Integer degree) {
+        // String suffix = FtpUtil.suffix(targerPath);
         OutputStream os = null;
         BufferedImage buffImg = null;
         try {
@@ -124,14 +129,16 @@ public class ImageMarkUtil {
             Graphics2D g = buffImg.createGraphics();
 
             // 设置对线段的锯齿状边缘处理
-            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-            g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null), Image.SCALE_SMOOTH), 0,
-                    0, null);
+            g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null),
+                    Image.SCALE_SMOOTH), 0, 0, null);
 
             if (null != degree) {
                 // 设置水印旋转
-                g.rotate(Math.toRadians(degree), (double) buffImg.getWidth() / 2, (double) buffImg.getHeight() / 2);
+                g.rotate(Math.toRadians(degree), (double) buffImg.getWidth() / 2,
+                        (double) buffImg.getHeight() / 2);
             }
 
             // 水印图象的路径 水印一般为gif或者png的，这样可设置透明度
@@ -146,7 +153,8 @@ public class ImageMarkUtil {
             // 表示水印图片的位置
             int srcImgWidth = srcImg.getWidth(null);
             int srcImgHeight = srcImg.getHeight(null);
-            BufferedImage bufImg = new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
+            BufferedImage bufImg =
+                    new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
             Integer imgWidth = bufImg.getWidth();
             Integer imgHigh = bufImg.getHeight();
             for (int x = 0; x < imgWidth; x = x + 300) {
@@ -161,11 +169,11 @@ public class ImageMarkUtil {
 
             g.dispose();
 
-            os = new FileOutputStream(targerPath);
+            // os = new FileOutputStream(targerPath);
 
-            // 生成图片
-            ImageIO.write(buffImg, suffix, os);
-            
+            // 生成图片,这边返回BufferedImage,直接上传ftp,不需要生成
+            // ImageIO.write(buffImg, suffix, os);
+
         } catch (Exception e) {
             LOGGER.error("ImageMarkUtil error, {}", e.getMessage());
         } finally {
@@ -182,17 +190,14 @@ public class ImageMarkUtil {
     /**
      * 给图片添加文字水印、可设置水印的旋转角度
      * 
-     * @param logoText
-     *            水印文字
-     * @param srcImgPath
-     *            源图片路径
-     * @param targerPath
-     *            目标图片路径
-     * @param degree
-     *            旋转角度
+     * @param logoText 水印文字
+     * @param srcImgPath 源图片路径
+     * @param targerPath 目标图片路径
+     * @param degree 旋转角度
      */
-    public static void markByText(String logoText, String srcImgPath, String targerPath, Integer degree) {
-        String suffix = FtpUtil.suffix(srcImgPath);
+    public static void markByText(String logoText, String srcImgPath, String targerPath,
+            Integer degree) {
+        String suffix = FileUtil.getSuffix(srcImgPath);
         // 主图片的路径
         InputStream is = null;
         OutputStream os = null;
@@ -207,14 +212,16 @@ public class ImageMarkUtil {
             Graphics2D g = buffImg.createGraphics();
 
             // 设置对线段的锯齿状边缘处理
-            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION, RenderingHints.VALUE_INTERPOLATION_BILINEAR);
+            g.setRenderingHint(RenderingHints.KEY_INTERPOLATION,
+                    RenderingHints.VALUE_INTERPOLATION_BILINEAR);
 
-            g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null), Image.SCALE_SMOOTH), 0,
-                    0, null);
+            g.drawImage(srcImg.getScaledInstance(srcImg.getWidth(null), srcImg.getHeight(null),
+                    Image.SCALE_SMOOTH), 0, 0, null);
 
             if (null != degree) {
                 // 设置水印旋转
-                g.rotate(Math.toRadians(degree), (double) buffImg.getWidth() / 2, (double) buffImg.getHeight() / 2);
+                g.rotate(Math.toRadians(degree), (double) buffImg.getWidth() / 2,
+                        (double) buffImg.getHeight() / 2);
             }
 
             // 设置颜色
@@ -229,7 +236,8 @@ public class ImageMarkUtil {
             // 第一参数->设置的内容，后面两个参数->文字在图片上的坐标位置(x,y) .
             int srcImgWidth = srcImg.getWidth(null);
             int srcImgHeight = srcImg.getHeight(null);
-            BufferedImage bufImg = new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
+            BufferedImage bufImg =
+                    new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
             Integer imgWidth = bufImg.getWidth();
             Integer imgHigh = bufImg.getHeight();
             for (int x = 0; x < imgWidth; x = x + 300) {

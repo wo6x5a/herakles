@@ -13,7 +13,6 @@ import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.system.files.dto.FileDto;
 import com.lcw.herakles.platform.system.files.entity.FilePo;
 import com.lcw.herakles.platform.system.files.repository.FileRepository;
-import com.lcw.herakles.platform.system.files.util.FileUtil;
 
 /**
  * @author chenwulou
@@ -28,7 +27,7 @@ public class FileService extends BaseService{
 	@Transactional
 	public FileDto upload(MultipartFile file, String fileCode, boolean isWatermark, String markWords) {
 		FileDto fileDto = new FileDto();
-		fileDto = FileUtil.upload(file, isWatermark, markWords);
+//		fileDto = FileUtil.upload(file, isWatermark, markWords);
 		FilePo filePo = new FilePo();
 		filePo.setFileCode(fileCode);
 		filePo.setFileName(fileDto.getFileName());
@@ -45,7 +44,7 @@ public class FileService extends BaseService{
 		if (filePo == null) {
 			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "文件不存在");
 		}
-		FileUtil.download(filePo.getFileName(), filePo.getFilePath(), response);
+//		FileUtil.download(filePo.getFileName(), filePo.getFilePath(), response);
 	}
 
 	@Transactional
@@ -55,6 +54,6 @@ public class FileService extends BaseService{
 			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "文件不存在");
 		}
 		fileRepository.delete(filePo);
-		FileUtil.delete(filePo.getFilePath());
+//		FileUtil.delete(filePo.getFilePath());
 	}
 }

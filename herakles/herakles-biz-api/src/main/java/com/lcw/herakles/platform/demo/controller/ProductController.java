@@ -46,6 +46,7 @@ import com.lcw.herakles.platform.common.enums.EnumOption;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.common.util.DateUtils;
 import com.lcw.herakles.platform.common.util.EnumHelper;
+import com.lcw.herakles.platform.common.util.file.FileUtil;
 import com.lcw.herakles.platform.common.util.file.ftp.FtpUtil;
 import com.lcw.herakles.platform.common.util.http.HttpClientUtil;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
@@ -101,7 +102,7 @@ public class ProductController extends BaseController {
         filePath.append(FtpFileConsts.TP_PIC);
         filePath.append(FtpFileConsts.PG_PRODUCT);
         try {
-            resp = FtpUtil.upload(FtpUtil.rename(file.getName()), file.getInputStream(), filePath.toString());
+            resp = FtpUtil.upload(FileUtil.rename(file.getName()), file.getInputStream(), filePath.toString(), true);
         } catch (IOException e) {
             ResultDtoFactory.toNack(e.getMessage());
         }
@@ -121,7 +122,7 @@ public class ProductController extends BaseController {
             e.printStackTrace();
         }
         @SuppressWarnings("unused")
-        String resp = FtpUtil.upload(FtpUtil.rename(file.getName()), in, filePath.toString());
+        String resp = FtpUtil.upload(FileUtil.rename(file.getName()), in, filePath.toString(), true);
         return "biz/product/test";
     }
 
