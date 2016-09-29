@@ -31,6 +31,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.google.common.collect.Lists;
+import com.google.common.collect.Maps;
 import com.lcw.herakles.platform.common.cache.redis.repository.BaseRedisDao;
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.constant.FileConsts;
@@ -86,7 +87,7 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "http-client-test", method = RequestMethod.GET)
     public String httpClientTest(){
         String url = "http://127.0.0.1:8081/herakles-web/web/biz/product/delete";
-        Map<String, String> params = new HashMap<String, String>();
+        Map<String, String> params = Maps.newHashMap();
         params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
         HttpClientUtil.post(url, params);
         return "biz/product/test";
@@ -272,7 +273,7 @@ public class ProductController extends BaseController {
         List<ProductDto> dataList = productQueryService.searchProduct(request).getData();
         String fileName = "test.xls";
         String tempPath = "excel/report/product_repo.xls";
-        Map<String, Object> map = new HashMap<String, Object>();
+        Map<String, Object> map = Maps.newHashMap();
         map.put(ApplicationConsts.REPORT_DATA, dataList);
         map.put(ApplicationConsts.REPORT_FILE_NAME, fileName);
         map.put(ApplicationConsts.REPORT_TEMP_PATH, tempPath);
