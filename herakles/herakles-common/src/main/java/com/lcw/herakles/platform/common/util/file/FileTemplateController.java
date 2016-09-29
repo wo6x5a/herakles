@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.constant.FileConsts;
+import com.lcw.herakles.platform.common.constant.FileTemplateConsts;
 
 /**
  * 文件模版.
@@ -44,11 +45,11 @@ public class FileTemplateController {
      * @throws IOException
      */
     @RequestMapping(value = "download")
-    public void getFile(@RequestParam(value = "fileName") String fileName,
-            @RequestParam(value = "fileShowName") String fileShowName,
-            @RequestParam(value = "suffixes") String suffixes,
-            @RequestParam(value = "filePath") String filePath, HttpServletRequest request,
-            HttpServletResponse response) throws IOException {
+    public void getFile(@RequestParam(value = FileTemplateConsts.FILE_NAME) String fileName,
+            @RequestParam(value = FileTemplateConsts.FILE_SHOW_NAME) String fileShowName,
+            @RequestParam(value = FileTemplateConsts.FILE_SUFFIXES) String suffixes,
+            @RequestParam(value = FileTemplateConsts.FILE_PATH) String filePath, 
+            HttpServletRequest request, HttpServletResponse response) throws IOException {
 
         StringBuilder realFilePath = new StringBuilder();
         realFilePath.append(filePath);
