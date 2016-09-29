@@ -18,7 +18,7 @@ function($, global, util){
 	});
 	
 	$('#cancel-btn').on('click', function() {
-		util.redirect(global.context + '/web/product/view');
+		util.redirect(global.context + '/web/biz/product/view');
 	});
 	
 	$('#summernote').summernote({
@@ -42,7 +42,7 @@ function($, global, util){
 	
 	
 	$('#fileupload').fileupload({
-    	url: global.context+"/web/product/pic/upload",
+    	url: global.context+"/web/biz/product/pic/upload",
     	iframe: true,
     	autoUpload: true,
     	maxFileSize: 200000,

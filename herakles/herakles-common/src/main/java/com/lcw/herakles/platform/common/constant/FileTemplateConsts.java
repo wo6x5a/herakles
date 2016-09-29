@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.files.consts;
+package com.lcw.herakles.platform.common.constant;
 
 /**
  * 文件模版信息
@@ -8,7 +8,7 @@ package com.lcw.herakles.platform.system.files.consts;
  */
 public final class FileTemplateConsts {
 
-    public static final String REDIRECT = "redirect:/web/system/file/template/download";
+    public static final String REDIRECT = "redirect:/web/common/file/template/download";
 
     /** 模板文件目录(src/main/resources/**), 文件分隔符(/)已经默认添加 **/
     public static final String EXCEL_PATH = "excel/temp/";

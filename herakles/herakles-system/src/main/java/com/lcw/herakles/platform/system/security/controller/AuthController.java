@@ -76,7 +76,7 @@ public class AuthController {
 		if (result.hasErrors()) {
 			throw new ValidateException(result);
 		}
-		return ResultDtoFactory.toRedirect(WebUtil.getFullUrlBasedOn("/web/product/view"));
+		return ResultDtoFactory.toRedirect(WebUtil.getFullUrlBasedOn("/web/biz/product/view"));
 	}
 
 	/**

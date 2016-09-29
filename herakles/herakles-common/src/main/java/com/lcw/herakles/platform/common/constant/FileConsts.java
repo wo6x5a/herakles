@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.files.consts;
+package com.lcw.herakles.platform.common.constant;
 
 import java.util.Set;
 

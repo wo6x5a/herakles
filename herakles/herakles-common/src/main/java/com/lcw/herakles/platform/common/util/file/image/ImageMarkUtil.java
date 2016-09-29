@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.files.util;
+package com.lcw.herakles.platform.common.util.file.image;
 
 import java.awt.AlphaComposite;
 import java.awt.Color;

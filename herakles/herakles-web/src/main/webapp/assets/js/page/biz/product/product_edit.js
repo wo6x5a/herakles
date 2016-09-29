@@ -16,7 +16,7 @@ function($, global, util){
 	});
 	
 	$('#cancel-btn').on('click', function() {
-		util.redirect(global.context + '/web/product/view');
+		util.redirect(global.context + '/web/biz/product/view');
 	});
 
 });

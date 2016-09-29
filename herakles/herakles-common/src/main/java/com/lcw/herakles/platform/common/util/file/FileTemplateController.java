@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.system.files.controller;
+package com.lcw.herakles.platform.common.util.file;
 
 import java.io.BufferedInputStream;
 import java.io.BufferedOutputStream;
@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
-import com.lcw.herakles.platform.system.files.consts.FileConsts;
+import com.lcw.herakles.platform.common.constant.FileConsts;
 
 /**
  * 文件模版.
@@ -25,7 +25,7 @@ import com.lcw.herakles.platform.system.files.consts.FileConsts;
  *
  */
 @Controller
-@RequestMapping(value = "system/file/template")
+@RequestMapping(value = "common/util/file/file-template")
 public class FileTemplateController {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileTemplateController.class);
 

@@ -9,7 +9,7 @@ function($, global, util, datatables){
 	var productTable = null;
 
     var returnLink = function(data,type,full){
-        var href = global.context+'/web/product/detatil?id='+full.id;
+        var href = global.context+'/web/biz/product/detatil?id='+full.id;
         return "<a href='"+href+"'>"+full.id+"</a>";
     };
 
@@ -21,7 +21,7 @@ function($, global, util, datatables){
 		var options = {};
 		options.tableId = '#main-table';
 		options.aaSorting = [[1,"asc"]];
-		options.sAjaxSource = global.context+"/web/product/list";
+		options.sAjaxSource = global.context+"/web/biz/product/list";
         options.functionList = {"returnLink":returnLink,"returnDelete":returnDelete};
 		productTable = datatables.init(options);
 		productTable.setParams(util.getSearchData("#search-area"));
@@ -36,7 +36,7 @@ function($, global, util, datatables){
         $("body").on("click",".btn-remove",function(){
             var id = $(this).attr("data-id");
             $.ajax({
-                url:global.context+"/web/product/delete?id="+id,
+                url:global.context+"/web/biz/product/delete?id="+id,
                 type: 'POST',
                 contentType: 'application/json;charset=utf-8',
                 success:function(){
@@ -63,7 +63,7 @@ function($, global, util, datatables){
 	//导出报表数据
 	$("body").on("click","#btn-export",function(){
 		 var data = util.getSearchData("#product-form");
-		 var url = global.context + "/web/product/export-xls";
+		 var url = global.context + "/web/biz/product/export-xls";
 		 var inputs = '';
 		 $.each(data,function(){
 			 inputs += '<input type="hidden" name="' + this.name + '" value="' + this.value + '" />';

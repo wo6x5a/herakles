@@ -24,7 +24,7 @@ import com.lcw.herakles.platform.common.exception.BizServiceException;
  *
  */
 @Controller
-@RequestMapping(value = "system/log")
+@RequestMapping(value = "biz/bizlog")
 public class BizLogController extends BaseController {
 
     @Autowired
@@ -33,7 +33,7 @@ public class BizLogController extends BaseController {
     @RequestMapping(value = "view", method = RequestMethod.GET)
     public String view(Model model) {
         model.addAttribute("logTypes", getStaticOptions(EOptType.class, true));
-        return "system/log/log_list";
+        return "biz/bizlog/log_list";
     }
 
     @RequestMapping(value = "list", method = RequestMethod.POST)

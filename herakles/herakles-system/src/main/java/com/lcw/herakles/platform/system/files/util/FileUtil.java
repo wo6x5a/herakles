@@ -14,10 +14,10 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.lcw.herakles.platform.common.constant.FileConsts;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.util.AppConfigUtil;
 import com.lcw.herakles.platform.common.util.ErrorUtil;
-import com.lcw.herakles.platform.system.files.consts.FileConsts;
 import com.lcw.herakles.platform.system.files.dto.FileDto;
 
 /**

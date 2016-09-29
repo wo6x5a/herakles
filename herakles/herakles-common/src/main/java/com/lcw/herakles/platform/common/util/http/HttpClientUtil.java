@@ -37,7 +37,7 @@ public class HttpClientUtil {
     }
 
     public static void main(String[] args) {
-        String url = "http://127.0.0.1:8081/herakles-web/web/product/delete";
+        String url = "http://127.0.0.1:8081/herakles-web/web/biz/product/delete";
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
         HttpClientUtil.post(url, params);

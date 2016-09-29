@@ -1,9 +1,9 @@
-<script src="$link.contextPath/assets/js/page/product/product_add.js" type="text/javascript"></script>
+<script src="$link.contextPath/assets/js/page/biz/product/product_add.js" type="text/javascript"></script>
 <div class="row pd">
 	<div class="col-md-6 col-md-offset-3">
 		<div class="main-wrapper">
 	  		<div class="main">
-	  			<form id="product-form" role="form" method="POST" action="$link.contextPath/web/product/add">
+	  			<form id="product-form" role="form" method="POST" action="$link.contextPath/web/biz/product/add">
 	  				<label class="control-label col-md-3 hide" for="id">ID</label>
 	  				<div class="input-group col-md-9 form-item has-feedback hide">
 	  					<input type="text" class="form-control" id="id" name="id" required placeholder="ID"/>

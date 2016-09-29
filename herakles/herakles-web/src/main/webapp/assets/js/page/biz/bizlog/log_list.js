@@ -13,7 +13,7 @@ function($,
 		var options = {};
 		options.tableId = '#main-table';
 		options.aaSorting = [ [ 1, "asc" ] ];
-		options.sAjaxSource = global.context + "/web/system/log/list";
+		options.sAjaxSource = global.context + "/web/biz/bizlog/list";
 		table = datatables.init(options);
 		table.setParams(util.getSearchData("#search-area"));
 		return table.create();

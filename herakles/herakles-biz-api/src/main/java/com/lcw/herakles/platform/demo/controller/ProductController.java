@@ -33,6 +33,9 @@ import org.springframework.web.servlet.ModelAndView;
 import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.cache.redis.repository.BaseRedisDao;
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
+import com.lcw.herakles.platform.common.constant.FileConsts;
+import com.lcw.herakles.platform.common.constant.FileTemplateConsts;
+import com.lcw.herakles.platform.common.constant.FtpFileConsts;
 import com.lcw.herakles.platform.common.controller.BaseController;
 import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ResultDtoFactory;
@@ -53,9 +56,6 @@ import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.service.ProductInfoExcelExportService;
 import com.lcw.herakles.platform.demo.service.ProductQueryService;
 import com.lcw.herakles.platform.demo.service.ProductService;
-import com.lcw.herakles.platform.system.files.consts.FileConsts;
-import com.lcw.herakles.platform.system.files.consts.FileTemplateConsts;
-import com.lcw.herakles.platform.system.files.consts.FtpFileConsts;
 import com.lcw.herakles.platform.system.mail.service.EmailSerivce;
 import com.lcw.herakles.platform.system.security.SecurityContext;
 
@@ -66,7 +66,7 @@ import com.lcw.herakles.platform.system.security.SecurityContext;
  * 
  */
 @Controller
-@RequestMapping(value = "product")
+@RequestMapping(value = "biz/product")
 public class ProductController extends BaseController {
 
     @Autowired
@@ -85,11 +85,11 @@ public class ProductController extends BaseController {
 
     @RequestMapping(value = "http-client-test", method = RequestMethod.GET)
     public String httpClientTest(){
-        String url = "http://127.0.0.1:8081/herakles-web/web/product/delete";
+        String url = "http://127.0.0.1:8081/herakles-web/web/biz/product/delete";
         Map<String, String> params = new HashMap<String, String>();
         params.put("id", "4b74866f2e8e42578f3a32a6f9bf8324");
         HttpClientUtil.post(url, params);
-        return "product/test";
+        return "biz/product/test";
     }
 
     @ResponseBody
@@ -121,7 +121,7 @@ public class ProductController extends BaseController {
         }
         @SuppressWarnings("unused")
         String resp = FtpUtil.upload(FtpUtil.rename(file.getName()), in, filePath.toString());
-        return "product/test";
+        return "biz/product/test";
     }
 
     /**
@@ -184,7 +184,7 @@ public class ProductController extends BaseController {
 
     @RequestMapping(value = "test", method = RequestMethod.GET)
     public String test() {
-        return "product/test";
+        return "biz/product/test";
     }
 
     @SuppressWarnings({"unused", "unchecked"})
@@ -199,7 +199,7 @@ public class ProductController extends BaseController {
         baseRedisDao.getStr("USER", "LCW");
         baseRedisDao.addStr("USER", "LIST", listStr);
         listStr1 = (List<String>) baseRedisDao.getStr("USER", "LIST");
-        return "product/test";
+        return "biz/product/test";
     }
 
     @RequestMapping(value = "test-email", method = RequestMethod.GET)
@@ -216,7 +216,7 @@ public class ProductController extends BaseController {
         model.put("isUnbound", "xxxxx");
         emailSerivce.sendSimpleEmail("标题", "内容", "wo6x5a3@163.com");
         emailSerivce.sendHtmlEmail(title, templateName, model, "wo6x5a3@163.com");
-        return "product/test";
+        return "biz/product/test";
     }
 
     private String getDefaultExpireDttm() {
@@ -249,7 +249,7 @@ public class ProductController extends BaseController {
     public String home(Model model) {
         model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, true));
         // model.addAttribute("categoryList", this.getProductCagetory());
-        return "product/product_list";
+        return "biz/product/product_list";
     }
 
     /**
@@ -288,7 +288,7 @@ public class ProductController extends BaseController {
     @RequestMapping(value = "add/view", method = RequestMethod.GET)
     public String getAddPage(Model model) {
         model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, false));
-        return "product/product_add";
+        return "biz/product/product_add";
     }
 
     /**
@@ -305,7 +305,7 @@ public class ProductController extends BaseController {
         dto.setId(null);
         productService.saveProduct(dto);
         return ResultDtoFactory.toRedirect(
-                WebUtil.getFullUrlBasedOn(ApplicationConsts.GLOBAL_CONTEXT + "product/view"));
+                WebUtil.getFullUrlBasedOn(ApplicationConsts.GLOBAL_CONTEXT + "biz/product/view"));
     }
 
     /**
@@ -321,7 +321,7 @@ public class ProductController extends BaseController {
             Model model) {
         model.addAttribute("detail", productService.findProductById(id));
         model.addAttribute("categoryList", EnumHelper.inspectConstants(EProductCagetory.class));
-        return "product/product_edit";
+        return "biz/product/product_edit";
     }
 
     /**
