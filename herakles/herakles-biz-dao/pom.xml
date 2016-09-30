@@ -11,7 +11,7 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lcw</groupId>
-			<artifactId>herakles-common</artifactId>
+			<artifactId>herakles-system</artifactId>
 			<version>${project.version}</version>
 		</dependency>
 	</dependencies>

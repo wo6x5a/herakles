@@ -11,11 +11,6 @@
 	<dependencies>
 		<dependency>
 			<groupId>com.lcw</groupId>
-			<artifactId>herakles-system</artifactId>
-			<version>${project.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>com.lcw</groupId>
 			<artifactId>herakles-biz-service</artifactId>
 			<version>${project.version}</version>
 		</dependency>
