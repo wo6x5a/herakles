@@ -5,7 +5,6 @@
 
 # 项目简介
 - herakles是基于spring整合各开源框架的企业级快速开发基础项目
- 
 
 # 技术选型
 - 核心框架：Spring Framework 4.3.2.RELEASE
@@ -18,7 +17,6 @@
 - 前端框架：Bootstrap + Jquary
 - 模板引擎：Velocity
 
-
 # 模块介绍
 - herakles-common--公共模块
 - herakles-system--系统模块
@@ -29,7 +27,6 @@
 - herakles-web--web前端模块
 
 # 项目说明
-
 项目环境
 --------------------------------------------------
 - jdk1.8
@@ -48,7 +45,6 @@
 注意事项
 --------------------------------------------------
 - 因为项目用的是spring data jpa,感觉国内公司在项目中使用不多,但是我觉得却能很大程度提升开发效率.有一定的学习成本,可参考文档:http://docs.spring.io/spring-data/jpa/docs/1.10.3.RELEASE/reference/html/ ,虽然spring data jpa也支持写sql,但是本人还是建议不要在项目中写直接写sql,jpa的使用可参考:https://en.wikibooks.org/wiki/Java_Persistence/Criteria ,
-
 
 # 其他
 - 如有不明白之处,请至Issues提问
