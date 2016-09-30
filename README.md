@@ -25,6 +25,7 @@
 - herakles-biz-dao--业务数据访问服务模块
 - herakles-biz-service--业务接口服务模块
 - herakles-biz-api--业务接口模块
+- herakles-task--定时任务模块
 - herakles-web--web前端模块
 
 # 项目说明
