@@ -14,6 +14,7 @@
 		<module>herakles-biz-service</module>
 		<module>herakles-biz-api</module>
 		<module>herakles-web</module>
+		<module>herakles-task</module>
 	</modules>
 
 	<properties>
