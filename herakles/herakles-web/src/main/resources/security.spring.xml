@@ -21,6 +21,7 @@
 			<value>
 				/web/system/file/template/**=anon
 				/druid/**=anon
+				/monitoring/**=anon
 				/assets/**=anon
 				/webservice/**=anon
 				/web/auth/captcha=anon
