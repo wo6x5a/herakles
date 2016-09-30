@@ -21,7 +21,7 @@ public class PrintTimeJobTask {
     @Scheduled(cron = "0 * * * * ?")
     public void getTime() {
         printTimeJobTaskService.getTime();
-        System.out.println("任务进行中。。。每分钟触发一次");
+        // System.out.println("任务进行中。。。每分钟触发一次");
     }
 
 }

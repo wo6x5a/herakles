@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:task="http://www.springframework.org/schema/task" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx" xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop" xmlns:util="http://www.springframework.org/schema/util"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/task
+	http://www.springframework.org/schema/task/spring-task.xsd
+	http://www.springframework.org/schema/aop 
+	http://www.springframework.org/schema/aop/spring-aop.xsd
+	http://www.springframework.org/schema/tool 
+	http://www.springframework.org/schema/tool/spring-tool.xsd
+	http://www.springframework.org/schema/context  
+	http://www.springframework.org/schema/context/spring-context.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
+	<import resource="classpath:mvc.spring.xml"/>
+	<import resource="classpath:db.spring.xml"/>
+    <import resource="classpath:monitor.spring.xml"/>
+    <import resource="classpath:cache.spring.xml"/>
+	<import resource="classpath:mail.spring.xml"/>
+	<import resource="classpath:ftp.spring.xml" />
+
+	<!-- 扫描除controller外的  -->
+	<context:component-scan base-package="com.lcw.herakles.platform">
+		<context:exclude-filter type="regex" expression=".*\.[^.]*Controller" />
+	</context:component-scan>
+	
+	<task:annotation-driven />
+
+	<bean id="validator" class="org.springframework.validation.beanvalidation.LocalValidatorFactoryBean">
+		<property name="providerClass" value="org.hibernate.validator.HibernateValidator" />
+		<property name="validationMessageSource" ref="messageSource" />
+	</bean>
+	
+	<bean id="messageSource" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="fileEncodings" value="UTF-8" />
+		<property name="cacheSeconds" value="1" />
+		<property name="basenames">
+			<list>
+				<value>classpath:messages/error</value>
+				<value>classpath:messages/message</value>
+			</list>
+		</property>
+	</bean>
+	
+	<bean id="appConfig" class="org.springframework.context.support.ReloadableResourceBundleMessageSource">
+		<property name="useCodeAsDefaultMessage" value="false" />
+		<property name="defaultEncoding" value="UTF-8" />
+		<property name="fileEncodings" value="UTF-8" />
+		<property name="cacheSeconds" value="1" />
+		<property name="basenames">
+			<list>
+				<!-- do not change the order, app-config should be the LAST one as it is the default config, see ReloadableResourceBundleMessageSource.resolveCode(String code, Locale locale) -->
+				<value>classpath:env/env-var</value>
+				<value>classpath:app-config</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- do not change the order, app-config should be the FIRST one as it is the default config, see PropertiesLoaderSupport.loadProperties(Properties props) -->
+	<context:property-placeholder  location="classpath:app-config.properties, classpath:env/env-var.properties" ignore-unresolvable="true"/>
+	
+</beans>
