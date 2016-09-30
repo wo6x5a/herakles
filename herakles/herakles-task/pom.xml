@@ -124,35 +124,6 @@
 				</configuration>
 			</plugin>
 			<plugin>
-				<groupId>com.google.code.maven-replacer-plugin</groupId>
-				<artifactId>replacer</artifactId>
-				<version>1.5.1</version>
-				<executions>
-					<execution>
-						<phase>prepare-package</phase>
-						<goals>
-							<goal>replace</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<includes>
-						<include>target/**/WEB-INF/**/*.vm</include>
-						<include>target/**/assets/js/base.js</include>
-					</includes>
-					<replacements>
-						<replacement>
-							<token>("[^"]*\.(css|js))(")</token>
-							<value>$1?${buildNumber}$3</value>
-						</replacement>
-						<replacement>
-							<token>(urlArgs : ')(')</token>
-							<value>$1${buildNumber}$2</value>
-						</replacement>
-					</replacements>
-				</configuration>
-			</plugin>
-			<plugin>
 				<artifactId>maven-antrun-plugin</artifactId>
 				<version>1.7</version>
 				<executions>
