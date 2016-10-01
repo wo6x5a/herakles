@@ -27,7 +27,6 @@ public final class ConverterService {
     private static final String PO = "Po";
     private static final String DTO = "Dto";
     private static final Logger LOGGER = LoggerFactory.getLogger(ConverterService.class);
-    
 
     public static <T, F> F convert(T source, F target, Converter converter,
             Class<? extends ObjectConverter> customConverterClass) {

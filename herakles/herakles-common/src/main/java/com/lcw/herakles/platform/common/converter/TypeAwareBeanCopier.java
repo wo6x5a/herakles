@@ -6,6 +6,9 @@ import java.lang.reflect.Method;
 import java.util.HashMap;
 import java.util.Map;
 
+import org.objectweb.asm.ClassVisitor;
+import org.objectweb.asm.Type;
+
 import net.sf.cglib.beans.BeanCopier;
 import net.sf.cglib.core.ClassEmitter;
 import net.sf.cglib.core.CodeEmitter;
@@ -16,9 +19,6 @@ import net.sf.cglib.core.MethodInfo;
 import net.sf.cglib.core.ReflectUtils;
 import net.sf.cglib.core.Signature;
 import net.sf.cglib.core.TypeUtils;
-
-import org.objectweb.asm.ClassVisitor;
-import org.objectweb.asm.Type;
 
 /**
  * Enhance {@link BeanCopier} to allow customized {@link net.sf.cglib.core.Converter} to visit
@@ -39,7 +39,6 @@ public abstract class TypeAwareBeanCopier extends BeanCopier { // NOSONAR
 	private static final Signature CONVERT = TypeUtils
 			.parseSignature("Object convert(Object, Class, Object)");
 
-	
 	/**
 	* Description: instantiates a {@link BeanCopier}.
 	*

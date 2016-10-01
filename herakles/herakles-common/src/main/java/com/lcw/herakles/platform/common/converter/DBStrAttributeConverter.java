@@ -12,8 +12,7 @@ import com.lcw.herakles.platform.common.util.EnumHelper;
  *
  * @param <T>
  */
-public abstract class DBStrAttributeConverter<T extends Enum<T> & DBStrEnum> implements
-		AttributeConverter<T, String> {
+public abstract class DBStrAttributeConverter<T extends Enum<T> & DBStrEnum> implements AttributeConverter<T, String> {
 	
 	@Override
 	public String convertToDatabaseColumn(T attribute) {
