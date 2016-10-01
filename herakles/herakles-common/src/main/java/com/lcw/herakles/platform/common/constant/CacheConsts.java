@@ -1,6 +1,7 @@
 package com.lcw.herakles.platform.common.constant;
 
 /**
+ * cache consts
  * 
  * @author chenwulou
  * 

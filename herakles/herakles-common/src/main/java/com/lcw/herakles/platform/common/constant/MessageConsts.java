@@ -2,6 +2,7 @@ package com.lcw.herakles.platform.common.constant;
 
 /**
  * 系统消息参数配置
+ * 
  * @author chenwulou
  *
  */
