@@ -1,6 +1,7 @@
 package com.lcw.herakles.platform.common.cache.util;
 
 /**
+ * 
  * @author chenwulou
  *
  */
