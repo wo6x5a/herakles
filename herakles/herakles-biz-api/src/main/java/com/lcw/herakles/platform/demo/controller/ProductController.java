@@ -169,7 +169,7 @@ public class ProductController extends BaseController {
         };
     }
 
-    @RequestMapping("/longtimetask3")
+    @RequestMapping("longtimetask3")
     @ResponseBody
     public DeferredResult<String> longtimetask3() {
         System.out.println("longtimetask3 被调用 thread id : " + Thread.currentThread().getId());
@@ -279,7 +279,7 @@ public class ProductController extends BaseController {
         return resp;
     }
 
-    @RequestMapping(value = "/export-xls", method = RequestMethod.POST)
+    @RequestMapping(value = "export-xls", method = RequestMethod.POST)
     public ModelAndView exportBrokerInvesterXls(ProductSearchDto request) {
         List<ProductDto> dataList = productQueryService.searchProduct(request).getData();
         String fileName = "test.xls";
