@@ -9,6 +9,12 @@ import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+/**
+ * redis for shiro cache session
+ * 
+ * @author chenwulou
+ *
+ */
 public class ShiroRedisCacheSessionDAO extends CachingSessionDAO {
 
     private static final Logger LOGGER = LoggerFactory.getLogger(ShiroRedisCacheSessionDAO.class);
