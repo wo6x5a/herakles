@@ -6,31 +6,39 @@ import javax.validation.constraints.Size;
 
 import org.hibernate.validator.constraints.NotBlank;
 
+import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.validation.NullCheck;
 import com.lcw.herakles.platform.demo.validation.ProductExistenceCheck;
 
 /**
- * Class Name: ProductDto Description: TODO
+ * Class Name: ProductDto 
+ * 
+ * Description: TODO
  * 
  * @author chenwulou
  * 
  */
+@Comment("产品请求Dto")
 public class ProductReqDto implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
+    @Comment("产品编号")
     private String id;
 
     @NullCheck
+    @Comment("产品类型")
     private EProductCagetory category;
 
     @ProductExistenceCheck(groups = {CreateProduct.class})
     @NotBlank(message = "{error.required.field}")
     @Size(max = 100, message = "{error.maximum.length.exceeded}")
+    @Comment("产品名称")
     private String name;
 
     @Size(max = 200, message = "{error.maximum.length.exceeded}")
+    @Comment("产品描述")
     private String description;
 
     // TODO unuse

@@ -5,7 +5,6 @@ import com.lcw.herakles.platform.common.dto.BaseMaintainableDto;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 
 /**
- * Class Name: ProductDto Description: TODO
  * 
  * @author chenwulou
  * 
