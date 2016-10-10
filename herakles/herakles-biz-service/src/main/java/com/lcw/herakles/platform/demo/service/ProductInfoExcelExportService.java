@@ -16,6 +16,8 @@ import com.lcw.herakles.platform.common.service.AbstractExcelService;
 import com.lcw.herakles.platform.demo.dto.ProductDto;
 
 /**
+ * 导出excel
+ * 
  * @author chenwulou
  *
  */
