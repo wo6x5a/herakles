@@ -91,27 +91,27 @@ public class DateUtils {
     public static Date getStartDate(Date date) throws ParseException {
         String dateStr = formatDate(date, DateUtils.YYYYMMDD);
         dateStr = dateStr + " 00:00:00:000";
-        return getDate(dateStr, "yyyy-MM-dd hh:mm:ss:SSS");
+        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
     }
 
     public static Date getEndDate(Date date) throws ParseException {
         String dateStr = formatDate(date, DateUtils.YYYYMMDD);
         dateStr = dateStr + " 23:59:59:999";
-        return getDate(dateStr, "yyyy-MM-dd hh:mm:ss:SSS");
+        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
     }
 
     public static Date getStartDate(String dateStr) {
         Date date = getDate(dateStr, DateUtils.YYYYMMDD);
         dateStr = formatDate(date, DateUtils.YYYYMMDD);
         dateStr = dateStr + " 00:00:00:000";
-        return getDate(dateStr, "yyyy-MM-dd hh:mm:ss:SSS");
+        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
     }
 
     public static Date getEndDate(String dateStr) {
         Date date = getDate(dateStr, DateUtils.YYYYMMDD);
         dateStr = formatDate(date, DateUtils.YYYYMMDD);
         dateStr = dateStr + " 23:59:59:999";
-        return getDate(dateStr, "yyyy-MM-dd hh:mm:ss:SSS");
+        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
     }
 
     public static int betweenDays(Date startDate, Date endDate) {

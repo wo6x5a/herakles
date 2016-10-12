@@ -1,32 +1,32 @@
 
 -- Dumping data for table `sys_user`
-LOCK TABLES `sys_user` WRITE;
-INSERT INTO `sys_user` VALUES ('admin','admin','admin','admin',1,'123456789',NULL,1,NULL,NULL,NULL,NULL,NULL,'system','2016-05-19 19:28:15.000000',NULL,NULL,0);
+LOCK TABLES `SYS_USER` WRITE;
+INSERT INTO `SYS_USER` VALUES ('admin','admin','admin','admin',1,'123456789',NULL,1,NULL,NULL,NULL,NULL,NULL,'system','2016-05-19 19:28:15.000000',NULL,NULL,0);
 UNLOCK TABLES;
 
 -- Dumping data for table `sys_perm`
-LOCK TABLES `sys_perm` WRITE;
-INSERT INTO `sys_perm` VALUES ('1','查看产品列表','product:view',NULL,'system','2016-05-19 19:28:15.000000',NULL,NULL,0);
+LOCK TABLES `SYS_PERM` WRITE;
+INSERT INTO `SYS_PERM` VALUES ('1','查看产品列表','product:view',NULL,'system','2016-05-19 19:28:15.000000',NULL,NULL,0);
 UNLOCK TABLES;
 
 -- Dumping data for table `sys_role`
-LOCK TABLES `sys_role` WRITE;
-INSERT INTO `sys_role` VALUES ('admin','10000','admin','admin','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
+LOCK TABLES `SYS_ROLE` WRITE;
+INSERT INTO `SYS_ROLE` VALUES ('admin','10000','admin','admin','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
 UNLOCK TABLES;
 
 -- Dumping data for table `sys_user_role`
-LOCK TABLES `sys_user_role` WRITE;
-INSERT INTO `sys_user_role` VALUES ('admin','admin','1','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
+LOCK TABLES `SYS_USER_ROLE` WRITE;
+INSERT INTO `SYS_USER_ROLE` VALUES ('admin','admin','1','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
 UNLOCK TABLES;
 
 -- Dumping data for table `sys_role_perm`
-LOCK TABLES `sys_role_perm` WRITE;
-INSERT INTO `sys_role_perm` VALUES ('admin','1','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
+LOCK TABLES `SYS_ROLE_PERM` WRITE;
+INSERT INTO `SYS_ROLE_PERM` VALUES ('admin','1','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
 UNLOCK TABLES;
 
 -- Dumping data for table `product`
-LOCK TABLES `product` WRITE;
-INSERT INTO `product` VALUES ('d7cb687d32c349ccb223c850f49d6d44',1,'dsadas','dasdas','admin','2016-05-19 11:37:43',NULL,'2016-05-19 11:37:42',0),
+LOCK TABLES `PRODUCT` WRITE;
+INSERT INTO `PRODUCT` VALUES ('d7cb687d32c349ccb223c850f49d6d44',1,'dsadas','dasdas','admin','2016-05-19 11:37:43',NULL,'2016-05-19 11:37:42',0),
 							('fbc4e4fa5d5b4f34987a2e62a1e50f54',2,'dsadasd','dasdas','admin','2016-05-19 11:39:31',NULL,'2016-05-19 11:39:31',0);
 UNLOCK TABLES;
 
