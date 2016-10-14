@@ -4,10 +4,13 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import com.google.common.collect.Lists;
 
 public class DateUtils {
 
@@ -19,13 +22,13 @@ public class DateUtils {
 
     public static final String YYYYMMDD = "yyyy-MM-dd";
     public static final String YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
-    public static final String YYYYMMDDHHMMSSSSS = "yyyy-MM-dd HH:mm:ss.SSS";
-
-    public static final String START_DATE_TIME = "00:00:00";
-    public static final String END_DATE_TIME = "23:59:59";
+    public static final String YYYYMMDDHHMMSSSSS = "yyyy-MM-dd HH:mm:ss:SSS";
 
     public static final String DEFAULT_MAX_DATE_VALUE = "9999-12-31";
     public static final String DEFAULT_MIN_DATE_VALUE = "1990-01-01";
+
+    public static final String START_DATE_TIME = " 00:00:00:000";
+    public static final String END_DATE_TIME = " 23:59:59:999";
 
     public static void main(String[] args) {
         // String dateStr = "2015-03-02";
@@ -42,7 +45,7 @@ public class DateUtils {
         // String dateStr1 = "2015-06-12";
         // System.out.println(DateUtils.getLastDateOfMonth(dateStr));
         // System.out.println(dateStr1.compareTo(dateStr));
-        System.out.println(DateUtils.formatDate(new Date(), DateUtils.YYYYMMDDHHMMSSSSS));
+        System.out.println(DateUtils.formatDate(new Date(), YYYYMMDDHHMMSSSSS));
     }
 
     public static Date getDate(String dateStr, String format) {
@@ -89,29 +92,29 @@ public class DateUtils {
     }
 
     public static Date getStartDate(Date date) throws ParseException {
-        String dateStr = formatDate(date, DateUtils.YYYYMMDD);
-        dateStr = dateStr + " 00:00:00:000";
-        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
+        String dateStr = formatDate(date, YYYYMMDD);
+        dateStr = dateStr + START_DATE_TIME;
+        return getDate(dateStr, YYYYMMDDHHMMSSSSS);
     }
 
     public static Date getEndDate(Date date) throws ParseException {
-        String dateStr = formatDate(date, DateUtils.YYYYMMDD);
-        dateStr = dateStr + " 23:59:59:999";
-        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
+        String dateStr = formatDate(date, YYYYMMDD);
+        dateStr = dateStr + END_DATE_TIME;
+        return getDate(dateStr, YYYYMMDDHHMMSSSSS);
     }
 
     public static Date getStartDate(String dateStr) {
-        Date date = getDate(dateStr, DateUtils.YYYYMMDD);
-        dateStr = formatDate(date, DateUtils.YYYYMMDD);
-        dateStr = dateStr + " 00:00:00:000";
-        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
+        Date date = getDate(dateStr, YYYYMMDD);
+        dateStr = formatDate(date, YYYYMMDD);
+        dateStr = dateStr + START_DATE_TIME;
+        return getDate(dateStr, YYYYMMDDHHMMSSSSS);
     }
 
     public static Date getEndDate(String dateStr) {
-        Date date = getDate(dateStr, DateUtils.YYYYMMDD);
-        dateStr = formatDate(date, DateUtils.YYYYMMDD);
-        dateStr = dateStr + " 23:59:59:999";
-        return getDate(dateStr, "yyyy-MM-dd HH:mm:ss:SSS");
+        Date date = getDate(dateStr, YYYYMMDD);
+        dateStr = formatDate(date, YYYYMMDD);
+        dateStr = dateStr + END_DATE_TIME;
+        return getDate(dateStr, YYYYMMDDHHMMSSSSS);
     }
 
     public static int betweenDays(Date startDate, Date endDate) {
@@ -166,11 +169,11 @@ public class DateUtils {
      * @return yyyy-MM-dd
      */
     public static String getFirstDateOfMonth(String dateStr) {
-        Date date = getDate(dateStr, DateUtils.YYYYMMDD);
+        Date date = getDate(dateStr, YYYYMMDD);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.DAY_OF_MONTH, calendar.getActualMinimum(Calendar.DAY_OF_MONTH));
-        return formatDate(calendar.getTime(), DateUtils.YYYYMMDD);
+        return formatDate(calendar.getTime(), YYYYMMDD);
     }
 
     /**
@@ -180,12 +183,12 @@ public class DateUtils {
      * @return yyyy-MM-dd
      */
     public static String getLastDateOfMonth(String dateStr) {
-        Date date = getDate(dateStr, DateUtils.YYYYMMDD);
+        Date date = getDate(dateStr, YYYYMMDD);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), 1);
         calendar.roll(Calendar.DATE, -1);
-        return formatDate(calendar.getTime(), DateUtils.YYYYMMDD);
+        return formatDate(calendar.getTime(), YYYYMMDD);
     }
 
     /**
@@ -195,7 +198,7 @@ public class DateUtils {
      * @return yyyy-MM-dd
      */
     public static String getFirstDateOfQuarter(String dateStr) {
-        Date date = getDate(dateStr, DateUtils.YYYYMMDD);
+        Date date = getDate(dateStr, YYYYMMDD);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         int factor = 0;
@@ -212,7 +215,7 @@ public class DateUtils {
         calendar.add(Calendar.MONTH, factor);
         calendar.set(Calendar.DATE, calendar.getActualMinimum(Calendar.DATE));
         date = calendar.getTime();
-        return formatDate(date, DateUtils.YYYYMMDD);
+        return formatDate(date, YYYYMMDD);
     }
 
     /**
@@ -222,10 +225,35 @@ public class DateUtils {
      * @return yyyy-MM-dd
      */
     public static String getFirstDateOfYear(String dateStr) {
-        Date date = getDate(dateStr, DateUtils.YYYYMMDD);
+        Date date = getDate(dateStr, YYYYMMDD);
         Calendar calendar = Calendar.getInstance();
         calendar.setTime(date);
         calendar.set(Calendar.DAY_OF_YEAR, calendar.getActualMinimum(Calendar.DAY_OF_YEAR));
-        return formatDate(calendar.getTime(), DateUtils.YYYYMMDD);
+        return formatDate(calendar.getTime(), YYYYMMDD);
     }
+
+    /**
+     * 获取时间段内所有日期
+     * 
+     * @param dBegin
+     * @param dEnd
+     * @return
+     */
+    public static List<Date> findDates(Date dBegin, Date dEnd) {
+        List<Date> lDate = Lists.newArrayList();
+        // lDate.add(dBegin);
+        Calendar calBegin = Calendar.getInstance();
+        // 使用给定的 Date 设置此 Calendar 的时间
+        calBegin.setTime(dBegin);
+        Calendar calEnd = Calendar.getInstance();
+        // 使用给定的 Date 设置此 Calendar 的时间
+        calEnd.setTime(dEnd);
+        // 测试此日期是否在指定日期之后
+        while (dEnd.after(calBegin.getTime())) {
+            lDate.add(calBegin.getTime());
+            calBegin.add(Calendar.DAY_OF_MONTH, 1);
+        }
+        return lDate;
+    }
+
 }
