@@ -13,7 +13,7 @@ import java.util.Map.Entry;
 import org.bson.Document;
 import org.slf4j.Marker;
 
-import com.lcw.herakles.platform.common.util.DateUtils;
+import com.lcw.herakles.platform.common.util.DateUtil;
 import com.mongodb.MongoClient;
 import com.mongodb.MongoException;
 import com.mongodb.client.MongoCollection;
@@ -89,7 +89,7 @@ public class MongoDBAppender extends UnsynchronizedAppenderBase<ILoggingEvent> {
     private Document getBasicLog(ILoggingEvent evt) {
         Document log = new Document();
         log.put("time",
-                DateUtils.formatDate(new Date(evt.getTimeStamp()), DateUtils.YYYYMMDDHHMMSSSSS));
+                DateUtil.formatDate(new Date(evt.getTimeStamp()), DateUtil.YYYYMMDDHHMMSSSSS));
 
         // Store everything else inside a datamap
         Map<String, Object> dataMap = new HashMap<String, Object>();

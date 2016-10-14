@@ -12,11 +12,11 @@ import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
-public class DateUtils {
+public class DateUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DateUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(DateUtil.class);
 
-    private DateUtils() {
+    private DateUtil() {
 
     }
 
@@ -32,20 +32,22 @@ public class DateUtils {
 
     public static void main(String[] args) {
         // String dateStr = "2015-03-02";
-        // Date date = DateUtils.getDate(dateStr, "yyyy-MM-dd");
+        // Date date = DateUtils.getDate(dateStr, YYYYMMDD);
         // Date endDate = DateUtils.add(date, Calendar.YEAR, 1);
         // endDate = DateUtils.add(endDate, Calendar.DATE, -1);
-        // System.out.println(DateUtils.formatDate(endDate, "yyyy-MM-dd"));
+        // System.out.println(DateUtils.formatDate(endDate, YYYYMMDD));
 
-        // Date preDate = DateUtils.getDate("2015-09-10", "yyyy-MM-dd");
-        // Date nextDate = DateUtils.getDate("2015-09-10", "yyyy-MM-dd");
+        // Date preDate = DateUtils.getDate("2015-09-10", YYYYMMDD);
+        // Date nextDate = DateUtils.getDate("2015-09-10", YYYYMMDD);
         // System.out.println(DateUtils.betweenDays(preDate, nextDate));
 
         // String dateStr = "2015-07-11";
         // String dateStr1 = "2015-06-12";
         // System.out.println(DateUtils.getLastDateOfMonth(dateStr));
         // System.out.println(dateStr1.compareTo(dateStr));
-        System.out.println(DateUtils.formatDate(new Date(), YYYYMMDDHHMMSSSSS));
+        @SuppressWarnings("unused")
+        List<Date> dates = findDates(add(new Date(), Calendar.DAY_OF_YEAR,-100),new Date());
+        System.out.println(DateUtil.formatDate(new Date(), YYYYMMDDHHMMSSSSS));
     }
 
     public static Date getDate(String dateStr, String format) {

@@ -44,7 +44,7 @@ import com.lcw.herakles.platform.common.dto.annotation.OnValid;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.enums.EnumOption;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
-import com.lcw.herakles.platform.common.util.DateUtils;
+import com.lcw.herakles.platform.common.util.DateUtil;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.file.FileUtil;
 import com.lcw.herakles.platform.common.util.file.ftp.FtpUtil;
@@ -211,8 +211,8 @@ public class ProductController extends BaseController {
         String title = "邮箱绑定";
         String templateName = "modifyEmail";
         Map<String, Object> model = new HashMap<String, Object>();
-        String expireDate = DateUtils.formatDate(
-                DateUtils.getDate(this.getDefaultExpireDttm(), "yyyyMMddHHmmss"),
+        String expireDate = DateUtil.formatDate(
+                DateUtil.getDate(this.getDefaultExpireDttm(), "yyyyMMddHHmmss"),
                 "yyyy-MM-dd hh:mm:ss");
         model.put("expireDate", expireDate);
         model.put("nickName", securityContext.getCurrentUser().getNickName());
@@ -232,8 +232,8 @@ public class ProductController extends BaseController {
     }
 
     private String getDefaultExpireDttm() {
-        Date expireDate = DateUtils.add(new Date(), Calendar.HOUR_OF_DAY, 24);
-        return DateUtils.formatDate(expireDate, "yyyyMMddHHmmss");
+        Date expireDate = DateUtil.add(new Date(), Calendar.HOUR_OF_DAY, 24);
+        return DateUtil.formatDate(expireDate, "yyyyMMddHHmmss");
     }
 
     @RequestMapping(value = "test-temp-form", method = RequestMethod.GET)

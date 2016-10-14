@@ -18,9 +18,9 @@ import com.lcw.herakles.platform.common.constant.ApplicationConsts;
  * @author chenwulou
  *
  */
-public class EndecryptUtils {
+public class EndecryptUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EndecryptUtils.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(EndecryptUtil.class);
 
     /**
      * base64进制加密

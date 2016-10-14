@@ -5,7 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import com.alibaba.druid.filter.config.ConfigTools;
 import com.alibaba.druid.pool.DruidDataSource;
-import com.lcw.herakles.platform.common.util.EndecryptUtils;
+import com.lcw.herakles.platform.common.util.EndecryptUtil;
 
 /**
  * @author chenwulou
@@ -24,19 +24,19 @@ public class DecryptDruidSource extends DruidDataSource {
 
     @Override
     public void setUsername(String username) {
-        username = EndecryptUtils.decryptAes(username, DB_AES_KEY);
+        username = EndecryptUtil.decryptAes(username, DB_AES_KEY);
         super.setUsername(username);
     }
 
     @Override
     public void setPassword(String password) {
-        password = EndecryptUtils.decryptAes(password, DB_AES_KEY);
+        password = EndecryptUtil.decryptAes(password, DB_AES_KEY);
         super.setPassword(password);
     }
 
     @Override
     public void setUrl(String url) {
-        url = EndecryptUtils.decryptAes(url, DB_AES_KEY);
+        url = EndecryptUtil.decryptAes(url, DB_AES_KEY);
         super.setUrl(url + "?useUnicode=true&characterEncoding=utf-8&useSSL=false");
     }
 
