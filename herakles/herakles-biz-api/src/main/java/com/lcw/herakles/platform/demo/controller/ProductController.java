@@ -213,7 +213,7 @@ public class ProductController extends BaseController {
         Map<String, Object> model = new HashMap<String, Object>();
         String expireDate = DateUtil.formatDate(
                 DateUtil.getDate(this.getDefaultExpireDttm(), "yyyyMMddHHmmss"),
-                "yyyy-MM-dd hh:mm:ss");
+                DateUtil.YYYYMMDDHHMMSS);
         model.put("expireDate", expireDate);
         model.put("nickName", securityContext.getCurrentUser().getNickName());
         model.put("url", "www.bing.com");
