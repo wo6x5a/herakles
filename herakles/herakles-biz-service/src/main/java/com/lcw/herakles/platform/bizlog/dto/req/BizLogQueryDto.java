@@ -16,7 +16,7 @@ public class BizLogQueryDto extends DataTablesRequestDto {
     /**
      * 
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 5021339458232268157L;
 
     @Comment("编号")
     private String id;

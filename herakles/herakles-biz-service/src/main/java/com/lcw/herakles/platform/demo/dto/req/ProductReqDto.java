@@ -22,7 +22,10 @@ import com.lcw.herakles.platform.demo.validation.ProductExistenceCheck;
 @Comment("产品请求Dto")
 public class ProductReqDto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6009850829236911823L;
 
     @Comment("产品编号")
     private String id;

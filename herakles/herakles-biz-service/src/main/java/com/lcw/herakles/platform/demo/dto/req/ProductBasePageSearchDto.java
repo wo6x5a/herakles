@@ -4,7 +4,10 @@ import com.lcw.herakles.platform.common.dto.page.PageModelReqDto;
 
 public class ProductBasePageSearchDto extends PageModelReqDto{
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5977132019387111655L;
 
     /**
      * 关键字

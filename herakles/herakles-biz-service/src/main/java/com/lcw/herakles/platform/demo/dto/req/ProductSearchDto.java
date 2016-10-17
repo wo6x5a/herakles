@@ -12,7 +12,10 @@ import com.lcw.herakles.platform.demo.enums.EProductCagetory;
  */
 public class ProductSearchDto extends DataTablesRequestDto {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1678249793566204288L;
 
     /**
      * 关键字

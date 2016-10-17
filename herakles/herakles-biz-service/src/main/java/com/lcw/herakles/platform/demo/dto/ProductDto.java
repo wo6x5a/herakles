@@ -12,7 +12,10 @@ import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 @Comment("产品Dto")
 public class ProductDto extends BaseMaintainableDto{
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -3623606677366145221L;
 
     @Comment("编号")
     private String id;
