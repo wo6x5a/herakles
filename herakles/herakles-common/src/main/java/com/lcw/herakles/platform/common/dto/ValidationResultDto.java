@@ -2,6 +2,11 @@ package com.lcw.herakles.platform.common.dto;
 
 import java.util.Map;
 
+import com.lcw.herakles.platform.common.annotation.Comment;
+
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 
  * Class Name: ValidationResultDto
@@ -11,81 +16,20 @@ import java.util.Map;
  * @author chenwulou
  * 
  */
+@Getter
+@Setter
+@Comment(value = "校验返回dto")
 public class ValidationResultDto {
 
+    @Comment(value = "表单id")
     private String formId;
 
+    @Comment(value = "对象名")
     private String objectName;
 
+    @Comment(value = "general error")
     private Object generalError;
 
+    @Comment(value = "field errors")
     private Map<String, Object> fieldErrors;
-
-    /**
-     * @return return the value of the var formId
-     */
-
-    public String getFormId() {
-        return formId;
-    }
-
-    /**
-     * @param formId
-     *            Set formId value
-     */
-
-    public void setFormId(String formId) {
-        this.formId = formId;
-    }
-
-    /**
-     * @return return the value of the var objectName
-     */
-
-    public String getObjectName() {
-        return objectName;
-    }
-
-    /**
-     * @param objectName
-     *            Set objectName value
-     */
-
-    public void setObjectName(String objectName) {
-        this.objectName = objectName;
-    }
-
-    /**
-     * @return return the value of the var generalError
-     */
-
-    public Object getGeneralError() {
-        return generalError;
-    }
-
-    /**
-     * @param generalError
-     *            Set generalError value
-     */
-
-    public void setGeneralError(Object generalError) {
-        this.generalError = generalError;
-    }
-
-    /**
-     * @return return the value of the var fieldErrors
-     */
-
-    public Map<String, Object> getFieldErrors() {
-        return fieldErrors;
-    }
-
-    /**
-     * @param fieldErrors
-     *            Set fieldErrors value
-     */
-
-    public void setFieldErrors(Map<String, Object> fieldErrors) {
-        this.fieldErrors = fieldErrors;
-    }
 }
