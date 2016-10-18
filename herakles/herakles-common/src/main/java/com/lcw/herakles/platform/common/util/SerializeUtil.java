@@ -6,16 +6,19 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SerializeUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(SerializeUtil.class);
-
-    private SerializeUtil() {
-
-    }
+//    private static final Logger LOGGER = LoggerFactory.getLogger(SerializeUtil.class);
+//
+//    private SerializeUtil() {
+//
+//    }
 
     /**
      * 对象序列化
@@ -33,7 +36,7 @@ public class SerializeUtil {
             byte[] bytes = baos.toByteArray();
             return bytes;
         } catch (IOException e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
         return null;
     }
@@ -51,7 +54,7 @@ public class SerializeUtil {
             ObjectInputStream ois = new ObjectInputStream(bais);
             return ois.readObject();
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
         return null;
     }

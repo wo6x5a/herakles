@@ -2,8 +2,9 @@ package com.lcw.herakles.platform.common.util;
 
 import java.security.MessageDigest;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 加密工具.
@@ -12,13 +13,9 @@ import org.slf4j.LoggerFactory;
  *
  */
 @Deprecated
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class SecurityUtil {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(SecurityUtil.class);
-
-    private SecurityUtil() {
-
-    }
 
 	/**
 	 * MD5 加密
@@ -43,7 +40,7 @@ public class SecurityUtil {
 			messageDigest.reset();
 			messageDigest.update(str.getBytes("UTF-8"));
 		} catch (Exception e) {
-			LOGGER.error("密文转换异常！{}", e.getMessage());
+			log.error("密文转换异常！{}", e.getMessage());
 		}
 		return SecurityUtil.byte2hex(messageDigest.digest());
 	}

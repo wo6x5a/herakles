@@ -3,8 +3,8 @@ package com.lcw.herakles.platform.common.util.file.ftp.pool;
 import org.apache.commons.net.ftp.FTPClient;
 import org.apache.commons.pool2.impl.GenericObjectPool;
 import org.apache.commons.pool2.impl.GenericObjectPoolConfig;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Description: Ftp连接池工厂
@@ -12,9 +12,9 @@ import org.slf4j.LoggerFactory;
  * @author chenwulou
  *
  */
-public class FtpClientPoolFactory {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(FtpClientPoolFactory.class);
+@Slf4j
+public class FtpClientPoolFactory {
 
 	private GenericObjectPool<FTPClient> pool;
 
@@ -27,12 +27,12 @@ public class FtpClientPoolFactory {
 		try {
 			ftpClient = pool.borrowObject();
 			if (ftpClient == null) {
-				LOGGER.error("获得FTP连接失败");
+				log.error("获得FTP连接失败");
 			} else {
-				LOGGER.info("获得FTP连接成功");
+			    log.info("获得FTP连接成功");
 			}
 		} catch (Exception e) {
-			LOGGER.error("获得FTP连接失败:", e);
+		    log.error("获得FTP连接失败:", e);
 		}
 		return ftpClient;
 	}

@@ -19,11 +19,11 @@ import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 
 import org.apache.commons.io.IOUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.util.file.FileUtil;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 图片水印工具
@@ -31,9 +31,9 @@ import com.lcw.herakles.platform.common.util.file.FileUtil;
  * @author chenwulou
  *
  */
-public class ImageMarkUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ImageMarkUtil.class);
+@Slf4j
+public class ImageMarkUtil {
 
     /**
      * @param args
@@ -70,7 +70,7 @@ public class ImageMarkUtil {
         try {
             iconByteData = IOUtils.toByteArray(ins);
         } catch (IOException e) {
-            LOGGER.error("ImageMarkUtil error:", e);
+            log.error("ImageMarkUtil error:", e);
         }
         return markImageByIcon(iconByteData, srcImgInput, targerPath, degree);
     }
@@ -174,13 +174,13 @@ public class ImageMarkUtil {
             // ImageIO.write(buffImg, suffix, os);
 
         } catch (Exception e) {
-            LOGGER.error("ImageMarkUtil error:", e);
+            log.error("ImageMarkUtil error:", e);
         } finally {
             try {
                 if (null != os)
                     os.close();
             } catch (Exception e) {
-                LOGGER.error("ImageMarkUtil error:", e);
+                log.error("ImageMarkUtil error:", e);
             }
         }
         return buffImg;
@@ -254,19 +254,19 @@ public class ImageMarkUtil {
             ImageIO.write(buffImg, suffix, os);
 
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         } finally {
             try {
                 if (null != is)
                     is.close();
             } catch (Exception e) {
-                LOGGER.error("ImageMarkUtil error:", e);
+                log.error("ImageMarkUtil error:", e);
             }
             try {
                 if (null != os)
                     os.close();
             } catch (Exception e) {
-                LOGGER.error("ImageMarkUtil error:", e);
+                log.error("ImageMarkUtil error:", e);
             }
         }
     }

@@ -18,11 +18,13 @@ import org.apache.poi.ss.usermodel.Sheet;
 import org.apache.poi.ss.usermodel.Workbook;
 import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Excel util
@@ -30,13 +32,11 @@ import com.lcw.herakles.platform.common.enums.EErrorCode;
  * @author chenwulou
  *
  */
+
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ExcelUtil {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ExcelUtil.class);
-
-    private ExcelUtil() {
-
-    }
 
 
 	/**
@@ -76,15 +76,15 @@ public class ExcelUtil {
 			workbook.write(out);
 			System.out.println("文件写入成功");
 		} catch (FileNotFoundException e) {
-			LOGGER.error("ExcelUtil.createExcelByFileName():.", e);
+			log.error("ExcelUtil.createExcelByFileName():.", e);
 		} catch (IOException e) {
-			LOGGER.error("ExcelUtil.createExcelByFileName():.", e);
+			log.error("ExcelUtil.createExcelByFileName():.", e);
 		} finally {
 			try {
 				out.flush();
 				out.close();
 			} catch (IOException e) {
-				LOGGER.error("ExcelUtil.createExcelByFileName():.", e);
+				log.error("ExcelUtil.createExcelByFileName():.", e);
 			}
 		}
 	}
@@ -154,7 +154,7 @@ public class ExcelUtil {
 				}
 			}
 		} catch (IOException e) {
-			LOGGER.error("ExcelUtil.readExcel():", e);
+			log.error("ExcelUtil.readExcel():", e);
 		}
 		return result;
 	}

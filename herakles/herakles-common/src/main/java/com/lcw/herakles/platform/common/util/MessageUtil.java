@@ -2,9 +2,11 @@ package com.lcw.herakles.platform.common.util;
 
 import java.util.Locale;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.context.MessageSource;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -13,17 +15,15 @@ import org.springframework.context.MessageSource;
 * @author chenwulou
 *
 */
-public final class MessageUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(MessageUtil.class);
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
+public final class MessageUtil {
 
     private static MessageSource messageSource;
 
     private static Locale defaultLocale = Locale.SIMPLIFIED_CHINESE;
 
-    private MessageUtil() {
-        
-    }
 
     /**
      * 
@@ -57,7 +57,7 @@ public final class MessageUtil {
     * @return
     */
     public static String getMessage(String code, Locale locale, Object... args) {
-        LOGGER.debug("getMessage() invoked,  Message code: " + code);
+        log.debug("getMessage() invoked,  Message code: " + code);
         return messageSource.getMessage(code, args, "Unknown message, code: " + code, locale);
     }
 

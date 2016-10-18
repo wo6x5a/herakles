@@ -7,22 +7,26 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.Map;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.collect.Maps;
+
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author chenwulou
  *
  */
+
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ReflectionUtil {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionUtil.class);
-
-    private ReflectionUtil() {
-
-    }
+//	private static final Logger LOGGER = LoggerFactory.getLogger(ReflectionUtil.class);
+//
+//    private ReflectionUtil() {
+//
+//    }
 
 	public static Method getGetter(Class<?> clazz, Field field) {
 		String filedName = field.getName();
@@ -32,7 +36,7 @@ public final class ReflectionUtil {
 		try {
 			getMethod = clazz.getDeclaredMethod(getMethodName);
 		} catch (Exception e) {
-			LOGGER.error("error while get getter:", e);
+			log.error("error while get getter:", e);
 		}
 		return getMethod;
 	}
@@ -46,7 +50,7 @@ public final class ReflectionUtil {
 		try {
 			setMethod = clazz.getDeclaredMethod(setMethodName, fieldType);
 		} catch (Exception e) {
-			LOGGER.error("error while get setter:", e);
+			log.error("error while get setter:", e);
 		}
 		return setMethod;
 	}
@@ -62,7 +66,7 @@ public final class ReflectionUtil {
 			try {
 				fieldValue = getMethod.invoke(o).toString();
 			} catch (Exception e) {
-				LOGGER.error("error while get: {}", e, fieldName);
+				log.error("error while get: {}", e, fieldName);
 			}
 			if (null != fieldValue)
 				fieldMap.put(fieldName, fieldValue);

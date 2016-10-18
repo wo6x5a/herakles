@@ -8,10 +8,10 @@ import org.apache.commons.net.ftp.FTPReply;
 import org.apache.commons.pool2.BasePooledObjectFactory;
 import org.apache.commons.pool2.PooledObject;
 import org.apache.commons.pool2.impl.DefaultPooledObject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.common.util.file.ftp.dto.FtpInfo;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 
@@ -20,9 +20,9 @@ import com.lcw.herakles.platform.common.util.file.ftp.dto.FtpInfo;
  * @author chenwulou
  *
  */
-public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(FtpClientFactory.class);
+@Slf4j
+public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 
 	private FtpInfo ftpInfo;
 
@@ -37,16 +37,16 @@ public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 			ftpClient = new FTPClient();
 			ftpClient.connect(ftpInfo.getFtpHost(), ftpInfo.getFtpPort());// 连接FTP服务器
 			ftpClient.login(ftpInfo.getFtpUserName(), ftpInfo.getFtpPassword());// 登陆FTP服务器
-//			LOGGER.debug("IP:" + ftpInfo.getFtpHost() + ", 端口：" + ftpInfo.getFtpPort() + "，用户名："
+//			log.debug("IP:" + ftpInfo.getFtpHost() + ", 端口：" + ftpInfo.getFtpPort() + "，用户名："
 //			        + ftpInfo.getFtpUserName() + "，密码" + ftpInfo.getFtpPassword());
 			if (FTPReply.isPositiveCompletion(ftpClient.getReplyCode())) {
-				LOGGER.info("FTP连接成功");
+				log.info("FTP连接成功");
 			} else {
 				ftpClient.disconnect();
-				LOGGER.error("未连接到FTP,用户名或密码错误");
+				log.error("未连接到FTP,用户名或密码错误");
 			}
 		} catch (SocketException e) {
-			LOGGER.error("FTP的IP地址可能错误,请正确配置:", e);
+			log.error("FTP的IP地址可能错误,请正确配置:", e);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -62,9 +62,9 @@ public class FtpClientFactory extends BasePooledObjectFactory<FTPClient> {
 	public void destroyObject(PooledObject<FTPClient> p) {
 		try {
 			p.getObject().disconnect();
-			LOGGER.info("FTP连接关闭");
+			log.info("FTP连接关闭");
 		} catch (IOException e) {
-			LOGGER.error("FTP关闭连接错误:", e);
+			log.error("FTP关闭连接错误:", e);
 		}
 	}
 

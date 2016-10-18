@@ -8,15 +8,15 @@ import org.apache.commons.lang3.StringUtils;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * @author chenwulou
  *
  */
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ErrorUtil {
-
-    private ErrorUtil() {
-
-    }
 
 	public static String getExceptionStack(Exception ex, int length) {
 		String errMsg = getExceptionStack(ex);
