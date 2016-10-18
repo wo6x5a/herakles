@@ -1,49 +1,25 @@
 package com.lcw.herakles.platform.demo.dto.req;
 
+import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.page.PageModelReqDto;
 
-public class ProductBasePageSearchDto extends PageModelReqDto{
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Comment(value = "产品基础分页搜索Dto")
+public class ProductBasePageSearchDto extends PageModelReqDto {
 
     /**
      * 
      */
     private static final long serialVersionUID = -5977132019387111655L;
 
-    /**
-     * 关键字
-     */
+    @Comment(value = "关键字")
     private String keyword;
 
+    @Comment(value = "种类")
     private String category;
-
-    /**
-     * @return the keyword
-     */
-    public String getKeyword() {
-        return keyword;
-    }
-
-    /**
-     * @param keyword
-     *            the keyword to set
-     */
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    /**
-     * @return the category
-     */
-    public String getCategory() {
-        return category;
-    }
-
-    /**
-     * @param category
-     *            the category to set
-     */
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
 }

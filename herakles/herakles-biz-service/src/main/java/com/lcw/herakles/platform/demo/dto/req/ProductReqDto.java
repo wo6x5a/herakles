@@ -11,6 +11,9 @@ import com.lcw.herakles.platform.demo.enums.EProductCagetory;
 import com.lcw.herakles.platform.demo.validation.NullCheck;
 import com.lcw.herakles.platform.demo.validation.ProductExistenceCheck;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Class Name: ProductDto 
  * 
@@ -19,6 +22,8 @@ import com.lcw.herakles.platform.demo.validation.ProductExistenceCheck;
  * @author chenwulou
  * 
  */
+@Getter
+@Setter
 @Comment("产品请求Dto")
 public class ProductReqDto implements Serializable {
 
@@ -46,46 +51,6 @@ public class ProductReqDto implements Serializable {
 
     // TODO unuse
     private String file;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public EProductCagetory getCategory() {
-        return category;
-    }
-
-    public void setCategory(EProductCagetory category) {
-        this.category = category;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public String getFile() {
-        return file;
-    }
-
-    public void setFile(String file) {
-        this.file = file;
-    }
 
     /**
      * Validation group for creating a product.

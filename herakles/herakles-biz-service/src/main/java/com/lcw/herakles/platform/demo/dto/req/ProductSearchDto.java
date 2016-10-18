@@ -1,7 +1,11 @@
 package com.lcw.herakles.platform.demo.dto.req;
 
+import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
 import com.lcw.herakles.platform.demo.enums.EProductCagetory;
+
+import lombok.Getter;
+import lombok.Setter;
 
 
 /**
@@ -10,6 +14,9 @@ import com.lcw.herakles.platform.demo.enums.EProductCagetory;
  * @author chenwulou
  *
  */
+@Getter
+@Setter
+@Comment(value = "产品搜索dto")
 public class ProductSearchDto extends DataTablesRequestDto {
 
     /**
@@ -17,34 +24,10 @@ public class ProductSearchDto extends DataTablesRequestDto {
      */
     private static final long serialVersionUID = 1678249793566204288L;
 
-    /**
-     * 关键字
-     */
+    @Comment(value = "关键字")
     private String keyword;
 
+    @Comment(value = "种类")
     private EProductCagetory category;
-
-    /**
-     * @return the keyword
-     */
-    public String getKeyword() {
-        return keyword;
-    }
-
-    /**
-     * @param keyword the keyword to set
-     */
-    public void setKeyword(String keyword) {
-        this.keyword = keyword;
-    }
-
-    public EProductCagetory getCategory() {
-        return category;
-    }
-
-    public void setCategory(EProductCagetory category) {
-        this.category = category;
-    }
-
 
 }

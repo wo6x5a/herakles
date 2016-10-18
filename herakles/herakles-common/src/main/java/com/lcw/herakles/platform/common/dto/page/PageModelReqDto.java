@@ -2,33 +2,25 @@ package com.lcw.herakles.platform.common.dto.page;
 
 import java.io.Serializable;
 
-public class PageModelReqDto implements Serializable{
+import com.lcw.herakles.platform.common.annotation.Comment;
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+import lombok.Getter;
+import lombok.Setter;
 
-	// 第几页
-	private int pageNo;
+@Getter
+@Setter
+@Comment(value = "分页模板请求dto")
+public class PageModelReqDto implements Serializable {
 
-	// 每页多少条数据
-	private int pageSize;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	public int getPageNo() {
-		return pageNo;
-	}
+    @Comment(value = "第几页")
+    private int pageNo;
 
-	public void setPageNo(int pageNo) {
-		this.pageNo = pageNo;
-	}
+    @Comment(value = "每页多少条数据")
+    private int pageSize;
 
-	public int getPageSize() {
-		return pageSize;
-	}
-
-	public void setPageSize(int pageSize) {
-		this.pageSize = pageSize;
-	}
-	
 }
