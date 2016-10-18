@@ -15,8 +15,6 @@ import org.apache.commons.lang3.time.DateFormatUtils;
 import org.apache.shiro.authc.AuthenticationToken;
 import org.apache.shiro.subject.Subject;
 import org.apache.shiro.web.filter.authc.FormAuthenticationFilter;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.slf4j.MDC;
 import org.springframework.http.HttpStatus;
 
@@ -28,15 +26,19 @@ import com.lcw.herakles.platform.common.util.MessageUtil;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
 import com.lcw.herakles.platform.system.security.SecurityContext;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Class Name: SessionTimeoutAuthenticationFilter
  * Description: TODO
  * @author chenwulou
  *
  */
+
+@Slf4j
 public class SessionTimeoutAuthenticationFilter extends FormAuthenticationFilter {
     
-    private static final Logger LOGGER = LoggerFactory.getLogger(SessionTimeoutAuthenticationFilter.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(SessionTimeoutAuthenticationFilter.class);
     
     public static final String SESSION_TIMEOUT = SessionTimeoutAuthenticationFilter.class + "_session_timeout";
     
@@ -60,22 +62,22 @@ public class SessionTimeoutAuthenticationFilter extends FormAuthenticationFilter
             error.setCode(ResultCode.SESSION_TIME_OUT);
             error.setMessage(MessageUtil.getMessage(SESSION_TIMEOUT_MSG));
             objectMapper.writeValue(response.getWriter(), error);
-            LOGGER.debug("session time out for ajax request:{}", req.getRequestURI());
+            log.debug("session time out for ajax request:{}", req.getRequestURI());
         }else{
-            LOGGER.debug("session time out for request:{}", req.getRequestURI());
+            log.debug("session time out for request:{}", req.getRequestURI());
             req.getSession().setAttribute(SESSION_TIMEOUT, true);
             redirectToLogin(request, response);
         }
         HttpSession session = req.getSession(false);
         if (session != null) {
-			LOGGER.debug("session time out with id: {}, is sesion new:{}, started: {}, last accessed: {}, request headers: {}",
+			log.debug("session time out with id: {}, is sesion new:{}, started: {}, last accessed: {}, request headers: {}",
 					session.getId(),
 					session.isNew(),
 					DateFormatUtils.format(session.getCreationTime(), DATE_FORMAT),
 					DateFormatUtils.format(session.getLastAccessedTime(), DATE_FORMAT),
 					getHeaderString(request));
         } else {
-        	LOGGER.debug("session time out, no session available for current request");
+        	log.debug("session time out, no session available for current request");
         }
     }
     
@@ -115,14 +117,14 @@ public class SessionTimeoutAuthenticationFilter extends FormAuthenticationFilter
     protected boolean onLoginSuccess(AuthenticationToken token, Subject subject,
             ServletRequest request, ServletResponse response) throws Exception { // NOSONAR
         HttpServletRequest req = (HttpServletRequest)request;
-        LOGGER.info("{} login complete, session ID: {} ", subject.getPrincipal(), subject.getSession().getId());
+        log.info("{} login complete, session ID: {} ", subject.getPrincipal(), subject.getSession().getId());
         StringBuilder sb = new StringBuilder();
         Enumeration<?> attriNames = req.getAttributeNames();
         while (attriNames.hasMoreElements()) {
             String attriName = (String) attriNames.nextElement();
             sb.append("[").append(attriName).append("=").append(req.getAttribute(attriName)).append("]");
         }
-        LOGGER.info("session attributes: {}", sb);
+        log.info("session attributes: {}", sb);
         return super.onLoginSuccess(token, subject, request, response);
     }
     

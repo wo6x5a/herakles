@@ -1,24 +1,23 @@
 package com.lcw.herakles.platform.system.security.database;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.alibaba.druid.filter.config.ConfigTools;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.lcw.herakles.platform.common.util.EndecryptUtil;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author chenwulou
  *
  */
+
+@Slf4j
 public class DecryptDruidSource extends DruidDataSource {
 
     /**
      * 
      */
     private static final long serialVersionUID = 2229458728075515162L;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(DecryptDruidSource.class);
 
     private static final String DB_AES_KEY = "HdiDnPCCXLjija+1lQkSnw==";
 
@@ -44,7 +43,7 @@ public class DecryptDruidSource extends DruidDataSource {
         try {
             System.out.println(ConfigTools.encrypt("123456"));
         } catch (Exception e) {
-            LOGGER.error(e.getMessage());
+            log.error(e.getMessage());
         }
     }
 }

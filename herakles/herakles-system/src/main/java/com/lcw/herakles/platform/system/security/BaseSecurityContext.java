@@ -17,8 +17,6 @@ import org.apache.shiro.realm.Realm;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.subject.SimplePrincipalCollection;
 import org.apache.shiro.subject.Subject;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.constant.CacheConsts;
@@ -29,15 +27,17 @@ import com.lcw.herakles.platform.system.user.dto.UserDto;
 import com.lcw.herakles.platform.system.user.service.UserPasswdService;
 import com.lcw.herakles.platform.system.user.service.UserService;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Class Name: SecurityContext Description: TODO
  * 
  * @author chenwulou
  * 
  */
-public class BaseSecurityContext {
 
-	private static final Logger LOGGER = LoggerFactory.getLogger(BaseSecurityContext.class);
+@Slf4j
+public class BaseSecurityContext {
 
 	/**
 	 * Description: 获取创建人编号,如果没有就默认.
@@ -102,14 +102,14 @@ public class BaseSecurityContext {
 		// session state:
 		currentUser.login(token);
 		Session session = currentUser.getSession();
-		LOGGER.debug("User {} login successfully, session id {}", userName, session.getId());
+		log.debug("User {} login successfully, session id {}", userName, session.getId());
 		UserService userService = ApplicationContextUtil.getBean(UserService.class);
 		UserDto userDto = userService.findByNickName(userName);
         session.setAttribute(CacheConsts.USER_KEY, userDto);
         session.setAttribute(CacheConsts.USER_ID_KEY, userDto.getUserId());
 		encryptUserPwd(userDto.getUserId());
 		long end = System.currentTimeMillis();
-		LOGGER.debug("login() completed for user {}, total time spent: {}ms", userName, end - start);
+		log.debug("login() completed for user {}, total time spent: {}ms", userName, end - start);
 		return session;
 	}
 
@@ -139,7 +139,7 @@ public class BaseSecurityContext {
 				jdbcRealm.clearAuthorizationCache(spc);
 			}
 		}
-		LOGGER.info("Authorization cache cleared for user: {}", userName);
+		log.info("Authorization cache cleared for user: {}", userName);
 	}
 
 	/**
@@ -300,7 +300,7 @@ public class BaseSecurityContext {
 		try {
 			return SecurityUtils.getSubject();
 		} catch (Exception e) {
-			LOGGER.warn("Failed to get Subject, maybe user is not login or session is lost:", e);
+		    log.warn("Failed to get Subject, maybe user is not login or session is lost:", e);
 			return null;
 		}
 	}

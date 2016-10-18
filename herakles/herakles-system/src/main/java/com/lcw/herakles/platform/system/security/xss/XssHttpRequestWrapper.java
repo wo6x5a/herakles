@@ -12,8 +12,8 @@ import javax.servlet.http.HttpServletRequestWrapper;
 
 import org.owasp.html.PolicyFactory;
 import org.owasp.html.Sanitizers;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class Name: XssHttpRequestWrapper
@@ -22,8 +22,9 @@ import org.slf4j.LoggerFactory;
  * @author chenwulou
  * 
  */
+
+@Slf4j
 public class XssHttpRequestWrapper extends HttpServletRequestWrapper {
-    private static final Logger logger = LoggerFactory.getLogger(XssHttpRequestWrapper.class);
 
     private Map<String, String[]> sanitized;
     private Map<String, String[]> orig;
@@ -32,7 +33,7 @@ public class XssHttpRequestWrapper extends HttpServletRequestWrapper {
         super(request);
         orig = request.getParameterMap();
         sanitized = getParameterMap(); // NOSONAR
-        if (logger.isDebugEnabled())
+        if (log.isDebugEnabled())
             snzLog();
     }
 
@@ -83,9 +84,9 @@ public class XssHttpRequestWrapper extends HttpServletRequestWrapper {
             if (rawVals != null && rawVals.length > 0) {
                 for (int i = 0; i < rawVals.length; i++) {
                     if (rawVals[i].equals(snzVals[i]))
-                        logger.trace("Sanitization. Param seems safe: " + key + "[" + i + "]=" + snzVals[i]);
+                        log.trace("Sanitization. Param seems safe: " + key + "[" + i + "]=" + snzVals[i]);
                     else
-                        logger.debug("Sanitization. Param modified: " + key + "[" + i + "]=" + snzVals[i]);
+                        log.debug("Sanitization. Param modified: " + key + "[" + i + "]=" + snzVals[i]);
                 }
             }
         }

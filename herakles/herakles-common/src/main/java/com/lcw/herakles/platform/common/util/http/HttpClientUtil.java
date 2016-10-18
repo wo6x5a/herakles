@@ -15,12 +15,12 @@ import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.message.BasicNameValuePair;
 import org.apache.http.util.EntityUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.util.http.pool.HttpClientPoolConnectionManager;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * HTTP client util
@@ -28,9 +28,11 @@ import com.lcw.herakles.platform.common.util.http.pool.HttpClientPoolConnectionM
  * @author chenwulou
  *
  */
+
+@Slf4j
 public class HttpClientUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientUtil.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(HttpClientUtil.class);
 
     private HttpClientUtil() {
 
@@ -73,7 +75,7 @@ public class HttpClientUtil {
 
         } catch (IOException e) {
             httppost.abort();
-            LOGGER.error("HttpClientUtil.post:", e);
+            log.error("HttpClientUtil.post:", e);
         } finally {
             if (response != null) {
                 try {
@@ -81,7 +83,7 @@ public class HttpClientUtil {
                     // httpclient.close();
                 } catch (IOException e) {
                     httppost.abort();
-                    LOGGER.error("HttpClientUtil.post:", e);
+                    log.error("HttpClientUtil.post:", e);
                 }
             }
             httppost.releaseConnection();
@@ -110,7 +112,7 @@ public class HttpClientUtil {
             }
         } catch (IOException e) {
             httpGet.abort();
-            LOGGER.error("HttpClientUtil.get:", e);
+            log.error("HttpClientUtil.get:", e);
         } finally {
             if (response != null) {
                 try {
@@ -118,7 +120,7 @@ public class HttpClientUtil {
                     // httpclient.close();
                 } catch (IOException e) {
                     httpGet.abort();
-                    LOGGER.error("HttpClientUtil.get:", e);
+                    log.error("HttpClientUtil.get:", e);
                 }
             }
             httpGet.releaseConnection();

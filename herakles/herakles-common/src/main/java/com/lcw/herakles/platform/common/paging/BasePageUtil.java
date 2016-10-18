@@ -3,8 +3,6 @@ package com.lcw.herakles.platform.common.paging;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -24,9 +22,6 @@ import com.lcw.herakles.platform.common.exception.BizServiceException;
  *
  */
 public class BasePageUtil {
-
-	@SuppressWarnings("unused")
-	private static final Logger LOGGER = LoggerFactory.getLogger(PaginationUtil.class);
 
 	private static Pageable buildPageable(final PageModelReqDto requestDto) {
 		Sort sort = null;

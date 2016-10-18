@@ -12,13 +12,11 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.code.kaptcha.Producer;
 import com.google.code.kaptcha.servlet.KaptchaExtend;
 import com.google.code.kaptcha.util.Config;
-import com.lcw.herakles.platform.system.security.KaptchaSupport;
+
+import lombok.extern.slf4j.Slf4j;
 
 
 /**
@@ -27,9 +25,8 @@ import com.lcw.herakles.platform.system.security.KaptchaSupport;
 * @author chenwulou
 *
 */
+@Slf4j
 public class KaptchaSupport extends KaptchaExtend {
-
-    private static final Logger LOG = LoggerFactory.getLogger(KaptchaSupport.class);
 
     private Producer kaptchaProducer = null;
 
@@ -92,7 +89,7 @@ public class KaptchaSupport extends KaptchaExtend {
         // write the data out
         ImageIO.write(bi, "jpg", out);
 
-        LOG.debug("captcha \"{}\" written to response", capText);
+        log.debug("captcha \"{}\" written to response", capText);
 
         // fixes issue #69: set the attributes after we write the image in case
         // the image writing fails.
@@ -105,19 +102,19 @@ public class KaptchaSupport extends KaptchaExtend {
         // their kaptcha
         req.getSession().setAttribute(this.sessionKeyDateValue, new Date());
 
-        LOG.debug("captcha \"{}\" written to session, session id={}", capText, req.getSession().getId());
+        log.debug("captcha \"{}\" written to session, session id={}", capText, req.getSession().getId());
     }
 
     public boolean validateCaptcha(String captcha, HttpSession session) {
         String currentCaptcha = (String) session.getAttribute(sessionKeyValue);
         if (currentCaptcha == null) {
-            LOG.warn("No captcha found in session - {}, session id = {}", captcha, session.getId());
+            log.warn("No captcha found in session - {}, session id = {}", captcha, session.getId());
         }
         boolean valid = captcha.equalsIgnoreCase(currentCaptcha);
         if (currentCaptcha != null && !valid) {
-            LOG.debug("invalid captcha received: {}, expected: {}", captcha, currentCaptcha);
+            log.debug("invalid captcha received: {}, expected: {}", captcha, currentCaptcha);
         }
-        LOG.debug("captcha \"{}\" removed", currentCaptcha);
+        log.debug("captcha \"{}\" removed", currentCaptcha);
         session.removeAttribute(sessionKeyValue);
         return valid;
     }

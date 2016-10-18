@@ -10,8 +10,6 @@ import javax.validation.ConstraintViolationException;
 
 import org.apache.commons.lang3.exception.ExceptionUtils;
 import org.apache.shiro.authz.AuthorizationException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.orm.hibernate3.HibernateOptimisticLockingFailureException;
@@ -27,6 +25,8 @@ import com.lcw.herakles.platform.common.util.MessageUtil;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
 import com.lcw.herakles.platform.common.validation.ValidateException;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * Class Name: ExceptionResolver
  * <p>
@@ -38,9 +38,10 @@ import com.lcw.herakles.platform.common.validation.ValidateException;
  * 
  */
 @SuppressWarnings("deprecation")
+@Slf4j
 public class ExceptionResolver implements HandlerExceptionResolver {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionResolver.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(ExceptionResolver.class);
 
     @Autowired
     BindingResultExceptionHandler bindingResultExceptionHandler;
@@ -74,7 +75,7 @@ public class ExceptionResolver implements HandlerExceptionResolver {
                 objectMapper.writeValue(response.getWriter(), error);
                 writer.flush();
             } catch (IOException ie) {
-                LOGGER.error("Failed to serialize the object to json for exception handling.{}", ie);
+                log.error("Failed to serialize the object to json for exception handling.{}", ie);
             }
             return new ModelAndView();
         } else {
@@ -82,10 +83,10 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             ModelAndView mav = new ModelAndView();
             mav.addObject("errorMessage", ExceptionUtils.getStackTrace(ex));
             if(ex instanceof AuthorizationException){
-                LOGGER.warn("AuthorizationException handled (non-ajax style):{}", ex);
+                log.warn("AuthorizationException handled (non-ajax style):{}", ex);
                 mav.setViewName("error/access_denied");
             }else{
-                LOGGER.error("Unknown exception handled (non-ajax style):{}", ex);
+                log.error("Unknown exception handled (non-ajax style):{}", ex);
                 mav.setViewName("error/404");
             }
             return mav;
@@ -120,19 +121,19 @@ public class ExceptionResolver implements HandlerExceptionResolver {
             }else{
                 error = ResultDtoFactory.toCommonError(bizEx);
             }
-            LOGGER.debug("BizServiceException handled:", ex);
+            log.debug("BizServiceException handled:", ex);
         } else if (ex instanceof MaxUploadSizeExceededException) {
             error = ResultDtoFactory.toNack("文件大小必须小于2M，请重新上传");
         } else if (ex instanceof HibernateOptimisticLockingFailureException) {
-            LOGGER.info("HibernateOptimisticLockingFailureException handled:", ex);
+            log.info("HibernateOptimisticLockingFailureException handled:", ex);
             error = ResultDtoFactory.toNack("您正在操作的记录已经在您操作之前被其他用户修改，请刷新页面后重试！");
         } else if (ex instanceof AuthorizationException){
-            LOGGER.warn("AuthorizationException handled:", ex);
+            log.warn("AuthorizationException handled:", ex);
             error = ResultDtoFactory.toCommonError(MessageUtil.getMessage("error.common.unauthz"));
         }
         else {
             error = ResultDtoFactory.toCommonError( ex);
-            LOGGER.error("Unknown exception handled:{}", ex);
+            log.error("Unknown exception handled:{}", ex);
         }
         return error;
     }

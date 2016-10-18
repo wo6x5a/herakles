@@ -14,8 +14,6 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.lcw.herakles.platform.common.constant.RegexpConsts;
@@ -24,14 +22,18 @@ import com.lcw.herakles.platform.common.dto.ResultDto;
 import com.lcw.herakles.platform.common.dto.ResultDtoFactory;
 import com.lcw.herakles.platform.common.dto.ValidationResultDto;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author chenwulou
  * 
  */
+
+@Slf4j
 public abstract class AbstractExceptionHandler {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractExceptionHandler.class);
+//    private static final Logger LOGGER = LoggerFactory.getLogger(AbstractExceptionHandler.class);
     
     public ResultDto buildErrorDto(final Exception ex, final Object handler, final String formId){
         if(StringUtils.isEmpty(formId)){
@@ -60,7 +62,7 @@ public abstract class AbstractExceptionHandler {
      */
     protected void setFieldErrorMap(final String fieldName, final String beanName, Class<?> rootClass,
             List<ValidationResultDto> errorData, final String message, final String formId, boolean notManually) {
-    	LOGGER.debug("setFieldErrorMap() invoked, field {} ", fieldName);
+    	log.debug("setFieldErrorMap() invoked, field {} ", fieldName);
         boolean isExist = false;
         final String errorField = getErrorField(fieldName, rootClass, notManually);
         final int errorFieldsLen = errorField.length();
@@ -95,7 +97,7 @@ public abstract class AbstractExceptionHandler {
      */
     private String getErrorField(String fieldName, Class<?> rootClz, boolean notManually) {
         Class<?> rootClass = rootClz;
-    	LOGGER.debug("getErrorField() invoked fieldName {} , rootClass {}", fieldName, rootClass.getName());
+    	log.debug("getErrorField() invoked fieldName {} , rootClass {}", fieldName, rootClass.getName());
         final StringBuilder sb = new StringBuilder();
         final String[] pathInfo = fieldName.split("\\.");
         if (pathInfo != null && pathInfo.length > 0) {
@@ -119,7 +121,7 @@ public abstract class AbstractExceptionHandler {
                 try {
                     rootClass = getNextRootClass(rootClass, parseFieldName, isFound);
                 } catch (NoSuchFieldException e) {
-                    LOGGER.debug("NoSuchFieldException:", e);
+                    log.debug("NoSuchFieldException:", e);
                 }
             }
         }
@@ -173,7 +175,7 @@ public abstract class AbstractExceptionHandler {
                     }
                 }
             }
-            LOGGER.debug("Next rootClass = " + rootClass);
+            log.debug("Next rootClass = " + rootClass);
             return rootClass;
         } else {
             return null;
@@ -192,7 +194,7 @@ public abstract class AbstractExceptionHandler {
      */
     private Field getFieldForAll(Class<?> rootClz, String fieldName) {
         Class<?> rootClass = rootClz;
-    	LOGGER.debug("getFieldForAll() rootClass {} , fieldName {} ",  rootClass.getName(), fieldName);
+    	log.debug("getFieldForAll() rootClass {} , fieldName {} ",  rootClass.getName(), fieldName);
         Set<Field> domainFields = new HashSet<Field>();
         String objectName = Object.class.getName();
         while (rootClass != null && !rootClass.getName().equals(objectName)) {
@@ -269,11 +271,11 @@ public abstract class AbstractExceptionHandler {
 			JsonProperty jsonProperty2 = method.getAnnotation(JsonProperty.class);
 			if (jsonProperty2 != null) {
 		        String jp = jsonProperty2.value();
-		        LOGGER.debug("JsonProperty from SetMethod ===== " + jp);
+		        log.debug("JsonProperty from SetMethod ===== " + jp);
 		        return jp;
 		    }
 		} catch (NoSuchMethodException e) {
-			LOGGER.debug("NoSuchMethodException {}, try to get JsonProperty from super class", methodName);
+			log.debug("NoSuchMethodException {}, try to get JsonProperty from super class", methodName);
 			try {
 				/** Get JsonProperty from super class.
 				 *  It is only a simple implementation base on one assumption that super class should exist this field.
@@ -284,14 +286,14 @@ public abstract class AbstractExceptionHandler {
 				JsonProperty jsonProperty2 = method.getAnnotation(JsonProperty.class);
 				if (jsonProperty2 != null) {
 		            String jp = jsonProperty2.value();
-		            LOGGER.debug("JsonProperty from Super {} `s SetMethod ===== {} ", dtoClass.getSuperclass(),  jp);
+		            log.debug("JsonProperty from Super {} `s SetMethod ===== {} ", dtoClass.getSuperclass(),  jp);
 		            return jp;
 				}	
 			} catch (Exception ex) { // NOSONAR
-			    LOGGER.debug(e.getMessage());
+			    log.debug(e.getMessage());
 			}
 		} catch (SecurityException e) {
-		    LOGGER.debug(e.getMessage());
+		    log.debug(e.getMessage());
 		}
 		return null;
 	}

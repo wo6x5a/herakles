@@ -20,10 +20,10 @@ import org.apache.shiro.authc.credential.PasswordService;
 import org.apache.shiro.realm.jdbc.JdbcRealm;
 import org.apache.shiro.subject.PrincipalCollection;
 import org.apache.shiro.util.JdbcUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.system.user.enums.EUserStatus;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class Name: SSOJdbcReam Description: Extending {@link JdbcRealm} to incorporate SSO.
@@ -33,6 +33,7 @@ import com.lcw.herakles.platform.system.user.enums.EUserStatus;
  * 
  */
 
+@Slf4j
 public class ShiroJdbcRealm extends JdbcRealm {
 
     /**
@@ -74,8 +75,6 @@ public class ShiroJdbcRealm extends JdbcRealm {
      */
     private static final String LAST_LOGIN_FAIL_DATE_FORMAT = "yyyy-MM-dd HH:mm:ss";
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(ShiroJdbcRealm.class);
-
     @Override
     protected AuthenticationInfo doGetAuthenticationInfo(AuthenticationToken token) throws AuthenticationException {
 
@@ -93,7 +92,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
             super.assertCredentialsMatch(token, info);
             executeUpdate(loginSuccessQuery, new String[] { token.getPrincipal().toString() });
             long end = System.currentTimeMillis();
-            LOGGER.debug("assertCredentialsMatch completed for user {}, total time spent: {}ms", token.getPrincipal(),
+            log.debug("assertCredentialsMatch completed for user {}, total time spent: {}ms", token.getPrincipal(),
                     end - start);
         } catch (IncorrectCredentialsException ice) {
             executeUpdate(loginFailureQuery, new String[] { token.getPrincipal().toString() });
@@ -101,7 +100,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
         } catch (LegacyPasswordMatchException ex) {
             executeUpdate(passwordMigrateQuery, new String[] { passwordService.encryptPassword(token.getCredentials()),
                     token.getPrincipal().toString() });
-            LOGGER.info("Legacy password migrated for user:{}", token.getPrincipal().toString());
+            log.info("Legacy password migrated for user:{}", token.getPrincipal().toString());
         }
     }
 
@@ -138,7 +137,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
                 if (!hasLockTimePassed(userName)) {
                     final String message = "Authentication failed after " + loginFailureCount
                             + " consecutive attempts for user [" + userName + "]";
-                    LOGGER.debug(message);
+                    log.debug(message);
                     throw new LockedAccountException(message);
                 } else {
                     executeUpdate(resetLoginFailureQuery, new String[] { userName });
@@ -147,7 +146,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
         }
         if (!EUserStatus.ACTIVE.getCode().equals(passwordPolicy[1])) {
             final String message = "Authentication failed for inactive user [" + userName + "]";
-            LOGGER.error(message);
+            log.error(message);
             throw new DisabledAccountException(message);
         }
     }
@@ -198,7 +197,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
             }
             if (update) {
                 ps.executeUpdate();
-                LOGGER.info("complete update==============");
+                log.info("complete update==============");
             } else {
                 rs = ps.executeQuery();
 
@@ -212,7 +211,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
             }
         } catch (Exception e) {
             final String message = "There was an error while executing query [" + query + "], {}";
-            LOGGER.error(message, e);
+            log.error(message, e);
             throw new AuthenticationException(message, e);
         } finally {
             JdbcUtils.closeResultSet(rs);
@@ -220,7 +219,7 @@ public class ShiroJdbcRealm extends JdbcRealm {
             JdbcUtils.closeConnection(conn);
         }
         long end = System.currentTimeMillis();
-        LOGGER.debug("login query completed({}), total time spent: {}ms", query, (end - start));
+        log.debug("login query completed({}), total time spent: {}ms", query, (end - start));
         return null;
     }
 

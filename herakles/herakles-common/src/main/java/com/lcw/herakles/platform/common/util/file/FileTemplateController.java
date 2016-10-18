@@ -9,8 +9,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -18,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.constant.FileConsts;
 import com.lcw.herakles.platform.common.constant.FileTemplateConsts;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * 文件模版.
@@ -27,8 +27,8 @@ import com.lcw.herakles.platform.common.constant.FileTemplateConsts;
  */
 @Controller
 @RequestMapping(value = "common/util/file/file-template")
+@Slf4j
 public class FileTemplateController {
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileTemplateController.class);
 
     /**
      * 文件模版下载.
@@ -91,7 +91,7 @@ public class FileTemplateController {
         } else if (StringUtils.equals(FileConsts.PDF, suffixes)) {
             response.setContentType("application/pdf");
         } else {
-            LOGGER.info("out of file type : {}", suffixes);
+            log.info("out of file type : {}", suffixes);
             response.setContentType("application/octet-stream");
         }
         return response;

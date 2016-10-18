@@ -10,8 +10,6 @@ import org.apache.commons.mail.ImageHtmlEmail;
 import org.apache.commons.mail.SimpleEmail;
 import org.apache.commons.mail.resolver.DataSourceUrlResolver;
 import org.apache.velocity.app.VelocityEngine;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.velocity.VelocityEngineUtils;
 
@@ -20,14 +18,15 @@ import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.system.mail.dto.MailInfo;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author chenwulou
  *
  */
 @SuppressWarnings("deprecation")
+@Slf4j
 public class EmailSerivce {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EmailSerivce.class);
 
     @Autowired
     private VelocityEngine velocityEngine;
@@ -54,7 +53,7 @@ public class EmailSerivce {
             email.setMsg(message);
             email.send();
         } catch (Exception e) {
-            LOGGER.error("failed to send simple email:", e);
+            log.error("failed to send simple email:", e);
             throw new BizServiceException(EErrorCode.COMM_ERROR_HINTS, "邮件发送失败");
         }
     }
@@ -83,7 +82,7 @@ public class EmailSerivce {
             email.setTextMsg("Your email client does not support HTML messages");
             email.send();
         } catch (Exception e) {
-            LOGGER.error("failed to send html email:", e);
+            log.error("failed to send html email:", e);
             throw new BizServiceException(EErrorCode.COMM_ERROR_HINTS, "邮件发送失败");
         }
     }
@@ -105,7 +104,7 @@ public class EmailSerivce {
         try {
             email.setFrom(mailInfo.getFrom());
         } catch (EmailException e) {
-            LOGGER.error("failed to send html email:", e);
+            log.error("failed to send html email:", e);
             throw new BizServiceException(EErrorCode.COMM_ERROR_HINTS, "邮件发送失败");
         }
     }
