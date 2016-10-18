@@ -5,6 +5,10 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 import com.google.common.collect.Lists;
+import com.lcw.herakles.platform.common.annotation.Comment;
+
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Value object for jQuery DataTables JSON response.
@@ -13,61 +17,34 @@ import com.google.common.collect.Lists;
  * 
  * @param <T>
  */
-@SuppressWarnings("serial")
+@Getter
+@Setter
+@Comment(value = "datatable分页返回dto")
 public class DataTablesResponseDto<T> implements Serializable {
 
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 6439396705402156711L;
+
+    @Comment(value = "总记录数")
     @JsonProperty(value = "iTotalRecords")
     private long totalRecords;
 
+    @Comment(value = "总显示条数")
     @JsonProperty(value = "iTotalDisplayRecords")
     private long totalDisplayRecords;
 
+    @Comment(value = "echo")
     @JsonProperty(value = "sEcho")
     private String echo;
 
+    @Comment(value = "列")
     @JsonProperty(value = "sColumns")
     private String columns;
 
+    @Comment(value = "数据")
     @JsonProperty(value = "aaData")
     private List<T> data = Lists.newArrayList();
 
-    public long getTotalRecords() {
-        return totalRecords;
-    }
-
-    public void setTotalRecords(long totalRecords) {
-        this.totalRecords = totalRecords;
-    }
-
-    public long getTotalDisplayRecords() {
-        return totalDisplayRecords;
-    }
-
-    public void setTotalDisplayRecords(long totalDisplayRecords) {
-        this.totalDisplayRecords = totalDisplayRecords;
-    }
-
-    public String getEcho() {
-        return echo;
-    }
-
-    public void setEcho(String echo) {
-        this.echo = echo;
-    }
-
-    public String getColumns() {
-        return columns;
-    }
-
-    public void setColumns(String columns) {
-        this.columns = columns;
-    }
-
-    public List<T> getData() {
-        return data;
-    }
-
-    public void setData(List<T> data) {
-        this.data = data;
-    }
 }

@@ -5,6 +5,9 @@ import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import lombok.Getter;
+import lombok.Setter;
+
 
 /**
  * Value object for jQuery DataTables JSON request. Below is an example of the request JSON:
@@ -16,8 +19,14 @@ import com.fasterxml.jackson.annotation.JsonProperty;
  * 
  * @author chenwulou
  */
-@SuppressWarnings("serial")
+@Getter
+@Setter
 public class DataTablesRequestDto implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -5543367449976390332L;
 
     @JsonProperty(value = "sEcho")
     private String echo;
@@ -64,135 +73,4 @@ public class DataTablesRequestDto implements Serializable {
 
     @JsonProperty(value = "abSortable")
     private List<Boolean> sortableColumns;
-
-    @JsonProperty(value = "projectId")
-    private String projectId;
-
-    public String getProjectId() {
-        return projectId;
-    }
-
-    public void setProjectId(String projectId) {
-        this.projectId = projectId;
-    }
-
-    public String getEcho() {
-        return echo;
-    }
-
-    public void setEcho(String echo) {
-        this.echo = echo;
-    }
-
-    public int getNumColumns() {
-        return numColumns;
-    }
-
-    public void setNumColumns(int numColumns) {
-        this.numColumns = numColumns;
-    }
-
-    public String getColumns() {
-        return columns;
-    }
-
-    public void setColumns(String columns) {
-        this.columns = columns;
-    }
-
-    public int getDisplayStart() {
-        return displayStart;
-    }
-
-    public void setDisplayStart(int displayStart) {
-        this.displayStart = displayStart;
-    }
-
-    public int getDisplayLength() {
-        return displayLength;
-    }
-
-    public void setDisplayLength(int displayLength) {
-        this.displayLength = displayLength;
-    }
-
-    public List<String> getDataProps() {
-        return dataProps;
-    }
-
-    public void setDataProp(List<String> dataProps) {
-        this.dataProps = dataProps;
-    }
-
-    public String getSearchQuery() {
-        return searchQuery;
-    }
-
-    public void setSearchQuery(String searchQuery) {
-        this.searchQuery = searchQuery;
-    }
-
-    public List<String> getColumnSearches() {
-        return columnSearches;
-    }
-
-    public void setColumnSearches(List<String> columnSearches) {
-        this.columnSearches = columnSearches;
-    }
-
-    public boolean isHasRegex() {
-        return hasRegex;
-    }
-
-    public void setHasRegex(boolean hasRegex) {
-        this.hasRegex = hasRegex;
-    }
-
-    public List<Boolean> getRegexColumns() {
-        return regexColumns;
-    }
-
-    public void setRegexColumns(List<Boolean> regexColumns) {
-        this.regexColumns = regexColumns;
-    }
-
-    public List<Boolean> getSearchColumns() {
-        return searchColumns;
-    }
-
-    public void setSearchColumns(List<Boolean> searchColumns) {
-        this.searchColumns = searchColumns;
-    }
-
-    public int getSortingCols() {
-        return sortingCols;
-    }
-
-    public void setSortingCols(int sortingCols) {
-        this.sortingCols = sortingCols;
-    }
-
-    public List<Integer> getSortedColumns() {
-        return sortedColumns;
-    }
-
-    public void setSortedColumns(List<Integer> sortedColumns) {
-        this.sortedColumns = sortedColumns;
-    }
-
-    public List<String> getSortDirections() {
-        return sortDirections;
-    }
-
-    public void setSortDirections(List<String> sortDirections) {
-        this.sortDirections = sortDirections;
-    }
-
-    public List<Boolean> getSortableColumns() {
-        return sortableColumns;
-    }
-
-    public void setSortableColumns(List<Boolean> sortableColumns) {
-        this.sortableColumns = sortableColumns;
-    }
 }

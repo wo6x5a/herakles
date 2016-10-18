@@ -2,40 +2,38 @@ package com.lcw.herakles.platform.common.dto.datatable;
 
 import java.io.Serializable;
 
+import lombok.AccessLevel;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 /**
  * @author chenwulou
  *
  */
-@SuppressWarnings("serial")
+@Getter
+@Setter
+@NoArgsConstructor
+@AllArgsConstructor(access = AccessLevel.PUBLIC)
 public class DataTablesRequestOrderDto implements Serializable {
+
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -1243725115787446630L;
 
     private int column;
     private String dir;
 
-	public DataTablesRequestOrderDto() {
-		super();
-	}
-
-	public DataTablesRequestOrderDto(int column, String dir) {
-		super();
-		this.column = column;
-		this.dir = dir;
-	}
-
-	public int getColumn() {
-        return column;
-    }
-
-    public void setColumn(int column) {
-        this.column = column;
-    }
-
-    public String getDir() {
-        return dir;
-    }
-
-    public void setDir(String dir) {
-        this.dir = dir;
-    }
+    // public DataTablesRequestOrderDto() {
+    // super();
+    // }
+    //
+    // public DataTablesRequestOrderDto(int column, String dir) {
+    // super();
+    // this.column = column;
+    // this.dir = dir;
+    // }
 
 }
