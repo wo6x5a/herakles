@@ -7,8 +7,7 @@ import java.util.concurrent.ConcurrentHashMap;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Injects identifiers automatically for target entities
@@ -16,10 +15,10 @@ import org.slf4j.LoggerFactory;
  * @author chenwulou
  *
  */
+@Slf4j
 public class IdInjectionEntityListener {
 
 	private static final Map<Class<?>, Field> ID_FIELD_MAP = new ConcurrentHashMap<Class<?>, Field>();
-	private static final Logger LOGGER = LoggerFactory.getLogger(IdInjectionEntityListener.class);
 
 	/**
 	 * 
@@ -74,7 +73,7 @@ public class IdInjectionEntityListener {
 				idField.set(entity, id);
 			}
 		} catch (Exception e) {
-			LOGGER.warn("error while injecting id", e);
+			log.warn("error while injecting id", e);
 			throw new RuntimeException("unable to inject id", e);
 		}
 	}

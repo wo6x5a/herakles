@@ -6,8 +6,8 @@ import org.apache.shiro.cache.Cache;
 import org.apache.shiro.session.Session;
 import org.apache.shiro.session.UnknownSessionException;
 import org.apache.shiro.session.mgt.eis.CachingSessionDAO;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * redis for shiro cache session
@@ -15,9 +15,8 @@ import org.slf4j.LoggerFactory;
  * @author chenwulou
  *
  */
+@Slf4j
 public class ShiroRedisCacheSessionDAO extends CachingSessionDAO {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ShiroRedisCacheSessionDAO.class);
 
     // 1000*60*30 = 30 min
     private long sessionTimeout = 0;
@@ -28,7 +27,7 @@ public class ShiroRedisCacheSessionDAO extends CachingSessionDAO {
 
     private void saveSession(Session session) throws UnknownSessionException {
         if (session == null || session.getId() == null) {
-            LOGGER.error("session or session id is null");
+            log.error("session or session id is null");
             return;
         }
         session.setTimeout(sessionTimeout);
@@ -43,7 +42,7 @@ public class ShiroRedisCacheSessionDAO extends CachingSessionDAO {
     @Override
     protected void doDelete(Session session) {
         if (session == null || session.getId() == null) {
-            LOGGER.error("session or session id is null");
+            log.error("session or session id is null");
             return;
         }
         getRedisSessionCache().remove(session.getId());
@@ -60,7 +59,7 @@ public class ShiroRedisCacheSessionDAO extends CachingSessionDAO {
     @Override
     protected Session doReadSession(Serializable sessionId) {
         if (sessionId == null) {
-            LOGGER.error("session id is null");
+            log.error("session id is null");
             return null;
         }
         return getRedisSessionCache().get(sessionId);

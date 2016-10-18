@@ -3,12 +3,11 @@ package com.lcw.herakles.platform.common.converter;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.BeansException;
 
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
 
+import lombok.extern.slf4j.Slf4j;
 import net.sf.cglib.beans.BeanCopier;
 import net.sf.cglib.core.Converter;
 
@@ -19,6 +18,7 @@ import net.sf.cglib.core.Converter;
  * @author chenwulou
  * 
  */
+@Slf4j
 @SuppressWarnings("rawtypes")
 public final class ConverterService {
 
@@ -26,7 +26,6 @@ public final class ConverterService {
     private static final Map<String, ObjectConverter> cachedCustomConverterMap = new ConcurrentHashMap<String, ObjectConverter>();
     private static final String PO = "Po";
     private static final String DTO = "Dto";
-    private static final Logger LOGGER = LoggerFactory.getLogger(ConverterService.class);
 
     public static <T, F> F convert(T source, F target, Converter converter,
             Class<? extends ObjectConverter> customConverterClass) {
@@ -106,7 +105,7 @@ public final class ConverterService {
                 try {
                     converter = ApplicationContextUtil.getBean(customConverterClass);
                 } catch (BeansException e) {
-                    LOGGER.info(customConverterClass.getName() + " is not a component, need new instance.");
+                    log.info(customConverterClass.getName() + " is not a component, need new instance.");
                 }
                 if (converter == null) {
                     try {
@@ -132,9 +131,9 @@ public final class ConverterService {
 		try {
 			target = targetClass.newInstance();
 		} catch (InstantiationException e) {
-			LOGGER.error("InstantiationException occured:", e);
+		    log.error("InstantiationException occured:", e);
 		} catch (IllegalAccessException e) {
-			LOGGER.error("IllegalAccessException occured:", e);
+		    log.error("IllegalAccessException occured:", e);
 		}
 		return target;
 	}

@@ -11,8 +11,6 @@ import javax.persistence.criteria.Predicate;
 import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -35,14 +33,15 @@ import com.lcw.herakles.platform.common.service.BaseService;
 import com.lcw.herakles.platform.common.util.ErrorUtil;
 import com.lcw.herakles.platform.common.util.ReflectionUtil;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author chenwulou
  *
  */
 @Service
+@Slf4j
 public class BizLogService extends BaseService{
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(BizLogService.class);
 
 	@Autowired
 	private BizLogRepository bizLogRepository;
@@ -132,7 +131,7 @@ public class BizLogService extends BaseService{
 		try {
 			result = objectMapper.writeValueAsString(value);
 		} catch (IOException e) {
-            LOGGER.error("LogService.convertMap2String error:", e);
+            log.error("LogService.convertMap2String error:", e);
         }
 		return result;
 	}

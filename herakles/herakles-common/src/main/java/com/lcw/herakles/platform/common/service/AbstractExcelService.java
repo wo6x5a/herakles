@@ -14,19 +14,18 @@ import org.apache.poi.hssf.util.HSSFColor;
 import org.apache.poi.ss.usermodel.CellStyle;
 import org.apache.poi.ss.usermodel.Font;
 import org.apache.poi.ss.usermodel.Workbook;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.web.servlet.view.document.AbstractXlsView;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * @author chenwulou
  *
  */
+@Slf4j
 public abstract class AbstractExcelService extends AbstractXlsView {
-
-	private static final Logger LOGGER = LoggerFactory.getLogger(AbstractExcelService.class);
 
 	@Override
 	protected void buildExcelDocument(Map<String, Object> model, Workbook workbook, HttpServletRequest request,
@@ -45,7 +44,7 @@ public abstract class AbstractExcelService extends AbstractXlsView {
 			out.flush();
 			out.close();
 		} catch (Exception e) {
-			LOGGER.error("error in export xls:", e);
+			log.error("error in export xls:", e);
 		}
 	}
 

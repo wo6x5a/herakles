@@ -6,13 +6,13 @@ import java.io.IOException;
 import java.io.InputStream;
 
 import org.apache.commons.net.ftp.FTPClient;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
 import com.lcw.herakles.platform.common.util.file.FileUtil;
 import com.lcw.herakles.platform.common.util.file.ftp.pool.FtpClientPoolFactory;
 import com.lcw.herakles.platform.common.util.file.image.ImageMarkUtil;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * Class Name: FtpUtil
@@ -22,9 +22,8 @@ import com.lcw.herakles.platform.common.util.file.image.ImageMarkUtil;
  * @author chenwulou
  *
  */
+@Slf4j
 public class FtpUtil {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(FtpUtil.class);
 
     private FtpUtil() {
 
@@ -56,7 +55,7 @@ public class FtpUtil {
         if(null != buf){
             input = FileUtil.getImageStream(buf);
         } else{
-            LOGGER.error("FtpUtil.uploadImgWithMark(), buf为空");
+            log.error("FtpUtil.uploadImgWithMark(), buf为空");
         }
         return upload(fileName, input, filePath);
     }
@@ -82,7 +81,7 @@ public class FtpUtil {
             input = null;
             ftpClient.storeFile(fileName, input);
         } catch (Exception e) {
-            LOGGER.error("文件上传失败:", e);
+            log.error("文件上传失败:", e);
         } finally {
             pool.releaseConnection(ftpClient);
         }
@@ -115,7 +114,7 @@ public class FtpUtil {
             changeWorkingDirectory(ftpClient, filePath);
             ftpClient.deleteFile(fileName);
         } catch (Exception e) {
-            LOGGER.error("文件删除失败:", e);
+            log.error("文件删除失败:", e);
         } finally {
             pool.releaseConnection(ftpClient);
         }
@@ -137,13 +136,13 @@ public class FtpUtil {
                     ftpClient.makeDirectory(paths[i]);
                 }
                 if (!ftpClient.changeWorkingDirectory(targetPath)) {
-                    LOGGER.error("调转到目标目录失败");
+                    log.error("调转到目标目录失败");
                     return;
                 }
             }
         } catch (IOException e) {
-            LOGGER.error("调转到目标目录失败:", e);
+            log.error("调转到目标目录失败:", e);
         }
-        LOGGER.debug("调转到目标目录");
+        log.debug("调转到目标目录");
     }
 }

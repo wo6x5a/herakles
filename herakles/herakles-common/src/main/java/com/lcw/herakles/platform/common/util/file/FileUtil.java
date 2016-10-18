@@ -10,8 +10,8 @@ import javax.imageio.ImageIO;
 import javax.imageio.stream.ImageOutputStream;
 
 import org.apache.commons.lang3.RandomStringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+
+import lombok.extern.slf4j.Slf4j;
 
 /**
  * file util
@@ -19,9 +19,8 @@ import org.slf4j.LoggerFactory;
  * @author chenwulou
  *
  */
+@Slf4j
 public class FileUtil {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(FileUtil.class);
 
     private FileUtil() {
 
@@ -69,7 +68,7 @@ public class FileUtil {
             ImageIO.write(bimage, "png", imOut);
             is = new ByteArrayInputStream(bs.toByteArray());
         } catch (IOException e) {
-            LOGGER.error("FtpUtil.getImageStream() error:", e);
+            log.error("FtpUtil.getImageStream() error:", e);
         }
         return is;
     }

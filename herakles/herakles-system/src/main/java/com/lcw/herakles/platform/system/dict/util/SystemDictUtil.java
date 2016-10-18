@@ -7,8 +7,6 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 import com.lcw.herakles.platform.common.enums.EFlagType;
@@ -17,10 +15,12 @@ import com.lcw.herakles.platform.system.dict.entity.DictPo;
 import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
 import com.lcw.herakles.platform.system.dict.repository.DictRepository;
 
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
 public final class SystemDictUtil {
 
     private static DictRepository dictRepository;
-    private static final Logger LOGGER = LoggerFactory.getLogger(SystemDictUtil.class);
 
     private static List<String> UNMEANING_PARENT_CODE = Lists.newArrayList();;
     private static Map<String, DynamicOption> SYS_DIC_MAP = new ConcurrentHashMap<String, DynamicOption>();
@@ -90,7 +90,7 @@ public final class SystemDictUtil {
                 count++;
             }
         }
-        LOGGER.info("INFO: Reload " + count + " records from SYS_DICT table!");
+        log.info("INFO: Reload " + count + " records from SYS_DICT table!");
     }
     
     /**

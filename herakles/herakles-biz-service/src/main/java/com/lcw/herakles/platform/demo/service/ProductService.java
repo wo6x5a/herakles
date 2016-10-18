@@ -3,8 +3,6 @@ package com.lcw.herakles.platform.demo.service;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -29,8 +27,6 @@ import com.lcw.herakles.platform.demo.repository.ProductRepository;
 @Service
 public class ProductService extends BaseService{
 
-    @SuppressWarnings("unused")
-    private static final Logger LOGGER = LoggerFactory.getLogger(ProductService.class);
     @Autowired
     private ProductRepository productRepository;
 
