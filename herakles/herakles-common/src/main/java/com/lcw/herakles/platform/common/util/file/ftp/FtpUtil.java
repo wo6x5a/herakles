@@ -12,6 +12,8 @@ import com.lcw.herakles.platform.common.util.file.FileUtil;
 import com.lcw.herakles.platform.common.util.file.ftp.pool.FtpClientPoolFactory;
 import com.lcw.herakles.platform.common.util.file.image.ImageMarkUtil;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -23,11 +25,8 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FtpUtil {
-
-    private FtpUtil() {
-
-    }
 
     /**
      * 上传图片或文件

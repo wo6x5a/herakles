@@ -8,35 +8,32 @@ import java.util.Collections;
 import java.util.List;
 import java.util.Set;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import com.google.common.base.Function;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
 import com.lcw.herakles.platform.common.enums.DBStrEnum;
 import com.lcw.herakles.platform.common.enums.EnumOption;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * 
  * @author chenwulou
  * 
  */
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class EnumHelper implements Serializable {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = -3433879717700256250L;
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(EnumHelper.class);
 	
 	private static final String GET_CODE_METHOD = "getCode";
     private static final String GET_LABEL_METHOD = "getText";
-
-	private EnumHelper() {
-
-	}
 
 	/**
 	 * Gets an mutable list of enumerations defined in the given Enum.
@@ -104,7 +101,7 @@ public final class EnumHelper implements Serializable {
 				}
 			}
 		} catch (Exception e) { // NOSONAR
-		    LOGGER.error("failed to translate code {} into object of type {}", code, clazz);
+		    log.error("failed to translate code {} into object of type {}", code, clazz);
 		}
 		
 		return null;
@@ -122,7 +119,7 @@ public final class EnumHelper implements Serializable {
 				}
 			}
 		} catch (Exception e) { // NOSONAR
-		    LOGGER.error("failed to translate code {} into object of type {}", code, clazz);
+		    log.error("failed to translate code {} into object of type {}", code, clazz);
 		}
 		
 		return null;
@@ -171,7 +168,7 @@ public final class EnumHelper implements Serializable {
 			}
 		} catch (Exception e) { // NOSONAR
 			// ignore
-			LOGGER.error("failed to translate label {} into object of type {}", label, clazz);
+			log.error("failed to translate label {} into object of type {}", label, clazz);
 		}
 		return null;
 	} 

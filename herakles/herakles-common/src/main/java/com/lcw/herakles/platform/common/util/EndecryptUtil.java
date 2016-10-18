@@ -7,20 +7,20 @@ import org.apache.shiro.codec.Base64;
 import org.apache.shiro.codec.Hex;
 import org.apache.shiro.crypto.AesCipherService;
 import org.apache.shiro.crypto.hash.Md5Hash;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.base.Preconditions;
 import com.google.common.base.Strings;
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 
+import lombok.extern.slf4j.Slf4j;
+
 /**
  * @author chenwulou
  *
  */
-public class EndecryptUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(EndecryptUtil.class);
+@Slf4j
+public class EndecryptUtil {
 
     /**
      * base64进制加密
@@ -30,7 +30,7 @@ public class EndecryptUtil {
      */
     public static String encrytBase64(String plainText) {
         if (StringUtils.isBlank(plainText)) {
-            LOGGER.error("EndecryptUtils.encrytBase64(), plainText不能为空");
+            log.error("EndecryptUtils.encrytBase64(), plainText不能为空");
             throw new IllegalArgumentException(String.valueOf("plainText不能为空"));
         }
         byte[] bytes = plainText.getBytes();
@@ -45,7 +45,7 @@ public class EndecryptUtil {
      */
     public static String decryptBase64(String cipherText) {
         if (StringUtils.isBlank(cipherText)) {
-            LOGGER.error("EndecryptUtils.decryptBase64(), cipherText不能为空");
+            log.error("EndecryptUtils.decryptBase64(), cipherText不能为空");
             throw new IllegalArgumentException(String.valueOf("cipherText不能为空"));
         }
         return Base64.decodeToString(cipherText);
@@ -59,7 +59,7 @@ public class EndecryptUtil {
      */
     public static String encrytHex(String plainText) {
         if (StringUtils.isBlank(plainText)) {
-            LOGGER.error("EndecryptUtils.encrytHex(), plainText不能为空");
+            log.error("EndecryptUtils.encrytHex(), plainText不能为空");
             throw new IllegalArgumentException(String.valueOf("plainText不能为空"));
         }
         byte[] bytes = plainText.getBytes();
@@ -74,7 +74,7 @@ public class EndecryptUtil {
      */
     public static String decryptHex(String cipherText) {
         if (StringUtils.isBlank(cipherText)) {
-            LOGGER.error("EndecryptUtils.decryptHex(), cipherText不能为空");
+            log.error("EndecryptUtils.decryptHex(), cipherText不能为空");
             throw new IllegalArgumentException(String.valueOf("cipherText不能为空"));
         }
         Preconditions.checkArgument(!Strings.isNullOrEmpty(cipherText), "消息摘要不能为空");
@@ -90,11 +90,11 @@ public class EndecryptUtil {
      */
     public static String encryptAes(String plainText, String key) {
         if (StringUtils.isBlank(plainText)) {
-            LOGGER.error("EndecryptUtils.encryptAes(), plainText不能为空");
+            log.error("EndecryptUtils.encryptAes(), plainText不能为空");
             throw new IllegalArgumentException(String.valueOf("plainText不能为空"));
         }
         if (StringUtils.isBlank(key)) {
-            LOGGER.error("EndecryptUtils.encryptAes(), key不能为空");
+            log.error("EndecryptUtils.encryptAes(), key不能为空");
             throw new IllegalArgumentException(String.valueOf("key不能为空"));
         }
         AesCipherService aesCipherService = new AesCipherService();
@@ -111,11 +111,11 @@ public class EndecryptUtil {
      */
     public static String decryptAes(String cipherText, String key) {
         if (StringUtils.isBlank(cipherText)) {
-            LOGGER.error("EndecryptUtils.decryptAes(), cipherText不能为空");
+            log.error("EndecryptUtils.decryptAes(), cipherText不能为空");
             throw new IllegalArgumentException(String.valueOf("cipherText不能为空"));
         }
         if (StringUtils.isBlank(key)) {
-            LOGGER.error("EndecryptUtils.encryptAes(), key不能为空");
+            log.error("EndecryptUtils.encryptAes(), key不能为空");
             throw new IllegalArgumentException(String.valueOf("key不能为空"));
         }
         AesCipherService aes = new AesCipherService();
@@ -132,7 +132,7 @@ public class EndecryptUtil {
      */
     public static String encrytMD5(String plainText, String salt) {
         if (StringUtils.isBlank(plainText)) {
-            LOGGER.error("EndecryptUtils.encrytMD5(), plainText不能为空");
+            log.error("EndecryptUtils.encrytMD5(), plainText不能为空");
             throw new IllegalArgumentException(String.valueOf("plainText不能为空"));
         }
         return new Md5Hash(plainText, salt, ApplicationConsts.ITERATIONS).toHex();

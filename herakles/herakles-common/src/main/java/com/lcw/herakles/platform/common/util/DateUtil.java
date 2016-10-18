@@ -7,18 +7,17 @@ import java.util.Date;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import com.google.common.collect.Lists;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class DateUtil {
 
-    private static final Logger LOGGER = LoggerFactory.getLogger(DateUtil.class);
-
-    private DateUtil() {
-
-    }
 
     public static final String YYYYMMDD = "yyyy-MM-dd";
     public static final String YYYYMMDDHHMMSS = "yyyy-MM-dd HH:mm:ss";
@@ -63,7 +62,7 @@ public class DateUtil {
                 dateStr = dateStr + "-01";
                 return getDate(dateStr, format);
             }
-            LOGGER.error("error in date format {}", e);
+            log.error("error in date format {}", e);
         }
         return null;
     }

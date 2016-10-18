@@ -4,6 +4,9 @@ import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationContextAware;
 import org.springframework.stereotype.Component;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+
 /**
  * Utility to access Spring context from a non-managed bean.
  * 
@@ -11,13 +14,10 @@ import org.springframework.stereotype.Component;
  * 
  */
 @Component
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class ApplicationContextUtil implements ApplicationContextAware {
 
     private static ApplicationContext applicationContext;
-
-    private ApplicationContextUtil() {
-
-    }
     
     /**
     * Description: get a bean from Spring context by type

@@ -11,6 +11,8 @@ import javax.imageio.stream.ImageOutputStream;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
 /**
@@ -20,11 +22,8 @@ import lombok.extern.slf4j.Slf4j;
  *
  */
 @Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class FileUtil {
-
-    private FileUtil() {
-
-    }
 
     /**
      * 重命名文件

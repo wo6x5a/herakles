@@ -4,9 +4,9 @@ package com.lcw.herakles.platform.common.util;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
+import lombok.AccessLevel;
+import lombok.NoArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import net.sourceforge.pinyin4j.PinyinHelper;
 import net.sourceforge.pinyin4j.format.HanyuPinyinCaseType;
 import net.sourceforge.pinyin4j.format.HanyuPinyinOutputFormat;
@@ -20,13 +20,10 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  * @author chenwulou
  *
  */
+
+@Slf4j
+@NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ChinesUtil {
-
-    private static final Logger LOGGER = LoggerFactory.getLogger(ChinesUtil.class);
-
-    private ChinesUtil() {
-
-    }
 
     public static void main(String[] args) {
 
@@ -80,7 +77,7 @@ public class ChinesUtil {
                     output += java.lang.Character.toString(input[i]);
             }
         } catch (BadHanyuPinyinOutputFormatCombination e) {
-            LOGGER.error("ChinesUtil.getPingYin:", e);
+            log.error("ChinesUtil.getPingYin:", e);
         }
         return output;
     }
@@ -105,7 +102,7 @@ public class ChinesUtil {
                         pybf.append(temp[0].charAt(0));
                     }
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    LOGGER.error("ChinesUtil.getFirstSpell:", e);
+                    log.error("ChinesUtil.getFirstSpell:", e);
                 }
             } else {
                 pybf.append(arr[i]);
@@ -131,7 +128,7 @@ public class ChinesUtil {
                 try {
                     pybf.append(PinyinHelper.toHanyuPinyinStringArray(arr[i], defaultFormat)[0]);
                 } catch (BadHanyuPinyinOutputFormatCombination e) {
-                    LOGGER.error("ChinesUtil.getFullSpell:", e);
+                    log.error("ChinesUtil.getFullSpell:", e);
                 }
             } else {
                 pybf.append(arr[i]);
