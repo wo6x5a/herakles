@@ -4,7 +4,7 @@
 额,好了不扯淡了.反正这就是一个我在业余时间花了挺大一部分的精力来搞的一个企业级快速开发基础项目,目前正在不断完善优化中,已基本成型.如果有需要可以直接拿来用,有什么不明白的,可以把问题发我邮箱,也可以直接在github提问,没有特殊情况,我每天都会来看,希望herakles能给大家在工作中,项目中带来便利.
 
 # 项目简介
-- herakles是基于spring整合各开源框架的企业级快速开发基础项目,包括安全及权限管理(shiro),日志管理(文件记录以及mongodb数据库存储),任务调度(单独的任务调度服务),缓存管理(spring cache + redis),druid连接池管理,JavaMelody服务器监测管理,lombok自动生成相关代码(get/set方法,log对象,构造方法等)提高开发效率减少出错率,持久层运用spring data + jpa ,减少代码量,提高开发效率,并且 java 持久化标准接口(jpa)完美兼容了各类数据库,运用velocity模板引擎+bootstrap+jquary的较为主流的前端搭配.
+- herakles是基于spring整合各开源框架的企业级快速开发基础项目, 包括安全及权限管理(shiro), 日志管理(文件记录以及mongodb数据库存储), 任务调度(单独的任务调度服务), 缓存管理(spring cache + redis), druid连接池管理, JavaMelody服务器监测管理, lombok自动生成相关代码(get/set方法,log对象, 构造方法等)提高开发效率减少出错率, 持久层运用spring data + jpa , 减少代码量, 提高开发效率, 并且 java 持久化标准接口(jpa)完美兼容了各类数据库, 运用velocity模板引擎 + bootstrap + jquary的较为主流的前端搭配.
 
 # 技术选型
 - 核心框架：Spring Framework 4.3.2.RELEASE
