@@ -5,10 +5,15 @@ import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.BaseDto;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author chenwulou
  *
  */
+@Getter
+@Setter
 @Comment("系统业务日志dto")
 public class BizLogDto extends BaseDto {
 
@@ -43,77 +48,5 @@ public class BizLogDto extends BaseDto {
 
     @Comment("备注")
     private String comment;
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
-    public String getEntity() {
-        return entity;
-    }
-
-    public void setEntity(String entity) {
-        this.entity = entity;
-    }
-
-    public String getEntityId() {
-        return entityId;
-    }
-
-    public void setEntityId(String entityId) {
-        this.entityId = entityId;
-    }
-
-    public EOptType getOptType() {
-        return optType;
-    }
-
-    public void setOptType(EOptType optType) {
-        this.optType = optType;
-    }
-
-    public String getOperate() {
-        return operate;
-    }
-
-    public void setOperate(String operate) {
-        this.operate = operate;
-    }
-
-    public String getOptIp() {
-        return optIp;
-    }
-
-    public void setOptIp(String optIp) {
-        this.optIp = optIp;
-    }
-
-    public String getNewVaule() {
-        return newVaule;
-    }
-
-    public void setNewVaule(String newVaule) {
-        this.newVaule = newVaule;
-    }
-
-    public String getOldVaule() {
-        return oldVaule;
-    }
-
-    public void setOldVaule(String oldVaule) {
-        this.oldVaule = oldVaule;
-    }
-
-    public String getComment() {
-        return comment;
-    }
-
-    public void setComment(String comment) {
-        this.comment = comment;
-    }
 
 }
