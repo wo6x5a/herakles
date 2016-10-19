@@ -14,7 +14,6 @@ import com.lcw.herakles.platform.common.enums.DBIntEnum;
  * @author chenwulou
  * 
  */
-
 public class DBIntEnumSerializer extends JsonSerializer<DBIntEnum> {
 
 

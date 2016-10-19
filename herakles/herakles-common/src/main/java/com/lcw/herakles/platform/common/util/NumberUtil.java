@@ -7,7 +7,6 @@ import lombok.NoArgsConstructor;
  * @author chenwulou
  *
  */
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public final class NumberUtil {
 

@@ -18,7 +18,6 @@ import lombok.extern.slf4j.Slf4j;
  * @author chenwulou
  *
  */
-
 @Slf4j
 public class EndecryptUtil {
 

@@ -14,7 +14,6 @@ import com.lcw.herakles.platform.common.enums.DBStrEnum;
  * @author chenwulou
  * 
  */
-
 public class DBStrEnumSerializer extends JsonSerializer<DBStrEnum> {
 
     @Override

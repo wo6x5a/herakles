@@ -20,7 +20,6 @@ import net.sourceforge.pinyin4j.format.exception.BadHanyuPinyinOutputFormatCombi
  * @author chenwulou
  *
  */
-
 @Slf4j
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class ChinesUtil {

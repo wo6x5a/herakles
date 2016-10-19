@@ -11,7 +11,6 @@ import lombok.NoArgsConstructor;
  * @author chenwulou
  *
  */
-
 @NoArgsConstructor(access = AccessLevel.PRIVATE)
 public class RandomUtil {
 
