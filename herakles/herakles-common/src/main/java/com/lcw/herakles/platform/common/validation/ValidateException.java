@@ -16,7 +16,6 @@ import com.google.common.collect.Lists;
  * @author chenwulou
  * 
  */
-
 public class ValidateException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;

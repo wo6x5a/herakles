@@ -9,7 +9,6 @@ import com.lcw.herakles.platform.common.enums.EErrorCode;
  * @author chenwulou
  *
  */
-
 public class BaseException extends RuntimeException{
     private static final long serialVersionUID = 1L;
     protected final DisplayableError errorCode;

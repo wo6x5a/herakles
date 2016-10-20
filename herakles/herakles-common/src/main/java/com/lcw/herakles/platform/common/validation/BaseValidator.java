@@ -11,7 +11,6 @@ import org.apache.commons.lang3.StringUtils;
  * @author chenwulou
  * 
  */
-
 public class BaseValidator {
 
     /**
