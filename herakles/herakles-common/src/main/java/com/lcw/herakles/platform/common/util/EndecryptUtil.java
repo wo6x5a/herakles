@@ -176,10 +176,10 @@ public class EndecryptUtil {
         // String aes_mingwen = new String(
         // aesCipherService.decrypt(Hex.decode(aes_cipherText), key.getEncoded()).getBytes());
         // System.out.println(aes_cipherText + " aes解密的明文是：" + aes_mingwen);
-         System.out.println(encryptAes("123456", "5QSC8vwvBi7ohPkukgT0Bw=="));
-        // System.out.println(decryptAes(
-        // "949a88e84577cdb3299d15846a02ecf7b63644186747848e96ef1885406abc00444da42b77676a6df786c6c0a3579eb4835e2ac184eb361ecd725cbc1171f3f5",
-        // null));
+         System.out.println(encryptAes("jdbc:mysql://172.16.31.75:3306/herakles", "HdiDnPCCXLjija+1lQkSnw=="));
+         System.out.println(decryptAes(
+         "949a88e84577cdb3299d15846a02ecf7b63644186747848e96ef1885406abc00444da42b77676a6df786c6c0a3579eb4835e2ac184eb361ecd725cbc1171f3f5", "HdiDnPCCXLjija+1lQkSnw=="
+         ));
 //        System.out.println(generateKey());
     }
 }
