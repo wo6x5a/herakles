@@ -50,23 +50,22 @@
 		<property name="permissionsLookupEnabled" value="true" />
 		<property name="passwordService" ref="privateSaltPasswordService" />
 		<property name="authenticationQuery"
-			value="select password from sys_user where nick_name = ?" />
+			value="select password from SYS_USER where nick_name = ?" />
 		<property name="userRolesQuery"
-			value="select sr.role_code from sys_user su, sys_user_role sur, sys_role sr where su.user_id = sur.user_id and sr.role_id = sur.role_id and su.nick_name = ?" />
+			value="select sr.role_code from SYS_USER su, SYS_USER_ROLE sur, SYS_ROLE sr where su.user_id = sur.user_id and sr.role_id = sur.role_id and su.nick_name = ?" />
 		<property name="permissionsQuery"
-			value="select sp.perm_code from sys_role sr, sys_role_perm srp, sys_perm sp where sr.role_id=srp.role_id and sp.perm_id= srp.perm_id and sr.role_code = ?" />
+			value="select sp.perm_code from SYS_ROLE sr, SYS_ROLE_PERM srp, sys_perm sp where sr.role_id=srp.role_id and sp.perm_id= srp.perm_id and sr.role_code = ?" />
 		<property name="loginFailureQuery"
-			value="update sys_user set login_fail_ct=login_fail_ct+1, last_login_fail_ts=current_timestamp where lower(nick_name) = lower(?)" />
+			value="update SYS_USER set login_fail_ct=login_fail_ct+1, last_login_fail_ts=current_timestamp where lower(nick_name) = lower(?)" />
 		<property name="resetLoginFailureQuery"
-			value="update sys_user set login_fail_ct=0 where lower(nick_name) = lower(?)" />
+			value="update SYS_USER set login_fail_ct=0 where lower(nick_name) = lower(?)" />
 		<property name="lastLoginFailureTsQuery"
-			value="select to_char(last_login_fail_ts, 'yyyy-MM-dd HH24:mi:ss') from sys_user where lower(nick_name) = lower(?)" />
+			value="select to_char(last_login_fail_ts, 'yyyy-MM-dd HH24:mi:ss') from SYS_USER where lower(nick_name) = lower(?)" />
 		<property name="loginSuccessQuery"
-			value="update sys_user set login_fail_ct=0, last_login_ts=current_timestamp where lower(nick_name) = lower(?)" />
+			value="update SYS_USER set login_fail_ct=0, last_login_ts=current_timestamp where lower(nick_name) = lower(?)" />
 		<property name="passwordPolicyQuery"
-			value="select login_fail_ct,status from sys_user where lower(nick_name) = lower(?)" />
+			value="select login_fail_ct,status from SYS_USER where lower(nick_name) = lower(?)" />
 	</bean>
-	
 	<bean id="credentialsMatcher" class="org.apache.shiro.authc.credential.PasswordMatcher" >
 		<property name="passwordService" ref="privateSaltPasswordService" />
 	</bean>
