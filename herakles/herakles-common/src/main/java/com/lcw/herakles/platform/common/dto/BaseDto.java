@@ -17,13 +17,15 @@ import lombok.Setter;
 @Comment(value = "基本继承dto")
 public class BaseDto implements Serializable {
 
-    private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = -6154620592225700161L;
 
     @Comment(value = "创建人编号")
     private String createOpId;
 
     @Comment(value = "创建时时间")
     private Date createTs;
-
 
 }

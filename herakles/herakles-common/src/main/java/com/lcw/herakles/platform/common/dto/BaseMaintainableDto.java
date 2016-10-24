@@ -19,7 +19,7 @@ public class BaseMaintainableDto extends BaseDto {
     /**
      * 
      */
-    private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = -1843259957447519196L;
 
     @Comment(value = "最后修改人编号")
     private String lastMntOpId;
