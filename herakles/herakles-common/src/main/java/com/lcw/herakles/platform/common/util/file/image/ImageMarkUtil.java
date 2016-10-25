@@ -240,11 +240,13 @@ public class ImageMarkUtil {
                     new BufferedImage(srcImgWidth, srcImgHeight, BufferedImage.TYPE_INT_RGB);
             Integer imgWidth = bufImg.getWidth();
             Integer imgHigh = bufImg.getHeight();
-            for (int x = 0; x < imgWidth; x = x + 300) {
-                for (int y = 0; y < imgHigh; y = y + 150) {
-                    g.drawString(logoText, x, y);
-                }
-            }
+            Integer x = imgWidth/2;
+            Integer y = imgHigh/2;
+            // for (int x = 0; x < imgWidth; x = x + 300) {
+            // for (int y = 0; y < imgHigh; y = y + 150) {
+            g.drawString(logoText, x, y);
+            // }
+            // }
             // g.drawString(logoText, 150, 300);
 
             g.dispose();
