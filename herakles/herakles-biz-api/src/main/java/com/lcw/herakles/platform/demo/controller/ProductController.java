@@ -124,7 +124,7 @@ public class ProductController extends BaseController {
         }
 //        String resp = FtpUtil.uploadFile(FileUtil.rename(file.getName()), in, filePath.toString());
         String resp1 = FtpUtil.uploadImgWithMark(FileUtil.rename(file.getName()), in, filePath.toString());
-        FtpUtil.download("/var/ftp/pub/pic/product/147738576471683061.png", "D:/");
+//        FtpUtil.download("/var/ftp/pub/pic/product/147738576471683061.png", "D:/");
 //        System.out.println(resp + "," + resp1);
         return "biz/product/test";
     }
