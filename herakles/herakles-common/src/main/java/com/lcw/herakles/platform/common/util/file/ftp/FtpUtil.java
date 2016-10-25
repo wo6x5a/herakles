@@ -7,6 +7,7 @@ import java.io.InputStream;
 
 import org.apache.commons.net.ftp.FTPClient;
 
+import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
 import com.lcw.herakles.platform.common.util.file.FileUtil;
 import com.lcw.herakles.platform.common.util.file.ftp.pool.FtpClientPoolFactory;
@@ -77,7 +78,7 @@ public class FtpUtil {
         try {
             ftpClient.setFileType(FTPClient.BINARY_FILE_TYPE);
             changeWorkingDirectory(ftpClient, filePath);
-            input = null;
+            // input = null;
             ftpClient.storeFile(fileName, input);
         } catch (Exception e) {
             log.error("文件上传失败:", e);
@@ -129,7 +130,8 @@ public class FtpUtil {
         ftpClient.enterLocalPassiveMode();
         try {
             if (!ftpClient.changeWorkingDirectory(targetPath)) {
-                ftpClient.changeWorkingDirectory("/");
+                // 跳转到ftp根目录
+                ftpClient.changeWorkingDirectory(ApplicationConsts.FTP_PARENT_PATH);
                 String[] paths = targetPath.split("/");
                 for (int i = 0; i < paths.length; i++) {
                     ftpClient.makeDirectory(paths[i]);

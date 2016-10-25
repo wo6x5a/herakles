@@ -52,5 +52,12 @@ public final class ApplicationConsts {
      */
     // public static final String WATERMARK_PATTERN = "image/watermark{0}.png";
     public static final String WATERMARK_PATTERN_PATH = "image/watermark_logo.png";
+    
+    /**
+     * FTP文件存储根目录
+     */
+    public static final String FTP_PARENT_PATH = "/var/ftp/pub/";
+    
+    
 
 }
