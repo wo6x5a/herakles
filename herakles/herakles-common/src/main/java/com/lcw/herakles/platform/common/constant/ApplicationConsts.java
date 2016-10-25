@@ -58,6 +58,4 @@ public final class ApplicationConsts {
      */
     public static final String FTP_PARENT_PATH = "/var/ftp/pub/";
     
-    
-
 }
