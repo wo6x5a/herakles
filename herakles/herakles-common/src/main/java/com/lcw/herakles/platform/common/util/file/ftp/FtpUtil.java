@@ -2,10 +2,14 @@ package com.lcw.herakles.platform.common.util.file.ftp;
 
 import java.awt.image.BufferedImage;
 import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.OutputStream;
 
+import org.apache.commons.lang3.StringUtils;
 import org.apache.commons.net.ftp.FTPClient;
+import org.apache.commons.net.ftp.FTPFile;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.util.ApplicationContextUtil;
@@ -14,6 +18,7 @@ import com.lcw.herakles.platform.common.util.file.ftp.pool.FtpClientPoolFactory;
 import com.lcw.herakles.platform.common.util.file.image.ImageMarkUtil;
 
 import lombok.AccessLevel;
+import lombok.Cleanup;
 import lombok.NoArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 
@@ -86,6 +91,51 @@ public class FtpUtil {
             pool.releaseConnection(ftpClient);
         }
         return resp.toString();
+    }
+
+    /**
+     * 从FTP服务器下载文件
+     * 
+     * @param ftpPath 文件路径完整
+     * @param localPath 下载到本地文件地址
+     * @return
+     */
+    public static boolean download(String ftpPath, String localPath) {
+        File file = new File(ftpPath);
+        String remotePath = file.getParent();
+        String fileName = file.getName();
+        return download(remotePath, fileName, localPath);
+    }
+
+    /**
+     * 从FTP服务器下载文件
+     * 
+     * @param remotePath FTP服务器上的相对路径
+     * @param fileName 要下载的文件名
+     * @param localPath 下载到本地文件地址
+     */
+    public static boolean download(String remotePath, String fileName, String localPath) {
+        FtpClientPoolFactory pool = ApplicationContextUtil.getBean(FtpClientPoolFactory.class);
+        FTPClient ftpClient = pool.getConnection();
+        try {
+            // 转移到FTP服务器上的相对路径
+            ftpClient.changeWorkingDirectory(remotePath);
+            // 获取文件列表
+            FTPFile[] fs = ftpClient.listFiles();
+            for (FTPFile ff : fs) {
+                if (StringUtils.equals(ff.getName(), fileName)) {
+                    File localFile = new File(localPath + "/" + ff.getName());
+                    @Cleanup OutputStream os = new FileOutputStream(localFile);
+                    ftpClient.retrieveFile(ff.getName(), os);
+                }
+            }
+        } catch (Exception e) {
+            log.error("文件下载失败:", e);
+            return false;
+        } finally {
+            pool.releaseConnection(ftpClient);
+        }
+        return true;
     }
 
     /**
