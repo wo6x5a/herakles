@@ -20,6 +20,8 @@ import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 
 /**
+ * 系统业务日志
+ * 
  * @author chenwulou
  *
  */
@@ -30,12 +32,24 @@ public class BizLogController extends BaseController {
     @Autowired
     private BizLogService bizLogService;
 
+    /**
+     * 页面跳转
+     * 
+     * @param model
+     * @return
+     */
     @RequestMapping(value = "view", method = RequestMethod.GET)
     public String view(Model model) {
         model.addAttribute("logTypes", getStaticOptions(EOptType.class, true));
         return "biz/bizlog/log_list";
     }
 
+    /**
+     * 获取列表
+     * 
+     * @param request
+     * @return
+     */
     @RequestMapping(value = "list", method = RequestMethod.POST)
     @ResponseBody
     public DataTablesResponseDto<BizLogDto> search(@RequestBody BizLogQueryDto request) {
@@ -43,6 +57,12 @@ public class BizLogController extends BaseController {
         return resp;
     }
 
+    /**
+     * 查看详情
+     * 
+     * @param logId
+     * @return
+     */
     @RequestMapping(value = "details")
     @ResponseBody
     public ResultDto getDetails(@RequestParam(value = "logId") String logId) {
