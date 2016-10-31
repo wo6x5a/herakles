@@ -6,6 +6,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.enums.converter.ECfgTypeEnumConverter;
@@ -16,6 +17,7 @@ import com.lcw.herakles.platform.system.config.enums.converter.ECfgTypeEnumConve
  */
 @Entity
 @Table(name = "GL_CONFIG")
+@Comment(value = "参数表")
 public class ConfigPo extends BaseMaintainablePo {
 
 	/**
@@ -25,16 +27,20 @@ public class ConfigPo extends BaseMaintainablePo {
 
 	@Id
 	@Column(name = "CFG_KEY")
+	@Comment("参数编号")
 	private String key;
 
 	@Column(name = "CFG_VALUE")
+    @Comment("参数值")
 	private String value;
 
 	@Column(name = "CFG_TYPE")
 	@Convert(converter = ECfgTypeEnumConverter.class)
+    @Comment("参数类型")
 	private ECfgType type;
 
 	@Column(name = "MEMO")
+    @Comment("参数备注")
 	private String memo;
 
 	public String getKey() {
