@@ -14,15 +14,10 @@ import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
-/**
- * 系统业务日志
- * 
- * @author chenwulou
- *
- */
 @Entity
 @Table(name = "SYS_BIZ_LOG")
 @EntityListeners(IdInjectionEntityListener.class)
+@Comment("系统业务日志")
 public class BizLogPo extends BasePo {
 
 	/**

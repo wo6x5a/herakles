@@ -30,6 +30,7 @@ public class IdInjectionEntityListener {
 	@PrePersist
 	public void prePersist(Object entity) {
 		injectId(entity);
+		// 放service填充
 //		injectCreateTs(entity);
 //		injectCreateOpId(entity);
 	}
