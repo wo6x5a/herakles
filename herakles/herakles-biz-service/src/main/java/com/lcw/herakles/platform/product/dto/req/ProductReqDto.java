@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.dto.req;
+package com.lcw.herakles.platform.product.dto.req;
 
 import java.io.Serializable;
 
@@ -7,9 +7,9 @@ import javax.validation.constraints.Size;
 import org.hibernate.validator.constraints.NotBlank;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
-import com.lcw.herakles.platform.demo.enums.EProductCagetory;
-import com.lcw.herakles.platform.demo.validation.NullCheck;
-import com.lcw.herakles.platform.demo.validation.ProductExistenceCheck;
+import com.lcw.herakles.platform.product.enums.EProductCagetory;
+import com.lcw.herakles.platform.product.validation.NullCheck;
+import com.lcw.herakles.platform.product.validation.ProductExistenceCheck;
 
 import lombok.Getter;
 import lombok.Setter;

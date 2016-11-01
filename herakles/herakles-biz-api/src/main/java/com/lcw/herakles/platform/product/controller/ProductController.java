@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.controller;
+package com.lcw.herakles.platform.product.controller;
 
 import java.util.List;
 import java.util.Map;
@@ -28,14 +28,14 @@ import com.lcw.herakles.platform.common.enums.EnumOption;
 import com.lcw.herakles.platform.common.exception.BizServiceException;
 import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
-import com.lcw.herakles.platform.demo.dto.ProductDto;
-import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
-import com.lcw.herakles.platform.demo.dto.req.ProductReqDto.CreateProduct;
-import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
-import com.lcw.herakles.platform.demo.enums.EProductCagetory;
-import com.lcw.herakles.platform.demo.service.ProductInfoExcelExportService;
-import com.lcw.herakles.platform.demo.service.ProductQueryService;
-import com.lcw.herakles.platform.demo.service.ProductService;
+import com.lcw.herakles.platform.product.dto.ProductDto;
+import com.lcw.herakles.platform.product.dto.req.ProductReqDto;
+import com.lcw.herakles.platform.product.dto.req.ProductSearchDto;
+import com.lcw.herakles.platform.product.dto.req.ProductReqDto.CreateProduct;
+import com.lcw.herakles.platform.product.enums.EProductCagetory;
+import com.lcw.herakles.platform.product.service.ProductInfoExcelExportService;
+import com.lcw.herakles.platform.product.service.ProductQueryService;
+import com.lcw.herakles.platform.product.service.ProductService;
 
 /**
  * Class Name: ProductController Description

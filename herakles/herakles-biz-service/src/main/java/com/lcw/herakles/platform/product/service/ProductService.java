@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.service;
+package com.lcw.herakles.platform.product.service;
 
 import java.util.List;
 
@@ -14,9 +14,9 @@ import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.service.BaseService;
 import com.lcw.herakles.platform.common.util.ErrorUtil;
-import com.lcw.herakles.platform.demo.dto.req.ProductReqDto;
-import com.lcw.herakles.platform.demo.entity.ProductPo;
-import com.lcw.herakles.platform.demo.repository.ProductRepository;
+import com.lcw.herakles.platform.product.dto.req.ProductReqDto;
+import com.lcw.herakles.platform.product.entity.ProductPo;
+import com.lcw.herakles.platform.product.repository.ProductRepository;
 
 /**
  * Class Name: ProductService Description: TODO

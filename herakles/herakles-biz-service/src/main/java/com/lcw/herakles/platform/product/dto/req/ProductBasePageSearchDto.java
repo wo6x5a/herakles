@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.dto.req;
+package com.lcw.herakles.platform.product.dto.req;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.page.PageModelReqDto;

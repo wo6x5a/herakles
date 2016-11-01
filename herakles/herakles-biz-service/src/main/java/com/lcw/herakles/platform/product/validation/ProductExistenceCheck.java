@@ -1,5 +1,5 @@
 
-package com.lcw.herakles.platform.demo.validation;
+package com.lcw.herakles.platform.product.validation;
 
 import java.lang.annotation.Documented;
 import java.lang.annotation.ElementType;

@@ -1,11 +1,11 @@
-package com.lcw.herakles.platform.demo.repository;
+package com.lcw.herakles.platform.product.repository;
 
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 
-import com.lcw.herakles.platform.demo.entity.ProductPo;
+import com.lcw.herakles.platform.product.entity.ProductPo;
 
 
 /**

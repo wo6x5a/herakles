@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.entity;
+package com.lcw.herakles.platform.product.entity;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -12,8 +12,8 @@ import org.apache.commons.lang3.builder.HashCodeBuilder;
 
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
-import com.lcw.herakles.platform.demo.enums.EProductCagetory;
-import com.lcw.herakles.platform.demo.enums.converter.EProductCagetoryConverter;
+import com.lcw.herakles.platform.product.enums.EProductCagetory;
+import com.lcw.herakles.platform.product.enums.converter.EProductCagetoryConverter;
 
 /**
  * Class Name: Product Description: TODO

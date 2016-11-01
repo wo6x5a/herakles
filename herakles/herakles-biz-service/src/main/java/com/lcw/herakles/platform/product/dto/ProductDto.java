@@ -1,8 +1,8 @@
-package com.lcw.herakles.platform.demo.dto;
+package com.lcw.herakles.platform.product.dto;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
 import com.lcw.herakles.platform.common.dto.BaseMaintainableDto;
-import com.lcw.herakles.platform.demo.enums.EProductCagetory;
+import com.lcw.herakles.platform.product.enums.EProductCagetory;
 
 import lombok.Getter;
 import lombok.Setter;

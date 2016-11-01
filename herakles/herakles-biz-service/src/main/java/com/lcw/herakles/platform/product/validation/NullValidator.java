@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.validation;
+package com.lcw.herakles.platform.product.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;

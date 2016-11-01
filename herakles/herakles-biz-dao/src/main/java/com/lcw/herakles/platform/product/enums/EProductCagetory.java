@@ -1,5 +1,5 @@
 
-package com.lcw.herakles.platform.demo.enums;
+package com.lcw.herakles.platform.product.enums;
 
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.lcw.herakles.platform.common.enums.DBIntEnum;

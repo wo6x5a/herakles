@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.service;
+package com.lcw.herakles.platform.product.service;
 
 import java.util.List;
 
@@ -22,12 +22,12 @@ import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.dto.page.PageModelDto;
 import com.lcw.herakles.platform.common.paging.PaginationUtil;
 import com.lcw.herakles.platform.common.util.EnumHelper;
-import com.lcw.herakles.platform.demo.dto.ProductDto;
-import com.lcw.herakles.platform.demo.dto.req.ProductBasePageSearchDto;
-import com.lcw.herakles.platform.demo.dto.req.ProductSearchDto;
-import com.lcw.herakles.platform.demo.entity.ProductPo;
-import com.lcw.herakles.platform.demo.enums.EProductCagetory;
-import com.lcw.herakles.platform.demo.repository.ProductRepository;
+import com.lcw.herakles.platform.product.dto.ProductDto;
+import com.lcw.herakles.platform.product.dto.req.ProductBasePageSearchDto;
+import com.lcw.herakles.platform.product.dto.req.ProductSearchDto;
+import com.lcw.herakles.platform.product.entity.ProductPo;
+import com.lcw.herakles.platform.product.enums.EProductCagetory;
+import com.lcw.herakles.platform.product.repository.ProductRepository;
 
 /**
  * @author chenwulou

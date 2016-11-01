@@ -5,4 +5,4 @@
  * @author chenwulou
  *
  */
-package com.lcw.herakles.platform.demo.dto.resp;
+package com.lcw.herakles.platform.product.dto.resp;

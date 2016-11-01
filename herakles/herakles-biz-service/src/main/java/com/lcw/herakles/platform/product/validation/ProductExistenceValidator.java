@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.validation;
+package com.lcw.herakles.platform.product.validation;
 
 import javax.validation.ConstraintValidator;
 import javax.validation.ConstraintValidatorContext;
@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import com.lcw.herakles.platform.common.validation.BaseValidator;
-import com.lcw.herakles.platform.demo.service.ProductService;
+import com.lcw.herakles.platform.product.service.ProductService;
 
 
 /**

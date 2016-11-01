@@ -1,4 +1,4 @@
-package com.lcw.herakles.platform.demo.service;
+package com.lcw.herakles.platform.product.service;
 
 import java.util.List;
 import java.util.Map;
@@ -13,7 +13,7 @@ import org.springframework.stereotype.Service;
 
 import com.lcw.herakles.platform.common.constant.ApplicationConsts;
 import com.lcw.herakles.platform.common.service.AbstractExcelService;
-import com.lcw.herakles.platform.demo.dto.ProductDto;
+import com.lcw.herakles.platform.product.dto.ProductDto;
 
 /**
  * 导出excel
