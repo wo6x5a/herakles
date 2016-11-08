@@ -10,6 +10,8 @@ import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
 /**
+ * Base Maintainable Po
+ * 
  * @author chenwulou
  *
  */
