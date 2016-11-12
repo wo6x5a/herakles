@@ -24,6 +24,8 @@ import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.service.ConfigService;
 
 /**
+ * 参数操作controller
+ * 
  * @author chenwulou
  *
  */
