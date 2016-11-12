@@ -3,6 +3,8 @@ package com.lcw.herakles.platform.system.dict.dto;
 import com.lcw.herakles.platform.system.dict.util.SystemDictUtil;
 
 /**
+ * 数据字典参数 
+ * 
  * @author chenwulou
  *
  */

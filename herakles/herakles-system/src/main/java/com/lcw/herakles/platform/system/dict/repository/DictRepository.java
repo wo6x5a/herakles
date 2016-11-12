@@ -9,6 +9,12 @@ import com.lcw.herakles.platform.common.enums.EFlagType;
 import com.lcw.herakles.platform.system.dict.entity.DictPo;
 import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
 
+/**
+ * 数据字典repository
+ * 
+ * @author chenwulou
+ *
+ */
 public interface DictRepository extends PagingAndSortingRepository<DictPo, String> {
 
     List<DictPo> findByEnableFLag(EFlagType enabled);

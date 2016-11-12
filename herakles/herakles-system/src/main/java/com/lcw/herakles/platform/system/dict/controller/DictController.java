@@ -10,6 +10,8 @@ import com.lcw.herakles.platform.common.dto.ResultDtoFactory;
 import com.lcw.herakles.platform.system.dict.util.SystemDictUtil;
 
 /**
+ * 数据字典controller
+ * 
  * @author chenwulou
  *
  */

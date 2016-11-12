@@ -6,6 +6,8 @@ import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import com.lcw.herakles.platform.system.config.entity.ConfigPo;
 
 /**
+ * 参数repository
+ * 
  * @author chenwulou
  *
  */
