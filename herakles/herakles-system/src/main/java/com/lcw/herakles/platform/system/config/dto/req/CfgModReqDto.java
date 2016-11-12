@@ -5,6 +5,8 @@ import java.io.Serializable;
 import org.hibernate.validator.constraints.NotEmpty;
 
 /**
+ * 参数修改dto
+ * 
  * @author chenwulou
  *
  */

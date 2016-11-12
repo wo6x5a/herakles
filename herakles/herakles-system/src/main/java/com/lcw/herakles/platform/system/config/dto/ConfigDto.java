@@ -6,6 +6,8 @@ import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.enums.EConfig;
 
 /**
+ * 参数信息
+ * 
  * @author chenwulou
  *
  */

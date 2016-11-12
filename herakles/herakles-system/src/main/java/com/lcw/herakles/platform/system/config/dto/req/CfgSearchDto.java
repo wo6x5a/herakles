@@ -6,6 +6,8 @@ import com.lcw.herakles.platform.common.dto.datatable.DataTablesRequestDto;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 
 /**
+ * 参数查询dto
+ * 
  * @author chenwulou
  *
  */
