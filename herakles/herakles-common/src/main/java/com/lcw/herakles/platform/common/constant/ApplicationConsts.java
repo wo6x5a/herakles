@@ -58,4 +58,6 @@ public final class ApplicationConsts {
      */
     public static final String FTP_PARENT_PATH = "/var/ftp/pub/";
     
+    public static final String PACKAGE_TO_SCAN = "com.lcw.herakles.platform";
+    
 }

@@ -5,6 +5,9 @@ package com.lcw.herakles.platform.common.util;
 
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 
 import com.google.common.collect.Maps;
@@ -26,6 +29,10 @@ public final class ReflectionUtil {
 //    private ReflectionUtil() {
 //
 //    }
+
+    public static List<Field> getFieldsIncludingSuperClasses(Class<?> clazz) {
+        return getAllFieldsRec(clazz, new ArrayList<Field>());
+    }
 
 	public static Method getGetter(Class<?> clazz, Field field) {
 		String filedName = field.getName();
@@ -72,4 +79,13 @@ public final class ReflectionUtil {
 		}
 		return fieldMap;
 	}
+
+    private static List<Field> getAllFieldsRec(Class<?> clazz, List<Field> fields) {
+        Class<?> superClazz = clazz.getSuperclass();
+        if (superClazz != null) {
+            getAllFieldsRec(superClazz, fields);
+        }
+        fields.addAll(Arrays.asList(clazz.getDeclaredFields()));
+        return fields;
+    }
 }
