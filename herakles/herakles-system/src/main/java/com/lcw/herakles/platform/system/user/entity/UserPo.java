@@ -11,6 +11,7 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.system.user.enums.EUserStatus;
@@ -34,46 +35,59 @@ public class UserPo extends BaseMaintainablePo {
 
     @Id
     @Column(name = "USER_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "用户编号")
     private String userId;
 
     @Column(name = "NICK_NAME")
+    @ColumnMeta(length = "20", nullable = false, comment = "用户名")
     private String nickName;
 
     @Column(name = "SNAME")
+    @ColumnMeta(length = "40", nullable = false, comment = "用户姓名")
     private String sname;
 
     @Column(name = "PASSWORD")
+    @ColumnMeta(length = "100", nullable = false, comment = "密码")
     private String password;
 
     @Convert(converter = EUserStatusEnumConverter.class)
     @Column(name = "STATUS")
+    @ColumnMeta(length = "2", nullable = false, comment = "状态:1 Active, 2 Inactive, 3 Cancelled")
     private EUserStatus status;
 
     @Column(name = "EMAIL")
+    @ColumnMeta(length = "100", comment = "邮箱")
     private String email;
 
     @Column(name = "MOBILE")
+    @ColumnMeta(length = "20", nullable = false, comment = "手机号")
     private String mobile;
 
     @Convert(converter = EUserTypeConverter.class)
     @Column(name = "USER_TYPE")
+    @ColumnMeta(length = "2", nullable = false, comment = "用户类型")
     private EUserType userType;
 
     @Column(name = "REGION")
+    @ColumnMeta(length = "30", comment = "所属区域")
     private String region;
 
     @Column(name = "ICON_FILE_ID")
+    @ColumnMeta(length = "100", comment = "用户头像")
     private String iconFileId;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "LAST_LOGIN_TS")
+    @ColumnMeta(length = "6", comment = "最后登录时间")
     private Date lastLoginTs;
 
     @Column(name = "LOGIN_FAIL_CT")
+    @ColumnMeta(length = "3", comment = "登录失败次数")
     private Long loginFailCount;
 
     @Temporal(TemporalType.TIMESTAMP)
     @Column(name = "LAST_LOGIN_FAIL_TS")
+    @ColumnMeta(length = "6", comment = "最后登陆失败时间")
     private Date lastLoginFailTs;
 
     public String getUserId() {

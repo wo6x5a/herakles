@@ -9,6 +9,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.security.entity.id.RolePermPK;
 
@@ -24,10 +25,12 @@ public class RolePermPo extends BaseMaintainablePo {
 
     @Id
     @Column(name = "ROLE_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "角色ID")
     private String roleId;
 
     @Id
     @Column(name = "PERM_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "权限ID")
     private String permId;
 
     @OneToOne(fetch = FetchType.EAGER, optional = false)

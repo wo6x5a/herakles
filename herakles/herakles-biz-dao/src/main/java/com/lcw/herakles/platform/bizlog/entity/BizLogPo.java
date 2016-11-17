@@ -11,13 +11,13 @@ import javax.persistence.Table;
 import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.bizlog.enums.converter.EBizLogOptTypeConverter;
 import com.lcw.herakles.platform.common.annotation.Comment;
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
 @Entity
 @Table(name = "SYS_BIZ_LOG")
 @EntityListeners(IdInjectionEntityListener.class)
-@Comment("系统业务日志")
 public class BizLogPo extends BasePo {
 
 	/**
@@ -27,40 +27,40 @@ public class BizLogPo extends BasePo {
 
 	@Id
 	@Column(name = "ID")
-	@Comment("编号")
+	@ColumnMeta(length = "32", nullable = false, comment = "编号")
 	private String id;
 
 	@Column(name = "ENTITY")
-	@Comment("操作实体")
+    @ColumnMeta(length = "40", nullable = false, comment = "操作实体")
 	private String entity;
 
 	@Column(name = "ENTITY_ID")
-	@Comment("实体编号")
+    @ColumnMeta(length = "32", nullable = false, comment = "实体编号")
 	private String entityId;
 
 	@Column(name = "OPT_TYPE")
-	@Comment("操作类型")
+    @ColumnMeta(length = "1", nullable = false, comment = "操作类型")
 	@Convert(converter = EBizLogOptTypeConverter.class)
 	private EOptType optType;
 
 	@Column(name = "OPERATE")
-	@Comment("具体操作")
+    @ColumnMeta(length = "30", nullable = false, comment = "具体操作")
 	private String operate;
 
 	@Column(name = "OPT_IP")
-	@Comment("操作IP地址")
+    @ColumnMeta(length = "20", comment = "操作IP地址")
 	private String optIp;
 
 	@Column(name = "NEW_VALUE")
-	@Comment("新数据")
+    @ColumnMeta(length = "1200", comment = "新数据")
 	private String newVaule;
 
 	@Column(name = "OLD_VALUE")
-	@Comment("旧数据")
+    @ColumnMeta(length = "1200", comment = "旧数据")
 	private String oldVaule;
 
 	@Comment("备注")
-	@Column(name = "COMMENT")
+    @ColumnMeta(length = "200", comment = "备注")
 	private String comment;
 
 	public String getId() {

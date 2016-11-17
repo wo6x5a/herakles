@@ -93,7 +93,8 @@ public class DdlTest {
 		for (Class<?> entityClass : entities) {
 			String tableScripts = "";
 			if(isMysql()){
-				MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, false);
+//              MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, false);
+              MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, true);
 				tableScripts = tableDDL.dropTableScript();
 			}
 			else if(isOracle()){
@@ -114,7 +115,8 @@ public class DdlTest {
 		for (Class<?> entityClass : entities) {
 			String tableScripts = "";
 			if(isMysql()){
-				MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, false);
+//				MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, false);
+              MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, true);
 				tableScripts = tableDDL.createTableScript();
 			}
 			else if(isOracle()){

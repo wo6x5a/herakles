@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.common.enums.EFlagType;
@@ -29,42 +30,45 @@ public class DictPo extends BasePo {
 
     @Id
     @Column(name = "ID")
-    @Comment(value = "id")
+    @ColumnMeta(length = "32", nullable = false, comment = "id")
     private String id;
   
-    @Comment(value = "类型")
     @Convert(converter = EDictCategoryConverter.class)
     @Column(name = "CATEGORY")
+    @ColumnMeta(length = "20", nullable = false, comment = "类型")
     private EDictCategory category;
 
-    @Comment(value = "字典编号")
     @Column(name = "DICT_CODE")
+    @ColumnMeta(length = "100", nullable = false, comment = "字典编号")
     private String dictCode;
 
-    @Comment(value = "字典内容")
     @Column(name = "DICT_TEXT")
+    @ColumnMeta(length = "100", nullable = false, comment = "字典内容")
     private String dictText;
 
-    @Comment(value = "字典内容详情")
     @Column(name = "DICT_TEXT_FULL")
+    @ColumnMeta(length = "200", nullable = false, comment = "字典内容详情")
     private String dictFullText;
 
     @Comment(value = "父节点编号")
     @Column(name = "PARENT_DICT_CODE")
+    @ColumnMeta(length = "100", nullable = false, comment = "父节点编号")
     private String parentDictCode;
 
     @Comment(value = "是否可用")
     @Convert(converter = EFlagTypeConverter.class)
     @Column(name = "ENABLE_FLG")
+    @ColumnMeta(length = "1", nullable = false, comment = "是否可用,1:是,2:否")
     private EFlagType enableFLag;
 
-    @Comment(value = "是否子节点")
     @Convert(converter = EFlagTypeConverter.class)
     @Column(name = "LEAF_FLG")
+    @ColumnMeta(length = "1", nullable = false, comment = "是否子节点,1:是,2:否")
     private EFlagType leafFlag;
 
-    @Comment(value = "字典顺序")
+    @Comment(value = "")
     @Column(name = "DICT_ORD")
+    @ColumnMeta(length = "11", nullable = false, comment = "字典顺序")
     private Long dictOrder;
 
     public String getId() {

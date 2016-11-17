@@ -11,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.security.entity.id.UserRolePk;
 import com.lcw.herakles.platform.system.security.enums.ERoleStatus;
@@ -29,14 +30,17 @@ public class UserRolePo extends BaseMaintainablePo {
 
     @Id
     @Column(name = "USER_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "用户编号")
     private String userId;
 
     @Id
     @Column(name = "ROLE_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "角色编号")
     private String roleId;
 
     @Convert(converter = ERoleStatusEnumConverter.class)
     @Column(name = "STATUS")
+    @ColumnMeta(length = "1", nullable = false, defaultValue = "1", comment = "0-待生效, 1-已生效，默认1-已生效")
     private ERoleStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH})

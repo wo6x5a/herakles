@@ -201,6 +201,7 @@ public class MysqlTableDDL extends TableDDL {
 		sb.append(")");
 		sb.append(SPACE);
 		sb.append("ENGINE=InnoDB DEFAULT CHARSET=utf8;");
+		sb.append(ENTER);
 	}
 
 	@Override

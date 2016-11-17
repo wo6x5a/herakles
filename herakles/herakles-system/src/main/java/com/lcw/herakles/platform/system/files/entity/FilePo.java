@@ -7,7 +7,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import com.lcw.herakles.platform.common.annotation.Comment;
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
@@ -23,19 +23,19 @@ public class FilePo extends BasePo {
 
 	@Id
 	@Column(name = "FILE_ID")
-	@Comment("文件Id")
+    @ColumnMeta(length = "32", nullable = false, comment = "文件Id")
 	private String fileId;
 
 	@Column(name = "FILE_CODE")
-	@Comment("文件编码")
+    @ColumnMeta(length = "32", nullable = false, comment = "文件编码")
 	private String fileCode;
 
 	@Column(name = "FILE_NAME")
-	@Comment("文件名")
+    @ColumnMeta(length = "255", nullable = false, comment = "文件名")
 	private String fileName;
 
 	@Column(name = "FILE_PATH")
-	@Comment("文件路径")
+    @ColumnMeta(length = "255", nullable = false, comment = "文件路径")
 	private String filePath;
 
 	public String getFileId() {

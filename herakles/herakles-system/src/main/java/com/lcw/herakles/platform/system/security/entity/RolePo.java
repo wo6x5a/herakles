@@ -11,6 +11,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
@@ -26,15 +27,19 @@ public class RolePo extends BaseMaintainablePo {
 
 	@Id
 	@Column(name = "ROLE_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "角色编号")
 	private String roleId;
 
 	@Column(name = "ROLE_CODE")
+    @ColumnMeta(length = "20", nullable = false, uniqueKey = "ROLE_CODE", comment = "角色代码")
 	private String roleCode;
 
 	@Column(name = "ROLE_NAME")
+    @ColumnMeta(length = "60", nullable = false, comment = "角色名称")
 	private String roleName;
 
 	@Column(name = "ROLE_DESC")
+    @ColumnMeta(length = "200", comment = "角色备注")
 	private String roleDesc;
 
 	@OneToMany

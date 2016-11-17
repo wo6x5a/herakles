@@ -8,6 +8,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.system.user.enums.EVerStatus;
@@ -30,28 +31,28 @@ public class UserVerJnlPo extends BaseMaintainablePo {
 
 	@Id
 	@Column(name = "JNL_NO")
-	@Comment(value = "流水号")
+    @ColumnMeta(length = "32", nullable = false, comment = "流水号")
 	private String jnlNo;
 
-	@Comment(value = "用户编号")
 	@Column(name = "USER_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "用户编号")
 	private String userId;
 
-	@Comment(value = "验证码状态")
 	@Column(name = "STATUS")
 	@Convert(converter = EVerStatusEnumConverter.class)
+    @ColumnMeta(length = "1", nullable = false, comment = "验证码状态")
 	private EVerStatus status;
 
-	@Comment(value = "手机号")
 	@Column(name = "MOBILE")
+    @ColumnMeta(length = "20", nullable = false, comment = "手机号")
 	private String mobile;
 
-	@Comment(value = "验证码")
 	@Column(name = "VER_CODE")
+    @ColumnMeta(length = "100", nullable = false, comment = "验证码")
 	private String verCode;
 
-	@Comment(value = "验证码失效时间戳")
 	@Column(name = "VER_END_DTTM")
+    @ColumnMeta(length = "14", nullable = false, comment = "验证码失效时间戳")
 	private Long verEndDttm;
 
 	public String getJnlNo() {

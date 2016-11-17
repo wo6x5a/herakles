@@ -4,11 +4,13 @@ import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.EntityListeners;
+import javax.persistence.FetchType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.system.user.enums.EEductation;
@@ -29,213 +31,242 @@ import com.lcw.herakles.platform.system.user.enums.converter.ESexConverter;
 @EntityListeners(IdInjectionEntityListener.class)
 public class PersonalInfoPo extends BaseMaintainablePo {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name = "USER_ID")
-	private String userId;
+    @Id
+    @Column(name = "USER_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "用户编号")
+    private String userId;
 
-	@Column(name = "SNAME")
-	private String sname;
+    @Column(name = "SNAME")
+    @ColumnMeta(length = "60", comment = "用户姓名")
+    private String sname;
 
-	@Column(name = "BIRTH_DT")
-	private String birthday;
+    @Column(name = "BIRTH_DT")
+    @ColumnMeta(length = "10", comment = "出生日期")
+    private String birthday;
 
-	@Convert(converter = ESexConverter.class)
-	@Column(name = "SEX")
-	private ESex sex;
+    @Convert(converter = ESexConverter.class)
+    @Column(name = "SEX")
+    @ColumnMeta(length = "10", comment = "性别")
+    private ESex sex;
 
-	@Convert(converter = EIdTypeConverter.class)
-	@Column(name = "ID_TYPE")
-	private EIdType idType;
+    @Convert(converter = EIdTypeConverter.class)
+    @Column(name = "ID_TYPE")
+    @ColumnMeta(length = "10", comment = "证件类型")
+    private EIdType idType;
 
-	@Column(name = "ID_NO")
-	private String idNo;
+    @Column(name = "ID_NO")
+    @ColumnMeta(length = "100", uniqueKey = "ID_NO", comment = "证件号码")
+    private String idNo;
 
-	@Column(name = "ID_IMG_1")
-	private String idImage1;
+    @Column(name = "ID_IMG_1")
+    @ColumnMeta(length = "100", comment = "证件正面图片")
+    private String idImage1;
 
-	@Column(name = "ID_IMG_2")
-	private String idImage2;
+    @Column(name = "ID_IMG_2")
+    @ColumnMeta(length = "100", comment = "证件反面图片")
+    private String idImage2;
 
-	@Convert(converter = EJobTypeConverter.class)
-	@Column(name = "JOB_TYPE")
-	private EJobType jobType;
+    @Column(name = "ID_START_DT")
+    @ColumnMeta(length = "10", comment = "身份证有效期开始日期yyyy-MM-dd")
+    private String personIdCardStartDate;
 
-	@Column(name = "JOB_DESC")
-	private String jobDescription;
+    @Column(name = "ID_END_DT")
+    @ColumnMeta(length = "10", comment = "身份证有效期截止日期yyyy-MM-dd")
+    private String personIdCardEndDate;
 
-	@Convert(converter = EEductationConverter.class)
-	@Column(name = "EDU_TYPE")
-	private EEductation education;
+    @Convert(converter = EJobTypeConverter.class)
+    @Column(name = "JOB_TYPE")
+    @ColumnMeta(length = "10", comment = "工作类型")
+    private EJobType jobType;
 
-	@Column(name = "TEL")
-	private String telephone;
+    @ColumnMeta(length = "100", comment = "工作简介")
+    @Column(name = "JOB_DESC")
+    private String jobDescription;
 
-	@Column(name = "QQ")
-	private String qq;
+    @Convert(converter = EEductationConverter.class)
+    @Column(name = "EDU_TYPE")
+    @ColumnMeta(length = "10", comment = "教育程度")
+    private EEductation education;
 
-	@Column(name = "FAX")
-	private String fax;
+    @Column(name = "TEL")
+    @ColumnMeta(length = "20", comment = "联系电话")
+    private String telephone;
 
-	@Column(name = "ZIP_CODE")
-	private String zipCode;
+    @Column(name = "QQ")
+    @ColumnMeta(length = "20", comment = "QQ号码")
+    private String qq;
 
-	@Column(name = "ADDR")
-	private String address;
+    @Column(name = "WX")
+    @ColumnMeta(length = "40", comment = "微信号码")
+    private String wx;
 
-	@Column(name = "WORK_UNIT")
-	private String workUnit;
+    @Column(name = "FAX")
+    @ColumnMeta(length = "20", comment = "传真号码")
+    private String fax;
 
-	@OneToOne
-	@JoinColumn(name = "USER_ID", insertable = false, updatable = false)
-	private UserPo userPo;
+    @Column(name = "ZIP_CODE")
+    @ColumnMeta(length = "20", comment = "邮政编码")
+    private String zipCode;
 
-	public String getUserId() {
-		return userId;
-	}
+    @Column(name = "ADDR")
+    @ColumnMeta(length = "200", comment = "联系地址")
+    private String address;
 
-	public void setUserId(String userId) {
-		this.userId = userId;
-	}
+    @Column(name = "WORK_UNIT")
+    @ColumnMeta(length = "100", comment = "工作单位")
+    private String workUnit;
 
-	public String getSname() {
-		return sname;
-	}
+    @OneToOne(fetch = FetchType.EAGER, optional = false)
+    @JoinColumn(name = "USER_ID", insertable = false, updatable = false)
+    private UserPo userPo;
 
-	public void setSname(String sname) {
-		this.sname = sname;
-	}
+    public String getUserId() {
+        return userId;
+    }
 
-	public String getBirthday() {
-		return birthday;
-	}
+    public void setUserId(String userId) {
+        this.userId = userId;
+    }
 
-	public void setBirthday(String birthday) {
-		this.birthday = birthday;
-	}
+    public String getSname() {
+        return sname;
+    }
 
-	public ESex getSex() {
-		return sex;
-	}
+    public void setSname(String sname) {
+        this.sname = sname;
+    }
 
-	public void setSex(ESex sex) {
-		this.sex = sex;
-	}
+    public String getBirthday() {
+        return birthday;
+    }
 
-	public EIdType getIdType() {
-		return idType;
-	}
+    public void setBirthday(String birthday) {
+        this.birthday = birthday;
+    }
 
-	public void setIdType(EIdType idType) {
-		this.idType = idType;
-	}
+    public ESex getSex() {
+        return sex;
+    }
 
-	public String getIdNo() {
-		return idNo;
-	}
+    public void setSex(ESex sex) {
+        this.sex = sex;
+    }
 
-	public void setIdNo(String idNo) {
-		this.idNo = idNo;
-	}
+    public EIdType getIdType() {
+        return idType;
+    }
 
-	public String getIdImage1() {
-		return idImage1;
-	}
+    public void setIdType(EIdType idType) {
+        this.idType = idType;
+    }
 
-	public void setIdImage1(String idImage1) {
-		this.idImage1 = idImage1;
-	}
+    public String getIdNo() {
+        return idNo;
+    }
 
-	public String getIdImage2() {
-		return idImage2;
-	}
+    public void setIdNo(String idNo) {
+        this.idNo = idNo;
+    }
 
-	public void setIdImage2(String idImage2) {
-		this.idImage2 = idImage2;
-	}
+    public String getIdImage1() {
+        return idImage1;
+    }
 
-	public EJobType getJobType() {
-		return jobType;
-	}
+    public void setIdImage1(String idImage1) {
+        this.idImage1 = idImage1;
+    }
 
-	public void setJobType(EJobType jobType) {
-		this.jobType = jobType;
-	}
+    public String getIdImage2() {
+        return idImage2;
+    }
 
-	public String getJobDescription() {
-		return jobDescription;
-	}
+    public void setIdImage2(String idImage2) {
+        this.idImage2 = idImage2;
+    }
 
-	public void setJobDescription(String jobDescription) {
-		this.jobDescription = jobDescription;
-	}
+    public EJobType getJobType() {
+        return jobType;
+    }
 
-	public EEductation getEducation() {
-		return education;
-	}
+    public void setJobType(EJobType jobType) {
+        this.jobType = jobType;
+    }
 
-	public void setEducation(EEductation education) {
-		this.education = education;
-	}
+    public String getJobDescription() {
+        return jobDescription;
+    }
 
-	public String getTelephone() {
-		return telephone;
-	}
+    public void setJobDescription(String jobDescription) {
+        this.jobDescription = jobDescription;
+    }
 
-	public void setTelephone(String telephone) {
-		this.telephone = telephone;
-	}
+    public EEductation getEducation() {
+        return education;
+    }
 
-	public String getQq() {
-		return qq;
-	}
+    public void setEducation(EEductation education) {
+        this.education = education;
+    }
 
-	public void setQq(String qq) {
-		this.qq = qq;
-	}
+    public String getTelephone() {
+        return telephone;
+    }
 
-	public String getFax() {
-		return fax;
-	}
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
 
-	public void setFax(String fax) {
-		this.fax = fax;
-	}
+    public String getQq() {
+        return qq;
+    }
 
-	public String getZipCode() {
-		return zipCode;
-	}
+    public void setQq(String qq) {
+        this.qq = qq;
+    }
 
-	public void setZipCode(String zipCode) {
-		this.zipCode = zipCode;
-	}
+    public String getFax() {
+        return fax;
+    }
 
-	public String getAddress() {
-		return address;
-	}
+    public void setFax(String fax) {
+        this.fax = fax;
+    }
 
-	public void setAddress(String address) {
-		this.address = address;
-	}
+    public String getZipCode() {
+        return zipCode;
+    }
 
-	public String getWorkUnit() {
-		return workUnit;
-	}
+    public void setZipCode(String zipCode) {
+        this.zipCode = zipCode;
+    }
 
-	public void setWorkUnit(String workUnit) {
-		this.workUnit = workUnit;
-	}
+    public String getAddress() {
+        return address;
+    }
 
-	public UserPo getUserPo() {
-		return userPo;
-	}
+    public void setAddress(String address) {
+        this.address = address;
+    }
 
-	public void setUserPo(UserPo userPo) {
-		this.userPo = userPo;
-	}
+    public String getWorkUnit() {
+        return workUnit;
+    }
+
+    public void setWorkUnit(String workUnit) {
+        this.workUnit = workUnit;
+    }
+
+    public UserPo getUserPo() {
+        return userPo;
+    }
+
+    public void setUserPo(UserPo userPo) {
+        this.userPo = userPo;
+    }
 
 }

@@ -6,6 +6,7 @@ import javax.persistence.EntityListeners;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
@@ -21,15 +22,19 @@ public class PermPo extends BaseMaintainablePo {
 
 	@Id
 	@Column(name = "PERM_ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "功能权限编号")
 	private String permId;
 
 	@Column(name = "PERM_CODE")
+    @ColumnMeta(length = "32", nullable = false, comment = "功能权限代码")
 	private String permCode;
 
 	@Column(name = "PERM_NAME")
+    @ColumnMeta(length = "32", nullable = false, comment = "功能权限名称")
 	private String permName;
 
 	@Column(name = "PERM_DESC")
+    @ColumnMeta(length = "32", comment = "功能权限说明")
 	private String permDesc;
 
 	public String getPermId() {

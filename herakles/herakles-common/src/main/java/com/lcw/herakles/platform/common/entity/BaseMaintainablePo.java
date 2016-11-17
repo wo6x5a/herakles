@@ -9,6 +9,8 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.Version;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
+
 /**
  * Base Maintainable Po
  * 
@@ -21,14 +23,17 @@ public class BaseMaintainablePo extends BasePo {
 	private static final long serialVersionUID = 1L;
 
 	@Column(name = "LAST_MNT_OPID")
+    @ColumnMeta(length = "40", comment = "最后修改人", order = 1002)
 	private String lastMntOpId;
 
 	@Temporal(TemporalType.TIMESTAMP)
 	@Column(name = "LAST_MNT_TS")
+    @ColumnMeta(comment = "最后修改时间", order = 1003)
 	private Date lastMntTs;
 
 	@Version
 	@Column(name = "VERSION_CT")
+    @ColumnMeta(comment = "版本号", defaultValue = "0", order = 1004)
 	private Long versionCt;
 
 	public String getLastMntOpId() {

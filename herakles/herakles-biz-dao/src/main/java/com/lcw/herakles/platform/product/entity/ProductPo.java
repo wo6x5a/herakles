@@ -10,6 +10,7 @@ import javax.persistence.Table;
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.apache.commons.lang3.builder.HashCodeBuilder;
 
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.product.enums.EProductCagetory;
@@ -22,23 +23,27 @@ import com.lcw.herakles.platform.product.enums.converter.EProductCagetoryConvert
  * 
  */
 @Entity
-@Table(name = "product")
+@Table(name = "PRODUCT")
 @EntityListeners(IdInjectionEntityListener.class)
 public class ProductPo extends BaseMaintainablePo {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "id")
+	@Column(name = "ID")
+    @ColumnMeta(length = "32", nullable = false, comment = "编号")
 	private String id;
 
-	@Column(name = "category")
+	@Column(name = "CATEGORY")
 	@Convert(converter = EProductCagetoryConverter.class)
+    @ColumnMeta(length = "3", nullable = false, comment = "类型")
 	private EProductCagetory category;
 
-	@Column(name = "name")
+	@Column(name = "NAME")
+    @ColumnMeta(length = "80", nullable = false, comment = "名称")
 	private String name;
 
-	@Column(name = "description")
+	@Column(name = "DESCRIPTION")
+    @ColumnMeta(length = "255", nullable = false, comment = "备注")
 	private String description;
 
 	public String getId() {

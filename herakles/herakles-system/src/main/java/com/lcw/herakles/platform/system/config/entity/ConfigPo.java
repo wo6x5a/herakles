@@ -7,6 +7,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import com.lcw.herakles.platform.common.annotation.Comment;
+import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.enums.converter.ECfgTypeEnumConverter;
@@ -27,20 +28,20 @@ public class ConfigPo extends BaseMaintainablePo {
 
 	@Id
 	@Column(name = "CFG_KEY")
-	@Comment("参数编号")
+    @ColumnMeta(length = "32", nullable = false, comment = "参数编号")
 	private String key;
 
 	@Column(name = "CFG_VALUE")
-    @Comment("参数值")
+    @ColumnMeta(length = "40", nullable = false, comment = "参数值")
 	private String value;
 
 	@Column(name = "CFG_TYPE")
 	@Convert(converter = ECfgTypeEnumConverter.class)
-    @Comment("参数类型")
+    @ColumnMeta(length = "1", nullable = false, comment = "参数类型")
 	private ECfgType type;
 
 	@Column(name = "MEMO")
-    @Comment("参数备注")
+    @ColumnMeta(length = "100", nullable = false, comment = "参数备注")
 	private String memo;
 
 	public String getKey() {
