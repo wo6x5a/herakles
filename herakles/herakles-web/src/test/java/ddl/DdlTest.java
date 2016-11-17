@@ -126,7 +126,7 @@ public class DdlTest {
 			}
 			scripts.append(tableScripts);
 		}
-		Files.write(scripts, new File("table.sql"), Charset.forName("UTF-8"));
+		Files.write(scripts, new File("src/main/resources/database/table.sql"), Charset.forName("UTF-8"));
 	}
 	
 }
