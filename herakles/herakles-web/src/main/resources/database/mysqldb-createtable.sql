@@ -58,7 +58,7 @@ create table `gl_file` (
 -- table structure for table `sys_biz_log`
 drop table if exists `sys_biz_log`;
 create table `sys_biz_log` (
-  `id` varchar(64) not null comment '编号',
+  `id` varchar(32) not null comment '编号',
   `type` varchar(20) comment '日志类型',
   `title` varchar(255) default '' comment '日志标题',
   `remote_addr` varchar(255) default null comment '操作ip地址',

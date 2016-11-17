@@ -6,13 +6,11 @@ package ddl;
 import java.io.File;
 import java.io.IOException;
 import java.nio.charset.Charset;
-import java.util.Arrays;
 
 import org.junit.Test;
 
 import com.google.common.collect.ImmutableSet;
 import com.google.common.io.Files;
-import com.lcw.herakles.platform.bizlog.entity.BizLogPo;
 import com.lcw.herakles.platform.common.ddl.dialect.MysqlTableDDL;
 import com.lcw.herakles.platform.common.ddl.dialect.OracleTableDDL;
 import com.lcw.herakles.platform.common.util.scan.EntityScan;
@@ -61,31 +59,31 @@ public class DdlTest {
 		System.out.println(sql);
 	}
 
-	@Test
-	public void createTableScriptTest(){
-		for(Class<?> clazz :Arrays.asList(
-				BizLogPo.class
-				)){
-			if(isMysql()){
-				createMysqlTableScript(clazz, true);
-			}
-			else if(isOracle()){
-				createOracleTableScript(clazz, true);
-			}
-		}
-	}
-	
-	private void createMysqlTableScript(Class<?> entityClass, boolean rebuild){
-		MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, true);
-		String tableScripts = tableDDL.createTableScript();
-		System.out.println(tableScripts);
-	}
-	private void createOracleTableScript(Class<?> entityClass, boolean rebuild){
-		OracleTableDDL tableDDL = new OracleTableDDL(entityClass, true, db_oracle_data_tablespace, 
-				db_oracle_index_tablespace, db_oracle_hist_tablespace, db_oracle_data_files);
-		String tableScripts = tableDDL.createTableScript();
-		System.out.println(tableScripts);
-	}
+//	@Test
+//	public void createTableScriptTest(){
+//		for(Class<?> clazz :Arrays.asList(
+//				BizLogPo.class
+//				)){
+//			if(isMysql()){
+//				createMysqlTableScript(clazz, true);
+//			}
+//			else if(isOracle()){
+//				createOracleTableScript(clazz, true);
+//			}
+//		}
+//	}
+//	
+//	private void createMysqlTableScript(Class<?> entityClass, boolean rebuild){
+//		MysqlTableDDL tableDDL = new MysqlTableDDL(entityClass, true);
+//		String tableScripts = tableDDL.createTableScript();
+//		System.out.println(tableScripts);
+//	}
+//	private void createOracleTableScript(Class<?> entityClass, boolean rebuild){
+//		OracleTableDDL tableDDL = new OracleTableDDL(entityClass, true, db_oracle_data_tablespace, 
+//				db_oracle_index_tablespace, db_oracle_hist_tablespace, db_oracle_data_files);
+//		String tableScripts = tableDDL.createTableScript();
+//		System.out.println(tableScripts);
+//	}
 	
 	@Test
 	public void generateDropTablesScriptTest() throws IOException{
