@@ -65,7 +65,7 @@ public class MysqlFieldDDL extends FieldDDL {
 
 	@Override
 	protected void appendIntegerType(StringBuilder sb) {
-		sb.append("INTEGER");
+		sb.append("int(").append(fieldLength).append(")");
 	}
 
 }

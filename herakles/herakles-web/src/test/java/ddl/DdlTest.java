@@ -1,6 +1,3 @@
-/**
- * 
- */
 package ddl;
 
 import java.io.File;
