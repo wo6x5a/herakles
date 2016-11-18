@@ -4,12 +4,17 @@ import java.io.Serializable;
 
 import org.hibernate.validator.constraints.NotEmpty;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * 参数修改dto
  * 
  * @author chenwulou
  *
  */
+@Getter
+@Setter
 public class CfgModReqDto implements Serializable{
 
 	private static final long serialVersionUID = 1L;
@@ -22,37 +27,5 @@ public class CfgModReqDto implements Serializable{
 
 	private String value;
 	
-	private String memo;
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public String getTrxPwd() {
-		return trxPwd;
-	}
-
-	public void setTrxPwd(String trxPwd) {
-		this.trxPwd = trxPwd;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
+	private String descr;
 }

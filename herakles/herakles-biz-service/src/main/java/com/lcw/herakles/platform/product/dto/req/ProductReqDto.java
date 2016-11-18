@@ -47,7 +47,7 @@ public class ProductReqDto implements Serializable {
 
     @Size(max = 200, message = "{error.maximum.length.exceeded}")
     @Comment("产品描述")
-    private String description;
+    private String descr;
 
     // TODO unuse
     private String file;

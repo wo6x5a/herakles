@@ -12,68 +12,41 @@ import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.system.config.enums.ECfgType;
 import com.lcw.herakles.platform.system.config.enums.converter.ECfgTypeEnumConverter;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author chenwulou
  *
  */
+@Getter
+@Setter
 @Entity
-@Table(name = "GL_CONFIG")
+@Table(name = "gl_config")
 @Comment(value = "参数表")
 public class ConfigPo extends BaseMaintainablePo {
 
-	/**
-	 * 
-	 */
-	private static final long serialVersionUID = 1L;
+    /**
+     * 
+     */
+    private static final long serialVersionUID = 1L;
 
-	@Id
-	@Column(name = "CFG_KEY")
+    @Id
+    @Column(name = "cfg_key")
     @ColumnMeta(length = "32", nullable = false, comment = "参数编号")
-	private String key;
+    private String key;
 
-	@Column(name = "CFG_VALUE")
+    @Column(name = "cfg_value")
     @ColumnMeta(length = "40", nullable = false, comment = "参数值")
-	private String value;
+    private String value;
 
-	@Column(name = "CFG_TYPE")
-	@Convert(converter = ECfgTypeEnumConverter.class)
+    @Column(name = "cfg_type")
+    @Convert(converter = ECfgTypeEnumConverter.class)
     @ColumnMeta(length = "1", nullable = false, comment = "参数类型")
-	private ECfgType type;
+    private ECfgType type;
 
-	@Column(name = "MEMO")
+    @Column(name = "descr")
     @ColumnMeta(length = "100", nullable = false, comment = "参数备注")
-	private String memo;
-
-	public String getKey() {
-		return key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
-	}
-
-	public String getValue() {
-		return value;
-	}
-
-	public void setValue(String value) {
-		this.value = value;
-	}
-
-	public ECfgType getType() {
-		return type;
-	}
-
-	public void setType(ECfgType type) {
-		this.type = type;
-	}
-
-	public String getMemo() {
-		return memo;
-	}
-
-	public void setMemo(String memo) {
-		this.memo = memo;
-	}
+    private String descr;
 
 }

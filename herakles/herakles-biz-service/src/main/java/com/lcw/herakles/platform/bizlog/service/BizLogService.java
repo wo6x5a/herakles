@@ -63,11 +63,11 @@ public class BizLogService extends BaseService{
 	 * @param optIp 操作IP地址
 	 * @param oldObject 操作前实体对象
 	 * @param newObject 操作后实体对象
-	 * @param comment 备注
+	 * @param descr 备注
 	 */
 	@Transactional
 	public void save(Class<?> entity, EOptType optType, String operate, String optIp, Object oldObject,
-			Object newObject, String comment) {
+			Object newObject, String descr) {
 		String oldValue = getVlaueByObj(oldObject);
 		String newVaule = getVlaueByObj(newObject);
 		BizLogPo bizLogPo = new BizLogPo();
@@ -77,7 +77,7 @@ public class BizLogService extends BaseService{
 		bizLogPo.setOptIp(optIp);
 		bizLogPo.setOldVaule(oldValue);
 		bizLogPo.setNewVaule(newVaule);
-		bizLogPo.setComment(comment);
+		bizLogPo.setDescr(descr);
 		super.setCreateInfo(bizLogPo);
 		bizLogRepository.save(bizLogPo);
 	}

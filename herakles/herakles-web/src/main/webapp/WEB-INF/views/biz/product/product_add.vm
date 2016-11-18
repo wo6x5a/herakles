@@ -44,7 +44,7 @@
 					
 					<label class="control-label col-md-3" for="description">Description</label>
 					<div class="input-group col-md-9 form-item has-feedback">
-						<input type="text" class="form-control" id="description" name="description" placeholder="Description"/>
+						<input type="text" class="form-control" id="description" name="descr" placeholder="Description"/>
 					</div>
 					
 					<div class="form-btn-wrapper has-feedback">

@@ -18,8 +18,13 @@ import com.lcw.herakles.platform.system.security.enums.ERoleStatus;
 import com.lcw.herakles.platform.system.security.enums.converter.ERoleStatusEnumConverter;
 import com.lcw.herakles.platform.system.user.entity.UserPo;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
-@Table(name = "SYS_USER_ROLE")
+@Table(name = "sys_user_role")
 @IdClass(UserRolePk.class)
 public class UserRolePo extends BaseMaintainablePo {
 
@@ -29,26 +34,26 @@ public class UserRolePo extends BaseMaintainablePo {
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "USER_ID")
+    @Column(name = "user_id")
     @ColumnMeta(length = "32", nullable = false, comment = "用户编号")
     private String userId;
 
     @Id
-    @Column(name = "ROLE_ID")
+    @Column(name = "role_id")
     @ColumnMeta(length = "32", nullable = false, comment = "角色编号")
     private String roleId;
 
     @Convert(converter = ERoleStatusEnumConverter.class)
-    @Column(name = "STATUS")
+    @Column(name = "status")
     @ColumnMeta(length = "1", nullable = false, defaultValue = "1", comment = "0-待生效, 1-已生效，默认1-已生效")
     private ERoleStatus status;
 
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.DETACH})
-    @JoinColumn(name = "USER_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "user_id", insertable = false, updatable = false)
     private UserPo userPo;
 
     @ManyToOne(fetch = FetchType.EAGER, optional = false)
-    @JoinColumn(name = "ROLE_ID", insertable = false, updatable = false)
+    @JoinColumn(name = "role_id", insertable = false, updatable = false)
     private RolePo rolePo;
 
 }

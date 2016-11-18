@@ -32,6 +32,6 @@ public class ProductDto extends BaseMaintainableDto {
     private String name;
 
     @Comment("备注")
-    private String description;
+    private String descr;
 
 }

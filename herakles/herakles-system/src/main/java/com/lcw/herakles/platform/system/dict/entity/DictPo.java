@@ -16,131 +16,64 @@ import com.lcw.herakles.platform.common.enums.converter.EFlagTypeConverter;
 import com.lcw.herakles.platform.system.dict.enums.EDictCategory;
 import com.lcw.herakles.platform.system.dict.enums.converter.EDictCategoryConverter;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * @author chenwulou
  *
  */
+@Getter
+@Setter
 @Comment(value = "数据字典")
 @Entity
-@Table(name = "GL_DICT")
+@Table(name = "gl_dict")
 @EntityListeners(IdInjectionEntityListener.class)
 public class DictPo extends BasePo {
 
     private static final long serialVersionUID = 1L;
 
     @Id
-    @Column(name = "ID")
+    @Column(name = "id")
     @ColumnMeta(length = "32", nullable = false, comment = "id")
     private String id;
   
     @Convert(converter = EDictCategoryConverter.class)
-    @Column(name = "CATEGORY")
+    @Column(name = "category")
     @ColumnMeta(length = "20", nullable = false, comment = "类型")
     private EDictCategory category;
 
-    @Column(name = "DICT_CODE")
+    @Column(name = "dict_code")
     @ColumnMeta(length = "100", nullable = false, comment = "字典编号")
     private String dictCode;
 
-    @Column(name = "DICT_TEXT")
+    @Column(name = "dict_text")
     @ColumnMeta(length = "100", nullable = false, comment = "字典内容")
     private String dictText;
 
-    @Column(name = "DICT_TEXT_FULL")
+    @Column(name = "dict_text_full")
     @ColumnMeta(length = "200", nullable = false, comment = "字典内容详情")
     private String dictFullText;
 
     @Comment(value = "父节点编号")
-    @Column(name = "PARENT_DICT_CODE")
+    @Column(name = "parent_dict_code")
     @ColumnMeta(length = "100", nullable = false, comment = "父节点编号")
     private String parentDictCode;
 
     @Comment(value = "是否可用")
     @Convert(converter = EFlagTypeConverter.class)
-    @Column(name = "ENABLE_FLG")
+    @Column(name = "enable_flg")
     @ColumnMeta(length = "1", nullable = false, comment = "是否可用,1:是,2:否")
     private EFlagType enableFLag;
 
     @Convert(converter = EFlagTypeConverter.class)
-    @Column(name = "LEAF_FLG")
+    @Column(name = "leaf_flg")
     @ColumnMeta(length = "1", nullable = false, comment = "是否子节点,1:是,2:否")
     private EFlagType leafFlag;
 
     @Comment(value = "")
-    @Column(name = "DICT_ORD")
+    @Column(name = "dict_ord")
     @ColumnMeta(length = "11", nullable = false, comment = "字典顺序")
     private Long dictOrder;
-
-    public String getId() {
-      return id;
-    }
-
-    public void setId(String id) {
-      this.id = id;
-    }
-
-    public EDictCategory getCategory() {
-      return category;
-    }
-
-    public void setCategory(EDictCategory category) {
-      this.category = category;
-    }
-
-    public String getDictCode() {
-      return dictCode;
-    }
-
-    public void setDictCode(String dictCode) {
-      this.dictCode = dictCode;
-    }
-
-    public String getDictText() {
-      return dictText;
-    }
-
-    public void setDictText(String dictText) {
-      this.dictText = dictText;
-    }
-
-    public String getDictFullText() {
-      return dictFullText;
-    }
-
-    public void setDictFullText(String dictFullText) {
-      this.dictFullText = dictFullText;
-    }
-
-    public String getParentDictCode() {
-      return parentDictCode;
-    }
-
-    public void setParentDictCode(String parentDictCode) {
-      this.parentDictCode = parentDictCode;
-    }
-
-    public EFlagType getEnableFLag() {
-      return enableFLag;
-    }
-
-    public void setEnableFLag(EFlagType enableFLag) {
-      this.enableFLag = enableFLag;
-    }
-
-    public EFlagType getLeafFlag() {
-      return leafFlag;
-    }
-
-    public void setLeafFlag(EFlagType leafFlag) {
-      this.leafFlag = leafFlag;
-    }
-
-    public Long getDictOrder() {
-      return dictOrder;
-    }
-
-    public void setDictOrder(Long dictOrder) {
-      this.dictOrder = dictOrder;
-    }
     
 }

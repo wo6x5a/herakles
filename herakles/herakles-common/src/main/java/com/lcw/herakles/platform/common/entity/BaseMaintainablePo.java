@@ -22,17 +22,17 @@ public class BaseMaintainablePo extends BasePo {
 
 	private static final long serialVersionUID = 1L;
 
-	@Column(name = "LAST_MNT_OPID")
+	@Column(name = "last_mnt_opid")
     @ColumnMeta(length = "40", comment = "最后修改人", order = 1002)
 	private String lastMntOpId;
 
 	@Temporal(TemporalType.TIMESTAMP)
-	@Column(name = "LAST_MNT_TS")
+	@Column(name = "last_mnt_ts")
     @ColumnMeta(comment = "最后修改时间", order = 1003)
 	private Date lastMntTs;
 
 	@Version
-	@Column(name = "VERSION_CT")
+	@Column(name = "version_ct")
     @ColumnMeta(comment = "版本号", defaultValue = "0", order = 1004)
 	private Long versionCt;
 

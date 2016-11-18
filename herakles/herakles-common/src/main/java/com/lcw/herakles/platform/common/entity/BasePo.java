@@ -21,12 +21,12 @@ public class BasePo implements Serializable {
 
     private static final long serialVersionUID = 1L;
 
-    @Column(name = "CREATE_OPID", insertable = true, updatable = false)
+    @Column(name = "create_opid", insertable = true, updatable = false)
     @ColumnMeta(length = "40", nullable = false, comment = "创建人", order = 1000)
     private String createOpId;
 
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name = "CREATE_TS", insertable = true, updatable = false)
+    @Column(name = "create_ts", insertable = true, updatable = false)
     @ColumnMeta(nullable = false, comment = "创建时间", order = 1001)
     private Date createTs;
 

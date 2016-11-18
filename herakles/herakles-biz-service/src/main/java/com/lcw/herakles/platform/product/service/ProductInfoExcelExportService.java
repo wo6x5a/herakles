@@ -51,7 +51,7 @@ public class ProductInfoExcelExportService extends AbstractExcelService {
 			// 描述
 			cell = row.createCell(2);
 			cell.setCellType(HSSFCell.CELL_TYPE_STRING);
-			cell.setCellValue(dto.getDescription());
+			cell.setCellValue(dto.getDescr());
 			cell.setCellStyle(style);
 
 			rownum++;

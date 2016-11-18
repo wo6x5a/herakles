@@ -16,69 +16,42 @@ import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 import com.lcw.herakles.platform.product.enums.EProductCagetory;
 import com.lcw.herakles.platform.product.enums.converter.EProductCagetoryConverter;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Class Name: Product Description: TODO
  * 
  * @author chenwulou
  * 
  */
+@Getter
+@Setter
 @Entity
-@Table(name = "PRODUCT")
+@Table(name = "product")
 @EntityListeners(IdInjectionEntityListener.class)
 public class ProductPo extends BaseMaintainablePo {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ID")
+	@Column(name = "id")
     @ColumnMeta(length = "32", nullable = false, comment = "编号")
 	private String id;
 
-	@Column(name = "CATEGORY")
+	@Column(name = "category")
 	@Convert(converter = EProductCagetoryConverter.class)
     @ColumnMeta(length = "3", nullable = false, comment = "类型")
 	private EProductCagetory category;
 
-	@Column(name = "NAME")
+	@Column(name = "name")
     @ColumnMeta(length = "80", nullable = false, comment = "名称")
 	private String name;
 
-	@Column(name = "DESCRIPTION")
+	@Column(name = "descr")
     @ColumnMeta(length = "255", nullable = false, comment = "备注")
-	private String description;
+	private String descr;
 
-	public String getId() {
-		return id;
-	}
-
-	public void setId(String id) {
-		this.id = id;
-	}
-
-	public EProductCagetory getCategory() {
-		return category;
-	}
-
-	public void setCategory(EProductCagetory category) {
-		this.category = category;
-	}
-
-	public String getName() {
-		return name;
-	}
-
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public String getDescription() {
-		return description;
-	}
-
-	public void setDescription(String description) {
-		this.description = description;
-	}
-
-	@Override
+    @Override
 	public boolean equals(Object obj) {
 		if (obj == null) {
 			return false;

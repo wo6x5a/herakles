@@ -15,8 +15,13 @@ import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BaseMaintainablePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
-@Table(name = "SYS_ROLE")
+@Table(name = "sys_role")
 @EntityListeners(IdInjectionEntityListener.class)
 public class RolePo extends BaseMaintainablePo {
 
@@ -26,64 +31,24 @@ public class RolePo extends BaseMaintainablePo {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "ROLE_ID")
+	@Column(name = "role_id")
     @ColumnMeta(length = "32", nullable = false, comment = "角色编号")
 	private String roleId;
 
-	@Column(name = "ROLE_CODE")
+	@Column(name = "role_code")
     @ColumnMeta(length = "20", nullable = false, uniqueKey = "ROLE_CODE", comment = "角色代码")
 	private String roleCode;
 
-	@Column(name = "ROLE_NAME")
+	@Column(name = "role_name")
     @ColumnMeta(length = "60", nullable = false, comment = "角色名称")
 	private String roleName;
 
-	@Column(name = "ROLE_DESC")
+	@Column(name = "role_descr")
     @ColumnMeta(length = "200", comment = "角色备注")
-	private String roleDesc;
+	private String roleDescr;
 
 	@OneToMany
-	@JoinTable(name = "SYS_ROLE_PERM", joinColumns = @JoinColumn(name = "ROLE_ID"), inverseJoinColumns = @JoinColumn(name = "PERM_ID"))
+	@JoinTable(name = "sys_role_perm", joinColumns = @JoinColumn(name = "role_id"), inverseJoinColumns = @JoinColumn(name = "perm_id"))
 	private List<PermPo> permPoList;
-
-	public String getRoleId() {
-		return roleId;
-	}
-
-	public void setRoleId(String roleId) {
-		this.roleId = roleId;
-	}
-
-	public String getRoleCode() {
-		return roleCode;
-	}
-
-	public void setRoleCode(String roleCode) {
-		this.roleCode = roleCode;
-	}
-
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-
-	public String getRoleDesc() {
-		return roleDesc;
-	}
-
-	public void setRoleDesc(String roleDesc) {
-		this.roleDesc = roleDesc;
-	}
-
-	public List<PermPo> getPermPoList() {
-		return permPoList;
-	}
-
-	public void setPermPoList(List<PermPo> permPoList) {
-		this.permPoList = permPoList;
-	}
 
 }

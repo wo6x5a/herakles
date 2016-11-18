@@ -30,8 +30,8 @@ import com.lcw.herakles.platform.common.util.EnumHelper;
 import com.lcw.herakles.platform.common.util.web.WebUtil;
 import com.lcw.herakles.platform.product.dto.ProductDto;
 import com.lcw.herakles.platform.product.dto.req.ProductReqDto;
-import com.lcw.herakles.platform.product.dto.req.ProductSearchDto;
 import com.lcw.herakles.platform.product.dto.req.ProductReqDto.CreateProduct;
+import com.lcw.herakles.platform.product.dto.req.ProductSearchDto;
 import com.lcw.herakles.platform.product.enums.EProductCagetory;
 import com.lcw.herakles.platform.product.service.ProductInfoExcelExportService;
 import com.lcw.herakles.platform.product.service.ProductQueryService;
@@ -59,7 +59,7 @@ public class ProductController extends BaseController {
      * @param model
      * @return
      */
-    @RequiresPermissions("product:view")
+//    @RequiresPermissions("product:view")
     @RequestMapping(value = "view", method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, true));
@@ -130,7 +130,7 @@ public class ProductController extends BaseController {
      * @param model
      * @return
      */
-    // @RequiresPermissions("product:detatil")
+     @RequiresPermissions("product:detatil")
     @RequestMapping(value = "detatil", method = RequestMethod.GET)
     public String detail( @RequestParam(value = "id") String id,
             Model model) {

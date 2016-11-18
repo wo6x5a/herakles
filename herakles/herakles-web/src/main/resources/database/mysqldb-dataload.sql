@@ -1,34 +1,34 @@
 
--- Dumping data for table `sys_user`
-LOCK TABLES `SYS_USER` WRITE;
-INSERT INTO `SYS_USER` VALUES ('admin','admin','admin','admin',1,'123456789',NULL,1,NULL,NULL,NULL,NULL,NULL,'system','2016-05-19 19:28:15.000000',NULL,NULL,0);
-UNLOCK TABLES;
+-- dumping data for table `sys_user`
+lock tables `sys_user` write;
+insert into `sys_user` values ('admin','admin','admin','admin',1,null,'123456789',1,null,null,null,null,null,'system','2016-05-19 19:28:15.000000',null,null,0);
+unlock tables;
 
--- Dumping data for table `sys_perm`
-LOCK TABLES `SYS_PERM` WRITE;
-INSERT INTO `SYS_PERM` VALUES ('1','查看产品列表','product:view',NULL,'system','2016-05-19 19:28:15.000000',NULL,NULL,0);
-UNLOCK TABLES;
+-- dumping data for table `sys_perm`
+lock tables `sys_perm` write;
+insert into `sys_perm` values ('1','查看产品列表','product:view',null,'system','2016-05-19 19:28:15.000000',null,null,0);
+unlock tables;
 
--- Dumping data for table `sys_role`
-LOCK TABLES `SYS_ROLE` WRITE;
-INSERT INTO `SYS_ROLE` VALUES ('admin','10000','admin','admin','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
-UNLOCK TABLES;
+-- dumping data for table `sys_role`
+lock tables `sys_role` write;
+insert into `sys_role` values ('admin','10000','admin','admin','system','2016-05-19 19:28:15.000000',null,null,0);
+unlock tables;
 
--- Dumping data for table `sys_user_role`
-LOCK TABLES `SYS_USER_ROLE` WRITE;
-INSERT INTO `SYS_USER_ROLE` VALUES ('admin','admin','1','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
-UNLOCK TABLES;
+-- dumping data for table `sys_user_role`
+lock tables `sys_user_role` write;
+insert into `sys_user_role` values ('admin','admin','1','system','2016-05-19 19:28:15.000000',null,null,0);
+unlock tables;
 
--- Dumping data for table `sys_role_perm`
-LOCK TABLES `SYS_ROLE_PERM` WRITE;
-INSERT INTO `SYS_ROLE_PERM` VALUES ('admin','1','system','2016-05-19 19:28:15.000000',NULL,NULL,0);
-UNLOCK TABLES;
+-- dumping data for table `sys_role_perm`
+lock tables `sys_role_perm` write;
+insert into `sys_role_perm` values ('admin','1','system','2016-05-19 19:28:15.000000',null,null,0);
+unlock tables;
 
--- Dumping data for table `product`
-LOCK TABLES `PRODUCT` WRITE;
-INSERT INTO `PRODUCT` VALUES ('d7cb687d32c349ccb223c850f49d6d44',1,'dsadas','dasdas','admin','2016-05-19 11:37:43',NULL,'2016-05-19 11:37:42',0),
-							('fbc4e4fa5d5b4f34987a2e62a1e50f54',2,'dsadasd','dasdas','admin','2016-05-19 11:39:31',NULL,'2016-05-19 11:39:31',0);
-UNLOCK TABLES;
+-- dumping data for table `product`
+lock tables `product` write;
+insert into `product` values ('d7cb687d32c349ccb223c850f49d6d44',1,'dsadas','dasdas','admin','2016-05-19 11:37:43',null,'2016-05-19 11:37:42',0),
+							('fbc4e4fa5d5b4f34987a2e62a1e50f54',2,'dsadasd','dasdas','admin','2016-05-19 11:39:31',null,'2016-05-19 11:39:31',0);
+unlock tables;
 
 -- Dumping data for table `gl_dict`
 LOCK TABLES `gl_dict` WRITE;

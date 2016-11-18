@@ -47,6 +47,6 @@ public class BizLogDto extends BaseDto {
     private String oldVaule;
 
     @Comment("备注")
-    private String comment;
+    private String descr;
 
 }

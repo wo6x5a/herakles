@@ -11,6 +11,11 @@ import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 import com.lcw.herakles.platform.common.entity.BasePo;
 import com.lcw.herakles.platform.common.entity.id.IdInjectionEntityListener;
 
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter
+@Setter
 @Entity
 @Table(name = "GL_FILE")
 @EntityListeners(IdInjectionEntityListener.class)
@@ -22,52 +27,20 @@ public class FilePo extends BasePo {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@Column(name = "FILE_ID")
+	@Column(name = "file_id")
     @ColumnMeta(length = "32", nullable = false, comment = "文件Id")
 	private String fileId;
 
-	@Column(name = "FILE_CODE")
+	@Column(name = "file_code")
     @ColumnMeta(length = "32", nullable = false, comment = "文件编码")
 	private String fileCode;
 
-	@Column(name = "FILE_NAME")
+	@Column(name = "file_name")
     @ColumnMeta(length = "255", nullable = false, comment = "文件名")
 	private String fileName;
 
-	@Column(name = "FILE_PATH")
+	@Column(name = "file_path")
     @ColumnMeta(length = "255", nullable = false, comment = "文件路径")
 	private String filePath;
-
-	public String getFileId() {
-		return fileId;
-	}
-
-	public void setFileId(String fileId) {
-		this.fileId = fileId;
-	}
-
-	public String getFileCode() {
-		return fileCode;
-	}
-
-	public void setFileCode(String fileCode) {
-		this.fileCode = fileCode;
-	}
-
-	public String getFileName() {
-		return fileName;
-	}
-
-	public void setFileName(String fileName) {
-		this.fileName = fileName;
-	}
-
-	public String getFilePath() {
-		return filePath;
-	}
-
-	public void setFilePath(String filePath) {
-		this.filePath = filePath;
-	}
 
 }

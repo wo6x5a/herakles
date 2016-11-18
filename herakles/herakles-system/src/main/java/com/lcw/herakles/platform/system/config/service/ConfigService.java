@@ -86,7 +86,7 @@ public class ConfigService extends BaseService {
 			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "此类型参数不允许修改");
 		}
 		cfg.setValue(reqDto.getValue());
-		cfg.setMemo(reqDto.getMemo());
+		cfg.setDescr(reqDto.getDescr());
 		super.setUpdateInfo(cfg);
 		configRepository.save(cfg);
 	}
