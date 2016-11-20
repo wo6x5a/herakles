@@ -71,7 +71,6 @@ public class FtpUtil {
      * @param fileName 文件名
      * @param input
      * @param filePath ftp相对目录
-     * @param ismark 是否图片水印
      */
     private static String upload(String fileName, InputStream input, String filePath) {
         StringBuilder resp = new StringBuilder("");
