@@ -10,13 +10,10 @@ import javax.persistence.Column;
 import com.lcw.herakles.platform.common.enums.DBIntEnum;
 import com.lcw.herakles.platform.common.enums.DBStrEnum;
 
-import lombok.extern.slf4j.Slf4j;
-
 /**
  * @author chenwulou
  *
  */
-@Slf4j
 public abstract class FieldDDL implements DDL {
 
 	protected Field field;
