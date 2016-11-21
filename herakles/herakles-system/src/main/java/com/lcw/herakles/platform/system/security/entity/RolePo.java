@@ -36,7 +36,7 @@ public class RolePo extends BaseMaintainablePo {
 	private String roleId;
 
 	@Column(name = "role_code")
-    @ColumnMeta(length = "20", nullable = false, uniqueKey = "ROLE_CODE", comment = "角色代码")
+    @ColumnMeta(length = "20", nullable = false, uniqueKey = "role_code", comment = "角色代码")
 	private String roleCode;
 
 	@Column(name = "role_name")

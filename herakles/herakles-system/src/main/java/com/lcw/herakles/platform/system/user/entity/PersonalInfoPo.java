@@ -65,7 +65,7 @@ public class PersonalInfoPo extends BaseMaintainablePo {
     private EIdType idType;
 
     @Column(name = "id_no")
-    @ColumnMeta(length = "100", uniqueKey = "ID_NO", comment = "证件号码")
+    @ColumnMeta(length = "100", uniqueKey = "id_no", comment = "证件号码")
     private String idNo;
 
     @Column(name = "id_img_1")

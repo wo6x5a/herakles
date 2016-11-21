@@ -67,9 +67,9 @@ PRIMARY KEY (file_id)
 DROP TABLE IF EXISTS sys_perm;
 CREATE TABLE sys_perm (
 	perm_id varchar(32) NOT NULL COMMENT '功能权限编号',
-	perm_code varchar(32) NOT NULL COMMENT '功能权限代码',
-	perm_name varchar(32) NOT NULL COMMENT '功能权限名称',
-	perm_descr varchar(32) COMMENT '功能权限说明',
+	perm_code varchar(100) NOT NULL COMMENT '功能权限代码',
+	perm_name varchar(100) NOT NULL COMMENT '功能权限名称',
+	perm_descr varchar(100) COMMENT '功能权限说明',
 	create_opid varchar(40) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
 	last_mnt_opid varchar(40) COMMENT '最后修改人',
@@ -100,7 +100,7 @@ CREATE TABLE sys_role (
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (role_id),
-UNIQUE KEY ROLE_CODE (role_code)
+UNIQUE KEY role_code (role_code)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS sys_user_role;
 CREATE TABLE sys_user_role (
@@ -142,7 +142,7 @@ CREATE TABLE sys_prsnl_ext (
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (user_id),
-UNIQUE KEY ID_NO (id_no)
+UNIQUE KEY id_no (id_no)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS sys_user;
 CREATE TABLE sys_user (

@@ -6,7 +6,8 @@ unlock tables;
 
 -- dumping data for table `sys_perm`
 lock tables `sys_perm` write;
-insert into `sys_perm` values ('1','查看产品列表','product:view',null,'system','2016-05-19 19:28:15.000000',null,null,0);
+insert into `sys_perm` values ('1','product:view','查看产品列表',null,'system','2016-05-19 19:28:15.000000',null,null,0);
+insert into `sys_perm` values ('1','product:detatil','查看产品详情',null,'system','2016-05-19 19:28:15.000000',null,null,0);
 unlock tables;
 
 -- dumping data for table `sys_role`
