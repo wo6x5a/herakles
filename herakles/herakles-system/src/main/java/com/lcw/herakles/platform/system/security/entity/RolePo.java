@@ -32,15 +32,15 @@ public class RolePo extends BaseMaintainablePo {
 
 	@Id
 	@Column(name = "role_id")
-    @ColumnMeta(length = "32", nullable = false, comment = "角色编号")
+    @ColumnMeta(length = "100", nullable = false, comment = "角色编号")
 	private String roleId;
 
 	@Column(name = "role_code")
-    @ColumnMeta(length = "20", nullable = false, uniqueKey = "role_code", comment = "角色代码")
+    @ColumnMeta(length = "100", nullable = false, uniqueKey = "role_code", comment = "角色代码")
 	private String roleCode;
 
 	@Column(name = "role_name")
-    @ColumnMeta(length = "60", nullable = false, comment = "角色名称")
+    @ColumnMeta(length = "100", nullable = false, comment = "角色名称")
 	private String roleName;
 
 	@Column(name = "role_descr")

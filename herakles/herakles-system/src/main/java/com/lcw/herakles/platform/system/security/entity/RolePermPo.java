@@ -30,12 +30,12 @@ public class RolePermPo extends BaseMaintainablePo {
 
     @Id
     @Column(name = "role_id")
-    @ColumnMeta(length = "32", nullable = false, comment = "角色ID")
+    @ColumnMeta(length = "100", nullable = false, comment = "角色ID")
     private String roleId;
 
     @Id
     @Column(name = "perm_id")
-    @ColumnMeta(length = "32", nullable = false, comment = "权限ID")
+    @ColumnMeta(length = "100", nullable = false, comment = "权限ID")
     private String permId;
 
     @OneToOne(fetch = FetchType.EAGER, optional = false)

@@ -27,7 +27,7 @@ public class PermPo extends BaseMaintainablePo {
 
 	@Id
 	@Column(name = "perm_id")
-    @ColumnMeta(length = "32", nullable = false, comment = "功能权限编号")
+    @ColumnMeta(length = "100", nullable = false, comment = "功能权限编号")
 	private String permId;
 
 	@Column(name = "perm_code")

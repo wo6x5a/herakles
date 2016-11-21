@@ -40,7 +40,7 @@ public class UserRolePo extends BaseMaintainablePo {
 
     @Id
     @Column(name = "role_id")
-    @ColumnMeta(length = "32", nullable = false, comment = "角色编号")
+    @ColumnMeta(length = "100", nullable = false, comment = "角色编号")
     private String roleId;
 
     @Convert(converter = ERoleStatusEnumConverter.class)
