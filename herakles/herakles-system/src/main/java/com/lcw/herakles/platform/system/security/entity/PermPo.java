@@ -31,15 +31,15 @@ public class PermPo extends BaseMaintainablePo {
 	private String permId;
 
 	@Column(name = "perm_code")
-    @ColumnMeta(length = "32", nullable = false, comment = "功能权限代码")
+    @ColumnMeta(length = "100", nullable = false, comment = "功能权限代码")
 	private String permCode;
 
 	@Column(name = "perm_name")
-    @ColumnMeta(length = "32", nullable = false, comment = "功能权限名称")
+    @ColumnMeta(length = "100", nullable = false, comment = "功能权限名称")
 	private String permName;
 
 	@Column(name = "perm_descr")
-    @ColumnMeta(length = "32", comment = "功能权限说明")
+    @ColumnMeta(length = "100", comment = "功能权限说明")
 	private String permDescr;
 
 }
