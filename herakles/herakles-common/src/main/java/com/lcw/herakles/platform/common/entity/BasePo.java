@@ -22,7 +22,7 @@ public class BasePo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     @Column(name = "create_opid", insertable = true, updatable = false)
-    @ColumnMeta(length = "40", nullable = false, comment = "创建人", order = 1000)
+    @ColumnMeta(length = "32", nullable = false, comment = "创建人", order = 1000)
     private String createOpId;
 
     @Temporal(TemporalType.TIMESTAMP)
