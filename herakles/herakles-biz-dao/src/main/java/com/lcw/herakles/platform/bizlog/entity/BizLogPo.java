@@ -19,7 +19,9 @@ import lombok.Setter;
 
 
 /**
- * @author 系统业务日志
+ * 系统业务日志
+ * 
+ * @author chenwulou
  *
  */
 @Getter
