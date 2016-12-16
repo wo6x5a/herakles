@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.bizlog.service;
 
-import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.List;
 import java.util.Map;
@@ -20,6 +19,7 @@ import org.springframework.data.jpa.domain.Specification;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.google.common.base.Function;
 import com.google.common.collect.Maps;
@@ -218,14 +218,14 @@ public class BizLogService extends BaseService{
         return oldValueText;
     }
 
-	private String convertMap2String(Map<String, String> value) {
-		String result = null;
-		ObjectMapper objectMapper = new ObjectMapper();
-		try {
-			result = objectMapper.writeValueAsString(value);
-		} catch (IOException e) {
+    private String convertMap2String(Map<String, String> value) {
+        String result = null;
+        ObjectMapper objectMapper = new ObjectMapper();
+        try {
+            result = objectMapper.writeValueAsString(value);
+        } catch (JsonProcessingException e) {
             log.error("LogService.convertMap2String error:", e);
         }
-		return result;
-	}
+        return result;
+    }
 }
