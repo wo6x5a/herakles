@@ -118,7 +118,13 @@ public class BizLogService extends BaseService{
                 Object newValue = field.get(newObject);
                 if (notEqual(oldValue, newValue)) {
                     ColumnMeta columnMeta = AnnotationUtils.getAnnotation(field, ColumnMeta.class);
-                    String columnText = columnMeta.comment();
+
+                    StringBuilder columnText = new StringBuilder();
+                    columnText.append(field.getName());
+                    columnText.append("(");
+                    columnText.append(columnMeta.comment());
+                    columnText.append(")");
+
                     String oldValueText = null;
                     String newValueText = null;
                     if (DBIntEnum.class.isAssignableFrom(field.getType())
@@ -129,8 +135,8 @@ public class BizLogService extends BaseService{
                         oldValueText = oldValue == null ? null : oldValue.toString();
                         newValueText = newValue == null ? null : newValue.toString();
                     }
-                    oldValueMap.put(columnText, oldValueText);
-                    newValueMap.put(columnText, newValueText);
+                    oldValueMap.put(columnText.toString(), oldValueText);
+                    newValueMap.put(columnText.toString(), newValueText);
                 }
             } catch (Exception e) {
                 log.error("error while getting property", e);
