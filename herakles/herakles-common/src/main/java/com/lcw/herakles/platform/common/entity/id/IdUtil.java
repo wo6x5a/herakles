@@ -10,13 +10,14 @@ import org.apache.commons.lang3.StringUtils;
  */
 public final class IdUtil {
 
-	  /**
-	   * generate uuid String
-	   * 
-	   * @return
-	   */
-	  public static String produce() {
-	    String uuid = UUID.randomUUID().toString();
-	    return StringUtils.replace(uuid, "-", "");
-	  }
+    /**
+     * generate uuid String
+     * 
+     * @return
+     */
+    public static String produce() {
+        String uuid = UUID.randomUUID().toString();
+        return StringUtils.replace(uuid, "-", "");
+    }
+
 }

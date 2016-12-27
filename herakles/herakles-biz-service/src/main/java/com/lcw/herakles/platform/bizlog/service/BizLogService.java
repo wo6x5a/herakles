@@ -216,9 +216,9 @@ public class BizLogService extends BaseService{
     private String getEnumText(Object oldValue, String oldValueText) {
         if (null != oldValue) {
             try {
-                oldValueText = ((DBIntEnum) oldValue).getText();
-            } catch (Exception e) {
                 oldValueText = ((DBStrEnum) oldValue).getText();
+            } catch (ClassCastException e) {
+                oldValueText = ((DBIntEnum) oldValue).getText();
             }
         }
         return oldValueText;
