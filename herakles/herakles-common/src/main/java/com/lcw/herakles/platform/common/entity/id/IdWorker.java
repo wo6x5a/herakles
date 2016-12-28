@@ -85,11 +85,16 @@ public class IdWorker {
     }
 
     public static void main(String[] args) throws Exception {
-        System.out.println(timeGen());
+//        System.out.println(timeGen());
 
         IdWorker idWorker = IdWorker.getFlowIdWorkerInstance();
-        // System.out.println(Long.toBinaryString(idWorker.nextId()));
-        System.out.println(idWorker.nextId());
-        System.out.println(idWorker.nextId());
+        long start = System.currentTimeMillis();
+        for(int i=0;i<10000000;i++){
+           idWorker.nextId();
+        }
+        System.out.println(System.currentTimeMillis()-start);
+//        System.out.println(Long.toBinaryString(idWorker.nextId()));
+//        System.out.println(idWorker.nextId());
+//        System.out.println(idWorker.nextId());
     }
 }
