@@ -111,12 +111,18 @@ public class IdWorker {
 
         @Override
         public void run() {
-            while (true) {
-                long id = idWorker.nextId();
-                if (!set.add(id)) {
-                    System.out.println("duplicate:" + id);
-                }
+            int i = 0;
+            long start = System.currentTimeMillis();
+            while(i<=1000){
+                idWorker.nextId();
             }
+            System.out.println(System.currentTimeMillis()-start);
+//            while (true) {
+//                long id = idWorker.nextId();
+//                if (!set.add(id)) {
+//                    System.out.println("duplicate:" + id);
+//                }
+//            }
         }
     }
 
