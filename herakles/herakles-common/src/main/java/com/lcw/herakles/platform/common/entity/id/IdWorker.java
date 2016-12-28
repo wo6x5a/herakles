@@ -1,75 +1,92 @@
 package com.lcw.herakles.platform.common.entity.id;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * tweeter的snowflake 移植到Java:
- *   (a) id构成: 42位的时间前缀 + 10位的节点标识 + 12位的sequence避免并发的数字(12位不够用时强制得到新的时间前缀)
- *       注意这里进行了小改动: snowkflake是5位的datacenter加5位的机器id; 这里变成使用10位的机器id
- *   (b) 对系统时间的依赖性非常强，需关闭ntp的时间同步功能。当检测到ntp时间调整后，将会拒绝分配id
+ * tweeter的snowflake 移植到Java: (a) id构成: 42位的时间前缀 + 10位的节点标识 + 12位的sequence避免并发的数字(12位不够用时强制得到新的时间前缀)
+ * 对系统时间的依赖性非常强，需关闭ntp的时间同步功能。当检测到ntp时间调整后，将会拒绝分配id
+ * 
  * @author chenwulou
  *
  */
 @Slf4j
 public class IdWorker {
-    private final long workerId;
-    private final long epoch = 1403854494756L; // 时间起始标记点，作为基准，一般取系统的最近时间
-    private final long workerIdBits = 10L; // 机器标识位数
-    private final long maxWorkerId = -1L ^ -1L << this.workerIdBits;// 机器ID最大值: 1023
-    private long sequence = 0L; // 0，并发控制
-    private final long sequenceBits = 12L; // 毫秒内自增位
+    // 机器id
+    private long workerId;
+    // 数据中心id
+    private long datacenterId;
+    // 0，并发控制
+    private long sequence = 0L;
+    // 时间起始标记点，作为基准，一般取系统的最近时间
+    private long twepoch = 1288834974657L;
+    // 机器标识位数
+    private long workerIdBits = 5L;
+    // 数据中心标识位数
+    private long datacenterIdBits = 5L;
+    // 机器ID最大值: 1023
+    private long maxWorkerId = -1L ^ (-1L << workerIdBits);
+    // 数据中心ID最大值: 1023
+    private long maxDatacenterId = -1L ^ (-1L << datacenterIdBits);
+    // 毫秒内自增位
+    private long sequenceBits = 12L;
+    // 12
+    private long workerIdShift = sequenceBits;
+    // 17
+    private long datacenterIdShift = sequenceBits + workerIdBits;
+    // 22
+    private long timestampLeftShift = sequenceBits + workerIdBits + datacenterIdBits;
+    // 4095,111111111111,12位
+    private long sequenceMask = -1L ^ (-1L << sequenceBits);
 
-    private final long workerIdShift = this.sequenceBits; // 12
-    private final long timestampLeftShift = this.sequenceBits + this.workerIdBits;// 22
-    private final long sequenceMask = -1L ^ -1L << this.sequenceBits; // 4095,111111111111,12位
     private long lastTimestamp = -1L;
 
-    private IdWorker(long workerId) {
-        if (workerId > this.maxWorkerId || workerId < 0) {
+    public IdWorker(long workerId, long datacenterId) {
+        // sanity check for workerId
+        if (workerId > maxWorkerId || workerId < 0) {
             throw new IllegalArgumentException(String
-                    .format("worker Id can't be greater than %d or less than 0", this.maxWorkerId));
+                    .format("worker Id can't be greater than %d or less than 0", maxWorkerId));
+        }
+        if (datacenterId > maxDatacenterId || datacenterId < 0) {
+            throw new IllegalArgumentException(String.format(
+                    "datacenter Id can't be greater than %d or less than 0", maxDatacenterId));
         }
         this.workerId = workerId;
+        this.datacenterId = datacenterId;
+        log.info(String.format(
+                "worker starting. timestamp left shift %d, datacenter id bits %d, worker id bits %d, sequence bits %d, workerid %d",
+                timestampLeftShift, datacenterIdBits, workerIdBits, sequenceBits, workerId));
     }
 
     public synchronized long nextId() {
         long timestamp = timeGen();
-        if (this.lastTimestamp == timestamp) { // 如果上一个timestamp与新产生的相等，则sequence加一(0-4095循环);
-                                               // 对新的timestamp，sequence从0开始
-            this.sequence = this.sequence + 1 & this.sequenceMask;
-            if (this.sequence == 0) {
-                timestamp = this.tilNextMillis(this.lastTimestamp);// 重新生成timestamp
+
+        if (timestamp < lastTimestamp) {
+            log.error(String.format("clock is moving backwards.  Rejecting requests until %d.",
+                    lastTimestamp));
+            throw new RuntimeException(String.format(
+                    "Clock moved backwards.  Refusing to generate id for %d milliseconds",
+                    lastTimestamp - timestamp));
+        }
+
+        if (lastTimestamp == timestamp) {
+            sequence = (sequence + 1) & sequenceMask;
+            if (sequence == 0) {
+                timestamp = tilNextMillis(lastTimestamp);
             }
         } else {
-            this.sequence = 0;
+            sequence = 0L;
         }
 
-        if (timestamp < this.lastTimestamp) {
-            log.error(String.format(
-                    "clock moved backwards.Refusing to generate id for %d milliseconds",
-                    (this.lastTimestamp - timestamp)));
-            throw new RuntimeException(String.format(
-                    "clock moved backwards.Refusing to generate id for %d milliseconds",
-                    (this.lastTimestamp - timestamp)));
-        }
+        lastTimestamp = timestamp;
 
-        this.lastTimestamp = timestamp;
-        return timestamp - this.epoch << this.timestampLeftShift
-                | this.workerId << this.workerIdShift | this.sequence;
+        return ((timestamp - twepoch) << timestampLeftShift) | (datacenterId << datacenterIdShift)
+                | (workerId << workerIdShift) | sequence;
     }
 
-    private static IdWorker flowIdWorker = new IdWorker(1);
-
-    public static IdWorker getFlowIdWorkerInstance() {
-        return flowIdWorker;
-    }
-
-
-
-    /**
-     * 等待下一个毫秒的到来, 保证返回的毫秒数在参数lastTimestamp之后
-     */
-    private long tilNextMillis(long lastTimestamp) {
+    protected long tilNextMillis(long lastTimestamp) {
         long timestamp = timeGen();
         while (timestamp <= lastTimestamp) {
             timestamp = timeGen();
@@ -77,24 +94,47 @@ public class IdWorker {
         return timestamp;
     }
 
-    /**
-     * 获得系统当前毫秒数
-     */
-    private static long timeGen() {
+    protected long timeGen() {
         return System.currentTimeMillis();
     }
 
-    public static void main(String[] args) throws Exception {
-//        System.out.println(timeGen());
 
-        IdWorker idWorker = IdWorker.getFlowIdWorkerInstance();
-        long start = System.currentTimeMillis();
-        for(int i=0;i<10000000;i++){
-           idWorker.nextId();
+    // test
+    static class IdWorkThread implements Runnable {
+        private Set<Long> set;
+        private IdWorker idWorker;
+
+        public IdWorkThread(Set<Long> set, IdWorker idWorker) {
+            this.set = set;
+            this.idWorker = idWorker;
         }
-        System.out.println(System.currentTimeMillis()-start);
-//        System.out.println(Long.toBinaryString(idWorker.nextId()));
-//        System.out.println(idWorker.nextId());
-//        System.out.println(idWorker.nextId());
+
+        @Override
+        public void run() {
+            while (true) {
+                long id = idWorker.nextId();
+                if (!set.add(id)) {
+                    System.out.println("duplicate:" + id);
+                }
+            }
+        }
     }
+
+    public static void main(String[] args) {
+        Set<Long> set = new HashSet<Long>();
+        final IdWorker idWorker1 = new IdWorker(0, 0);
+        final IdWorker idWorker2 = new IdWorker(1, 0);
+        Thread t1 = new Thread(new IdWorkThread(set, idWorker1));
+        Thread t2 = new Thread(new IdWorkThread(set, idWorker2));
+        t1.setDaemon(true);
+        t2.setDaemon(true);
+        t1.start();
+        t2.start();
+        try {
+            Thread.sleep(30000);
+        } catch (InterruptedException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
