@@ -6,8 +6,7 @@ import java.util.Set;
 import lombok.extern.slf4j.Slf4j;
 
 /**
- * tweeter的snowflake 移植到Java: (a) id构成: 42位的时间前缀 + 10位的节点标识 + 12位的sequence避免并发的数字(12位不够用时强制得到新的时间前缀)
- * 对系统时间的依赖性非常强，需关闭ntp的时间同步功能。当检测到ntp时间调整后，将会拒绝分配id
+ * tweeter的snowflake 移植到Java
  * 
  * @author chenwulou
  *
