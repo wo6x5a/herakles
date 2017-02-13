@@ -45,8 +45,8 @@ import lombok.extern.slf4j.Slf4j;
  * @author chenwulou
  *
  */
-@Service
 @Slf4j
+@Service
 public class BizLogService extends BaseService{
 
 	@Autowired
