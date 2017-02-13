@@ -54,7 +54,7 @@ public class ProductQueryService {
 						expressions.add(cb.or(
 								cb.like(cb.lower(root.<String> get("name")),
 										"%" + keyWord.toLowerCase()),
-								cb.like(cb.lower(root.<String> get("description")),
+								cb.like(cb.lower(root.<String> get("descr")),
 										"%" + keyWord.toLowerCase())));
 					}
 					if (null != searchDto.getCategory() && EProductCagetory.ALL != searchDto.getCategory()) {

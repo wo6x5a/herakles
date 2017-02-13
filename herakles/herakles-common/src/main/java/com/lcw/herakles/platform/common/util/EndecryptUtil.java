@@ -176,10 +176,15 @@ public class EndecryptUtil {
         // String aes_mingwen = new String(
         // aesCipherService.decrypt(Hex.decode(aes_cipherText), key.getEncoded()).getBytes());
         // System.out.println(aes_cipherText + " aes解密的明文是：" + aes_mingwen);
-         System.out.println(encryptAes("jdbc:mysql://172.16.31.75:3306/herakles", "HdiDnPCCXLjija+1lQkSnw=="));
-         System.out.println(decryptAes(
-         "949a88e84577cdb3299d15846a02ecf7b63644186747848e96ef1885406abc00444da42b77676a6df786c6c0a3579eb4835e2ac184eb361ecd725cbc1171f3f5", "HdiDnPCCXLjija+1lQkSnw=="
-         ));
+        System.out.println("mysql");
+        System.out.println(encryptAes("jdbc:mysql://172.16.33.119:3306/herakles", "HdiDnPCCXLjija+1lQkSnw=="));
+        System.out.println(decryptAes("949a88e84577cdb3299d15846a02ecf7b63644186747848e96ef1885406abc00444da42b77676a6df786c6c0a3579eb4835e2ac184eb361ecd725cbc1171f3f5", "HdiDnPCCXLjija+1lQkSnw=="));
+        System.out.println("email");
+        System.out.println(encryptAes("jdbc:mysql://172.16.33.119:3306/herakles", "IHqLKGEYHRxLPCTbCtZfbA=="));
+        System.out.println(decryptAes("349ba8875c9bac8a20878a95a49d1660c65e56c1042895d04d8cec1a9d3ed0f4", "IHqLKGEYHRxLPCTbCtZfbA=="));
+        System.out.println("ftp");
+        System.out.println(encryptAes("jdbc:mysql://172.16.33.119:3306/herakles", "5QSC8vwvBi7ohPkukgT0Bw=="));
+        System.out.println(decryptAes("55018df7becd30b31ccea6867dcf886c2ec8eac7e12cb97b907fcda91afaa91e", "5QSC8vwvBi7ohPkukgT0Bw=="));
 //        System.out.println(generateKey());
     }
 }
