@@ -20,6 +20,7 @@
 		<property name="filterChainDefinitions">
 			<value>
 				/web/system/file/template/**=anon
+				/web/test/**=anon
 				/druid/**=anon
 				/monitoring/**=anon
 				/assets/**=anon
