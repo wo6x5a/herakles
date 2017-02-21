@@ -4,13 +4,12 @@
 		<div class="main-wrapper">
 	  		<div class="main">
 	  			<form id="product-form" role="form" method="POST" action="$link.contextPath/web/test/count24">
-					<label class="control-label col-md-3" for="name">Name</label>
-					<div class="input-group col-md-9 form-item has-feedback">
+					<label class="control-label col-md-4">4个数字(用","隔开)</label>
+					<div class="input-group col-md-5 form-item has-feedback">
 						<input type="text" class="form-control" id="number" name="number"/>
 					</div>
 					<div class="form-btn-wrapper has-feedback">
-						<button type="submit" class="btn btn-primary" id="save-btn">Save</button>
-						<button type="button" class="btn" id="cancel-btn">Cancel</button>
+						<button type="submit" class="btn btn-primary" id="save-btn">计算</button>
                     </div>
 				</form>
 			</div>
