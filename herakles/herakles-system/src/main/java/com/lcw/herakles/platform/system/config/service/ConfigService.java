@@ -10,6 +10,7 @@ import javax.persistence.criteria.Root;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.data.domain.Page;
@@ -19,6 +20,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.google.common.base.Function;
+import com.lcw.herakles.platform.common.cache.util.CacheUtil;
 import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.dto.datatable.DataTablesResponseDto;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
@@ -43,57 +45,66 @@ import com.lcw.herakles.platform.system.config.repository.ConfigRepository;
 @Service
 public class ConfigService extends BaseService {
 
-	@Autowired
-	private ConfigRepository configRepository;
+    @Autowired
+    private ConfigRepository configRepository;
 
-	@Transactional(readOnly = true)
-    public DataTablesResponseDto<ConfigDto> search(final CfgSearchDto searchDto, final List<ECfgType> cfgTypeList) {
-		Specification<ConfigPo> spec = new Specification<ConfigPo>() {
-			@Override
-			public Predicate toPredicate(Root<ConfigPo> root, CriteriaQuery<?> query, CriteriaBuilder cb) {
-				Predicate predicate = cb.conjunction();
-				List<Expression<Boolean>> expressions = predicate.getExpressions();
-				expressions.add(root.<ECfgType> get("type").in(cfgTypeList));
-				String keyWord = StringUtils.deleteWhitespace(searchDto.getKeyword());
-				if (StringUtils.isNotBlank(keyWord)) {
-					expressions.add(cb.like(root.<String> get("memo"), "%" + keyWord + "%"));
-				}
-				return predicate;
-			}
-		};
-		Pageable pageable = PaginationUtil.buildPageable(searchDto, "lastMntTs");
-		Page<ConfigPo> configPos = configRepository.findAll(spec, pageable);
-		DataTablesResponseDto<ConfigDto> result = PaginationUtil.populateFromPage(configPos,
-				new Function<ConfigPo, ConfigDto>() {
-					@Override
-					public ConfigDto apply(ConfigPo po) {
-						ConfigDto dto = ConverterService.convert(po, ConfigDto.class);
-						dto.setKey(EnumHelper.translate(EConfig.class, po.getKey()));
-						return dto;
-					}
-				}, searchDto.getEcho());
-		return result;
-	}
+    @Transactional(readOnly = true)
+    public DataTablesResponseDto<ConfigDto> search(final CfgSearchDto searchDto,
+            final List<ECfgType> cfgTypeList) {
+        Specification<ConfigPo> spec = new Specification<ConfigPo>() {
+            @Override
+            public Predicate toPredicate(Root<ConfigPo> root, CriteriaQuery<?> query,
+                    CriteriaBuilder cb) {
+                Predicate predicate = cb.conjunction();
+                List<Expression<Boolean>> expressions = predicate.getExpressions();
+                expressions.add(root.<ECfgType>get("type").in(cfgTypeList));
+                String keyWord = StringUtils.deleteWhitespace(searchDto.getKeyword());
+                if (StringUtils.isNotBlank(keyWord)) {
+                    expressions.add(cb.like(root.<String>get("memo"), "%" + keyWord + "%"));
+                }
+                return predicate;
+            }
+        };
+        Pageable pageable = PaginationUtil.buildPageable(searchDto, "lastMntTs");
+        Page<ConfigPo> configPos = configRepository.findAll(spec, pageable);
+        DataTablesResponseDto<ConfigDto> result =
+                PaginationUtil.populateFromPage(configPos, new Function<ConfigPo, ConfigDto>() {
+                    @Override
+                    public ConfigDto apply(ConfigPo po) {
+                        ConfigDto dto = ConverterService.convert(po, ConfigDto.class);
+                        dto.setKey(EnumHelper.translate(EConfig.class, po.getKey()));
+                        return dto;
+                    }
+                }, searchDto.getEcho());
+        return result;
+    }
 
-	@CachePut(value = "CONFIG_CACHE", key = "'CONFIG_' + #reqDto.key")
-	@Transactional
-	public void modify(CfgModReqDto reqDto) {
-		ConfigPo cfg = configRepository.findOne(reqDto.getKey());
-		if (cfg == null) {
-			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "参数不存在");
-		}
-		if (cfg.getType() != ECfgType.BIZ) {
-			ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "此类型参数不允许修改");
-		}
-		cfg.setValue(reqDto.getValue());
-		cfg.setDescr(reqDto.getDescr());
-		super.setUpdateInfo(cfg);
-		configRepository.save(cfg);
-	}
+    @CachePut(value = CacheUtil.CACHE_CONFIG, key = "'CONFIG_' + #reqDto.key")
+    @Transactional
+    public void modify(CfgModReqDto reqDto) {
+        ConfigPo cfg = configRepository.findOne(reqDto.getKey());
+        if (cfg == null) {
+            ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "参数不存在");
+        }
+        if (cfg.getType() != ECfgType.BIZ) {
+            ErrorUtil.throwBizException(EErrorCode.COMM_ERROR_HINTS, "此类型参数不允许修改");
+        }
+        cfg.setValue(reqDto.getValue());
+        cfg.setDescr(reqDto.getDescr());
+        super.setUpdateInfo(cfg);
+        configRepository.save(cfg);
+    }
 
-	@Cacheable(value = "CONFIG_CACHE", key = "'CONFIG_' + #key")
-	@Transactional(readOnly = true)
-	public ConfigDto findByKey(String key){
-	    return ConverterService.convert(configRepository.findOne(key), ConfigDto.class) ;
-	}
+    @Cacheable(value = CacheUtil.CACHE_CONFIG, key = "'CONFIG_' + #key")
+    @Transactional(readOnly = true)
+    public ConfigDto findByKey(String key) {
+        return ConverterService.convert(configRepository.findOne(key), ConfigDto.class);
+    }
+
+    /**
+     * 清空CONFIG_CACHE所有缓存
+     */
+    @CacheEvict(value = CacheUtil.CACHE_CONFIG, allEntries = true)
+    public void refresh() {}
+
 }
