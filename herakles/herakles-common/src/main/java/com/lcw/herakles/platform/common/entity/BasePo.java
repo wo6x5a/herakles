@@ -10,12 +10,17 @@ import javax.persistence.TemporalType;
 
 import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Base Po
  * 
  * @author chenwulou
  *
  */
+@Getter
+@Setter
 @MappedSuperclass
 public class BasePo implements Serializable {
 
@@ -29,21 +34,5 @@ public class BasePo implements Serializable {
     @Column(name = "create_ts", insertable = true, updatable = false)
     @ColumnMeta(nullable = false, comment = "创建时间", order = 1001)
     private Date createTs;
-
-    public String getCreateOpId() {
-        return createOpId;
-    }
-
-    public void setCreateOpId(String createOpId) {
-        this.createOpId = createOpId;
-    }
-
-    public Date getCreateTs() {
-        return createTs;
-    }
-
-    public void setCreateTs(Date createTs) {
-        this.createTs = createTs;
-    }
 
 }

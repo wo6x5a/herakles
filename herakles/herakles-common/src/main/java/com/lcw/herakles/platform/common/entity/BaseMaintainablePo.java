@@ -11,12 +11,17 @@ import javax.persistence.Version;
 
 import com.lcw.herakles.platform.common.ddl.annotation.ColumnMeta;
 
+import lombok.Getter;
+import lombok.Setter;
+
 /**
  * Base Maintainable Po
  * 
  * @author chenwulou
  *
  */
+@Getter
+@Setter
 @MappedSuperclass
 public class BaseMaintainablePo extends BasePo {
 
@@ -35,28 +40,4 @@ public class BaseMaintainablePo extends BasePo {
 	@Column(name = "version_ct")
     @ColumnMeta(comment = "版本号", defaultValue = "0", order = 1004)
 	private Long versionCt;
-
-	public String getLastMntOpId() {
-		return lastMntOpId;
-	}
-
-	public void setLastMntOpId(String lastMntOpId) {
-		this.lastMntOpId = lastMntOpId;
-	}
-
-	public Date getLastMntTs() {
-		return lastMntTs;
-	}
-
-	public void setLastMntTs(Date lastMntTs) {
-		this.lastMntTs = lastMntTs;
-	}
-
-	public Long getVersionCt() {
-		return versionCt;
-	}
-
-	public void setVersionCt(Long versionCt) {
-		this.versionCt = versionCt;
-	}
 }

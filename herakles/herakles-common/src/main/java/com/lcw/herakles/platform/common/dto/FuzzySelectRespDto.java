@@ -27,7 +27,7 @@ public class FuzzySelectRespDto implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = 7985714345219136208L;
+    private static final long serialVersionUID = 1L;
 
     @Comment(value = "select value 对应 key(一般为po的id)")
     private String key;

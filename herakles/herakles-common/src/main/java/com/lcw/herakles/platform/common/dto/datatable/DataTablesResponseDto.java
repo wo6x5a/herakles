@@ -25,7 +25,7 @@ public class DataTablesResponseDto<T> implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = 6439396705402156711L;
+    private static final long serialVersionUID = 1L;
 
     @Comment(value = "总记录数")
     @JsonProperty(value = "iTotalRecords")

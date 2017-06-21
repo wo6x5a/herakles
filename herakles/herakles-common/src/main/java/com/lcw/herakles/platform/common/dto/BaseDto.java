@@ -20,7 +20,7 @@ public class BaseDto implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = -6154620592225700161L;
+    private static final long serialVersionUID = 1L;
 
     @Comment(value = "创建人编号")
     private String createOpId;
