@@ -9,7 +9,7 @@ CREATE TABLE sys_biz_log (
 	new_value text COMMENT '新数据',
 	old_value text COMMENT '旧数据',
 	descr varchar(200) COMMENT '备注',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
 PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -19,9 +19,9 @@ CREATE TABLE product (
 	category int(3) NOT NULL COMMENT '类型',
 	name varchar(80) NOT NULL COMMENT '名称',
 	descr varchar(255) NOT NULL COMMENT '备注',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (id)
@@ -32,9 +32,9 @@ CREATE TABLE gl_config (
 	cfg_value varchar(40) NOT NULL COMMENT '参数值',
 	cfg_type int(1) NOT NULL COMMENT '参数类型',
 	descr varchar(100) NOT NULL COMMENT '参数备注',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (cfg_key)
@@ -50,7 +50,7 @@ CREATE TABLE gl_dict (
 	enable_flg int(1) NOT NULL COMMENT '是否可用,1:是,2:否',
 	leaf_flg int(1) NOT NULL COMMENT '是否子节点,1:是,2:否',
 	dict_ord decimal(17,0) NOT NULL COMMENT '字典顺序',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
 PRIMARY KEY (id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -60,43 +60,43 @@ CREATE TABLE GL_FILE (
 	file_code varchar(32) NOT NULL COMMENT '文件编码',
 	file_name varchar(255) NOT NULL COMMENT '文件名',
 	file_path varchar(255) NOT NULL COMMENT '文件路径',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
 PRIMARY KEY (file_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS sys_perm;
 CREATE TABLE sys_perm (
-	perm_id varchar(32) NOT NULL COMMENT '功能权限编号',
+	perm_id varchar(100) NOT NULL COMMENT '功能权限编号',
 	perm_code varchar(100) NOT NULL COMMENT '功能权限代码',
 	perm_name varchar(100) NOT NULL COMMENT '功能权限名称',
 	perm_descr varchar(100) COMMENT '功能权限说明',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (perm_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS SYS_ROLE_PERM;
 CREATE TABLE SYS_ROLE_PERM (
-	role_id varchar(32) NOT NULL COMMENT '角色ID',
-	perm_id varchar(32) NOT NULL COMMENT '权限ID',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	role_id varchar(100) NOT NULL COMMENT '角色ID',
+	perm_id varchar(100) NOT NULL COMMENT '权限ID',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (role_id,perm_id)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 DROP TABLE IF EXISTS sys_role;
 CREATE TABLE sys_role (
-	role_id varchar(32) NOT NULL COMMENT '角色编号',
-	role_code varchar(20) NOT NULL COMMENT '角色代码',
-	role_name varchar(60) NOT NULL COMMENT '角色名称',
+	role_id varchar(100) NOT NULL COMMENT '角色编号',
+	role_code varchar(100) NOT NULL COMMENT '角色代码',
+	role_name varchar(100) NOT NULL COMMENT '角色名称',
 	role_descr varchar(200) COMMENT '角色备注',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (role_id),
@@ -105,11 +105,11 @@ UNIQUE KEY role_code (role_code)
 DROP TABLE IF EXISTS sys_user_role;
 CREATE TABLE sys_user_role (
 	user_id varchar(32) NOT NULL COMMENT '用户编号',
-	role_id varchar(32) NOT NULL COMMENT '角色编号',
+	role_id varchar(100) NOT NULL COMMENT '角色编号',
 	status varchar(1) NOT NULL DEFAULT '1' COMMENT '0-待生效, 1-已生效，默认1-已生效',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (user_id,role_id)
@@ -136,9 +136,9 @@ CREATE TABLE sys_prsnl_ext (
 	zip_code varchar(20) COMMENT '邮政编码',
 	addr varchar(200) COMMENT '联系地址',
 	work_unit varchar(100) COMMENT '工作单位',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (user_id),
@@ -159,9 +159,9 @@ CREATE TABLE sys_user (
 	last_login_ts datetime(6) COMMENT '最后登录时间',
 	login_fail_ct decimal(17,0) COMMENT '登录失败次数',
 	last_login_fail_ts datetime(6) COMMENT '最后登陆失败时间',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (user_id)
@@ -174,9 +174,9 @@ CREATE TABLE sys_user_ver_jnl (
 	mobile varchar(20) NOT NULL COMMENT '手机号',
 	ver_code varchar(100) NOT NULL COMMENT '验证码',
 	ver_end_dttm decimal(17,0) NOT NULL COMMENT '验证码失效时间戳',
-	create_opid varchar(40) NOT NULL COMMENT '创建人',
+	create_opid varchar(32) NOT NULL COMMENT '创建人',
 	create_ts datetime(6) NOT NULL COMMENT '创建时间',
-	last_mnt_opid varchar(40) COMMENT '最后修改人',
+	last_mnt_opid varchar(32) COMMENT '最后修改人',
 	last_mnt_ts datetime(6) COMMENT '最后修改时间',
 	version_ct decimal(17,0) DEFAULT '0' COMMENT '版本号',
 PRIMARY KEY (jnl_no)

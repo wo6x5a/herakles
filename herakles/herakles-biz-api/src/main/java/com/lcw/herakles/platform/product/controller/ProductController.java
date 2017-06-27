@@ -59,7 +59,7 @@ public class ProductController extends BaseController {
      * @param model
      * @return
      */
-//    @RequiresPermissions("product:view")
+    @RequiresPermissions("product:view")
     @RequestMapping(value = "view", method = RequestMethod.GET)
     public String home(Model model) {
         model.addAttribute("categoryList", getStaticOptions(EProductCagetory.class, true));
@@ -130,7 +130,7 @@ public class ProductController extends BaseController {
      * @param model
      * @return
      */
-     @RequiresPermissions("product:detatil")
+//     @RequiresPermissions("product:detatil")
     @RequestMapping(value = "detatil", method = RequestMethod.GET)
     public String detail( @RequestParam(value = "id") String id,
             Model model) {
