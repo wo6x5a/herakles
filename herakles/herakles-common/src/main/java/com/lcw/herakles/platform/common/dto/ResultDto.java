@@ -23,11 +23,11 @@ import lombok.Setter;
 @AllArgsConstructor(access = AccessLevel.PUBLIC)
 @Comment(value = "结果返回dto")
 public class ResultDto implements Serializable {
-    
+
     /**
      * 
      */
-    private static final long serialVersionUID = -8045857136165242595L;
+    private static final long serialVersionUID = 1L;
 
     @Comment(value = "返回码")
     private String code;

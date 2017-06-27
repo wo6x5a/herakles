@@ -1,6 +1,5 @@
 package com.lcw.herakles.platform.system.security.database;
 
-import com.alibaba.druid.filter.config.ConfigTools;
 import com.alibaba.druid.pool.DruidDataSource;
 import com.lcw.herakles.platform.common.util.EndecryptUtil;
 
@@ -41,7 +40,7 @@ public class DecryptDruidSource extends DruidDataSource {
 
     public static void main(String[] args) {
         try {
-            System.out.println(ConfigTools.encrypt("123456"));
+            System.out.println(EndecryptUtil.encryptAes("jdbc:mysql://172.16.31.119:3306/herakles", DB_AES_KEY));
         } catch (Exception e) {
             log.error(e.getMessage());
         }

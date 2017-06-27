@@ -12,6 +12,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.lcw.herakles.platform.bizlog.enums.EOptType;
 import com.lcw.herakles.platform.bizlog.service.BizLogService;
+import com.lcw.herakles.platform.common.cache.util.CacheUtil;
 import com.lcw.herakles.platform.common.converter.ConverterService;
 import com.lcw.herakles.platform.common.enums.EErrorCode;
 import com.lcw.herakles.platform.common.service.BaseService;
@@ -35,7 +36,7 @@ public class ProductService extends BaseService{
     @Autowired
     private BizLogService bizLogService;
 
-    @Cacheable(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #id")
+    @Cacheable(value = CacheUtil.CACHE_PRODUCT, key = "'PRODUCT_' + #id")
     @Transactional(readOnly = true)
     public ProductPo findProductById(String id) {
         if (StringUtils.isBlank(id)) {
@@ -52,7 +53,7 @@ public class ProductService extends BaseService{
         return productRepository.findByName(name);
     }
 
-    @CachePut(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #productReqDto.id")
+    @CachePut(value = CacheUtil.CACHE_PRODUCT, key = "'PRODUCT_' + #productReqDto.id")
     @Transactional
     public ProductPo saveProduct(ProductReqDto productReqDto) {
         ProductPo product = new ProductPo();
@@ -77,7 +78,7 @@ public class ProductService extends BaseService{
 
     }
 
-    @CacheEvict(value = "PRODUCT_CACHE", key = "'PRODUCT_' + #id", beforeInvocation = true)
+    @CacheEvict(value = CacheUtil.CACHE_PRODUCT, key = "'PRODUCT_' + #id", beforeInvocation = true)
     @Transactional
     public void deleteProduct(String id) {
         if (StringUtils.isBlank(id)) {
@@ -85,5 +86,11 @@ public class ProductService extends BaseService{
         }
         productRepository.delete(id);
     }
+
+    /**
+     * 清空PRODUCT_CACHE所有缓存
+     */
+    @CacheEvict(value = CacheUtil.CACHE_PRODUCT, allEntries = true)
+    public void clearAllProductCache() {}
 
 }

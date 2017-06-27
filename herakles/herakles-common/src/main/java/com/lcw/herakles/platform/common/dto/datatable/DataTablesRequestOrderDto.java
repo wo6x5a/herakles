@@ -21,7 +21,7 @@ public class DataTablesRequestOrderDto implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = -1243725115787446630L;
+    private static final long serialVersionUID = 1L;
 
     private int column;
     private String dir;

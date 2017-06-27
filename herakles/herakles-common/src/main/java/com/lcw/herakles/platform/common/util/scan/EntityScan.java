@@ -1,6 +1,3 @@
-/**
- * 
- */
 package com.lcw.herakles.platform.common.util.scan;
 
 import java.lang.annotation.Annotation;
@@ -11,10 +8,6 @@ import com.google.common.base.Preconditions;
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
 
-/**
- * @author congzhou
- *
- */
 public class EntityScan extends ClassScan {
 
 	@Override

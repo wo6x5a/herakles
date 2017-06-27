@@ -42,6 +42,12 @@ public class ConfigController extends BaseController {
 		return "system/config/cfg_mgt";
 	}
 
+	/**
+	 * 查询配置
+	 * 
+	 * @param searchDto
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "list", method = RequestMethod.POST)
 	// @RequiresPermissions(value = "system:config:list")
@@ -50,6 +56,12 @@ public class ConfigController extends BaseController {
 		return configService.search(searchDto, inCfgTypeList);
 	}
 
+	/**
+	 * 修改配置
+	 * 
+	 * @param reqDto
+	 * @return
+	 */
 	@ResponseBody
 	@RequestMapping(value = "modify", method = RequestMethod.POST)
 	// @RequiresPermissions(value = "system:config:modify")
@@ -60,6 +72,18 @@ public class ConfigController extends BaseController {
 			return ResultDtoFactory.toNack(ex.getError());
 		}
 		return ResultDtoFactory.toAck(getMessage(COMMON_OPERATE_SUCCESS));
+	}
+
+    /**
+     * 清空所有配置缓存
+     * 
+     * @return
+     */
+    @ResponseBody
+    @RequestMapping(value = "refresh-cache", method = RequestMethod.POST)
+	public ResultDto refresh(){
+	    configService.refresh();
+	    return ResultDtoFactory.toAck(getMessage(COMMON_OPERATE_SUCCESS));
 	}
 
 }

@@ -26,7 +26,7 @@ public class DataTablesRequestDto implements Serializable {
     /**
      * 
      */
-    private static final long serialVersionUID = -5543367449976390332L;
+    private static final long serialVersionUID = 1L;
 
     @JsonProperty(value = "sEcho")
     private String echo;

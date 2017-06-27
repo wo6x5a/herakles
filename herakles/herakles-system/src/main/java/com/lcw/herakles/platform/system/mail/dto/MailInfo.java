@@ -61,5 +61,4 @@ public class MailInfo {
         this.from = from;
     }
 
-
 }
