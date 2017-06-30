@@ -18,7 +18,7 @@ public class PrintTimeJobTask {
     @Autowired
     private PrintTimeJobTaskService printTimeJobTaskService;
 
-    @Scheduled(cron = "0 * * * * ?")
+    @Scheduled(cron = "0 0/1 * * * ?")
     public void getTime() {
         printTimeJobTaskService.getTime();
         // System.out.println("任务进行中。。。每分钟触发一次");

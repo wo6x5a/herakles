@@ -20,7 +20,7 @@ public class PrintTimeJobTaskService {
     public void getTime() {
         log.debug("this is task demo");
         // System.out.println(productRepository.findAll().size());
-        // System.out.println(new Date());
+//         System.out.println(new Date());
     }
 
 }
